@@ -1,32 +1,50 @@
+@using System.Text.Json
 @model TradeViewModel
 @{
     ViewData["Title"] = "Sanal işlem";
+    var previewBaseUrlJson = JsonSerializer.Serialize(Url.Content("~/api/portfolios"));
 }
 
-<div class="row justify-content-center">
-    <div class="col-lg-8 col-xl-7">
-        <nav aria-label="İçerik yolu" class="mb-3">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a asp-action="Index">Portföylerim</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Sanal işlem</li>
-            </ol>
-        </nav>
-        <div class="card border-0 shadow-sm">
-            <div class="card-body p-4">
-                <h1 class="h3 mb-2">Sanal alım / satım</h1>
-                <p class="text-muted">İşlem, gönderim anındaki güncel piyasa fiyatıyla kaydedilir.</p>
+<nav aria-label="İçerik yolu" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index">Portföylerim</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sanal işlem</li>
+    </ol>
+</nav>
 
-                @if (Model.PortfolioOptions.Count == 0)
-                {
-                    <div class="alert alert-warning">
-                        İşlem yapmadan önce bir portföy oluşturmalısınız.
-                        <a asp-action="Create" class="alert-link">Portföy oluştur</a>
-                    </div>
-                }
-                else
-                {
-                    <form asp-action="Buy" method="post">
-                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<div class="trade-page-heading mb-4">
+    <span class="section-kicker">Emir simülasyonu</span>
+    <h1 class="mb-1">Sanal alım / satım</h1>
+    <p class="text-muted mb-0">İşlemin tahmini etkisini önceden görün; emir gönderim anındaki güncel piyasa fiyatıyla kaydedilir.</p>
+</div>
+
+@if (Model.PortfolioOptions.Count == 0)
+{
+    <div class="content-panel text-center">
+        <span class="content-panel-icon"><i class="bi bi-wallet2" aria-hidden="true"></i></span>
+        <h2 class="h4">Önce bir portföy oluşturun</h2>
+        <p class="text-muted">Sanal alım veya satım yapabilmek için aktif bir portföye ihtiyacınız var.</p>
+        <a asp-action="Create" class="btn btn-primary">Portföy oluştur</a>
+    </div>
+}
+else
+{
+    <form id="tradeForm" asp-action="Buy" method="post" data-buy-action="@Url.Action("Buy")" data-sell-action="@Url.Action("Sell")">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-7">
+                <section class="card trade-form-card" aria-labelledby="tradeFormHeading">
+                    <div class="card-body">
+                        <h2 id="tradeFormHeading" class="h4 mb-4">İşlem bilgileri</h2>
+                        <fieldset class="mb-4">
+                            <legend class="form-label mb-2">İşlem yönü</legend>
+                            <div class="trade-direction-switch" role="radiogroup" aria-label="İşlem yönü">
+                                <input class="btn-check" type="radio" name="tradeDirection" id="tradeDirectionBuy" value="buy" checked />
+                                <label class="btn" for="tradeDirectionBuy"><i class="bi bi-arrow-down-left-circle" aria-hidden="true"></i> Alış</label>
+                                <input class="btn-check" type="radio" name="tradeDirection" id="tradeDirectionSell" value="sell" />
+                                <label class="btn" for="tradeDirectionSell"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i> Satış</label>
+                            </div>
+                        </fieldset>
                         <div class="mb-3">
                             <label asp-for="PortfolioId" class="form-label"></label>
                             <select asp-for="PortfolioId" asp-items="Model.PortfolioOptions" class="form-select"></select>
@@ -49,17 +67,141 @@
                             <span asp-validation-for="Quantity" class="text-danger"></span>
                         </div>
                         <div class="d-flex flex-wrap gap-2">
-                            <button type="submit" class="btn btn-success">Satın al</button>
-                            <button type="submit" class="btn btn-danger" formaction="@Url.Action("Sell")">Sat</button>
+                            <button id="tradeSubmitButton" type="submit" class="btn btn-success"><i class="bi bi-check2-circle me-1" aria-hidden="true"></i> Alış emrini gönder</button>
                             <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.PortfolioId">Portföye dön</a>
                         </div>
-                    </form>
-                }
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-5">
+                <aside class="trade-preview-card" aria-labelledby="tradePreviewHeading">
+                    <div class="trade-preview-header">
+                        <div>
+                            <span class="section-kicker">Canlı hesaplama</span>
+                            <h2 id="tradePreviewHeading" class="h5 mb-0">İşlem önizlemesi</h2>
+                        </div>
+                        <i class="bi bi-calculator" aria-hidden="true"></i>
+                    </div>
+                    <div id="tradePreviewLoading" class="trade-preview-state text-muted">Hisse ve miktar bilgisi bekleniyor.</div>
+                    <div id="tradePreviewContent" class="d-none" aria-live="polite">
+                        <dl class="trade-preview-list">
+                            <div><dt>Güncel fiyat</dt><dd id="previewCurrentPrice">-</dd></div>
+                            <div><dt>Tahmini tutar</dt><dd id="previewEstimatedTotal">-</dd></div>
+                            <div><dt>Mevcut nakit</dt><dd id="previewCash">-</dd></div>
+                            <div><dt>İşlem sonrası nakit</dt><dd id="previewCashAfter">-</dd></div>
+                            <div><dt>Sahip olunan miktar</dt><dd id="previewOwnedQuantity">-</dd></div>
+                        </dl>
+                        <div id="tradePreviewMessage" class="small mt-3"></div>
+                    </div>
+                    <p class="trade-preview-disclaimer"><i class="bi bi-info-circle" aria-hidden="true"></i> Önizleme gecikmeli piyasa verisine dayanır; kesin fiyat emir anında belirlenir.</p>
+                </aside>
             </div>
         </div>
-    </div>
-</div>
+    </form>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const form = document.getElementById('tradeForm');
+            if (!form) return;
+
+            const previewBaseUrl = @Html.Raw(previewBaseUrlJson);
+            const portfolioInput = document.getElementById('PortfolioId');
+            const symbolInput = document.getElementById('Symbol');
+            const quantityInput = document.getElementById('Quantity');
+            const directionInputs = Array.from(document.querySelectorAll('input[name="tradeDirection"]'));
+            const submitButton = document.getElementById('tradeSubmitButton');
+            const loading = document.getElementById('tradePreviewLoading');
+            const content = document.getElementById('tradePreviewContent');
+            const message = document.getElementById('tradePreviewMessage');
+            const fields = {
+                currentPrice: document.getElementById('previewCurrentPrice'),
+                estimatedTotal: document.getElementById('previewEstimatedTotal'),
+                cash: document.getElementById('previewCash'),
+                cashAfter: document.getElementById('previewCashAfter'),
+                ownedQuantity: document.getElementById('previewOwnedQuantity')
+            };
+            const numberFormatter = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const quantityFormatter = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 0, maximumFractionDigits: 4 });
+            let debounceTimer;
+            let activeRequest;
+
+            const selectedDirection = () => directionInputs.find(input => input.checked)?.value ?? 'buy';
+            const money = (symbol, value) => `${symbol}${numberFormatter.format(Number(value))}`;
+
+            const syncDirection = () => {
+                const isSell = selectedDirection() === 'sell';
+                form.action = isSell ? form.dataset.sellAction : form.dataset.buyAction;
+                submitButton.classList.toggle('btn-success', !isSell);
+                submitButton.classList.toggle('btn-danger', isSell);
+                submitButton.innerHTML = `<i class="bi bi-check2-circle me-1" aria-hidden="true"></i> ${isSell ? 'Satış' : 'Alış'} emrini gönder`;
+            };
+
+            const showState = text => {
+                loading.textContent = text;
+                loading.classList.remove('d-none');
+                content.classList.add('d-none');
+                submitButton.disabled = false;
+            };
+
+            const loadPreview = async () => {
+                const portfolioId = Number(portfolioInput.value);
+                const symbol = symbolInput.value.trim().toUpperCase();
+                const quantity = Number(quantityInput.value);
+                if (!portfolioId || !symbol || !Number.isFinite(quantity) || quantity <= 0) {
+                    showState('Geçerli bir hisse ve miktar girin.');
+                    return;
+                }
+
+                activeRequest?.abort();
+                activeRequest = new AbortController();
+                loading.textContent = 'Güncel fiyat hesaplanıyor...';
+                loading.classList.remove('d-none');
+                content.classList.add('d-none');
+
+                const query = new URLSearchParams({ symbol, quantity: quantity.toString(), type: selectedDirection() });
+                try {
+                    const response = await fetch(`${previewBaseUrl}/${portfolioId}/trade-preview?${query}`, {
+                        signal: activeRequest.signal,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    const payload = await response.json().catch(() => ({}));
+                    if (!response.ok) throw new Error(payload.message || 'İşlem önizlemesi alınamadı.');
+
+                    fields.currentPrice.textContent = money(payload.currencySymbol, payload.currentPrice);
+                    fields.estimatedTotal.textContent = money(payload.currencySymbol, payload.estimatedTotal);
+                    fields.cash.textContent = `₺${numberFormatter.format(Number(payload.cash))}`;
+                    fields.cashAfter.textContent = `₺${numberFormatter.format(Number(payload.cashAfterTrade))}`;
+                    fields.cashAfter.className = payload.cashAfterTrade < 0 ? 'loss' : '';
+                    fields.ownedQuantity.textContent = quantityFormatter.format(Number(payload.ownedQuantity));
+                    message.textContent = payload.warningMessage || 'İşlem için kullanılabilir bakiye ve miktar yeterli.';
+                    message.className = `small mt-3 ${payload.canExecute ? 'gain' : 'loss'}`;
+                    submitButton.disabled = !payload.canExecute;
+                    loading.classList.add('d-none');
+                    content.classList.remove('d-none');
+                } catch (error) {
+                    if (error.name === 'AbortError') return;
+                    showState(error.message || 'İşlem önizlemesi alınamadı.');
+                }
+            };
+
+            const schedulePreview = () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(loadPreview, 250);
+            };
+
+            directionInputs.forEach(input => input.addEventListener('change', () => {
+                syncDirection();
+                schedulePreview();
+            }));
+            [portfolioInput, symbolInput, quantityInput].forEach(input => {
+                input.addEventListener(input === portfolioInput ? 'change' : 'input', schedulePreview);
+            });
+
+            syncDirection();
+            schedulePreview();
+        })();
+    </script>
 }

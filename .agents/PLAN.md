@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (UI task rev 4 — Phase 2 complete; Phase 3 next)
+in-progress — 2026-07-17 (UI task rev 6 — Phase 3 complete; Phase 4 next)
 
 ## Task Type
 
@@ -55,23 +55,33 @@ One phase per Codex run; each leaves the app building, working, and locally veri
 
 ### Phase 3 — Portfolio detail enrichment (the core of this task)
 
-- [ ] `PortfolioService`/`PortfolioSnapshot` additions (extend records, keep names consistent):
+- [x] `PortfolioService`/`PortfolioSnapshot` additions (extend records, keep names consistent):
   - Per position: daily change ₺/% (from quote), weight % of total portfolio value, total cost basis, realized P/L for that symbol, first purchase date.
   - Portfolio totals: day change ₺/%, total realized P/L, total cost basis, position count.
-- [ ] `Portfolio/Details.cshtml` redesign:
+- [x] `Portfolio/Details.cshtml` redesign:
   - Summary row: Toplam değer (+ day change chip), Toplam K/Z (unrealized), Gerçekleşen K/Z, Nakit — themed stat cards.
   - Allocation donut (Chart.js): positions by value + cash slice; legend with weights.
   - Holdings table: add Günlük değişim, Ağırlık %, Gerçekleşen K/Z, Maliyet columns; row click or chevron expands per-symbol transaction list (buys/sells with dates/prices) rendered from existing transaction data; link to stock details.
   - Transactions section: keep, add type badges (Alış/Satış) and running order; collapse by default if long.
-- [ ] `Portfolio/Trade.cshtml`: live preview — on symbol+quantity input show current price, estimated total, cash after trade, owned quantity (small fetch endpoint or reuse quote API); Turkish validation messages kept.
-- [ ] `Portfolio/Index.cshtml`: portfolio cards with total value, day change, position count instead of bare list.
-- [ ] Verify: with a portfolio holding ≥2 symbols (one BIST one US), all new columns show correct values (hand-check weight sums ≈100% incl. cash; realized P/L matches a manual partial-sell calculation); donut renders; expand shows the right transactions; trade preview matches quote.
+- [x] `Portfolio/Trade.cshtml`: added an authenticated owner-only live preview endpoint and responsive preview card showing current price, estimated total, post-trade cash, owned quantity, direction-aware validation, and the existing Turkish server validation flow.
+- [x] `Portfolio/Index.cshtml`: replaced the bare portfolio list with live snapshot cards showing total value, daily change, position count, cash, and quote-health state.
+- [x] Verify: a temporary portfolio with THYAO.IS and AAPL plus a partial THYAO sale rendered every new field; cash-inclusive allocation weights summed to exactly 100%; a deterministic average-cost script produced the expected ₺200 realized P/L; donut, symbol expansion, transaction rows, and quote-matched trade preview all worked. The temporary account and data were deleted afterward through the application UI.
 
 ### Phase 4 — Portfolio value-over-time chart
 
 - [ ] `GET /api/portfolios/{id}/value-history` (auth, owner-only): reconstruct daily portfolio value (positions × daily closes + cash after each day's transactions) since creation (cap 1y); 1 h cache per portfolio; missing quote days carry forward.
 - [ ] `Portfolio/Details.cshtml`: area chart (lightweight-charts) above the holdings table with the value series + a baseline line at initial cash; empty/one-day portfolios show a friendly note instead.
 - [ ] Verify: series starts at ≈initial cash on creation day, matches current TotalValue at the end (±quote drift); endpoint 404s for other users' portfolios.
+
+### Phase 5 — AI commentary quality fix (user-reported bug + UX)
+
+User report 2026-07-17: AI output arrives truncated mid-sentence (e.g. AKSA.IS → "hissesi, orta ve" then disclaimer) and carries no takeaway.
+
+- [ ] Root cause fix in `GeminiCommentaryService`: `maxOutputTokens = 800` is consumed by Gemini 3.5's internal thinking tokens, truncating the visible text. Raise to 2048 and CHECK `candidates[0].finishReason`: on `MAX_TOKENS` treat as failure ("AI yorumu tamamlanamadı, tekrar deneyin") instead of appending the disclaimer to a truncated fragment — never present cut-off text as a finished analysis.
+- [ ] Structured output: rewrite the prompt to demand fixed Markdown sections in this exact order — `## Özet` (2 sentences + one label line `**Genel Görünüm:** Olumlu/Nötr/Olumsuz`), `## Trend`, `## Göstergeler` (one bullet per indicator with its reading, e.g. "RSI 71 — aşırı alım bölgesinde"), `## Destek ve Direnç` (concrete price levels from the data), `## Riskler`. Keep existing guardrails (no buy/sell instructions, no invented news, end with the exact disclaimer).
+- [ ] Response sanity check: if the returned text lacks the `## Özet` heading, treat as failure with retry message (guards against format drift).
+- [ ] AI card UX in `Stocks/Details.cshtml`: show a meta line above the result — "Son 60 günlük OHLC verisi ve teknik göstergelere göre üretildi · <timestamp>" — so users know what the analysis covers; keep the existing error/cooldown handling.
+- [ ] Verify: live AKSA.IS and AAPL commentary returns complete, sectioned output ending with the disclaimer (no mid-sentence cuts across 3 consecutive tries); a simulated MAX_TOKENS/short response shows the retry message, not a fragment.
 
 ## Acceptance Criteria
 
@@ -154,3 +164,12 @@ One phase per Codex run; each leaves the app building, working, and locally veri
 - Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. Local `/Stocks`, `/Stocks/Details/THYAO.IS`, `/Stocks/Details/AAPL`, AAPL history, and AAPL indicator requests all returned HTTP 200; the APIs returned 251 history points and a populated 1y indicator response. Headless Chrome executed both directions for symbol, price, and change sorting and returned correctly ordered leading values. Desktop 1440 px and narrow 390 px screenshots were visually inspected. The details `@section Scripts` content, `StocksController`, and AI card IDs remained unchanged; `git diff --check` passed.
 - File inventory: edited `.agents/PLAN.md`, `src/BorsaAnaliz.Web/Views/Stocks/Index.cshtml`, `src/BorsaAnaliz.Web/Views/Stocks/Details.cshtml`, and `src/BorsaAnaliz.Web/wwwroot/css/site.css`. No model, controller, route, database schema, secret, or runtime data changed.
 - UI Phase 2 is complete. Status remains `in-progress`; Phase 3 (portfolio detail enrichment) is next.
+
+### 2026-07-17 — UI Phase 3 complete
+
+- Extended `PortfolioSnapshot` and each open position with daily movement, portfolio weight, total cost basis, realized P/L, and first-purchase date; added portfolio totals for daily movement, unrealized/realized P/L, cost basis, and position count. A reusable pure `PortfolioService.CalculateLedger` function now applies average-cost accounting in chronological order and drives cash, open quantity, cost basis, and realized P/L consistently across snapshots, previews, buys, and sells.
+- Added batched portfolio snapshot loading for the index and an authenticated, owner-scoped `GET /api/portfolios/{portfolioId}/trade-preview` endpoint. The endpoint uses the same quote and ledger logic as order execution and returns current price, estimated total, cash after the selected direction, owned quantity, and an executable/warning state.
+- Rebuilt the portfolio index as information-rich cards. Rebuilt details with four summary cards, a Chart.js 4.5.1 allocation donut plus server-rendered weighted legend, a detailed holdings table, first-purchase metadata, per-symbol collapsible transaction histories, type badges, and a long-history collapse. Rebuilt the trade page with buy/sell direction controls, debounced live preview, responsive validation state, and mobile-first presentation.
+- Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. A deterministic ledger scenario (THYAO buys 10@100 and 10@120, sell 5@150; AAPL buy 4@200) returned cash 97,750, THYAO cost basis 1,650, realized P/L 200, and cash-inclusive weights totaling 100.000000%. A disposable authenticated integration account created a 100,000 ₺ portfolio, bought THYAO.IS and AAPL, partially sold THYAO, and confirmed 2 positions, 3 transactions, a three-slice ready Chart.js donut, working symbol expansion, and a trade preview matching the displayed ₺330 quote with owned quantity 7. Live DOM measurement showed allocation weights totaling exactly 100% and no mobile horizontal document overflow. Desktop portfolio index/detail and 390 px trade/detail screenshots were visually inspected. Anonymous portfolio and preview requests both redirected to login; the disposable account was deleted through Identity UI. `git diff --check` and the secret-pattern scan passed.
+- File inventory: edited `.agents/PLAN.md`, `Controllers/PortfolioController.cs`, `Models/PortfolioSnapshot.cs`, `Services/IPortfolioService.cs`, `Services/PortfolioService.cs`, `Views/Portfolio/Index.cshtml`, `Views/Portfolio/Details.cshtml`, `Views/Portfolio/Trade.cshtml`, and `wwwroot/css/site.css`. No database schema, migration, secret, or persistent test data remains.
+- UI Phase 3 is complete. Status remains `in-progress`; Phase 4 (portfolio value-over-time chart) is next.

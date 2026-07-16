@@ -1,5 +1,5 @@
 @using System.Globalization
-@model IReadOnlyList<Portfolio>
+@model IReadOnlyList<PortfolioSnapshot>
 @{
     ViewData["Title"] = "Portföylerim";
     var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
@@ -7,10 +7,11 @@
 
 <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
     <div>
+        <span class="section-kicker">Varlık yönetimi</span>
         <h1 class="mb-1">Portföylerim</h1>
-        <p class="text-muted mb-0">Sanal portföylerinizi oluşturun ve piyasa fiyatlarıyla takip edin.</p>
+        <p class="text-muted mb-0">Sanal portföylerinizin değerini, günlük hareketini ve dağılımını izleyin.</p>
     </div>
-    <a class="btn btn-primary" asp-action="Create">Yeni portföy</a>
+    <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i> Yeni portföy</a>
 </div>
 
 @if (TempData["SuccessMessage"] is string successMessage)
@@ -20,31 +21,46 @@
 
 @if (Model.Count == 0)
 {
-    <div class="card border-0 shadow-sm">
-        <div class="card-body text-center py-5">
-            <h2 class="h5">Henüz portföyünüz yok</h2>
-            <p class="text-muted">100.000 ₺ varsayılan sanal nakitle ilk portföyünüzü oluşturabilirsiniz.</p>
-            <a class="btn btn-primary" asp-action="Create">Portföy oluştur</a>
-        </div>
+    <div class="content-panel text-center">
+        <span class="content-panel-icon"><i class="bi bi-wallet2" aria-hidden="true"></i></span>
+        <h2 class="h4">Henüz portföyünüz yok</h2>
+        <p class="text-muted">100.000 ₺ varsayılan sanal nakitle ilk portföyünüzü oluşturabilirsiniz.</p>
+        <a class="btn btn-primary" asp-action="Create">Portföy oluştur</a>
     </div>
 }
 else
 {
     <div class="row g-4">
-        @foreach (var portfolio in Model)
+        @foreach (var snapshot in Model)
         {
+            var dayClass = snapshot.DayChange > 0 ? "gain" : snapshot.DayChange < 0 ? "loss" : "neutral";
+            var dayIcon = snapshot.DayChange > 0 ? "bi-caret-up-fill" : snapshot.DayChange < 0 ? "bi-caret-down-fill" : "bi-dash";
+            var daySign = snapshot.DayChange > 0 ? "+" : string.Empty;
             <div class="col-md-6 col-xl-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body">
-                        <h2 class="h5">@portfolio.Name</h2>
-                        <div class="text-muted small mb-3">@portfolio.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", displayCulture)</div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span>Başlangıç nakdi</span>
-                            <strong>₺@portfolio.InitialCash.ToString("N2", displayCulture)</strong>
-                        </div>
-                        <a class="btn btn-outline-primary w-100" asp-action="Details" asp-route-id="@portfolio.Id">Portföyü görüntüle</a>
+                <article class="portfolio-card h-100">
+                    <div class="portfolio-card-topline">
+                        <span class="portfolio-card-icon"><i class="bi bi-pie-chart-fill" aria-hidden="true"></i></span>
+                        <span class="small text-muted">@snapshot.Portfolio.CreatedAt.ToLocalTime().ToString("dd MMM yyyy", displayCulture)</span>
                     </div>
-                </div>
+                    <h2 class="h5 mb-3">@snapshot.Portfolio.Name</h2>
+                    <div class="portfolio-card-value">₺@snapshot.TotalValue.ToString("N2", displayCulture)</div>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-2 mb-4">
+                        <span class="change-pill @dayClass">
+                            <i class="bi @dayIcon" aria-hidden="true"></i>
+                            @daySign₺@snapshot.DayChange.ToString("N2", displayCulture) (@daySign%@snapshot.DayChangePercent.ToString("N2", displayCulture))
+                        </span>
+                        <span class="small text-muted">bugün</span>
+                    </div>
+                    <div class="portfolio-card-meta">
+                        <span><i class="bi bi-layers" aria-hidden="true"></i> @snapshot.PositionCount pozisyon</span>
+                        <span><i class="bi bi-cash-stack" aria-hidden="true"></i> ₺@snapshot.Cash.ToString("N2", displayCulture) nakit</span>
+                    </div>
+                    @if (snapshot.HasMissingQuotes)
+                    {
+                        <div class="small text-warning mt-3"><i class="bi bi-exclamation-triangle me-1" aria-hidden="true"></i> Bazı fiyatlar eksik</div>
+                    }
+                    <a class="btn btn-outline-primary w-100 mt-4" asp-action="Details" asp-route-id="@snapshot.Portfolio.Id">Portföyü görüntüle</a>
+                </article>
             </div>
         }
     </div>

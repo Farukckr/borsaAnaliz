@@ -21,8 +21,8 @@ public sealed class PortfolioController : Controller
 
     public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
-        var portfolios = await _portfolioService.GetPortfoliosAsync(GetUserId(), cancellationToken);
-        return View(portfolios);
+        var snapshots = await _portfolioService.GetSnapshotsAsync(GetUserId(), cancellationToken);
+        return View(snapshots);
     }
 
     [HttpGet]
@@ -68,6 +68,35 @@ public sealed class PortfolioController : Controller
         };
         await PopulateTradeOptionsAsync(model, cancellationToken);
         return View(model);
+    }
+
+    [HttpGet("/api/portfolios/{portfolioId:int}/trade-preview")]
+    public async Task<IActionResult> TradePreview(
+        int portfolioId,
+        [FromQuery] string symbol,
+        [FromQuery] decimal quantity,
+        [FromQuery] string type = "buy",
+        CancellationToken cancellationToken = default)
+    {
+        var transactionType = type.Equals("sell", StringComparison.OrdinalIgnoreCase)
+            ? Models.TransactionType.Sell
+            : Models.TransactionType.Buy;
+        var result = await _portfolioService.GetTradePreviewAsync(
+            portfolioId,
+            GetUserId(),
+            symbol ?? string.Empty,
+            quantity,
+            transactionType,
+            cancellationToken);
+
+        if (!result.PortfolioFound)
+        {
+            return NotFound();
+        }
+
+        return result.Preview is null
+            ? BadRequest(new { message = result.ErrorMessage ?? "İşlem önizlemesi hazırlanamadı." })
+            : Ok(result.Preview);
     }
 
     [HttpPost]

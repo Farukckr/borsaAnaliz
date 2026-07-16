@@ -1,9 +1,38 @@
 @using System.Globalization
+@using System.Text.Json
 @model PortfolioSnapshot
 @{
     ViewData["Title"] = Model.Portfolio.Name;
     var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
-    var totalClass = Model.TotalProfitLoss > 0 ? "text-success" : Model.TotalProfitLoss < 0 ? "text-danger" : "text-muted";
+    var unrealizedClass = Model.TotalUnrealizedProfitLoss > 0 ? "gain" : Model.TotalUnrealizedProfitLoss < 0 ? "loss" : "neutral";
+    var realizedClass = Model.TotalRealizedProfitLoss > 0 ? "gain" : Model.TotalRealizedProfitLoss < 0 ? "loss" : "neutral";
+    var dayClass = Model.DayChange > 0 ? "gain" : Model.DayChange < 0 ? "loss" : "neutral";
+    var dayIcon = Model.DayChange > 0 ? "bi-caret-up-fill" : Model.DayChange < 0 ? "bi-caret-down-fill" : "bi-dash";
+    var daySign = Model.DayChange > 0 ? "+" : string.Empty;
+    var allocationColors = new[] { "#2563eb", "#0f9f75", "#7c3aed", "#f59e0b", "#0891b2", "#e11d48", "#64748b", "#14b8a6" };
+    var allocationItems = Model.Positions
+        .Where(position => position.Value > 0)
+        .Select(position => new
+        {
+            Label = position.Symbol,
+            position.Value,
+            position.WeightPercent
+        })
+        .ToList();
+    if (Model.Cash > 0)
+    {
+        allocationItems.Add(new
+        {
+            Label = "Nakit",
+            Value = Model.Cash,
+            WeightPercent = Model.TotalValue == 0 ? 0m : Model.Cash / Model.TotalValue * 100m
+        });
+    }
+    var allocationLabelsJson = JsonSerializer.Serialize(allocationItems.Select(item => item.Label));
+    var allocationValuesJson = JsonSerializer.Serialize(allocationItems.Select(item => item.Value));
+    var allocationWeightsJson = JsonSerializer.Serialize(allocationItems.Select(item => item.WeightPercent));
+    var allocationColorsJson = JsonSerializer.Serialize(allocationItems.Select((_, index) => allocationColors[index % allocationColors.Length]));
+    var collapseTransactions = Model.Transactions.Count > 6;
 }
 
 <nav aria-label="İçerik yolu" class="mb-3">
@@ -13,126 +42,290 @@
     </ol>
 </nav>
 
-<div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-start gap-3 mb-4">
+<div class="portfolio-detail-heading mb-4">
     <div>
+        <span class="section-kicker">Portföy görünümü</span>
         <h1 class="mb-1">@Model.Portfolio.Name</h1>
-        <p class="text-muted mb-0">Sanal portföy · @Model.Portfolio.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", displayCulture)</p>
+        <p class="text-muted mb-0">Sanal portföy · @Model.Portfolio.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", displayCulture) tarihinden beri</p>
     </div>
-    <a class="btn btn-primary" asp-action="Trade" asp-route-portfolioId="@Model.Portfolio.Id">Alım / satım yap</a>
+    <a class="btn btn-primary" asp-action="Trade" asp-route-portfolioId="@Model.Portfolio.Id">
+        <i class="bi bi-arrow-left-right me-1" aria-hidden="true"></i> Alım / satım yap
+    </a>
 </div>
 
 @if (TempData["SuccessMessage"] is string successMessage)
 {
-    <div class="alert alert-success">@successMessage</div>
+    <div class="alert alert-success"><i class="bi bi-check-circle me-1" aria-hidden="true"></i> @successMessage</div>
 }
 
 @if (Model.HasMissingQuotes)
 {
-    <div class="alert alert-warning">Bazı güncel fiyatlar alınamadı. Bu pozisyonlar toplam değerde ortalama maliyetle gösteriliyor.</div>
+    <div class="alert alert-warning"><i class="bi bi-exclamation-triangle me-1" aria-hidden="true"></i> Bazı güncel fiyatlar alınamadı. Bu pozisyonlar toplam değerde ortalama maliyetle gösteriliyor.</div>
 }
 
-<div class="row g-3 mb-4">
+<div class="row g-3 portfolio-stat-grid mb-4">
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100"><div class="card-body">
-            <div class="text-muted small">Kullanılabilir nakit</div>
-            <div class="fs-4 fw-semibold">₺@Model.Cash.ToString("N2", displayCulture)</div>
-        </div></div>
+        <article class="portfolio-stat-card h-100">
+            <div class="portfolio-stat-label"><i class="bi bi-wallet2" aria-hidden="true"></i> Toplam değer</div>
+            <div class="portfolio-stat-value">₺@Model.TotalValue.ToString("N2", displayCulture)</div>
+            <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                <span class="change-pill @dayClass"><i class="bi @dayIcon" aria-hidden="true"></i> @(daySign)₺@Model.DayChange.ToString("N2", displayCulture) (@(daySign)%@Model.DayChangePercent.ToString("N2", displayCulture))</span>
+                <span class="small text-muted">bugün</span>
+            </div>
+        </article>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100"><div class="card-body">
-            <div class="text-muted small">Toplam değer</div>
-            <div class="fs-4 fw-semibold">₺@Model.TotalValue.ToString("N2", displayCulture)</div>
-        </div></div>
+        <article class="portfolio-stat-card h-100">
+            <div class="portfolio-stat-label"><i class="bi bi-graph-up" aria-hidden="true"></i> Gerçekleşmemiş K/Z</div>
+            <div class="portfolio-stat-value @unrealizedClass">₺@Model.TotalUnrealizedProfitLoss.ToString("N2", displayCulture)</div>
+            <div class="small text-muted mt-2">Maliyet: ₺@Model.TotalCostBasis.ToString("N2", displayCulture)</div>
+        </article>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100"><div class="card-body">
-            <div class="text-muted small">Toplam kâr / zarar</div>
-            <div class="fs-4 fw-semibold @totalClass">₺@Model.TotalProfitLoss.ToString("N2", displayCulture)</div>
-            <div class="small @totalClass">%@Model.TotalReturnPercent.ToString("N2", displayCulture)</div>
-        </div></div>
+        <article class="portfolio-stat-card h-100">
+            <div class="portfolio-stat-label"><i class="bi bi-check2-circle" aria-hidden="true"></i> Gerçekleşen K/Z</div>
+            <div class="portfolio-stat-value @realizedClass">₺@Model.TotalRealizedProfitLoss.ToString("N2", displayCulture)</div>
+            <div class="small text-muted mt-2">Tamamlanan satışlardan</div>
+        </article>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100"><div class="card-body">
-            <div class="text-muted small">Başlangıç nakdi</div>
-            <div class="fs-4 fw-semibold">₺@Model.Portfolio.InitialCash.ToString("N2", displayCulture)</div>
-        </div></div>
+        <article class="portfolio-stat-card h-100">
+            <div class="portfolio-stat-label"><i class="bi bi-cash-stack" aria-hidden="true"></i> Kullanılabilir nakit</div>
+            <div class="portfolio-stat-value">₺@Model.Cash.ToString("N2", displayCulture)</div>
+            <div class="small text-muted mt-2">@Model.PositionCount açık pozisyon</div>
+        </article>
     </div>
 </div>
 
-<section class="card border-0 shadow-sm mb-4" aria-labelledby="holdingsHeading">
-    <div class="card-header bg-white border-0 pt-4 px-4"><h2 id="holdingsHeading" class="h4 mb-0">Pozisyonlar</h2></div>
-    <div class="card-body p-0 pt-3">
-        @if (Model.Positions.Count == 0)
+<section class="card portfolio-allocation-card mb-4" aria-labelledby="allocationHeading">
+    <div class="card-body">
+        <div class="analysis-section-header mb-4">
+            <h2 id="allocationHeading" class="h4 mb-1">Varlık dağılımı</h2>
+            <p class="text-muted small mb-0">Pozisyonların ve nakdin toplam portföy içindeki ağırlığı.</p>
+        </div>
+        @if (allocationItems.Count == 0)
         {
-            <div class="text-center text-muted px-4 pb-4">Henüz açık pozisyon yok.</div>
+            <div class="text-muted">Dağılımı gösterecek varlık bulunmuyor.</div>
         }
         else
         {
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light"><tr>
-                        <th>Hisse</th><th class="text-end">Miktar</th><th class="text-end">Ort. maliyet</th>
-                        <th class="text-end">Güncel fiyat</th><th class="text-end">Değer</th><th class="text-end">K/Z</th>
-                    </tr></thead>
-                    <tbody>
-                    @foreach (var position in Model.Positions)
-                    {
-                        var positionClass = position.UnrealizedProfitLoss > 0 ? "text-success" : position.UnrealizedProfitLoss < 0 ? "text-danger" : "text-muted";
-                        <tr>
-                            <td>
-                                <a class="fw-semibold text-decoration-none" asp-controller="Stocks" asp-action="Details" asp-route-symbol="@position.Symbol">@position.Symbol</a>
-                                <div class="small text-muted">@position.Name</div>
-                            </td>
-                            <td class="text-end">@position.Quantity.ToString("N4", displayCulture)</td>
-                            <td class="text-end">@position.CurrencySymbol@position.AverageCost.ToString("N2", displayCulture)</td>
-                            <td class="text-end">@(position.CurrentPrice is decimal price ? $"{position.CurrencySymbol}{price.ToString("N2", displayCulture)}" : "-")</td>
-                            <td class="text-end">@position.CurrencySymbol@position.Value.ToString("N2", displayCulture)</td>
-                            <td class="text-end @positionClass">
-                                @if (position.UnrealizedProfitLoss is decimal profitLoss && position.UnrealizedProfitLossPercent is decimal profitLossPercent)
-                                {
-                                    <span>@position.CurrencySymbol@profitLoss.ToString("N2", displayCulture) (%@profitLossPercent.ToString("N2", displayCulture))</span>
-                                }
-                                else
-                                {
-                                    <span>-</span>
-                                }
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-5">
+                    <div class="allocation-chart-wrap"><canvas id="allocationChart" aria-label="Portföy varlık dağılım grafiği" role="img"></canvas></div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="allocation-legend" aria-label="Varlık dağılımı açıklaması">
+                        @for (var index = 0; index < allocationItems.Count; index++)
+                        {
+                            var item = allocationItems[index];
+                            <div class="allocation-legend-row">
+                                <span class="allocation-legend-swatch" style="--allocation-color: @allocationColors[index % allocationColors.Length]"></span>
+                                <span class="allocation-legend-name">@item.Label</span>
+                                <span class="allocation-legend-value">₺@item.Value.ToString("N2", displayCulture)</span>
+                                <strong>%@item.WeightPercent.ToString("N2", displayCulture)</strong>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         }
     </div>
 </section>
 
-<section class="card border-0 shadow-sm" aria-labelledby="transactionsHeading">
-    <div class="card-header bg-white border-0 pt-4 px-4"><h2 id="transactionsHeading" class="h4 mb-0">İşlem geçmişi</h2></div>
-    <div class="card-body p-0 pt-3">
-        @if (Model.Transactions.Count == 0)
+<section class="card portfolio-section mb-4" aria-labelledby="holdingsHeading">
+    <div class="portfolio-section-header">
+        <div>
+            <h2 id="holdingsHeading" class="h4 mb-1">Pozisyonlar</h2>
+            <p class="text-muted small mb-0">Maliyet, günlük performans ve portföy ağırlığını birlikte inceleyin.</p>
+        </div>
+        <span class="portfolio-count-badge">@Model.PositionCount pozisyon</span>
+    </div>
+    @if (Model.Positions.Count == 0)
+    {
+        <div class="empty-portfolio-section"><i class="bi bi-inbox" aria-hidden="true"></i><span>Henüz açık pozisyon yok.</span></div>
+    }
+    else
+    {
+        <div class="table-responsive portfolio-table-shell">
+            <table class="table portfolio-holdings-table align-middle mb-0">
+                <thead><tr>
+                    <th>Hisse</th>
+                    <th class="text-end">Miktar</th>
+                    <th class="text-end">Maliyet</th>
+                    <th class="text-end">Güncel</th>
+                    <th class="text-end">Değer</th>
+                    <th class="text-end">Günlük</th>
+                    <th class="text-end">Ağırlık</th>
+                    <th class="text-end">Gerçekleşmemiş</th>
+                    <th class="text-end">Gerçekleşen</th>
+                    <th><span class="visually-hidden">İşlemler</span></th>
+                </tr></thead>
+                <tbody>
+                @for (var positionIndex = 0; positionIndex < Model.Positions.Count; positionIndex++)
+                {
+                    var position = Model.Positions[positionIndex];
+                    var positionClass = position.UnrealizedProfitLoss > 0 ? "gain" : position.UnrealizedProfitLoss < 0 ? "loss" : "neutral";
+                    var positionDailyClass = position.DailyChange > 0 ? "gain" : position.DailyChange < 0 ? "loss" : "neutral";
+                    var positionRealizedClass = position.RealizedProfitLoss > 0 ? "gain" : position.RealizedProfitLoss < 0 ? "loss" : "neutral";
+                    var positionSign = position.DailyChange > 0 ? "+" : string.Empty;
+                    var positionTransactions = Model.Transactions
+                        .Where(transaction => transaction.Symbol.Equals(position.Symbol, StringComparison.OrdinalIgnoreCase))
+                        .OrderByDescending(transaction => transaction.ExecutedAt)
+                        .ThenByDescending(transaction => transaction.Id)
+                        .ToArray();
+                    var collapseId = $"positionTransactions{positionIndex}";
+                    <tr class="portfolio-position-row">
+                        <td>
+                            <a class="fw-semibold text-decoration-none" asp-controller="Stocks" asp-action="Details" asp-route-symbol="@position.Symbol">@position.Symbol</a>
+                            <div class="small text-muted">@position.Name</div>
+                            @if (position.FirstPurchaseDate is DateTimeOffset firstPurchaseDate)
+                            {
+                                <div class="position-first-date">İlk alım @firstPurchaseDate.ToLocalTime().ToString("dd MMM yyyy", displayCulture)</div>
+                            }
+                        </td>
+                        <td class="text-end">@position.Quantity.ToString("N4", displayCulture)</td>
+                        <td class="text-end text-nowrap">
+                            <strong>@position.CurrencySymbol@position.TotalCostBasis.ToString("N2", displayCulture)</strong>
+                            <div class="small text-muted">Ort. @position.CurrencySymbol@position.AverageCost.ToString("N2", displayCulture)</div>
+                        </td>
+                        <td class="text-end text-nowrap">@(position.CurrentPrice is decimal price ? $"{position.CurrencySymbol}{price.ToString("N2", displayCulture)}" : "-")</td>
+                        <td class="text-end text-nowrap fw-semibold">@position.CurrencySymbol@position.Value.ToString("N2", displayCulture)</td>
+                        <td class="text-end text-nowrap">
+                            <span class="@positionDailyClass">@(positionSign)@position.CurrencySymbol@position.DailyChange.ToString("N2", displayCulture)</span>
+                            <div class="small @positionDailyClass">@(positionSign)%@((position.DailyChangePercent ?? 0m).ToString("N2", displayCulture))</div>
+                        </td>
+                        <td class="text-end"><span class="weight-pill">%@position.WeightPercent.ToString("N2", displayCulture)</span></td>
+                        <td class="text-end text-nowrap @positionClass">
+                            @if (position.UnrealizedProfitLoss is decimal profitLoss && position.UnrealizedProfitLossPercent is decimal profitLossPercent)
+                            {
+                                <strong>@position.CurrencySymbol@profitLoss.ToString("N2", displayCulture)</strong>
+                                <div class="small">%@profitLossPercent.ToString("N2", displayCulture)</div>
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td class="text-end text-nowrap @positionRealizedClass">@position.CurrencySymbol@position.RealizedProfitLoss.ToString("N2", displayCulture)</td>
+                        <td class="text-end">
+                            <button class="position-expand-button" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId" title="@position.Symbol işlemlerini göster">
+                                <i class="bi bi-chevron-down" aria-hidden="true"></i><span class="visually-hidden">İşlemleri göster</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="position-history-row">
+                        <td colspan="10" class="p-0 border-0">
+                            <div id="@collapseId" class="collapse position-history-collapse">
+                                <div class="position-history-panel">
+                                    <div class="position-history-title">@position.Symbol işlem geçmişi</div>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm mb-0">
+                                            <thead><tr><th>Tarih</th><th>Tür</th><th class="text-end">Miktar</th><th class="text-end">Fiyat</th><th class="text-end">Tutar</th></tr></thead>
+                                            <tbody>
+                                            @foreach (var transaction in positionTransactions)
+                                            {
+                                                <tr>
+                                                    <td>@transaction.ExecutedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", displayCulture)</td>
+                                                    <td><span class="transaction-type-badge @(transaction.Type == TransactionType.Buy ? "buy" : "sell")">@(transaction.Type == TransactionType.Buy ? "Alış" : "Satış")</span></td>
+                                                    <td class="text-end">@transaction.Quantity.ToString("N4", displayCulture)</td>
+                                                    <td class="text-end">@transaction.CurrencySymbol@transaction.Price.ToString("N2", displayCulture)</td>
+                                                    <td class="text-end">@transaction.CurrencySymbol@((transaction.Quantity * transaction.Price).ToString("N2", displayCulture))</td>
+                                                </tr>
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
+
+<section class="card portfolio-section" aria-labelledby="transactionsHeading">
+    <div class="portfolio-section-header">
+        <div>
+            <h2 id="transactionsHeading" class="h4 mb-1">İşlem geçmişi</h2>
+            <p class="text-muted small mb-0">Portföyde gerçekleşen tüm sanal alım ve satımlar.</p>
+        </div>
+        @if (collapseTransactions)
         {
-            <div class="text-center text-muted px-4 pb-4">Henüz işlem yok.</div>
+            <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#allTransactions" aria-expanded="false" aria-controls="allTransactions">@Model.Transactions.Count işlemi göster</button>
         }
-        else
-        {
-            <div class="table-responsive">
+    </div>
+    @if (Model.Transactions.Count == 0)
+    {
+        <div class="empty-portfolio-section"><i class="bi bi-receipt" aria-hidden="true"></i><span>Henüz işlem yok.</span></div>
+    }
+    else
+    {
+        <div id="allTransactions" class="collapse @(!collapseTransactions ? "show" : string.Empty)">
+            <div class="table-responsive portfolio-table-shell">
                 <table class="table align-middle mb-0">
-                    <thead class="table-light"><tr><th>Tarih</th><th>Hisse</th><th>İşlem</th><th class="text-end">Miktar</th><th class="text-end">Fiyat</th><th class="text-end">Tutar</th></tr></thead>
+                    <thead><tr><th>#</th><th>Tarih</th><th>Hisse</th><th>İşlem</th><th class="text-end">Miktar</th><th class="text-end">Fiyat</th><th class="text-end">Tutar</th></tr></thead>
                     <tbody>
+                    @{ var transactionNumber = 1; }
                     @foreach (var transaction in Model.Transactions)
                     {
                         <tr>
+                            <td class="text-muted">@transactionNumber</td>
                             <td>@transaction.ExecutedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", displayCulture)</td>
                             <td><span class="fw-semibold">@transaction.Symbol</span><div class="small text-muted">@transaction.Name</div></td>
-                            <td><span class="badge @(transaction.Type == TransactionType.Buy ? "text-bg-success" : "text-bg-danger")">@(transaction.Type == TransactionType.Buy ? "Alım" : "Satım")</span></td>
+                            <td><span class="transaction-type-badge @(transaction.Type == TransactionType.Buy ? "buy" : "sell")">@(transaction.Type == TransactionType.Buy ? "Alış" : "Satış")</span></td>
                             <td class="text-end">@transaction.Quantity.ToString("N4", displayCulture)</td>
                             <td class="text-end">@transaction.CurrencySymbol@transaction.Price.ToString("N2", displayCulture)</td>
-                            <td class="text-end">@transaction.CurrencySymbol@((transaction.Quantity * transaction.Price).ToString("N2", displayCulture))</td>
+                            <td class="text-end fw-semibold">@transaction.CurrencySymbol@((transaction.Quantity * transaction.Price).ToString("N2", displayCulture))</td>
                         </tr>
+                        transactionNumber++;
                     }
                     </tbody>
                 </table>
             </div>
-        }
-    </div>
+        </div>
+    }
 </section>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+        (() => {
+            const canvas = document.getElementById('allocationChart');
+            if (canvas && window.Chart) {
+                const labels = @Html.Raw(allocationLabelsJson);
+                const values = @Html.Raw(allocationValuesJson);
+                const weights = @Html.Raw(allocationWeightsJson);
+                const colors = @Html.Raw(allocationColorsJson);
+                const numberFormatter = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                new Chart(canvas, {
+                    type: 'doughnut',
+                    data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#ffffff', borderWidth: 3, hoverOffset: 5 }] },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '70%',
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: context => ` ${context.label}: ₺${numberFormatter.format(context.raw)} (%${numberFormatter.format(weights[context.dataIndex])})`
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            document.querySelectorAll('.position-history-collapse').forEach(panel => {
+                const button = document.querySelector(`[data-bs-target="#${panel.id}"]`);
+                if (!button) return;
+                const icon = button.querySelector('i');
+                panel.addEventListener('show.bs.collapse', () => icon.className = 'bi bi-chevron-up');
+                panel.addEventListener('hide.bs.collapse', () => icon.className = 'bi bi-chevron-down');
+            });
+        })();
+    </script>
+}

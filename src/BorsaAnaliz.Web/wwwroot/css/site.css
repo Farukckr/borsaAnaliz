@@ -887,6 +887,382 @@ a:focus-visible {
   background: linear-gradient(145deg, #fff, #f7faff);
 }
 
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.1), transparent 13rem),
+    var(--ba-surface);
+  border: 1px solid var(--ba-slate-200);
+  border-radius: var(--ba-radius);
+  box-shadow: var(--ba-shadow-sm);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ba-shadow);
+}
+
+.portfolio-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.portfolio-card-icon {
+  display: inline-flex;
+  width: 2.55rem;
+  height: 2.55rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--ba-primary);
+  background: var(--ba-primary-soft);
+  border-radius: 0.8rem;
+}
+
+.portfolio-card-value {
+  color: var(--ba-navy-950);
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.portfolio-card-meta {
+  display: grid;
+  gap: 0.6rem;
+  color: var(--ba-slate-600);
+  font-size: 0.8rem;
+}
+
+.portfolio-card-meta span {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.portfolio-card-meta i {
+  color: var(--ba-primary);
+}
+
+.portfolio-detail-heading {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.portfolio-stat-card {
+  padding: 1.2rem;
+  background: linear-gradient(145deg, #fff, #fbfcff);
+  border: 1px solid var(--ba-slate-200);
+  border-radius: var(--ba-radius);
+  box-shadow: var(--ba-shadow-sm);
+}
+
+.portfolio-stat-label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: var(--ba-slate-500);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.portfolio-stat-label i {
+  color: var(--ba-primary);
+}
+
+.portfolio-stat-value {
+  color: var(--ba-navy-950);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.portfolio-allocation-card,
+.portfolio-section {
+  overflow: hidden;
+}
+
+.allocation-chart-wrap {
+  position: relative;
+  height: 280px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.allocation-legend {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.allocation-legend-row {
+  display: grid;
+  grid-template-columns: 0.75rem minmax(5rem, 1fr) auto 4.5rem;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.7rem 0.25rem;
+  border-bottom: 1px solid var(--ba-slate-100);
+  font-size: 0.82rem;
+}
+
+.allocation-legend-row:last-child {
+  border-bottom: 0;
+}
+
+.allocation-legend-swatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  background: var(--allocation-color);
+  border-radius: 50%;
+}
+
+.allocation-legend-name {
+  color: var(--ba-navy-950);
+  font-weight: 700;
+}
+
+.allocation-legend-value {
+  color: var(--ba-slate-600);
+  text-align: right;
+}
+
+.allocation-legend-row strong {
+  color: var(--ba-navy-900);
+  text-align: right;
+}
+
+.portfolio-section-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem;
+  border-bottom: 1px solid var(--ba-slate-200);
+}
+
+.portfolio-count-badge,
+.weight-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.6rem;
+  color: #1e40af;
+  background: var(--ba-primary-soft);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.empty-portfolio-section {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+  color: var(--ba-slate-500);
+}
+
+.portfolio-table-shell {
+  border: 0;
+  border-radius: 0 !important;
+  box-shadow: none;
+}
+
+.portfolio-holdings-table {
+  min-width: 1180px;
+}
+
+.portfolio-position-row {
+  transition: background-color 140ms ease;
+}
+
+.portfolio-position-row:hover > * {
+  background: #f8faff;
+}
+
+.position-first-date {
+  margin-top: 0.25rem;
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+.position-expand-button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--ba-primary);
+  background: var(--ba-primary-soft);
+  border: 0;
+  border-radius: 0.6rem;
+}
+
+.position-expand-button:hover {
+  color: #fff;
+  background: var(--ba-primary);
+}
+
+.position-expand-button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.45);
+  outline-offset: 2px;
+}
+
+.position-history-panel {
+  padding: 1rem 1.35rem 1.35rem;
+  background: #f7f9fd;
+  border-top: 1px solid #dbe5f2;
+  border-bottom: 1px solid #dbe5f2;
+}
+
+.position-history-title {
+  margin-bottom: 0.75rem;
+  color: var(--ba-navy-950);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.position-history-panel .table-responsive {
+  border-radius: var(--ba-radius-sm) !important;
+  box-shadow: none;
+}
+
+.transaction-type-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.transaction-type-badge.buy {
+  color: var(--ba-gain);
+  background: var(--ba-gain-soft);
+}
+
+.transaction-type-badge.sell {
+  color: var(--ba-loss);
+  background: var(--ba-loss-soft);
+}
+
+.trade-page-heading {
+  max-width: 48rem;
+}
+
+.trade-form-card,
+.trade-preview-card {
+  overflow: hidden;
+  border-radius: var(--ba-radius);
+  box-shadow: var(--ba-shadow-sm);
+}
+
+.trade-direction-switch {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0.3rem;
+  background: var(--ba-slate-100);
+  border-radius: 0.85rem;
+}
+
+.trade-direction-switch .btn {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--ba-slate-600);
+  border: 0;
+  box-shadow: none;
+}
+
+.trade-direction-switch .btn-check:checked + .btn {
+  color: var(--ba-primary);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.trade-preview-card {
+  position: sticky;
+  top: 94px;
+  padding: 1.35rem;
+  color: #dbeafe;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.32), transparent 13rem),
+    linear-gradient(145deg, var(--ba-navy-950), #132a48);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.trade-preview-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trade-preview-header h2 {
+  color: #fff;
+}
+
+.trade-preview-header > i {
+  color: #93c5fd;
+  font-size: 1.5rem;
+}
+
+.trade-preview-state {
+  padding: 1.5rem 0;
+  color: #b8c8df !important;
+}
+
+.trade-preview-list {
+  margin: 0;
+}
+
+.trade-preview-list > div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.trade-preview-list dt {
+  color: #a9bbd2;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.trade-preview-list dd {
+  margin: 0;
+  color: #fff;
+  font-weight: 750;
+}
+
+.trade-preview-card .gain {
+  color: #6ee7b7 !important;
+}
+
+.trade-preview-card .loss {
+  color: #fda4af !important;
+}
+
+.trade-preview-disclaimer {
+  display: flex;
+  gap: 0.45rem;
+  margin: 1.2rem 0 0;
+  color: #93a8c2;
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
 .chart-container,
 .indicator-chart-container {
   min-width: 0;
@@ -953,6 +1329,10 @@ a:focus-visible {
 
   .stock-quote-panel .justify-content-lg-end {
     justify-content: flex-start !important;
+  }
+
+  .trade-preview-card {
+    position: static;
   }
 }
 
@@ -1034,6 +1414,38 @@ a:focus-visible {
 
   .stock-trade-button {
     width: 100%;
+  }
+
+  .portfolio-detail-heading,
+  .portfolio-section-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .portfolio-detail-heading .btn {
+    width: 100%;
+  }
+
+  .portfolio-stat-card,
+  .portfolio-card,
+  .trade-preview-card {
+    padding: 1rem;
+  }
+
+  .allocation-chart-wrap {
+    height: 240px;
+  }
+
+  .allocation-legend-row {
+    grid-template-columns: 0.65rem minmax(4rem, 1fr) auto;
+  }
+
+  .allocation-legend-value {
+    display: none;
+  }
+
+  .position-history-panel {
+    padding: 0.85rem;
   }
 }
 
