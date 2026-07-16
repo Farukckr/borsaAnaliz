@@ -39,7 +39,7 @@ builder.Services.AddHttpClient<IMarketDataService, YahooMarketDataService>(clien
 builder.Services.AddHttpClient<IAiCommentaryService, GeminiCommentaryService>(client =>
 {
     client.BaseAddress = new Uri("https://generativelanguage.googleapis.com/");
-    client.Timeout = TimeSpan.FromSeconds(45);
+    client.Timeout = TimeSpan.FromSeconds(120);
     client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 });
 builder.Services.AddControllersWithViews();
