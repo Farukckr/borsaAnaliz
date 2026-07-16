@@ -1,12 +1,244 @@
-﻿@{
-    ViewData["Title"] = "Ana Sayfa";
+@using System.Globalization
+@model HomeDashboardViewModel
+@{
+    ViewData["Title"] = "Piyasa Genel Bakış";
+    var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
 }
 
-<div class="py-5 text-center">
-    <h1 class="display-4 fw-semibold">Borsa Analiz'e Hoş Geldiniz</h1>
-    <p class="lead text-muted mx-auto" style="max-width: 680px;">
-        BIST ve ABD hisselerini inceleyebileceğiniz, teknik analizleri takip edebileceğiniz
-        ve sanal portföyünüzü yönetebileceğiniz platform hazırlanıyor.
-    </p>
-    <p class="text-muted mb-0">Canlı piyasa verileri ve analiz araçları sonraki aşamalarda eklenecek.</p>
-</div>
+<section class="market-hero mb-5" aria-labelledby="heroTitle">
+    <div class="row align-items-center g-4 g-xl-5 position-relative">
+        <div class="col-lg-7">
+            <div class="eyebrow"><i class="bi bi-broadcast-pin" aria-hidden="true"></i> BIST ve ABD tek ekranda</div>
+            <h1 id="heroTitle" class="mb-3">Piyasayı net görün.</h1>
+            <p class="hero-copy mb-4">
+                Hisse fiyatlarını, teknik göstergeleri ve sanal portföyünüzü tek bir çalışma alanında izleyin.
+                Gürültüyü azaltın, veriye odaklanın.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-2">
+                <a class="btn btn-primary px-4 py-2" asp-controller="Stocks" asp-action="Index">
+                    Hisseleri incele <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+                </a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a class="btn btn-outline-light px-4 py-2" asp-controller="Portfolio" asp-action="Index">
+                        Portföyüme git
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-light px-4 py-2" asp-area="Identity" asp-page="/Account/Register">
+                        Ücretsiz hesap oluştur
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="hero-signal-panel" aria-label="Platform özellikleri">
+                <div class="hero-signal-row">
+                    <span class="hero-signal-icon"><i class="bi bi-activity" aria-hidden="true"></i></span>
+                    <div>
+                        <div class="fw-semibold text-white">Teknik görünüm</div>
+                        <div class="small">SMA, EMA, RSI, MACD ve Bollinger göstergeleri</div>
+                    </div>
+                </div>
+                <div class="hero-signal-row">
+                    <span class="hero-signal-icon"><i class="bi bi-wallet2" aria-hidden="true"></i></span>
+                    <div>
+                        <div class="fw-semibold text-white">Sanal portföy</div>
+                        <div class="small">Risksiz alım-satım ve performans takibi</div>
+                    </div>
+                </div>
+                <div class="hero-signal-row">
+                    <span class="hero-signal-icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
+                    <div>
+                        <div class="fw-semibold text-white">AI destekli yorum</div>
+                        <div class="small">Grafik verisinden kısa, Türkçe teknik değerlendirme</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-5" aria-labelledby="marketSnapshotTitle">
+    <div class="section-heading">
+        <div>
+            <div class="section-kicker">Piyasa nabzı</div>
+            <h2 id="marketSnapshotTitle">Küresel görünüm</h2>
+            <p class="text-muted mb-0">Türkiye, döviz ve ABD endekslerinden hızlı bir özet.</p>
+        </div>
+        @if (Model.LastUpdatedAt is DateTimeOffset lastUpdated)
+        {
+            <div class="small text-muted">
+                <i class="bi bi-clock me-1" aria-hidden="true"></i>
+                Son piyasa zamanı: @lastUpdated.ToOffset(TimeSpan.FromHours(3)).ToString("dd MMM HH:mm", displayCulture)
+            </div>
+        }
+    </div>
+
+    <div class="row g-3">
+        @foreach (var snapshot in Model.MarketSnapshots)
+        {
+            var change = snapshot.Quote?.ChangePercent;
+            var changeClass = change > 0 ? "gain" : change < 0 ? "loss" : "neutral";
+            var changeIcon = change > 0 ? "bi-caret-up-fill" : change < 0 ? "bi-caret-down-fill" : "bi-dash";
+            var sign = change > 0 ? "+" : string.Empty;
+            <div class="col-12 col-sm-6 col-xl-3">
+                <article class="market-card">
+                    <div class="market-card-header">
+                        <span class="market-card-icon"><i class="bi @snapshot.IconClass" aria-hidden="true"></i></span>
+                        <div class="min-w-0">
+                            <div class="fw-semibold">@snapshot.DisplayName</div>
+                            <div class="small text-muted">@snapshot.Description</div>
+                        </div>
+                    </div>
+                    @if (snapshot.Quote is not null)
+                    {
+                        <div class="market-card-value d-flex align-items-end justify-content-between gap-2">
+                            <div class="market-price text-nowrap">
+                                @snapshot.PricePrefix@snapshot.Quote.Price.ToString($"N{snapshot.PriceDecimals}", displayCulture)@snapshot.PriceSuffix
+                            </div>
+                            @if (change is decimal changePercent)
+                            {
+                                <span class="change-pill @changeClass">
+                                    <i class="bi @changeIcon" aria-hidden="true"></i>
+                                    @sign@changePercent.ToString("N2", displayCulture)%
+                                </span>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center gap-2 text-muted">
+                            <i class="bi bi-cloud-slash" aria-hidden="true"></i>
+                            <span>Veri bekleniyor</span>
+                        </div>
+                    }
+                </article>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="mb-5" aria-labelledby="moversTitle">
+    <div class="section-heading">
+        <div>
+            <div class="section-kicker">Günün hareketi</div>
+            <h2 id="moversTitle">Öne çıkan hisseler</h2>
+            <p class="text-muted mb-0">Takip listesindeki en güçlü günlük yükseliş ve düşüşler.</p>
+        </div>
+        <a class="btn btn-sm btn-outline-primary" asp-controller="Stocks" asp-action="Index">
+            Tüm hisseler <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <div class="movers-panel">
+                <div class="movers-panel-header">
+                    <h3><i class="bi bi-arrow-up-right-circle-fill gain me-1" aria-hidden="true"></i> Günün yükselenleri</h3>
+                    <span class="small text-muted">Değişim</span>
+                </div>
+                @if (Model.Gainers.Count > 0)
+                {
+                    @foreach (var item in Model.Gainers)
+                    {
+                        var changePercent = item.Quote!.ChangePercent!.Value;
+                        <a class="mover-row" asp-controller="Stocks" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">
+                            <span class="min-w-0">
+                                <span class="mover-symbol d-block">@item.Stock.Symbol</span>
+                                <span class="mover-name d-block">@item.Stock.Name</span>
+                            </span>
+                            <span class="d-flex align-items-center gap-3">
+                                <span class="small text-muted text-nowrap">@item.CurrencySymbol@item.Quote.Price.ToString("N2", displayCulture)</span>
+                                <span class="change-pill gain"><i class="bi bi-caret-up-fill" aria-hidden="true"></i> +@changePercent.ToString("N2", displayCulture)%</span>
+                            </span>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <div class="p-4 text-center text-muted">Yükselen hisse verisi henüz hazır değil.</div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="movers-panel">
+                <div class="movers-panel-header">
+                    <h3><i class="bi bi-arrow-down-right-circle-fill loss me-1" aria-hidden="true"></i> Günün düşenleri</h3>
+                    <span class="small text-muted">Değişim</span>
+                </div>
+                @if (Model.Losers.Count > 0)
+                {
+                    @foreach (var item in Model.Losers)
+                    {
+                        var changePercent = item.Quote!.ChangePercent!.Value;
+                        <a class="mover-row" asp-controller="Stocks" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">
+                            <span class="min-w-0">
+                                <span class="mover-symbol d-block">@item.Stock.Symbol</span>
+                                <span class="mover-name d-block">@item.Stock.Name</span>
+                            </span>
+                            <span class="d-flex align-items-center gap-3">
+                                <span class="small text-muted text-nowrap">@item.CurrencySymbol@item.Quote.Price.ToString("N2", displayCulture)</span>
+                                <span class="change-pill loss"><i class="bi bi-caret-down-fill" aria-hidden="true"></i> @changePercent.ToString("N2", displayCulture)%</span>
+                            </span>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <div class="p-4 text-center text-muted">Düşen hisse verisi henüz hazır değil.</div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="action-panel" aria-labelledby="actionTitle">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="row align-items-center g-4">
+            <div class="col-lg-4">
+                <div class="section-kicker">Çalışma alanınız</div>
+                <h2 id="actionTitle" class="h3 mb-2">Nereden devam edelim?</h2>
+                <p class="text-muted mb-0">Piyasayı inceleyin, portföyünüzü yönetin veya yeni bir sanal işlem açın.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <a class="quick-action-card" asp-controller="Stocks" asp-action="Index">
+                            <span class="quick-action-icon"><i class="bi bi-search" aria-hidden="true"></i></span>
+                            <span><strong class="d-block">Hisse bul</strong><small class="text-muted">150 sembol</small></span>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="quick-action-card" asp-controller="Portfolio" asp-action="Index">
+                            <span class="quick-action-icon"><i class="bi bi-pie-chart-fill" aria-hidden="true"></i></span>
+                            <span><strong class="d-block">Portföyler</strong><small class="text-muted">Performansı gör</small></span>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="quick-action-card" asp-controller="Portfolio" asp-action="Trade">
+                            <span class="quick-action-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span>
+                            <span><strong class="d-block">Sanal işlem</strong><small class="text-muted">Alım veya satış</small></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <div class="section-kicker">Ücretsiz başlayın</div>
+                <h2 id="actionTitle" class="h3 mb-2">Kendi piyasa çalışma alanınızı oluşturun.</h2>
+                <p class="text-muted mb-0">Sanal portföy açın, işlemlerinizi kaydedin ve performansınızı tek ekranda takip edin.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="btn btn-primary me-2" asp-area="Identity" asp-page="/Account/Register">Hesap oluştur</a>
+                <a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Login">Giriş yap</a>
+            </div>
+        </div>
+    }
+</section>

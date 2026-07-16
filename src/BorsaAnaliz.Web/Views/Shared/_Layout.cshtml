@@ -1,29 +1,58 @@
-﻿<!DOCTYPE html>
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1220" />
     <title>@ViewData["Title"] - Borsa Analiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BorsaAnaliz.Web.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">Borsa Analiz</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+<body class="d-flex flex-column min-vh-100">
+    <header class="site-header sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Ana navigasyon">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="brand-mark" aria-hidden="true"><i class="bi bi-graph-up-arrow"></i></span>
+                    <span>Borsa Analiz</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+                        aria-controls="mainNavigation" aria-expanded="false" aria-label="Menüyü aç veya kapat">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div id="mainNavigation" class="navbar-collapse collapse">
+                    <ul class="navbar-nav me-auto ms-lg-4 gap-lg-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Stocks" asp-action="Index">Hisseler</a>
+                            <a class="nav-link @(currentController == "Home" ? "active" : null)"
+                               aria-current="@(currentController == "Home" ? "page" : null)"
+                               asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-grid-1x2-fill" aria-hidden="true"></i>
+                                <span>Genel Bakış</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Portfolio" asp-action="Index">Portföyüm</a>
+                            <a class="nav-link @(currentController == "Stocks" ? "active" : null)"
+                               aria-current="@(currentController == "Stocks" ? "page" : null)"
+                               asp-area="" asp-controller="Stocks" asp-action="Index">
+                                <i class="bi bi-bar-chart-line-fill" aria-hidden="true"></i>
+                                <span>Hisseler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Portfolio" ? "active" : null)"
+                               aria-current="@(currentController == "Portfolio" ? "page" : null)"
+                               asp-area="" asp-controller="Portfolio" asp-action="Index">
+                                <i class="bi bi-wallet2" aria-hidden="true"></i>
+                                <span>Portföyüm</span>
+                            </a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -31,17 +60,39 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <div class="site-shell flex-grow-1">
+        <main role="main" class="container py-4 py-lg-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Borsa Analiz
+    <footer class="site-footer mt-auto">
+        <div class="container py-4">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-2 fw-semibold text-white mb-1">
+                        <i class="bi bi-graph-up-arrow text-primary-light" aria-hidden="true"></i>
+                        <span>Borsa Analiz</span>
+                    </div>
+                    <p class="small mb-0">BIST ve ABD piyasaları için sade, veri odaklı analiz araçları.</p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="footer-notes small">
+                        <span><i class="bi bi-clock-history" aria-hidden="true"></i> Veriler gecikmeli olabilir.</span>
+                        <span><i class="bi bi-shield-check" aria-hidden="true"></i> Yatırım tavsiyesi değildir.</span>
+                    </div>
+                </div>
+                <div class="col-lg-2 text-lg-end">
+                    <a class="footer-link" href="https://github.com/Farukckr/borsaAnaliz" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-github" aria-hidden="true"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>

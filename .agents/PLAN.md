@@ -2,185 +2,146 @@
 
 ## Status
 
-in-progress — 2026-07-16 (deploy task rev 8 — Phase 4 artifacts complete; Render deploy and public smoke tests awaiting user)
+in-progress — 2026-07-17 (UI task rev 2 — Phase 1 complete; Phase 2 next)
 
 ## Task Type
 
-Deploy / infrastructure (SQLite → Supabase Postgres migration + Render.com hosting).
+Feature / UI redesign.
 
 ## User Request
 
-Turkish, summarized: Publish the finished BorsaAnaliz app publicly. User first asked for Vercel; Vercel cannot host ASP.NET Core, so Render.com (free tier, Docker) was chosen with the user. Database moves to Supabase Postgres so user accounts/portfolios survive redeploys.
+Turkish, summarized: The current UI looks too basic. Redesign all pages with a professional, polished ("kamusal") finance-app feel. The portfolio experience should give the user much more information and detail about the stocks they hold.
 
 ## Goal
 
-The app runs publicly at a `*.onrender.com` URL with data in Supabase Postgres; registering, portfolios, charts, and AI commentary all work in production.
+The site looks like a credible finance product (consistent theme, dashboard-style home, polished tables/cards) and the portfolio page becomes an information-rich dashboard: per-position daily change, weight, realized P/L, cost basis, allocation chart, per-symbol history, and a portfolio value-over-time chart.
 
 ## Current State
 
-- App is complete and working locally (see Prior Task): ASP.NET Core 8 MVC in `src/BorsaAnaliz.Web`, EF Core + **SQLite** (`app.db`), Identity auth, Yahoo market data, lightweight-charts + TradingView widgets, Gemini AI commentary (key in user-secrets, model `gemini-3.5-flash`).
-- Migrations in `src/BorsaAnaliz.Web/Data/Migrations/` are **SQLite-flavored** (Identity schema + portfolios). They will not run on Postgres as-is.
-- `git` is NOT installed; the folder is not a git repository. Render deploys from a GitHub repo, so git + GitHub are required steps.
-- Docker is likely NOT installed locally — do not assume `docker` works; Render builds the image from the Dockerfile itself, so local docker verification is optional.
-- winget available (installed the .NET SDK earlier; can install Git).
-- Prerequisites the USER/planner must provide (Codex must not invent them):
-  - Supabase connection string in user-secrets `ConnectionStrings:DefaultConnection` — Supabase "Session pooler" form, e.g. `Host=aws-0-<region>.pooler.supabase.com;Port=5432;Database=postgres;Username=postgres.<ref>;Password=<pw>;Ssl Mode=Require;Trust Server Certificate=true`. If absent when Phase 1 starts, report blocked asking for it.
-  - GitHub account (Phase 3 pushes there; may end "partial — waiting on user" if no `gh` auth).
-  - Render account (user creates at render.com, free, GitHub login) — Phase 4 is mostly dashboard instructions.
+- Live app: ASP.NET Core 8 MVC, Bootstrap 5 (default look), Turkish UI. Deployed to Render (auto-deploys on push to `main`); DB = Supabase Postgres.
+- Views: `Views/Home/Index.cshtml` (placeholder hero), `Views/Stocks/Index.cshtml` (150-row quote table + search/filter), `Views/Stocks/Details.cshtml` (rich: lightweight-charts + indicators + TradingView widgets + AI card), `Views/Portfolio/{Index,Create,Details,Trade}.cshtml` (functional but plain).
+- `PortfolioSnapshot` (Models/PortfolioSnapshot.cs) currently exposes: positions (qty, avg cost, current price, value, unrealized P/L ₺/%), cash, transactions, totals. NO daily change, weight, realized P/L, or history series.
+- `Quote` model already carries daily change data (used by stock list for change %).
+- `YahooMarketDataService.GetHistoryAsync` exists with 1 h cache — reusable for portfolio value history.
+- Charts: lightweight-charts CDN already in layout. No pie/donut capability yet.
+- IMPORTANT: every push to `main` auto-deploys to production (Render blueprint). Commit per phase; only push when the phase is verified locally.
 
 ## Architecture Decisions (made by planner)
 
-- **One DB provider everywhere**: switch fully to Npgsql/Postgres for dev AND prod (no dual SQLite/Postgres providers — two migration sets are not worth it). Local dev also points at Supabase.
-- **Fresh migrations**: delete the SQLite migrations and snapshot; generate one new initial migration against Npgsql. Local `app.db` data is disposable test data — no data migration needed.
-- **Connection string resolution**: `ConnectionStrings:DefaultConnection` from configuration; in production the Render env var `ConnectionStrings__DefaultConnection` overrides. Local dev keeps it in user-secrets — never in appsettings.json.
-- **Container**: multi-stage Dockerfile (`mcr.microsoft.com/dotnet/sdk:8.0` build → `mcr.microsoft.com/dotnet/aspnet:8.0` run). Render injects `PORT`; app must bind `http://0.0.0.0:$PORT` (shell-form ENTRYPOINT setting `ASPNETCORE_URLS`, default 8080).
-- **Behind Render's TLS proxy**: add ForwardedHeaders middleware (XForwardedProto/For, clear KnownNetworks/Proxies) so Identity cookies and redirects see https; skip `UseHttpsRedirection` in production (Render already forces https externally).
-- **Data Protection keys**: persist to the database (`Microsoft.AspNetCore.DataProtection.EntityFrameworkCore`) so login cookies survive redeploys/restarts on the free tier.
-- **Secrets in prod**: Render env vars only — `ConnectionStrings__DefaultConnection`, `Ai__ApiKey`, `ASPNETCORE_ENVIRONMENT=Production`. Verify appsettings*.json contain no secrets before the first git commit.
+- Keep Bootstrap 5 as the base; build a custom finance theme over it in `site.css` using CSS variables. No CSS framework swap, no npm pipeline.
+- Palette: dark navy/graphite header + light content, single accent color, green/red only for gains/losses. Add Bootstrap Icons + Inter font via CDN in `_Layout.cshtml`.
+- Donut/allocation chart: Chart.js via CDN (lightweight-charts has no pie type). Line/area charts keep using lightweight-charts.
+- Realized P/L: compute per symbol with the average-cost method from the transaction ledger (sell proceeds − avg cost at sale time × qty). Pure function in `PortfolioService`; no schema change needed.
+- Portfolio value history: reconstruct server-side from the ledger + daily close history (`GetHistoryAsync`, range = since portfolio creation, capped at 1y). Holdings per day derived from transactions; missing close for a day → carry last known. Endpoint returns date/value series; cached 1 h per portfolio.
+- No database schema changes in this task. No new tables (so no new RLS work).
 
 ## Proposed Changes
 
-One phase per Codex run; each leaves the app building and runnable.
+One phase per Codex run; each leaves the app building, working, and locally verified before push.
 
-### Phase 1 — Postgres/Supabase migration
+### Phase 1 — Global theme + layout + home dashboard
 
-- [x] Preflight: confirm `ConnectionStrings:DefaultConnection` exists in user-secrets and reaches Supabase. If missing → blocked.
-- [x] Swap `Microsoft.EntityFrameworkCore.Sqlite` → `Npgsql.EntityFrameworkCore.PostgreSQL` in csproj; `UseSqlite` → `UseNpgsql` in `Program.cs`.
-- [x] Delete `Data/Migrations/*`; run `dotnet ef migrations add InitialPostgres`; startup `Database.Migrate()` stays.
-- [x] Npgsql wants UTC for `timestamptz`: if `DateTimeOffset`/`DateTime` properties error at runtime, normalize to UTC — verify trade + portfolio pages specifically.
-- [x] Optional if trivial: reverted the SQLite in-memory `DateTimeOffset` ordering workaround in `PortfolioService` to server-side ordering.
-- [x] Remove `app.db*` files; ensure `.gitignore` covers `*.db*`.
-- [x] Verify: `dotnet build` clean; app starts and migrates against Supabase; register + login + create portfolio + one buy + partial sell works; `AspNetUsers`/`Portfolios`/`Transactions` tables created and exercised in Supabase.
+- [x] `_Layout.cshtml`: sticky dark navbar with active navigation and account menu, official Bootstrap Icons 1.13.1 + Inter CDN links, and a professional footer with delay/disclaimer notes and GitHub link.
+- [x] `site.css`: finance-theme variables, navy/light surfaces, consistent radius/shadows, polished cards/tables/forms/buttons, `.gain`/`.loss` states, focus styles, reduced-motion support, and mobile reflow rules.
+- [x] Home page → live market dashboard: four internal-only index snapshots (XU100, USD/TRY, S&P 500, NASDAQ 100), linked top-five gainers/losers from the 150-stock catalog, anonymous CTA, and authenticated quick actions. Index symbols remain absent from `symbols.json`.
+- [x] Error/Privacy pages: replaced English placeholders with themed Turkish content and safe recovery/privacy guidance.
+- [x] Verify: Release build clean; local Supabase-backed runtime rendered four populated snapshot cards and ten mover rows, navbar/footer across pages, and themed Privacy/Error pages. Desktop and narrow headless-browser views were visually checked; the 375 px breakpoint, flex reflow, and no-absolute-footer rules were also checked statically.
 
-### Phase 2 — Production readiness + Dockerfile
+### Phase 2 — Stocks list + detail polish
 
-- [x] `Dockerfile` at repo root (multi-stage publish of `src/BorsaAnaliz.Web`; bind `0.0.0.0:${PORT:-8080}`) + `.dockerignore` (bin, obj, .git, .agents, *.db*).
-- [x] `Program.cs`: ForwardedHeaders middleware; make `UseHttpsRedirection` conditional (skip in Production).
-- [x] Persist Data Protection keys via `PersistKeysToDbContext<ApplicationDbContext>` (add package + the `DataProtectionKeys` DbSet + migration).
-- [x] RLS: all existing tables have Row Level Security enabled (2026-07-16, blocks Supabase's public Data API; the EF connection is table owner and unaffected). The new `DataProtectionKeys` migration executes `ALTER TABLE public."DataProtectionKeys" ENABLE ROW LEVEL SECURITY;`.
-- [x] Confirm no secrets in any appsettings file.
-- [x] Verify: `dotnet build` and Release publish are clean; app runs locally against Supabase in Production mode. Docker is unavailable locally, so Render will perform the image build.
+- [ ] `Stocks/Index.cshtml`: sortable columns (symbol, price, change %) client-side; colored change chips (▲/▼ + %); volume column if quote data has it; sticky table header; keep existing search + market filter; row hover → whole row clickable to details.
+- [ ] `Stocks/Details.cshtml`: header block with big price + daily change chip + market badge; quick "Portföye ekle" button kept visible; tidy the indicator summary cards into a consistent grid; section headings/tabs styled per theme. Do NOT touch chart/API logic.
+- [ ] Verify: sorting works on all three columns both directions; THYAO.IS and AAPL pages render correctly; AI card still works.
 
-### Phase 3 — Git + GitHub
+### Phase 3 — Portfolio detail enrichment (the core of this task)
 
-- [x] Install git: `winget install Git.Git --silent --accept-package-agreements --accept-source-agreements`; verified Git 2.55.0.windows.3 after refreshing PATH as a fresh shell would.
-- [x] Before first commit: grep the tree for the Gemini key pattern and connection-string fragments — staged index contains no key pattern or real connection credentials.
-- [x] `git init`, initial commit of the project (keeping `.agents/` is fine — it contains no secrets).
-- [x] Push to GitHub: created the private `Farukckr/borsaAnaliz` repository, added `origin`, and pushed `main` with upstream tracking.
-- [x] Verify: confirmed the local log, clean worktree, `main` tracking `origin/main`, and the private GitHub repository.
+- [ ] `PortfolioService`/`PortfolioSnapshot` additions (extend records, keep names consistent):
+  - Per position: daily change ₺/% (from quote), weight % of total portfolio value, total cost basis, realized P/L for that symbol, first purchase date.
+  - Portfolio totals: day change ₺/%, total realized P/L, total cost basis, position count.
+- [ ] `Portfolio/Details.cshtml` redesign:
+  - Summary row: Toplam değer (+ day change chip), Toplam K/Z (unrealized), Gerçekleşen K/Z, Nakit — themed stat cards.
+  - Allocation donut (Chart.js): positions by value + cash slice; legend with weights.
+  - Holdings table: add Günlük değişim, Ağırlık %, Gerçekleşen K/Z, Maliyet columns; row click or chevron expands per-symbol transaction list (buys/sells with dates/prices) rendered from existing transaction data; link to stock details.
+  - Transactions section: keep, add type badges (Alış/Satış) and running order; collapse by default if long.
+- [ ] `Portfolio/Trade.cshtml`: live preview — on symbol+quantity input show current price, estimated total, cash after trade, owned quantity (small fetch endpoint or reuse quote API); Turkish validation messages kept.
+- [ ] `Portfolio/Index.cshtml`: portfolio cards with total value, day change, position count instead of bare list.
+- [ ] Verify: with a portfolio holding ≥2 symbols (one BIST one US), all new columns show correct values (hand-check weight sums ≈100% incl. cash; realized P/L matches a manual partial-sell calculation); donut renders; expand shows the right transactions; trade preview matches quote.
 
-### Phase 4 — Render service (user dashboard steps, documented precisely)
+### Phase 4 — Portfolio value-over-time chart
 
-- [x] Write `docs/DEPLOY.md` (Turkish): documents both Blueprint and manual Web Service setup, private GitHub repo access, Docker/Frankfurt/Free settings, placeholder-only environment variables, key rotation, cold starts, smoke tests, and troubleshooting.
-- [x] Add root `render.yaml` Blueprint: web/Docker/Free/Frankfurt, `main` auto-deploy, root Dockerfile, `/` health check, Production environment, and both secrets as `sync: false`.
-- [ ] Verify (user-assisted): Render dashboard provisioning requires the user's Render account, GitHub authorization, and secret entry. After the user reports the service deployed and provides its public URL, HTTP-check `/`, `/Stocks`, register/login, portfolio/trades, redeploy session persistence, and AI behavior; then record results.
+- [ ] `GET /api/portfolios/{id}/value-history` (auth, owner-only): reconstruct daily portfolio value (positions × daily closes + cash after each day's transactions) since creation (cap 1y); 1 h cache per portfolio; missing quote days carry forward.
+- [ ] `Portfolio/Details.cshtml`: area chart (lightweight-charts) above the holdings table with the value series + a baseline line at initial cash; empty/one-day portfolios show a friendly note instead.
+- [ ] Verify: series starts at ≈initial cash on creation day, matches current TotalValue at the end (±quote drift); endpoint 404s for other users' portfolios.
 
 ## Acceptance Criteria
 
-- App data lives in Supabase Postgres; no SQLite package or `.db` file remains.
-- `dotnet build` clean; local run against Supabase works end-to-end (auth, portfolio trade, charts, AI).
-- Repo is a git repository pushed to GitHub with no secrets anywhere in history.
-- Render builds from the Dockerfile and serves the app publicly over https; logins survive a redeploy.
-- Secrets exist only in user-secrets (local) and Render env vars (prod).
+- Consistent professional theme on every page (navbar, footer, cards, tables, buttons); no default-Bootstrap-gray placeholder feel.
+- Home shows live index snapshot + top movers.
+- Portfolio details answers at a glance: what do I hold, how much of my portfolio is it, how did it do today, how much have I realized, how has my portfolio value evolved.
+- All existing behavior intact: auth, trading validation, charts, TradingView widgets, AI commentary.
+- `dotnet build` clean; site verified locally before each push; production (Render) still healthy after final push.
 
 ## Verification
 
-- `dotnet build BorsaAnaliz.sln`; `dotnet run --project src/BorsaAnaliz.Web` against Supabase.
-- Supabase dashboard/SQL editor: tables exist, rows appear after register/trade.
-- `git log`, `git remote -v`; repo visible on GitHub.
-- After deploy: HTTP checks on the public `onrender.com` URL.
+- `dotnet build BorsaAnaliz.sln`; `dotnet run --project src/BorsaAnaliz.Web` + browser checks per phase (desktop + ~375 px width).
+- Hand-check the realized P/L and weight math against a scripted buy/sell sequence.
+- After final push: HTTP-check https://borsa-analiz-aqr9.onrender.com key pages.
 
 ## Assumptions
 
-- Free tiers (Render Free, Supabase Free, Gemini Free) are acceptable, including Render's cold-start sleep.
-- Local `app.db` data is disposable; no data migration.
-- The user performs Render dashboard clicks guided by `docs/DEPLOY.md`; Codex cannot operate the dashboard.
-- EU region (Frankfurt / eu-central) for both Render and Supabase.
+- Turkish-only UI stays; tr-TR display formatting stays.
+- CDN dependencies (Bootstrap Icons, Inter, Chart.js) are acceptable, matching the existing CDN approach.
+- No schema/DB changes; snapshot enrichment is computed on the fly from ledger + quotes.
+- Index symbols (XU100.IS, USDTRY=X, ^GSPC, ^NDX) work through the existing Yahoo endpoint (they do — same chart API).
 
 ## Open Questions
 
-- None blocking, provided the Supabase connection string is in user-secrets before Phase 1 (planner/user will create the Supabase project and set it).
+- None blocking.
 
 ## Risks
 
-- Supabase free tier pauses projects after ~1 week of inactivity — user must open the dashboard occasionally.
-- Render free tier sleeps; first request after idle ~30 s — cosmetic, documented.
-- Npgsql UTC/`timestamptz` strictness can surface at runtime, not build time — the trade flow must be exercised in Phase 1 verification.
-- Secret leakage into git history is effectively permanent — check BEFORE the first commit.
-- Session-pooler (not transaction-pooler port 6543) must be used: EF migrations need session semantics.
+- Every push to `main` deploys to production — a broken phase push breaks the live site. Mitigation: verify locally before push; Render keeps previous deploys for manual rollback.
+- Value-history reconstruction is the most complex logic (Phase 4, isolated): transaction-day boundaries and BIST/US calendar gaps — carry-forward rule keeps it simple; hand-check against a known ledger.
+- Chart.js + lightweight-charts on one page: keep donut config minimal to avoid bundle/em weight concerns.
+- Yahoo rate limits when the home page adds 4 index quotes: they join the existing 60 s quote cache — negligible.
 
 ## Rollback / Recovery
 
-- Phase 1: revert csproj/`Program.cs` edits and restore the old migration files (Codex lists exact files in its report). From Phase 3 onward, git history is the rollback mechanism.
-- Render: delete the service to stop publishing; Supabase project can be paused/deleted independently. Local dev is unaffected.
+- Git per-phase commits; `git revert` any bad phase. Render → previous deploy can be redeployed from the dashboard if production breaks.
 
 ## Out Of Scope
 
-- Custom domain, CDN, autoscaling, paid tiers.
-- CI/CD beyond Render's deploy-on-push.
-- Any Vercel/Next.js rewrite.
-- Email confirmation/SMTP, password-reset emails.
-- Extra hardening (rate limiting/WAF) beyond the existing AI cooldown.
+- Chart pattern detection (stays in backlog below).
+- Dark-mode toggle, i18n framework, accessibility audit beyond sensible markup.
+- New data sources; sectors/fundamentals (Yahoo fundamentals API is a different surface — future).
+- Schema changes, price alerts, notifications.
 
 ## Future Features (backlog — NOT part of this plan; do not implement)
 
-- **Chart pattern detection (formasyon tespiti)**: detect classic patterns (double top/bottom, head & shoulders, triangles, VCP) server-side and show them on the stock detail chart + feed them into the AI commentary prompt. Decided approach: implement 3–4 patterns natively in C# alongside `IndicatorCalculator` (pure functions over OHLC). Reference for algorithms/ideas only: https://github.com/BennyThadikaran/stock-pattern (Python, GPL-3.0 — do NOT copy code, GPL would infect the project; a separate Python microservice was considered and rejected for free-tier complexity). Planner will write a dedicated plan when the user asks, after the deploy task is done.
+- **Chart pattern detection (formasyon tespiti)**: detect classic patterns (double top/bottom, head & shoulders, triangles, VCP) server-side and show them on the stock detail chart + feed them into the AI commentary prompt. Decided approach: implement 3–4 patterns natively in C# alongside `IndicatorCalculator` (pure functions over OHLC). Reference for algorithms/ideas only: https://github.com/BennyThadikaran/stock-pattern (Python, GPL-3.0 — do NOT copy code). Planner will write a dedicated plan when the user asks.
 
 ## Notes For Codex
 
-- One phase per run; update Status and the Implementation Report; list every created/edited file.
-- Git exists only after Phase 3 — no git commands before that; afterwards normal git hygiene (no force pushes).
-- Turkish UI text conventions stay; `docs/DEPLOY.md` in Turkish.
-- Connection string: prefer keyword=value Npgsql format; if handed a `postgresql://` URI, convert it.
-- Never print secret values into the plan, reports, logs, or docs — use `<placeholder>`.
+- One phase per run; update Status + Implementation Report; list every created/edited file.
+- Commit at each phase end; push only after local verification (push = production deploy).
+- Keep controllers thin; new computations live in `PortfolioService` as pure, unit-checkable functions.
+- Preserve existing Turkish strings and tr-TR formatting; `decimal` for money; invariant culture for API JSON.
+- Don't rename existing routes/endpoints; the AI endpoint and stock APIs are consumed by existing JS.
+- Secrets rules unchanged: nothing secret in the repo; `.env` stays untracked.
 
-## Prior Task (archive)
+## Prior Tasks (archive)
 
-The original build task completed `done` on 2026-07-16 in 5 phases (SDK install via winget, MVC scaffold + Identity + SQLite, Yahoo market data + 150-symbol list, lightweight-charts + indicators + TradingView widgets, virtual portfolio with P/L, Gemini AI commentary). All acceptance criteria verified locally. Key facts carried forward: model `gemini-3.5-flash` (1.5 was shut down 2025-09-29); Yahoo quote cache 60 s / history 1 h; AI cooldown 30 s + 5 min response cache; AI key sent via `x-goog-api-key` header; anti-forgery on the AI endpoint.
+1. **Build task** — `done` 2026-07-16: 5 phases (SDK install, scaffold+Identity+SQLite, Yahoo data + 150-symbol list, charts+indicators+TradingView, virtual portfolio, Gemini AI commentary `gemini-3.5-flash`).
+2. **Deploy task** — `done` 2026-07-16: SQLite→Supabase Postgres (Npgsql, fresh `InitialPostgres` migration, RLS enabled on all tables incl. via-migration for new ones), Dockerfile + ForwardedHeaders + DB-persisted Data Protection keys, git+GitHub (`Farukckr/borsaAnaliz`), Render blueprint deploy. Live and publicly smoke-tested: https://borsa-analiz-aqr9.onrender.com (all key pages HTTP 200, portfolio redirects to https login). Pending user hygiene item outside Codex scope: rotate Supabase DB password (update Render env var + local user-secrets together).
 
 ## Implementation Report
 
-### 2026-07-16 — Deploy Phase 1 complete
+### 2026-07-17 — UI Phase 1 complete
 
-- Sanitized preflight confirmed `ConnectionStrings:DefaultConnection` exists only in user-secrets, has the expected Supabase session-pooler form on port 5432, and is network-reachable. The subsequent EF migration authenticated successfully, providing the full credential/database check without printing connection details.
-- Replaced `Microsoft.EntityFrameworkCore.Sqlite` with `Npgsql.EntityFrameworkCore.PostgreSQL` 8.0.11, switched `UseSqlite` to `UseNpgsql`, removed the obsolete SQLite output item and appsettings connection string, and retained startup `Database.Migrate()`.
-- Deleted both SQLite migration generations and generated `Data/Migrations/20260716130005_InitialPostgres`. The migration uses PostgreSQL identity columns, `numeric(18,4)`, and `timestamp with time zone`, and created Identity, `Portfolios`, `Transactions`, indexes, constraints, and EF migration history in Supabase.
-- `PortfolioService.GetPortfoliosAsync` now orders by `CreatedAt` in PostgreSQL. Existing writes already use `DateTimeOffset.UtcNow`; runtime registration, portfolio creation, buy, sell, transaction-history, and detail queries completed without Npgsql UTC errors.
-- Removed local `app.db` and its csproj copy rule, changed `.gitignore` to cover `*.db*`, and confirmed no SQLite references, database files, or connection strings in appsettings remain.
-- End-to-end Supabase verification: registered an Identity user, created a 100,000-cash portfolio, bought 10 AAPL, sold 4, and loaded the final holding at quantity 6 with both transaction rows. The initial THYAO.IS attempt was stopped by a Yahoo quote timeout before persistence; AAPL isolated and passed the database flow. All clearly named smoke users, portfolios, transactions, scripts, and logs were removed afterward.
-- Final verification: `dotnet build BorsaAnaliz.sln --no-restore` succeeded with 0 warnings and 0 errors. `dotnet ef migrations list` connected to Supabase and reported applied migration `20260716130005_InitialPostgres`. Static audit counts: 0 SQLite references, 0 `*.db*` files, 0 connection strings in appsettings, and 0 temporary smoke artifacts.
-- File inventory: edited `.gitignore`, `.agents/PLAN.md`, `src/BorsaAnaliz.Web/BorsaAnaliz.Web.csproj`, `Program.cs`, `Services/PortfolioService.cs`, and `appsettings.json`; deleted `src/BorsaAnaliz.Web/app.db` plus the five old files under `Data/Migrations`; created `Data/Migrations/20260716130005_InitialPostgres.cs`, its designer, and `ApplicationDbContextModelSnapshot.cs`.
-- Deploy Phase 1 is complete. Status remains `in-progress`; Phase 2 (production middleware, persisted Data Protection keys, and Docker assets) is next.
-
-### 2026-07-16 — Deploy Phase 2 complete
-
-- Added a root multi-stage `Dockerfile`: .NET 8 SDK restore/publish stage followed by the ASP.NET Core 8 runtime image. Its shell entrypoint binds `ASPNETCORE_URLS` to `http://0.0.0.0:${PORT:-8080}` for Render. Added `.dockerignore` rules for build output, repository/agent metadata, local databases, user files, and logs.
-- Added `Microsoft.AspNetCore.DataProtection.EntityFrameworkCore` 8.0.29, made `ApplicationDbContext` implement `IDataProtectionKeyContext`, and registered `PersistKeysToDbContext<ApplicationDbContext>()` with stable application name `BorsaAnaliz`.
-- Generated and applied Supabase migration `20260716131711_AddDataProtectionKeys`. The migration creates the key table and immediately enables PostgreSQL RLS using embedded raw SQL. A direct catalog check confirmed RLS is enabled and one Data Protection key is persisted.
-- Added forwarded-header processing for `X-Forwarded-For` and `X-Forwarded-Proto`, clearing known proxy/network restrictions for Render's proxy chain. Middleware runs before environment/error handling. Internal HTTPS redirection now runs outside Production only; Render remains responsible for public TLS enforcement.
-- Production-mode restart verification against Supabase: `/` returned HTTP 200 without an internal HTTPS redirect; an anonymous protected-route redirect used an `https://` location when forwarded headers were supplied; an antiforgery token issued before process restart remained valid after restart; the second process read `DataProtectionKeys` from PostgreSQL.
-- Build/config verification: `dotnet build BorsaAnaliz.sln --no-restore` succeeded with 0 warnings and 0 errors; an equivalent Release `dotnet publish` for the Docker build stage succeeded; both migrations are reported applied in Supabase. Both appsettings files have no connection string or non-empty AI key, and the final pattern audit found 0 embedded secret hits.
-- Docker CLI was not installed, so a local image build/run was not possible. Static Dockerfile checks confirmed both stages, Render port binding, and required ignore rules; Render will build the image in Phase 4. All temporary publish output, verification projects, scripts, and logs were removed.
-- File inventory: created `Dockerfile`, `.dockerignore`, `src/BorsaAnaliz.Web/Data/Migrations/20260716131711_AddDataProtectionKeys.cs`, and its designer. Edited `.agents/PLAN.md`, `src/BorsaAnaliz.Web/BorsaAnaliz.Web.csproj`, `Program.cs`, `Data/ApplicationDbContext.cs`, and `Data/Migrations/ApplicationDbContextModelSnapshot.cs`. Supabase gained the migrated `DataProtectionKeys` table/key row; no local database files were created.
-- Deploy Phase 2 is complete. Status remains `in-progress`; Phase 3 (Git installation, secret preflight, initial commit, and GitHub push if authenticated) is next.
-
-### 2026-07-16 — Deploy Phase 3 complete
-
-- Installed Git for Windows 2.55.0.3 with winget and verified it after rebuilding PATH from the machine/user environment. The pre-existing `.git` directory was empty and invalid, so it was safely initialized as a new repository with default branch `main`.
-- Ran pre-commit scans across the workspace and again against the exact staged index. No Gemini/API-key pattern was found. The only connection-pattern file is `.agents/PLAN.md`, whose Supabase string is explicitly placeholder-only. No certificate/private-key artifacts were staged.
-- Confirmed the root `.env` contains local Supabase variable names, is covered by `.gitignore`, and is not in the Git index. The initial index contains 124 intended source/deployment paths and no `.env`.
-- Configured the repository-local author as `Faruk Çakar` with the GitHub noreply address and amended the initial commit before the first push. The initial application commit is `07be6fe`.
-- Installed GitHub CLI 2.96.0 and authenticated it as `Farukckr` through GitHub's device flow.
-- Created the private repository at `https://github.com/Farukckr/borsaAnaliz`, added it as `origin`, pushed `main`, and enabled `origin/main` upstream tracking.
-- File inventory: installed Git and GitHub CLI machine-wide; created local `.git` metadata and edited `.agents/PLAN.md`. No application source, runtime configuration, or secret file changed in this phase.
-- Phase 3 is complete. Phase 4 (Render deployment and production smoke tests) is next.
-
-### 2026-07-16 — Deploy Phase 4 partial (configuration complete; Render deploy awaiting user)
-
-- Added `docs/DEPLOY.md` in Turkish with exact Blueprint and manual Web Service flows for the private GitHub repository. It lists Docker runtime, Frankfurt region, Free instance, `main`, health check, the three production environment variables, and placeholder-only secret handling.
-- Documented mandatory AI-key rotation before publication, no manual `PORT` override, Supabase Session pooler requirements, first-deploy log checks, end-to-end production smoke tests, redeploy/session persistence verification, free-instance cold starts, and targeted troubleshooting.
-- Added root `render.yaml` with one `web` service using `runtime: docker`, `plan: free`, `region: frankfurt`, commit-triggered deploys from `main`, the root Dockerfile/build context, `/` health check, Production environment, and both secret values as `sync: false`.
-- Checked current official Render documentation for Web Service creation, Blueprint fields, secret environment variables, Frankfurt support, and Free service behavior. Free services currently spin down after 15 idle minutes and take about one minute to wake.
-- Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors; `render.yaml` parsed successfully and all required field/value assertions passed; secret scans found 0 API-key patterns and 0 real connection-string patterns; `git diff --check` passed.
-- A public Render URL and production smoke-test results do not exist yet because Render dashboard provisioning requires the user to authorize the private GitHub repository and enter the two secret values. Status remains `in-progress`; after that one dashboard action, the public checks can be completed.
-- File inventory: created `docs/DEPLOY.md` and `render.yaml`; edited `.agents/PLAN.md`. No application source, local secret, database, or runtime data changed.
+- Rebuilt the global shell with a sticky navy finance navbar, active-page navigation, branded icon mark, responsive account dropdown/login actions, Inter typography, official Bootstrap Icons 1.13.1 CDN, and a structured footer carrying the delayed-data and investment-disclaimer notices.
+- Replaced the starter CSS with a reusable design system: palette/radius/shadow variables, polished cards, tables, forms, buttons, badges, gain/loss pills, focus visibility, reduced-motion handling, chart compatibility, and dedicated responsive behavior. Removed the old scoped absolute-footer rules.
+- Added `HomeDashboardViewModel` and made `HomeController.Index` asynchronous. It loads the existing 150-stock catalog plus four internal-only market symbols in one cached quote flow, builds the four market snapshot cards, and selects the five strongest/weakest daily movers without adding non-tradeable indices to `symbols.json`.
+- Replaced the placeholder home page with a professional hero, feature summary, live global snapshot, linked mover panels, and authentication-aware CTA/quick-action sections. Reworked Privacy and Error pages in Turkish to match the theme.
+- Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. Local runtime checks returned four populated market cards, ten mover links, zero missing snapshot cards, the new navbar/footer on Home and Stocks, and the themed Privacy/Error content. Headless Chrome screenshots were visually inspected at 1440 px and its reliable narrow 500 px viewport; explicit 375 px CSS breakpoint/reflow checks passed. Static guard found zero index-symbol additions in `Data/symbols.json`; `git diff --check` passed.
+- File inventory: created `src/BorsaAnaliz.Web/ViewModels/HomeDashboardViewModel.cs`; edited `.agents/PLAN.md`, `Controllers/HomeController.cs`, `Views/Home/Index.cshtml`, `Views/Home/Privacy.cshtml`, `Views/Shared/Error.cshtml`, `Views/Shared/_Layout.cshtml`, `Views/Shared/_Layout.cshtml.css`, `Views/Shared/_LoginPartial.cshtml`, and `wwwroot/css/site.css`. No database schema, route, secret, or runtime data changed.
+- UI Phase 1 is complete. Status remains `in-progress`; Phase 2 (stocks list/detail polish without chart/API changes) is next.
