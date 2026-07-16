@@ -1,0 +1,65 @@
+@model TradeViewModel
+@{
+    ViewData["Title"] = "Sanal işlem";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+        <nav aria-label="İçerik yolu" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Portföylerim</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sanal işlem</li>
+            </ol>
+        </nav>
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-2">Sanal alım / satım</h1>
+                <p class="text-muted">İşlem, gönderim anındaki güncel piyasa fiyatıyla kaydedilir.</p>
+
+                @if (Model.PortfolioOptions.Count == 0)
+                {
+                    <div class="alert alert-warning">
+                        İşlem yapmadan önce bir portföy oluşturmalısınız.
+                        <a asp-action="Create" class="alert-link">Portföy oluştur</a>
+                    </div>
+                }
+                else
+                {
+                    <form asp-action="Buy" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="PortfolioId" class="form-label"></label>
+                            <select asp-for="PortfolioId" asp-items="Model.PortfolioOptions" class="form-select"></select>
+                            <span asp-validation-for="PortfolioId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Symbol" class="form-label"></label>
+                            <input asp-for="Symbol" class="form-control text-uppercase" list="stockSymbols" placeholder="THYAO.IS" autocomplete="off" />
+                            <datalist id="stockSymbols">
+                                @foreach (var stock in Model.Symbols)
+                                {
+                                    <option value="@stock.Symbol">@stock.Name</option>
+                                }
+                            </datalist>
+                            <span asp-validation-for="Symbol" class="text-danger"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label asp-for="Quantity" class="form-label"></label>
+                            <input asp-for="Quantity" class="form-control" type="number" min="0.0001" step="0.0001" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="submit" class="btn btn-success">Satın al</button>
+                            <button type="submit" class="btn btn-danger" formaction="@Url.Action("Sell")">Sat</button>
+                            <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.PortfolioId">Portföye dön</a>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

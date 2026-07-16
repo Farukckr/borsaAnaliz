@@ -1,0 +1,45 @@
+@model CreatePortfolioViewModel
+@{
+    ViewData["Title"] = "Portföy oluştur";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-xl-6">
+        <nav aria-label="İçerik yolu" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Portföylerim</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Yeni portföy</li>
+            </ol>
+        </nav>
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Yeni portföy</h1>
+                <p class="text-muted">Başlangıç nakdi yalnızca sanal işlemlerde kullanılır.</p>
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" maxlength="100" autocomplete="off" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="InitialCash" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text">₺</span>
+                            <input asp-for="InitialCash" class="form-control" type="number" min="1" step="0.01" />
+                        </div>
+                        <span asp-validation-for="InitialCash" class="text-danger"></span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Oluştur</button>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Vazgeç</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

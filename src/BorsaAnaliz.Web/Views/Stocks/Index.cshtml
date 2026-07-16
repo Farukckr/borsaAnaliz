@@ -1,0 +1,129 @@
+@using System.Globalization
+@model StocksIndexViewModel
+@{
+    ViewData["Title"] = "Hisseler";
+    var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
+}
+
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+    <div>
+        <h1 class="mb-1">Hisseler</h1>
+        <p class="text-muted mb-0">BIST 100 ve öne çıkan ABD hisselerini tek listede inceleyin.</p>
+    </div>
+    <div class="text-muted small">Fiyatlar gecikmeli olabilir.</div>
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label for="stockSearch" class="form-label">Hisse ara</label>
+                <input id="stockSearch" class="form-control" type="search" placeholder="Sembol veya şirket adı" autocomplete="off" />
+            </div>
+            <div class="col-md-4">
+                <label for="marketFilter" class="form-label">Piyasa</label>
+                <select id="marketFilter" class="form-select">
+                    <option value="all">Tümü</option>
+                    <option value="BIST">BIST 100</option>
+                    <option value="US">ABD</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Stocks.Count == 0)
+{
+    <div class="alert alert-warning">Hisse listesi şu anda yüklenemiyor. Lütfen daha sonra tekrar deneyin.</div>
+}
+else
+{
+    <div class="table-responsive bg-white rounded shadow-sm">
+        <table class="table table-hover align-middle mb-0" aria-describedby="stockCount">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Sembol</th>
+                    <th scope="col">Şirket</th>
+                    <th scope="col">Piyasa</th>
+                    <th scope="col" class="text-end">Son fiyat</th>
+                    <th scope="col" class="text-end">Günlük değişim</th>
+                </tr>
+            </thead>
+            <tbody id="stockTableBody">
+                @foreach (var item in Model.Stocks)
+                {
+                    <tr data-stock-row data-market="@item.Stock.Market" data-search="@($"{item.Stock.Symbol} {item.Stock.Name}")">
+                        <td class="fw-semibold stock-symbol">
+                            <a class="text-decoration-none" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">@item.Stock.Symbol</a>
+                        </td>
+                        <td>
+                            <a class="text-reset text-decoration-none" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">@item.Stock.Name</a>
+                        </td>
+                        <td><span class="badge text-bg-secondary">@(item.Stock.Market == "BIST" ? "BIST" : "ABD")</span></td>
+                        <td class="text-end text-nowrap">
+                            @if (item.Quote is not null)
+                            {
+                                <span>@item.CurrencySymbol@item.Quote.Price.ToString("N2", displayCulture)</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted" title="Fiyat verisi alınamadı">-</span>
+                            }
+                        </td>
+                        <td class="text-end text-nowrap">
+                            @if (item.Quote?.ChangePercent is decimal changePercent)
+                            {
+                                var changeClass = changePercent > 0 ? "text-success" : changePercent < 0 ? "text-danger" : "text-muted";
+                                var sign = changePercent > 0 ? "+" : string.Empty;
+                                <span class="fw-semibold @changeClass">@sign@changePercent.ToString("N2", displayCulture)%</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">-</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p id="stockCount" class="small text-muted mt-3 mb-0" aria-live="polite">@Model.Stocks.Count hisse gösteriliyor.</p>
+    <div id="noStockResults" class="alert alert-info mt-3 d-none">Aramanızla eşleşen hisse bulunamadı.</div>
+}
+
+@section Scripts {
+    <script>
+        (() => {
+            const searchInput = document.getElementById('stockSearch');
+            const marketFilter = document.getElementById('marketFilter');
+            const rows = Array.from(document.querySelectorAll('[data-stock-row]'));
+            const count = document.getElementById('stockCount');
+            const noResults = document.getElementById('noStockResults');
+
+            if (!searchInput || !marketFilter || rows.length === 0) {
+                return;
+            }
+
+            const applyFilters = () => {
+                const query = searchInput.value.trim().toLocaleLowerCase('tr-TR');
+                const market = marketFilter.value;
+                let visibleCount = 0;
+
+                rows.forEach(row => {
+                    const searchText = row.dataset.search.toLocaleLowerCase('tr-TR');
+                    const marketMatches = market === 'all' || row.dataset.market === market;
+                    const searchMatches = !query || searchText.includes(query);
+                    const visible = marketMatches && searchMatches;
+                    row.classList.toggle('d-none', !visible);
+                    visibleCount += visible ? 1 : 0;
+                });
+
+                count.textContent = `${visibleCount} hisse gösteriliyor.`;
+                noResults.classList.toggle('d-none', visibleCount !== 0);
+            };
+
+            searchInput.addEventListener('input', applyFilters);
+            marketFilter.addEventListener('change', applyFilters);
+        })();
+    </script>
+}

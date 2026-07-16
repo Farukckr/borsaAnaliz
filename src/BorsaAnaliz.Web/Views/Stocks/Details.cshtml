@@ -1,0 +1,482 @@
+@using System.Globalization
+@using System.Text.Json
+@model StockDetailsViewModel
+@{
+    ViewData["Title"] = $"{Model.ShortSymbol} Analizi";
+    var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
+    var historyUrl = Url.Action("History", "Stocks", new { symbol = Model.Stock.Symbol });
+    var indicatorsUrl = Url.Action("Indicators", "Stocks", new { symbol = Model.Stock.Symbol });
+    var aiCommentUrl = Url.Action("AiComment", "Stocks", new { symbol = Model.Stock.Symbol });
+    var symbolJson = JsonSerializer.Serialize(Model.Stock.Symbol);
+    var tvSymbolJson = JsonSerializer.Serialize(Model.Stock.TvSymbol);
+    var historyUrlJson = JsonSerializer.Serialize(historyUrl);
+    var indicatorsUrlJson = JsonSerializer.Serialize(indicatorsUrl);
+    var aiCommentUrlJson = JsonSerializer.Serialize(aiCommentUrl);
+}
+
+<nav aria-label="İçerik yolu" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index">Hisseler</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.ShortSymbol</li>
+    </ol>
+</nav>
+
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
+    <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <h1 class="mb-0">@Model.Stock.Name</h1>
+            <span class="badge text-bg-secondary">@Model.ShortSymbol</span>
+        </div>
+        <p class="text-muted mb-0">@(Model.Stock.Market == "BIST" ? "Borsa İstanbul" : "ABD") · Veriler gecikmeli olabilir</p>
+    </div>
+    <div class="text-lg-end">
+        @if (Model.Quote is not null)
+        {
+            <div class="fs-3 fw-semibold">@Model.CurrencySymbol@Model.Quote.Price.ToString("N2", displayCulture)</div>
+            @if (Model.Quote.ChangePercent is decimal changePercent)
+            {
+                var changeClass = changePercent > 0 ? "text-success" : changePercent < 0 ? "text-danger" : "text-muted";
+                var sign = changePercent > 0 ? "+" : string.Empty;
+                <div class="@changeClass">@sign@changePercent.ToString("N2", displayCulture)% bugün</div>
+            }
+        }
+        else
+        {
+            <div class="fs-5 text-muted">Fiyat verisi alınamadı</div>
+        }
+        <a class="btn btn-outline-primary btn-sm mt-2" asp-controller="Portfolio" asp-action="Trade" asp-route-symbol="@Model.Stock.Symbol">Portföye ekle</a>
+    </div>
+</div>
+
+<div class="row g-3 mb-4" aria-label="Teknik gösterge özeti">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1">Kısa vadeli eğilim</div>
+                <div id="summaryTrend" class="fw-semibold">Yükleniyor...</div>
+                <div id="summaryAverages" class="small text-muted mt-1">SMA değerleri bekleniyor</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1">RSI (14)</div>
+                <div id="summaryRsi" class="fw-semibold">Yükleniyor...</div>
+                <div id="summaryRsiSignal" class="small text-muted mt-1">-</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1">MACD (12, 26, 9)</div>
+                <div id="summaryMacd" class="fw-semibold">Yükleniyor...</div>
+                <div id="summaryMacdSignal" class="small text-muted mt-1">-</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted small mb-1">Bollinger (20, 2)</div>
+                <div id="summaryBollinger" class="fw-semibold">Yükleniyor...</div>
+                <div class="small text-muted mt-1">Alt / Orta / Üst bant</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="card border-0 shadow-sm mb-4" aria-labelledby="ownChartHeading">
+    <div class="card-body">
+        <div class="d-flex flex-column flex-xl-row justify-content-between gap-3 mb-3">
+            <div>
+                <h2 id="ownChartHeading" class="h4 mb-1">Fiyat ve teknik göstergeler</h2>
+                <p class="text-muted small mb-0">Mum ve hacim verileri Yahoo Finance üzerinden sağlanır.</p>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Grafik tarih aralığı">
+                    <button type="button" class="btn btn-outline-primary" data-range="1mo">1A</button>
+                    <button type="button" class="btn btn-outline-primary" data-range="3mo">3A</button>
+                    <button type="button" class="btn btn-primary" data-range="1y">1Y</button>
+                    <button type="button" class="btn btn-outline-primary" data-range="5y">5Y</button>
+                </div>
+                <div class="form-check form-switch ms-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="toggleSma" data-overlay="sma" checked />
+                    <label class="form-check-label" for="toggleSma">SMA</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="toggleEma" data-overlay="ema" checked />
+                    <label class="form-check-label" for="toggleEma">EMA</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="toggleBollinger" data-overlay="bollinger" checked />
+                    <label class="form-check-label" for="toggleBollinger">Bollinger</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="chartLoading" class="text-center text-muted py-3">Grafik verileri yükleniyor...</div>
+        <div id="chartError" class="alert alert-warning d-none" role="alert"></div>
+        <div id="priceChart" class="chart-container" aria-label="Mum ve hacim grafiği"></div>
+        <h3 class="h6 mt-4 mb-2">RSI (14)</h3>
+        <div id="rsiChart" class="indicator-chart-container" aria-label="RSI grafiği"></div>
+        <h3 class="h6 mt-4 mb-2">MACD (12, 26, 9)</h3>
+        <div id="macdChart" class="indicator-chart-container" aria-label="MACD grafiği"></div>
+    </div>
+</section>
+
+<section class="card border-0 shadow-sm mb-4" aria-labelledby="aiCommentaryHeading">
+    <div class="card-body">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div>
+                <h2 id="aiCommentaryHeading" class="h4 mb-1">AI grafik yorumu</h2>
+                <p class="text-muted small mb-0">Son fiyat hareketleri ve teknik göstergeler Gemini ile Türkçe olarak yorumlanır.</p>
+            </div>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <form id="aiCommentaryForm" class="flex-shrink-0">
+                    @Html.AntiForgeryToken()
+                    <button id="aiCommentaryButton" type="submit" class="btn btn-primary">
+                        <span id="aiCommentarySpinner" class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+                        <span id="aiCommentaryButtonText">AI Yorumu Al</span>
+                    </button>
+                </form>
+            }
+            else
+            {
+                <a class="btn btn-outline-primary flex-shrink-0"
+                   asp-area="Identity"
+                   asp-page="/Account/Login"
+                   asp-route-returnUrl="@Context.Request.Path">Yorum için giriş yap</a>
+            }
+        </div>
+        <div id="aiCommentaryResult" class="ai-commentary mt-4 d-none" aria-live="polite"></div>
+        <p class="small text-muted mb-0 mt-3">AI çıktıları hatalı olabilir; yatırım kararlarınızı bağımsız kaynaklarla doğrulayın.</p>
+    </div>
+</section>
+
+<section class="mb-4" aria-labelledby="tradingViewHeading">
+    <div class="mb-3">
+        <h2 id="tradingViewHeading" class="h4 mb-1">TradingView analizleri</h2>
+        <p class="text-muted small mb-0">İnternet üzerinden sağlanan gelişmiş grafik ve teknik analiz özeti.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-xl-8">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-2 tradingview-panel tradingview-chart-panel">
+                    <div class="tradingview-widget-container h-100 w-100">
+                        <div class="tradingview-widget-container__widget h-100 w-100"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "autosize": true,
+                            "symbol": @Html.Raw(tvSymbolJson),
+                            "interval": "D",
+                            "timezone": "Europe/Istanbul",
+                            "theme": "light",
+                            "style": "1",
+                            "locale": "tr",
+                            "allow_symbol_change": false,
+                            "hide_side_toolbar": false,
+                            "support_host": "https://www.tradingview.com"
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-2 tradingview-panel tradingview-analysis-panel">
+                    <div class="tradingview-widget-container h-100 w-100">
+                        <div class="tradingview-widget-container__widget h-100 w-100"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                        {
+                            "interval": "1D",
+                            "width": "100%",
+                            "height": "100%",
+                            "isTransparent": true,
+                            "symbol": @Html.Raw(tvSymbolJson),
+                            "showIntervalTabs": true,
+                            "displayMode": "single",
+                            "locale": "tr",
+                            "colorTheme": "light"
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        (() => {
+            const symbol = @Html.Raw(symbolJson);
+            const historyUrl = @Html.Raw(historyUrlJson);
+            const indicatorsUrl = @Html.Raw(indicatorsUrlJson);
+            const loading = document.getElementById('chartLoading');
+            const error = document.getElementById('chartError');
+            const priceContainer = document.getElementById('priceChart');
+            const rsiContainer = document.getElementById('rsiChart');
+            const macdContainer = document.getElementById('macdChart');
+
+            if (!window.LightweightCharts) {
+                loading.classList.add('d-none');
+                error.textContent = 'Grafik kütüphanesi yüklenemedi. Lütfen bağlantınızı kontrol edip sayfayı yenileyin.';
+                error.classList.remove('d-none');
+                return;
+            }
+
+            const chartOptions = container => ({
+                width: container.clientWidth,
+                height: container === priceContainer ? 430 : 190,
+                layout: { background: { color: '#ffffff' }, textColor: '#475569' },
+                grid: {
+                    vertLines: { color: '#eef2f7' },
+                    horzLines: { color: '#eef2f7' }
+                },
+                rightPriceScale: { borderColor: '#dbe3ec' },
+                timeScale: { borderColor: '#dbe3ec', timeVisible: false },
+                crosshair: { mode: LightweightCharts.CrosshairMode.Normal }
+            });
+
+            const priceChart = LightweightCharts.createChart(priceContainer, chartOptions(priceContainer));
+            const candleSeries = priceChart.addCandlestickSeries({
+                upColor: '#16a34a', downColor: '#dc2626', borderVisible: false,
+                wickUpColor: '#16a34a', wickDownColor: '#dc2626'
+            });
+            const volumeSeries = priceChart.addHistogramSeries({
+                priceFormat: { type: 'volume' }, priceScaleId: 'volume'
+            });
+            priceChart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.8, bottom: 0 } });
+
+            const overlaySeries = {
+                sma: [
+                    priceChart.addLineSeries({ color: '#2563eb', lineWidth: 2, title: 'SMA 20' }),
+                    priceChart.addLineSeries({ color: '#7c3aed', lineWidth: 2, title: 'SMA 50' }),
+                    priceChart.addLineSeries({ color: '#475569', lineWidth: 2, title: 'SMA 200' })
+                ],
+                ema: [
+                    priceChart.addLineSeries({ color: '#f59e0b', lineWidth: 1, title: 'EMA 12' }),
+                    priceChart.addLineSeries({ color: '#ea580c', lineWidth: 1, title: 'EMA 26' })
+                ],
+                bollinger: [
+                    priceChart.addLineSeries({ color: '#0891b2', lineWidth: 1, lineStyle: 2, title: 'Boll. Üst' }),
+                    priceChart.addLineSeries({ color: '#0e7490', lineWidth: 1, title: 'Boll. Orta' }),
+                    priceChart.addLineSeries({ color: '#0891b2', lineWidth: 1, lineStyle: 2, title: 'Boll. Alt' })
+                ]
+            };
+
+            const rsiChart = LightweightCharts.createChart(rsiContainer, chartOptions(rsiContainer));
+            const rsiSeries = rsiChart.addLineSeries({ color: '#7c3aed', lineWidth: 2, title: 'RSI 14' });
+            rsiSeries.createPriceLine({ price: 70, color: '#dc2626', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '70' });
+            rsiSeries.createPriceLine({ price: 30, color: '#16a34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '30' });
+
+            const macdChart = LightweightCharts.createChart(macdContainer, chartOptions(macdContainer));
+            const macdSeries = macdChart.addLineSeries({ color: '#2563eb', lineWidth: 2, title: 'MACD' });
+            const macdSignalSeries = macdChart.addLineSeries({ color: '#f59e0b', lineWidth: 2, title: 'Sinyal' });
+            const macdHistogramSeries = macdChart.addHistogramSeries({ priceFormat: { type: 'price' } });
+
+            const toLineData = points => points.map(point => ({ time: point.time, value: point.value }));
+            const formatNumber = value => value == null
+                ? '-'
+                : Number(value).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            const setSummary = latest => {
+                const trend = latest.sma20 == null || latest.sma50 == null
+                    ? 'Yeterli veri yok'
+                    : latest.sma20 > latest.sma50 ? 'Kısa vadeli pozitif' : latest.sma20 < latest.sma50 ? 'Kısa vadeli negatif' : 'Yatay';
+                document.getElementById('summaryTrend').textContent = trend;
+                document.getElementById('summaryAverages').textContent = `SMA20 ${formatNumber(latest.sma20)} · SMA50 ${formatNumber(latest.sma50)}`;
+                document.getElementById('summaryRsi').textContent = formatNumber(latest.rsi14);
+                document.getElementById('summaryRsiSignal').textContent = latest.rsiSignal;
+                document.getElementById('summaryMacd').textContent = formatNumber(latest.macd);
+                document.getElementById('summaryMacdSignal').textContent = latest.macdSignal;
+                document.getElementById('summaryBollinger').textContent = `${formatNumber(latest.bollingerLower)} / ${formatNumber(latest.bollingerMiddle)} / ${formatNumber(latest.bollingerUpper)}`;
+            };
+
+            const loadCharts = async range => {
+                loading.classList.remove('d-none');
+                error.classList.add('d-none');
+
+                try {
+                    const [historyResponse, indicatorsResponse] = await Promise.all([
+                        fetch(`${historyUrl}?range=${encodeURIComponent(range)}&interval=1d`),
+                        fetch(`${indicatorsUrl}?range=${encodeURIComponent(range)}`)
+                    ]);
+                    if (!historyResponse.ok || !indicatorsResponse.ok) {
+                        throw new Error('Sunucu grafik verisini döndüremedi.');
+                    }
+
+                    const [candles, indicators] = await Promise.all([
+                        historyResponse.json(), indicatorsResponse.json()
+                    ]);
+                    if (!candles.length) {
+                        throw new Error(`${symbol} için seçilen aralıkta veri bulunamadı.`);
+                    }
+
+                    candleSeries.setData(candles.map(candle => ({
+                        time: candle.time,
+                        open: candle.open,
+                        high: candle.high,
+                        low: candle.low,
+                        close: candle.close
+                    })));
+                    volumeSeries.setData(candles.map(candle => ({
+                        time: candle.time,
+                        value: candle.volume,
+                        color: candle.close >= candle.open ? 'rgba(22, 163, 74, 0.35)' : 'rgba(220, 38, 38, 0.35)'
+                    })));
+
+                    overlaySeries.sma[0].setData(toLineData(indicators.series.sma20));
+                    overlaySeries.sma[1].setData(toLineData(indicators.series.sma50));
+                    overlaySeries.sma[2].setData(toLineData(indicators.series.sma200));
+                    overlaySeries.ema[0].setData(toLineData(indicators.series.ema12));
+                    overlaySeries.ema[1].setData(toLineData(indicators.series.ema26));
+                    overlaySeries.bollinger[0].setData(indicators.series.bollinger.map(point => ({ time: point.time, value: point.upper })));
+                    overlaySeries.bollinger[1].setData(indicators.series.bollinger.map(point => ({ time: point.time, value: point.middle })));
+                    overlaySeries.bollinger[2].setData(indicators.series.bollinger.map(point => ({ time: point.time, value: point.lower })));
+                    rsiSeries.setData(toLineData(indicators.series.rsi14));
+                    macdSeries.setData(indicators.series.macd.map(point => ({ time: point.time, value: point.macd })));
+                    macdSignalSeries.setData(indicators.series.macd
+                        .filter(point => point.signal != null)
+                        .map(point => ({ time: point.time, value: point.signal })));
+                    macdHistogramSeries.setData(indicators.series.macd
+                        .filter(point => point.histogram != null)
+                        .map(point => ({
+                            time: point.time,
+                            value: point.histogram,
+                            color: point.histogram >= 0 ? 'rgba(22, 163, 74, 0.55)' : 'rgba(220, 38, 38, 0.55)'
+                        })));
+
+                    setSummary(indicators.latest);
+                    priceChart.timeScale().fitContent();
+                    rsiChart.timeScale().fitContent();
+                    macdChart.timeScale().fitContent();
+                } catch (exception) {
+                    error.textContent = exception.message || 'Grafik verileri yüklenemedi.';
+                    error.classList.remove('d-none');
+                } finally {
+                    loading.classList.add('d-none');
+                }
+            };
+
+            document.querySelectorAll('[data-range]').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('[data-range]').forEach(candidate => {
+                        const active = candidate === button;
+                        candidate.classList.toggle('btn-primary', active);
+                        candidate.classList.toggle('btn-outline-primary', !active);
+                    });
+                    loadCharts(button.dataset.range);
+                });
+            });
+
+            document.querySelectorAll('[data-overlay]').forEach(toggle => {
+                toggle.addEventListener('change', () => {
+                    overlaySeries[toggle.dataset.overlay].forEach(series =>
+                        series.applyOptions({ visible: toggle.checked }));
+                });
+            });
+
+            const resizeObserver = new ResizeObserver(entries => {
+                entries.forEach(entry => {
+                    const width = Math.floor(entry.contentRect.width);
+                    if (entry.target === priceContainer) priceChart.applyOptions({ width });
+                    if (entry.target === rsiContainer) rsiChart.applyOptions({ width });
+                    if (entry.target === macdContainer) macdChart.applyOptions({ width });
+                });
+            });
+            [priceContainer, rsiContainer, macdContainer].forEach(container => resizeObserver.observe(container));
+
+            loadCharts('1y');
+        })();
+
+        (() => {
+            const form = document.getElementById('aiCommentaryForm');
+            if (!form) return;
+
+            const endpoint = @Html.Raw(aiCommentUrlJson);
+            const button = document.getElementById('aiCommentaryButton');
+            const buttonText = document.getElementById('aiCommentaryButtonText');
+            const spinner = document.getElementById('aiCommentarySpinner');
+            const result = document.getElementById('aiCommentaryResult');
+            const token = form.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            const renderInline = value => value
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+            const renderMarkdown = markdown => {
+                const lines = markdown.replace(/\r/g, '').split('\n');
+                let html = '';
+                let listOpen = false;
+                const closeList = () => {
+                    if (listOpen) {
+                        html += '</ul>';
+                        listOpen = false;
+                    }
+                };
+
+                lines.forEach(line => {
+                    const listItem = line.match(/^\s*[-*]\s+(.+)$/);
+                    const heading = line.match(/^\s*#{1,4}\s+(.+)$/);
+                    if (listItem) {
+                        if (!listOpen) {
+                            html += '<ul>';
+                            listOpen = true;
+                        }
+                        html += `<li>${renderInline(listItem[1])}</li>`;
+                    } else if (heading) {
+                        closeList();
+                        html += `<h3 class="h6 mt-3">${renderInline(heading[1])}</h3>`;
+                    } else if (line.trim()) {
+                        closeList();
+                        html += `<p>${renderInline(line.trim())}</p>`;
+                    } else {
+                        closeList();
+                    }
+                });
+                closeList();
+                return html;
+            };
+
+            form.addEventListener('submit', async event => {
+                event.preventDefault();
+                button.disabled = true;
+                buttonText.textContent = 'Yorum hazırlanıyor...';
+                spinner.classList.remove('d-none');
+                result.className = 'ai-commentary mt-4 alert alert-light border';
+                result.textContent = 'Son 60 günlük fiyat hareketi inceleniyor...';
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'RequestVerificationToken': token }
+                    });
+                    const payload = await response.json().catch(() => ({}));
+                    if (!response.ok) {
+                        throw new Error(payload.message || 'AI yorumu alınamadı.');
+                    }
+
+                    result.className = 'ai-commentary mt-4 alert alert-light border';
+                    result.innerHTML = renderMarkdown(payload.commentary);
+                } catch (exception) {
+                    result.className = 'ai-commentary mt-4 alert alert-warning';
+                    result.textContent = exception.message || 'AI yorumu alınamadı. Lütfen yeniden deneyin.';
+                } finally {
+                    button.disabled = false;
+                    buttonText.textContent = 'AI Yorumu Al';
+                    spinner.classList.add('d-none');
+                }
+            });
+        })();
+    </script>
+}

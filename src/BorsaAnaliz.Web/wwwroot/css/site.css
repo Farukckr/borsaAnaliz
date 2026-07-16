@@ -1,0 +1,62 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: #f6f8fb;
+}
+
+.ai-commentary p:last-child,
+.ai-commentary ul:last-child {
+  margin-bottom: 0;
+}
+
+.ai-commentary code {
+  color: inherit;
+}
+
+.stock-symbol {
+  letter-spacing: 0.02em;
+}
+
+.chart-container,
+.indicator-chart-container {
+  min-width: 0;
+  width: 100%;
+}
+
+.chart-container {
+  min-height: 430px;
+}
+
+.indicator-chart-container {
+  min-height: 190px;
+}
+
+.tradingview-panel {
+  overflow: hidden;
+}
+
+.tradingview-chart-panel {
+  min-height: 560px;
+}
+
+.tradingview-analysis-panel {
+  min-height: 480px;
+}
