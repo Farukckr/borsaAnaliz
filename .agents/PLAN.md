@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (UI task rev 6 — Phase 3 complete; Phase 4 next)
+in-progress — 2026-07-17 (UI task rev 8 — Phase 4 complete; Phase 5 next)
 
 ## Task Type
 
@@ -69,9 +69,9 @@ One phase per Codex run; each leaves the app building, working, and locally veri
 
 ### Phase 4 — Portfolio value-over-time chart
 
-- [ ] `GET /api/portfolios/{id}/value-history` (auth, owner-only): reconstruct daily portfolio value (positions × daily closes + cash after each day's transactions) since creation (cap 1y); 1 h cache per portfolio; missing quote days carry forward.
-- [ ] `Portfolio/Details.cshtml`: area chart (lightweight-charts) above the holdings table with the value series + a baseline line at initial cash; empty/one-day portfolios show a friendly note instead.
-- [ ] Verify: series starts at ≈initial cash on creation day, matches current TotalValue at the end (±quote drift); endpoint 404s for other users' portfolios.
+- [x] `GET /api/portfolios/{id}/value-history` (auth, owner-only): reconstruct daily portfolio value (positions × daily closes + cash after each day's transactions) since creation (cap 1y); 1 h cache per portfolio; missing quote days carry forward.
+- [x] `Portfolio/Details.cshtml`: area chart (lightweight-charts) above the holdings table with the value series + a baseline line at initial cash; empty/one-day portfolios show a friendly note instead.
+- [x] Verify: series starts at ≈initial cash on creation day, matches current TotalValue at the end (±quote drift); endpoint 404s for other users' portfolios.
 
 ### Phase 5 — AI commentary quality fix (user-reported bug + UX)
 
@@ -173,3 +173,11 @@ User report 2026-07-17: AI output arrives truncated mid-sentence (e.g. AKSA.IS �
 - Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. A deterministic ledger scenario (THYAO buys 10@100 and 10@120, sell 5@150; AAPL buy 4@200) returned cash 97,750, THYAO cost basis 1,650, realized P/L 200, and cash-inclusive weights totaling 100.000000%. A disposable authenticated integration account created a 100,000 ₺ portfolio, bought THYAO.IS and AAPL, partially sold THYAO, and confirmed 2 positions, 3 transactions, a three-slice ready Chart.js donut, working symbol expansion, and a trade preview matching the displayed ₺330 quote with owned quantity 7. Live DOM measurement showed allocation weights totaling exactly 100% and no mobile horizontal document overflow. Desktop portfolio index/detail and 390 px trade/detail screenshots were visually inspected. Anonymous portfolio and preview requests both redirected to login; the disposable account was deleted through Identity UI. `git diff --check` and the secret-pattern scan passed.
 - File inventory: edited `.agents/PLAN.md`, `Controllers/PortfolioController.cs`, `Models/PortfolioSnapshot.cs`, `Services/IPortfolioService.cs`, `Services/PortfolioService.cs`, `Views/Portfolio/Index.cshtml`, `Views/Portfolio/Details.cshtml`, `Views/Portfolio/Trade.cshtml`, and `wwwroot/css/site.css`. No database schema, migration, secret, or persistent test data remains.
 - UI Phase 3 is complete. Status remains `in-progress`; Phase 4 (portfolio value-over-time chart) is next.
+
+### 2026-07-17 — UI Phase 4 complete
+
+- Added an authenticated, owner-scoped `GET /api/portfolios/{id}/value-history` endpoint and a pure `PortfolioService.CalculateValueHistory` reconstruction routine. It applies the transaction ledger chronologically, values open quantities with daily closes, carries the last known price across non-trading days, seeds missing prices from transaction prices, limits the series to one year, and caches each user/portfolio result for one hour. Successful trades invalidate the relevant cache entry.
+- Added a responsive Lightweight Charts area chart above the holdings table with a dashed initial-cash baseline, localized TRY values, automatic fitting/resizing, loading and failure states, and friendly server/client empty states for portfolios without transactions or enough value days.
+- Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. A deterministic five-day ledger returned exactly 1,000, 1,020, 1,020, 1,060, and 1,070, proving buy/sell cash flow and missing-day carry-forward behavior. A disposable authenticated portfolio produced 13 daily points beginning at exactly 100,000 and ending at 99,972 versus a 100,000 current snapshot (28 quote-drift difference); a repeated request returned the identical cached series. Desktop and 390 px chart screenshots were visually inspected, and an empty portfolio rendered the friendly no-history state. A second authenticated user received `404` for the owner-only endpoint, while an anonymous request redirected to login with `302`. Both disposable accounts and their data were deleted afterward.
+- File inventory: edited `.agents/PLAN.md`, `src/BorsaAnaliz.Web/Controllers/PortfolioController.cs`, `src/BorsaAnaliz.Web/Models/PortfolioSnapshot.cs`, `src/BorsaAnaliz.Web/Services/IPortfolioService.cs`, `src/BorsaAnaliz.Web/Services/PortfolioService.cs`, `src/BorsaAnaliz.Web/Views/Portfolio/Details.cshtml`, and `src/BorsaAnaliz.Web/wwwroot/css/site.css`. No database schema, migration, secret, or persistent test data remains.
+- UI Phase 4 is complete. Status remains `in-progress`; Phase 5 (AI commentary truncation and finish-reason handling) is next.

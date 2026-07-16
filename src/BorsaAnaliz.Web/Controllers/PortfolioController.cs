@@ -70,6 +70,18 @@ public sealed class PortfolioController : Controller
         return View(model);
     }
 
+    [HttpGet("/api/portfolios/{id:int}/value-history")]
+    public async Task<IActionResult> ValueHistory(
+        int id,
+        CancellationToken cancellationToken = default)
+    {
+        var points = await _portfolioService.GetValueHistoryAsync(
+            id,
+            GetUserId(),
+            cancellationToken);
+        return points is null ? NotFound() : Ok(points);
+    }
+
     [HttpGet("/api/portfolios/{portfolioId:int}/trade-preview")]
     public async Task<IActionResult> TradePreview(
         int portfolioId,

@@ -33,6 +33,9 @@
     var allocationWeightsJson = JsonSerializer.Serialize(allocationItems.Select(item => item.WeightPercent));
     var allocationColorsJson = JsonSerializer.Serialize(allocationItems.Select((_, index) => allocationColors[index % allocationColors.Length]));
     var collapseTransactions = Model.Transactions.Count > 6;
+    var valueHistoryUrl = Url.Action("ValueHistory", "Portfolio", new { id = Model.Portfolio.Id });
+    var valueHistoryUrlJson = JsonSerializer.Serialize(valueHistoryUrl);
+    var initialCashJson = JsonSerializer.Serialize(Model.Portfolio.InitialCash);
 }
 
 <nav aria-label="İçerik yolu" class="mb-3">
@@ -128,6 +131,38 @@
                     </div>
                 </div>
             </div>
+        }
+    </div>
+</section>
+
+<section class="card portfolio-value-history-card mb-4" aria-labelledby="valueHistoryHeading">
+    <div class="card-body">
+        <div class="analysis-section-header d-flex flex-column flex-lg-row justify-content-between gap-3 mb-3">
+            <div>
+                <h2 id="valueHistoryHeading" class="h4 mb-1">Portföy değer geçmişi</h2>
+                <p class="text-muted small mb-0">İşlem defteri ve günlük kapanışlarla yeniden oluşturulan, en fazla son 1 yıllık görünüm.</p>
+            </div>
+            <div class="value-chart-legend" aria-label="Grafik açıklaması">
+                <span><i class="value-chart-swatch value" aria-hidden="true"></i> Portföy değeri</span>
+                <span><i class="value-chart-swatch baseline" aria-hidden="true"></i> Başlangıç nakdi</span>
+            </div>
+        </div>
+        @if (Model.Transactions.Count == 0)
+        {
+            <div class="value-chart-empty">
+                <i class="bi bi-graph-up" aria-hidden="true"></i>
+                <div><strong>Değer geçmişi henüz oluşmadı</strong><span>İlk sanal işleminizden sonra portföy eğrisi burada görünecek.</span></div>
+            </div>
+        }
+        else
+        {
+            <div id="valueHistoryLoading" class="text-center text-muted py-5"><span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Değer geçmişi hazırlanıyor...</div>
+            <div id="valueHistoryError" class="alert alert-warning d-none mb-0" role="alert"></div>
+            <div id="valueHistoryEmpty" class="value-chart-empty d-none">
+                <i class="bi bi-calendar2" aria-hidden="true"></i>
+                <div><strong>Grafik için henüz yeterli gün yok</strong><span>İkinci değer günü oluştuğunda portföy eğrisi gösterilecek.</span></div>
+            </div>
+            <div id="portfolioValueChart" class="portfolio-value-chart" aria-label="Portföy değer geçmişi alan grafiği"></div>
         }
     </div>
 </section>
@@ -326,6 +361,83 @@
                 panel.addEventListener('show.bs.collapse', () => icon.className = 'bi bi-chevron-up');
                 panel.addEventListener('hide.bs.collapse', () => icon.className = 'bi bi-chevron-down');
             });
+        })();
+
+        (() => {
+            const container = document.getElementById('portfolioValueChart');
+            if (!container) return;
+
+            const endpoint = @Html.Raw(valueHistoryUrlJson);
+            const initialCash = @Html.Raw(initialCashJson);
+            const loading = document.getElementById('valueHistoryLoading');
+            const error = document.getElementById('valueHistoryError');
+            const empty = document.getElementById('valueHistoryEmpty');
+            const moneyFormatter = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            const loadValueHistory = async () => {
+                try {
+                    const response = await fetch(endpoint, { headers: { 'Accept': 'application/json' } });
+                    if (!response.ok) throw new Error('Portföy değer geçmişi alınamadı.');
+                    const points = await response.json();
+                    loading.classList.add('d-none');
+
+                    if (points.length <= 1) {
+                        container.classList.add('d-none');
+                        empty.classList.remove('d-none');
+                        return;
+                    }
+
+                    if (!window.LightweightCharts) {
+                        throw new Error('Grafik kütüphanesi yüklenemedi. Lütfen sayfayı yenileyin.');
+                    }
+
+                    const chart = LightweightCharts.createChart(container, {
+                        width: container.clientWidth,
+                        height: window.matchMedia('(max-width: 575.98px)').matches ? 280 : 330,
+                        layout: { background: { color: '#ffffff' }, textColor: '#64748b' },
+                        localization: { priceFormatter: value => `₺${moneyFormatter.format(value)}` },
+                        grid: {
+                            vertLines: { color: '#f1f5f9' },
+                            horzLines: { color: '#eef2f7' }
+                        },
+                        rightPriceScale: { borderColor: '#dbe3ec' },
+                        timeScale: { borderColor: '#dbe3ec', timeVisible: false },
+                        crosshair: { mode: LightweightCharts.CrosshairMode.Normal }
+                    });
+                    const valueSeries = chart.addAreaSeries({
+                        lineColor: '#2563eb',
+                        topColor: 'rgba(37, 99, 235, 0.28)',
+                        bottomColor: 'rgba(37, 99, 235, 0.02)',
+                        lineWidth: 2,
+                        priceLineVisible: false,
+                        title: 'Portföy değeri'
+                    });
+                    const baselineSeries = chart.addLineSeries({
+                        color: '#94a3b8',
+                        lineWidth: 1,
+                        lineStyle: LightweightCharts.LineStyle.Dashed,
+                        priceLineVisible: false,
+                        lastValueVisible: false,
+                        title: 'Başlangıç nakdi'
+                    });
+                    valueSeries.setData(points);
+                    baselineSeries.setData(points.map(point => ({ time: point.time, value: initialCash })));
+                    chart.timeScale().fitContent();
+
+                    const resizeObserver = new ResizeObserver(entries => {
+                        const width = Math.floor(entries[0].contentRect.width);
+                        chart.applyOptions({ width });
+                    });
+                    resizeObserver.observe(container);
+                } catch (exception) {
+                    loading.classList.add('d-none');
+                    container.classList.add('d-none');
+                    error.textContent = exception.message || 'Portföy değer geçmişi alınamadı.';
+                    error.classList.remove('d-none');
+                }
+            };
+
+            loadValueHistory();
         })();
     </script>
 }

@@ -1,20 +1,29 @@
 using BorsaAnaliz.Web.Data;
 using BorsaAnaliz.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace BorsaAnaliz.Web.Services;
 
 public sealed class PortfolioService : IPortfolioService
 {
+    private static readonly TimeSpan ValueHistoryCacheDuration = TimeSpan.FromHours(1);
+
     private readonly ApplicationDbContext _db;
     private readonly IMarketDataService _marketData;
     private readonly IStockCatalogService _stockCatalog;
+    private readonly IMemoryCache _cache;
 
-    public PortfolioService(ApplicationDbContext db, IMarketDataService marketData, IStockCatalogService stockCatalog)
+    public PortfolioService(
+        ApplicationDbContext db,
+        IMarketDataService marketData,
+        IStockCatalogService stockCatalog,
+        IMemoryCache cache)
     {
         _db = db;
         _marketData = marketData;
         _stockCatalog = stockCatalog;
+        _cache = cache;
     }
 
     public async Task<IReadOnlyList<Portfolio>> GetPortfoliosAsync(string userId, CancellationToken cancellationToken = default)
@@ -193,6 +202,74 @@ public sealed class PortfolioService : IPortfolioService
             positions.Count);
     }
 
+    public async Task<IReadOnlyList<PortfolioValuePoint>?> GetValueHistoryAsync(
+        int portfolioId,
+        string userId,
+        CancellationToken cancellationToken = default)
+    {
+        var cacheKey = GetValueHistoryCacheKey(portfolioId, userId);
+        if (_cache.TryGetValue<PortfolioValueHistoryCacheEntry>(cacheKey, out var cached))
+        {
+            return cached?.Points ?? [];
+        }
+
+        var portfolio = await _db.Portfolios.AsNoTracking()
+            .Include(item => item.Transactions)
+            .SingleOrDefaultAsync(item => item.Id == portfolioId && item.UserId == userId, cancellationToken);
+        if (portfolio is null)
+        {
+            return null;
+        }
+
+        var endDate = DateOnly.FromDateTime(DateTime.UtcNow);
+        var createdDate = DateOnly.FromDateTime(portfolio.CreatedAt.UtcDateTime);
+        var startDate = createdDate > endDate.AddYears(-1) ? createdDate : endDate.AddYears(-1);
+        if (startDate > endDate)
+        {
+            startDate = endDate;
+        }
+
+        var transactions = portfolio.Transactions
+            .OrderBy(item => item.ExecutedAt)
+            .ThenBy(item => item.Id)
+            .ToArray();
+        var positionsAtStart = CalculateLedger(
+            portfolio.InitialCash,
+            transactions.Where(item => ToDate(item.ExecutedAt) < startDate));
+        var relevantSymbols = positionsAtStart.Positions
+            .Where(item => item.Value.Quantity > 0)
+            .Select(item => item.Key)
+            .Concat(transactions
+                .Where(item => ToDate(item.ExecutedAt) >= startDate)
+                .Select(item => item.Symbol))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        var histories = new Dictionary<string, IReadOnlyList<Candle>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var batch in relevantSymbols.Chunk(8))
+        {
+            var results = await Task.WhenAll(batch.Select(async symbol =>
+                new KeyValuePair<string, IReadOnlyList<Candle>>(
+                    symbol,
+                    await _marketData.GetHistoryAsync(symbol, "1y", "1d", cancellationToken))));
+            foreach (var result in results)
+            {
+                histories[result.Key] = result.Value;
+            }
+        }
+
+        var points = CalculateValueHistory(
+            portfolio.InitialCash,
+            transactions,
+            histories,
+            startDate,
+            endDate);
+        _cache.Set(
+            cacheKey,
+            new PortfolioValueHistoryCacheEntry(points),
+            ValueHistoryCacheDuration);
+        return points;
+    }
+
     public async Task<TradePreviewResult> GetTradePreviewAsync(
         int portfolioId,
         string userId,
@@ -339,6 +416,7 @@ public sealed class PortfolioService : IPortfolioService
         });
         await _db.SaveChangesAsync(cancellationToken);
         await databaseTransaction.CommitAsync(cancellationToken);
+        _cache.Remove(GetValueHistoryCacheKey(portfolioId, userId));
         return TradeResult.Success();
     }
 
@@ -398,6 +476,123 @@ public sealed class PortfolioService : IPortfolioService
             ledgerPositions.Values.Sum(position => position.RealizedProfitLoss));
     }
 
+    public static IReadOnlyList<PortfolioValuePoint> CalculateValueHistory(
+        decimal initialCash,
+        IEnumerable<Transaction> transactions,
+        IReadOnlyDictionary<string, IReadOnlyList<Candle>> histories,
+        DateOnly startDate,
+        DateOnly endDate)
+    {
+        if (endDate < startDate)
+        {
+            return [];
+        }
+
+        var orderedTransactions = transactions
+            .OrderBy(item => item.ExecutedAt)
+            .ThenBy(item => item.Id)
+            .ToArray();
+        var transactionsByDate = orderedTransactions
+            .Where(item => ToDate(item.ExecutedAt) >= startDate && ToDate(item.ExecutedAt) <= endDate)
+            .GroupBy(item => ToDate(item.ExecutedAt))
+            .ToDictionary(group => group.Key, group => group.ToArray());
+        var closesBySymbol = histories.ToDictionary(
+            entry => entry.Key,
+            entry => entry.Value
+                .OrderBy(candle => candle.Time)
+                .GroupBy(candle => ToDate(candle.Time))
+                .ToDictionary(group => group.Key, group => group.Last().Close),
+            StringComparer.OrdinalIgnoreCase);
+
+        var cash = initialCash;
+        var holdings = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase);
+        var lastPrices = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase);
+        var lastPriceDates = new Dictionary<string, DateOnly>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var transaction in orderedTransactions.Where(item => ToDate(item.ExecutedAt) < startDate))
+        {
+            ApplyValueHistoryTransaction(transaction, ref cash, holdings);
+            var transactionDate = ToDate(transaction.ExecutedAt);
+            if (!lastPriceDates.TryGetValue(transaction.Symbol, out var priceDate) || transactionDate >= priceDate)
+            {
+                lastPrices[transaction.Symbol] = transaction.Price;
+                lastPriceDates[transaction.Symbol] = transactionDate;
+            }
+        }
+
+        foreach (var (symbol, closes) in closesBySymbol)
+        {
+            foreach (var close in closes.Where(item => item.Key < startDate).OrderBy(item => item.Key))
+            {
+                if (!lastPriceDates.TryGetValue(symbol, out var priceDate) || close.Key >= priceDate)
+                {
+                    lastPrices[symbol] = close.Value;
+                    lastPriceDates[symbol] = close.Key;
+                }
+            }
+        }
+
+        var points = new List<PortfolioValuePoint>(endDate.DayNumber - startDate.DayNumber + 1);
+        for (var date = startDate; date <= endDate; date = date.AddDays(1))
+        {
+            if (transactionsByDate.TryGetValue(date, out var dailyTransactions))
+            {
+                foreach (var transaction in dailyTransactions)
+                {
+                    ApplyValueHistoryTransaction(transaction, ref cash, holdings);
+                    lastPrices[transaction.Symbol] = transaction.Price;
+                }
+            }
+
+            foreach (var (symbol, closes) in closesBySymbol)
+            {
+                if (closes.TryGetValue(date, out var close))
+                {
+                    lastPrices[symbol] = close;
+                }
+            }
+
+            var value = cash;
+            foreach (var (symbol, quantity) in holdings)
+            {
+                if (quantity > 0 && lastPrices.TryGetValue(symbol, out var price))
+                {
+                    value += quantity * price;
+                }
+            }
+
+            var timestamp = new DateTimeOffset(
+                date.ToDateTime(TimeOnly.MinValue),
+                TimeSpan.Zero).ToUnixTimeSeconds();
+            points.Add(new PortfolioValuePoint(timestamp, value));
+        }
+
+        return points;
+    }
+
+    private static void ApplyValueHistoryTransaction(
+        Transaction transaction,
+        ref decimal cash,
+        IDictionary<string, decimal> holdings)
+    {
+        holdings.TryGetValue(transaction.Symbol, out var quantity);
+        if (transaction.Type == TransactionType.Buy)
+        {
+            cash -= transaction.Quantity * transaction.Price;
+            holdings[transaction.Symbol] = quantity + transaction.Quantity;
+            return;
+        }
+
+        cash += transaction.Quantity * transaction.Price;
+        holdings[transaction.Symbol] = Math.Max(0m, quantity - transaction.Quantity);
+    }
+
+    private static DateOnly ToDate(DateTimeOffset value) =>
+        DateOnly.FromDateTime(value.UtcDateTime);
+
+    private static string GetValueHistoryCacheKey(int portfolioId, string userId) =>
+        $"portfolio-value-history:{portfolioId}:{userId}";
+
     private static string GetCurrencySymbol(string market) =>
         market.Equals("BIST", StringComparison.OrdinalIgnoreCase) ? "₺" : "$";
 
@@ -408,4 +603,6 @@ public sealed class PortfolioService : IPortfolioService
         public decimal RealizedProfitLoss { get; set; }
         public DateTimeOffset? FirstPurchaseDate { get; set; }
     }
+
+    private sealed record PortfolioValueHistoryCacheEntry(IReadOnlyList<PortfolioValuePoint> Points);
 }

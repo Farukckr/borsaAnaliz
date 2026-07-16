@@ -55,6 +55,8 @@ public sealed record PortfolioLedger(
     IReadOnlyDictionary<string, PortfolioLedgerPosition> Positions,
     decimal TotalRealizedProfitLoss);
 
+public sealed record PortfolioValuePoint(long Time, decimal Value);
+
 public sealed record TradePreview(
     string Symbol,
     string CurrencySymbol,

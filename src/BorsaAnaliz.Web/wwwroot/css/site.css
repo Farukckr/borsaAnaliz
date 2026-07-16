@@ -984,8 +984,77 @@ a:focus-visible {
 }
 
 .portfolio-allocation-card,
+.portfolio-value-history-card,
 .portfolio-section {
   overflow: hidden;
+}
+
+.portfolio-value-chart {
+  width: 100%;
+  min-height: 330px;
+}
+
+.value-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  align-items: center;
+  color: var(--ba-slate-600);
+  font-size: 0.74rem;
+}
+
+.value-chart-legend span {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.value-chart-swatch {
+  display: inline-block;
+  width: 1.2rem;
+  height: 0;
+  border-top: 2px solid;
+}
+
+.value-chart-swatch.value {
+  border-color: var(--ba-primary);
+}
+
+.value-chart-swatch.baseline {
+  border-color: #94a3b8;
+  border-top-style: dashed;
+}
+
+.value-chart-empty {
+  display: flex;
+  gap: 0.85rem;
+  min-height: 11rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  color: var(--ba-slate-500);
+  background: #f8fafc;
+  border: 1px dashed var(--ba-slate-300);
+  border-radius: var(--ba-radius-sm);
+}
+
+.value-chart-empty > i {
+  color: var(--ba-primary);
+  font-size: 1.35rem;
+}
+
+.value-chart-empty strong,
+.value-chart-empty span {
+  display: block;
+}
+
+.value-chart-empty strong {
+  margin-bottom: 0.2rem;
+  color: var(--ba-navy-900);
+}
+
+.value-chart-empty span {
+  font-size: 0.8rem;
 }
 
 .allocation-chart-wrap {
@@ -1434,6 +1503,16 @@ a:focus-visible {
 
   .allocation-chart-wrap {
     height: 240px;
+  }
+
+  .portfolio-value-chart {
+    min-height: 280px;
+  }
+
+  .value-chart-empty {
+    align-items: flex-start;
+    flex-direction: column;
+    min-height: 0;
   }
 
   .allocation-legend-row {
