@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (UI task rev 2 — Phase 1 complete; Phase 2 next)
+in-progress — 2026-07-17 (UI task rev 4 — Phase 2 complete; Phase 3 next)
 
 ## Task Type
 
@@ -49,9 +49,9 @@ One phase per Codex run; each leaves the app building, working, and locally veri
 
 ### Phase 2 — Stocks list + detail polish
 
-- [ ] `Stocks/Index.cshtml`: sortable columns (symbol, price, change %) client-side; colored change chips (▲/▼ + %); volume column if quote data has it; sticky table header; keep existing search + market filter; row hover → whole row clickable to details.
-- [ ] `Stocks/Details.cshtml`: header block with big price + daily change chip + market badge; quick "Portföye ekle" button kept visible; tidy the indicator summary cards into a consistent grid; section headings/tabs styled per theme. Do NOT touch chart/API logic.
-- [ ] Verify: sorting works on all three columns both directions; THYAO.IS and AAPL pages render correctly; AI card still works.
+- [x] `Stocks/Index.cshtml`: added accessible client-side sorting for symbol, price, and change %, colored direction chips, a sticky table header, keyboard/click whole-row navigation, and polished market badges while retaining the existing search and market filter. `Quote` has no volume property, so the conditional volume column was correctly omitted.
+- [x] `Stocks/Details.cshtml`: added a professional quote header with large price, absolute/percentage daily-change chip, market/symbol badges, and a prominent quick "Portföye ekle" action; normalized the indicator summary grid and themed chart, AI, and TradingView section headings. The chart/API and AI JavaScript source remained unchanged.
+- [x] Verify: real headless-browser clicks confirmed ascending and descending sorting on all three columns; THYAO.IS and AAPL rendered with populated quote/indicator layouts; history and indicator endpoints returned data; the AI card IDs, anonymous login action, and unchanged client/controller flow remained intact.
 
 ### Phase 3 — Portfolio detail enrichment (the core of this task)
 
@@ -145,3 +145,12 @@ One phase per Codex run; each leaves the app building, working, and locally veri
 - Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. Local runtime checks returned four populated market cards, ten mover links, zero missing snapshot cards, the new navbar/footer on Home and Stocks, and the themed Privacy/Error content. Headless Chrome screenshots were visually inspected at 1440 px and its reliable narrow 500 px viewport; explicit 375 px CSS breakpoint/reflow checks passed. Static guard found zero index-symbol additions in `Data/symbols.json`; `git diff --check` passed.
 - File inventory: created `src/BorsaAnaliz.Web/ViewModels/HomeDashboardViewModel.cs`; edited `.agents/PLAN.md`, `Controllers/HomeController.cs`, `Views/Home/Index.cshtml`, `Views/Home/Privacy.cshtml`, `Views/Shared/Error.cshtml`, `Views/Shared/_Layout.cshtml`, `Views/Shared/_Layout.cshtml.css`, `Views/Shared/_LoginPartial.cshtml`, and `wwwroot/css/site.css`. No database schema, route, secret, or runtime data changed.
 - UI Phase 1 is complete. Status remains `in-progress`; Phase 2 (stocks list/detail polish without chart/API changes) is next.
+
+### 2026-07-17 — UI Phase 2 complete
+
+- Reworked the 150-stock discovery table with a sticky header, accessible sort buttons and `aria-sort` state, stable missing-value handling, branded market/change pills, and whole-row mouse/keyboard navigation. Existing Turkish search, BIST/ABD filtering, live result count, and empty-result feedback were preserved.
+- Rebuilt the stock detail header into a responsive finance quote surface showing market and symbol context, a large localized price, absolute and percentage daily movement, and a prominent portfolio action. Consolidated the four indicator cards and themed the native chart, AI commentary, and TradingView section headers without changing their runtime IDs.
+- Volume was intentionally not added: the current `Quote` record exposes price, previous close, change, change percentage, currency, and market time but no volume field.
+- Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors. Local `/Stocks`, `/Stocks/Details/THYAO.IS`, `/Stocks/Details/AAPL`, AAPL history, and AAPL indicator requests all returned HTTP 200; the APIs returned 251 history points and a populated 1y indicator response. Headless Chrome executed both directions for symbol, price, and change sorting and returned correctly ordered leading values. Desktop 1440 px and narrow 390 px screenshots were visually inspected. The details `@section Scripts` content, `StocksController`, and AI card IDs remained unchanged; `git diff --check` passed.
+- File inventory: edited `.agents/PLAN.md`, `src/BorsaAnaliz.Web/Views/Stocks/Index.cshtml`, `src/BorsaAnaliz.Web/Views/Stocks/Details.cshtml`, and `src/BorsaAnaliz.Web/wwwroot/css/site.css`. No model, controller, route, database schema, secret, or runtime data changed.
+- UI Phase 2 is complete. Status remains `in-progress`; Phase 3 (portfolio detail enrichment) is next.

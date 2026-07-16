@@ -21,75 +21,91 @@
     </ol>
 </nav>
 
-<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3 mb-4">
-    <div>
-        <div class="d-flex align-items-center gap-2 mb-1">
-            <h1 class="mb-0">@Model.Stock.Name</h1>
-            <span class="badge text-bg-secondary">@Model.ShortSymbol</span>
+<section class="stock-detail-hero mb-4" aria-labelledby="stockTitle">
+    <div class="stock-detail-main">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <span class="market-badge">@(Model.Stock.Market == "BIST" ? "BIST" : "ABD")</span>
+            <span class="stock-code-badge">@Model.ShortSymbol</span>
+            <span class="data-delay-note"><i class="bi bi-clock-history" aria-hidden="true"></i> Veriler gecikmeli olabilir</span>
         </div>
-        <p class="text-muted mb-0">@(Model.Stock.Market == "BIST" ? "Borsa İstanbul" : "ABD") · Veriler gecikmeli olabilir</p>
+        <h1 id="stockTitle" class="mb-2">@Model.Stock.Name</h1>
+        <p class="text-muted mb-0">@(Model.Stock.Market == "BIST" ? "Borsa İstanbul" : "ABD piyasaları") · Güncel fiyat ve teknik görünüm</p>
     </div>
-    <div class="text-lg-end">
+    <div class="stock-quote-panel">
         @if (Model.Quote is not null)
         {
-            <div class="fs-3 fw-semibold">@Model.CurrencySymbol@Model.Quote.Price.ToString("N2", displayCulture)</div>
+            <div class="stock-price-display">@Model.CurrencySymbol@Model.Quote.Price.ToString("N2", displayCulture)</div>
             @if (Model.Quote.ChangePercent is decimal changePercent)
             {
-                var changeClass = changePercent > 0 ? "text-success" : changePercent < 0 ? "text-danger" : "text-muted";
+                var changeClass = changePercent > 0 ? "gain" : changePercent < 0 ? "loss" : "neutral";
                 var sign = changePercent > 0 ? "+" : string.Empty;
-                <div class="@changeClass">@sign@changePercent.ToString("N2", displayCulture)% bugün</div>
+                var changeIcon = changePercent > 0 ? "bi-caret-up-fill" : changePercent < 0 ? "bi-caret-down-fill" : "bi-dash";
+                <div class="d-flex flex-wrap justify-content-lg-end align-items-center gap-2 mt-2">
+                    <span class="change-pill stock-change-pill @changeClass">
+                        <i class="bi @changeIcon" aria-hidden="true"></i>
+                        @if (Model.Quote.Change is decimal change)
+                        {
+                            <span>@sign@Model.CurrencySymbol@change.ToString("N2", displayCulture)</span>
+                        }
+                        <span>(@sign@changePercent.ToString("N2", displayCulture)%)</span>
+                    </span>
+                    <span class="small text-muted">bugün</span>
+                </div>
             }
         }
         else
         {
             <div class="fs-5 text-muted">Fiyat verisi alınamadı</div>
         }
-        <a class="btn btn-outline-primary btn-sm mt-2" asp-controller="Portfolio" asp-action="Trade" asp-route-symbol="@Model.Stock.Symbol">Portföye ekle</a>
+        <a class="btn btn-primary stock-trade-button mt-3" asp-controller="Portfolio" asp-action="Trade" asp-route-symbol="@Model.Stock.Symbol">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            Portföye ekle
+        </a>
     </div>
-</div>
+</section>
 
-<div class="row g-3 mb-4" aria-label="Teknik gösterge özeti">
+<div class="row g-3 indicator-summary-grid mb-4" aria-label="Teknik gösterge özeti">
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card indicator-summary-card h-100">
             <div class="card-body">
-                <div class="text-muted small mb-1">Kısa vadeli eğilim</div>
-                <div id="summaryTrend" class="fw-semibold">Yükleniyor...</div>
+                <div class="indicator-card-label"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Kısa vadeli eğilim</div>
+                <div id="summaryTrend" class="indicator-card-value">Yükleniyor...</div>
                 <div id="summaryAverages" class="small text-muted mt-1">SMA değerleri bekleniyor</div>
             </div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card indicator-summary-card h-100">
             <div class="card-body">
-                <div class="text-muted small mb-1">RSI (14)</div>
-                <div id="summaryRsi" class="fw-semibold">Yükleniyor...</div>
+                <div class="indicator-card-label"><i class="bi bi-speedometer2" aria-hidden="true"></i> RSI (14)</div>
+                <div id="summaryRsi" class="indicator-card-value">Yükleniyor...</div>
                 <div id="summaryRsiSignal" class="small text-muted mt-1">-</div>
             </div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card indicator-summary-card h-100">
             <div class="card-body">
-                <div class="text-muted small mb-1">MACD (12, 26, 9)</div>
-                <div id="summaryMacd" class="fw-semibold">Yükleniyor...</div>
+                <div class="indicator-card-label"><i class="bi bi-activity" aria-hidden="true"></i> MACD (12, 26, 9)</div>
+                <div id="summaryMacd" class="indicator-card-value">Yükleniyor...</div>
                 <div id="summaryMacdSignal" class="small text-muted mt-1">-</div>
             </div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card indicator-summary-card h-100">
             <div class="card-body">
-                <div class="text-muted small mb-1">Bollinger (20, 2)</div>
-                <div id="summaryBollinger" class="fw-semibold">Yükleniyor...</div>
+                <div class="indicator-card-label"><i class="bi bi-bounding-box-circles" aria-hidden="true"></i> Bollinger (20, 2)</div>
+                <div id="summaryBollinger" class="indicator-card-value indicator-card-value-compact">Yükleniyor...</div>
                 <div class="small text-muted mt-1">Alt / Orta / Üst bant</div>
             </div>
         </div>
     </div>
 </div>
 
-<section class="card border-0 shadow-sm mb-4" aria-labelledby="ownChartHeading">
+<section class="card analysis-section mb-4" aria-labelledby="ownChartHeading">
     <div class="card-body">
-        <div class="d-flex flex-column flex-xl-row justify-content-between gap-3 mb-3">
+        <div class="analysis-section-header d-flex flex-column flex-xl-row justify-content-between gap-3 mb-3">
             <div>
                 <h2 id="ownChartHeading" class="h4 mb-1">Fiyat ve teknik göstergeler</h2>
                 <p class="text-muted small mb-0">Mum ve hacim verileri Yahoo Finance üzerinden sağlanır.</p>
@@ -126,9 +142,9 @@
     </div>
 </section>
 
-<section class="card border-0 shadow-sm mb-4" aria-labelledby="aiCommentaryHeading">
+<section class="card analysis-section ai-analysis-section mb-4" aria-labelledby="aiCommentaryHeading">
     <div class="card-body">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+        <div class="analysis-section-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
                 <h2 id="aiCommentaryHeading" class="h4 mb-1">AI grafik yorumu</h2>
                 <p class="text-muted small mb-0">Son fiyat hareketleri ve teknik göstergeler Gemini ile Türkçe olarak yorumlanır.</p>
@@ -157,7 +173,7 @@
 </section>
 
 <section class="mb-4" aria-labelledby="tradingViewHeading">
-    <div class="mb-3">
+    <div class="analysis-section-header mb-3">
         <h2 id="tradingViewHeading" class="h4 mb-1">TradingView analizleri</h2>
         <p class="text-muted small mb-0">İnternet üzerinden sağlanan gelişmiş grafik ve teknik analiz özeti.</p>
     </div>

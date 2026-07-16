@@ -13,7 +13,7 @@
     <div class="text-muted small">Fiyatlar gecikmeli olabilir.</div>
 </div>
 
-<div class="card border-0 shadow-sm mb-4">
+<div class="card stocks-filter-card border-0 shadow-sm mb-4">
     <div class="card-body">
         <div class="row g-3">
             <div class="col-md-8">
@@ -38,28 +38,54 @@
 }
 else
 {
-    <div class="table-responsive bg-white rounded shadow-sm">
-        <table class="table table-hover align-middle mb-0" aria-describedby="stockCount">
-            <thead class="table-light">
+    <div class="table-responsive stock-table-shell bg-white rounded shadow-sm">
+        <table class="table stock-table align-middle mb-0" aria-describedby="stockCount">
+            <thead>
                 <tr>
-                    <th scope="col">Sembol</th>
+                    <th scope="col" data-sort-column="symbol" aria-sort="none">
+                        <button type="button" class="table-sort-button" data-sort-key="symbol">
+                            Sembol
+                            <i class="bi bi-arrow-down-up" aria-hidden="true"></i>
+                        </button>
+                    </th>
                     <th scope="col">Şirket</th>
                     <th scope="col">Piyasa</th>
-                    <th scope="col" class="text-end">Son fiyat</th>
-                    <th scope="col" class="text-end">Günlük değişim</th>
+                    <th scope="col" class="text-end" data-sort-column="price" aria-sort="none">
+                        <button type="button" class="table-sort-button justify-content-end ms-auto" data-sort-key="price">
+                            Son fiyat
+                            <i class="bi bi-arrow-down-up" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th scope="col" class="text-end" data-sort-column="change" aria-sort="none">
+                        <button type="button" class="table-sort-button justify-content-end ms-auto" data-sort-key="change">
+                            Günlük değişim
+                            <i class="bi bi-arrow-down-up" aria-hidden="true"></i>
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody id="stockTableBody">
                 @foreach (var item in Model.Stocks)
                 {
-                    <tr data-stock-row data-market="@item.Stock.Market" data-search="@($"{item.Stock.Symbol} {item.Stock.Name}")">
+                    var detailsUrl = Url.Action("Details", "Stocks", new { symbol = item.Stock.Symbol });
+                    <tr class="stock-table-row"
+                        data-stock-row
+                        data-market="@item.Stock.Market"
+                        data-search="@($"{item.Stock.Symbol} {item.Stock.Name}")"
+                        data-symbol="@item.Stock.Symbol"
+                        data-price="@(item.Quote?.Price.ToString(CultureInfo.InvariantCulture) ?? string.Empty)"
+                        data-change="@(item.Quote?.ChangePercent?.ToString(CultureInfo.InvariantCulture) ?? string.Empty)"
+                        data-href="@detailsUrl"
+                        tabindex="0"
+                        role="link"
+                        aria-label="@item.Stock.Symbol detayını aç">
                         <td class="fw-semibold stock-symbol">
                             <a class="text-decoration-none" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">@item.Stock.Symbol</a>
                         </td>
                         <td>
                             <a class="text-reset text-decoration-none" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">@item.Stock.Name</a>
                         </td>
-                        <td><span class="badge text-bg-secondary">@(item.Stock.Market == "BIST" ? "BIST" : "ABD")</span></td>
+                        <td><span class="market-badge">@(item.Stock.Market == "BIST" ? "BIST" : "ABD")</span></td>
                         <td class="text-end text-nowrap">
                             @if (item.Quote is not null)
                             {
@@ -73,9 +99,13 @@ else
                         <td class="text-end text-nowrap">
                             @if (item.Quote?.ChangePercent is decimal changePercent)
                             {
-                                var changeClass = changePercent > 0 ? "text-success" : changePercent < 0 ? "text-danger" : "text-muted";
+                                var changeClass = changePercent > 0 ? "gain" : changePercent < 0 ? "loss" : "neutral";
                                 var sign = changePercent > 0 ? "+" : string.Empty;
-                                <span class="fw-semibold @changeClass">@sign@changePercent.ToString("N2", displayCulture)%</span>
+                                var changeIcon = changePercent > 0 ? "bi-caret-up-fill" : changePercent < 0 ? "bi-caret-down-fill" : "bi-dash";
+                                <span class="change-pill @changeClass">
+                                    <i class="bi @changeIcon" aria-hidden="true"></i>
+                                    @sign@changePercent.ToString("N2", displayCulture)%
+                                </span>
                             }
                             else
                             {
@@ -97,12 +127,16 @@ else
             const searchInput = document.getElementById('stockSearch');
             const marketFilter = document.getElementById('marketFilter');
             const rows = Array.from(document.querySelectorAll('[data-stock-row]'));
+            const tableBody = document.getElementById('stockTableBody');
+            const sortButtons = Array.from(document.querySelectorAll('[data-sort-key]'));
             const count = document.getElementById('stockCount');
             const noResults = document.getElementById('noStockResults');
 
-            if (!searchInput || !marketFilter || rows.length === 0) {
+            if (!searchInput || !marketFilter || !tableBody || rows.length === 0) {
                 return;
             }
+
+            const sortState = { key: null, direction: 'asc' };
 
             const applyFilters = () => {
                 const query = searchInput.value.trim().toLocaleLowerCase('tr-TR');
@@ -124,6 +158,77 @@ else
 
             searchInput.addEventListener('input', applyFilters);
             marketFilter.addEventListener('change', applyFilters);
+
+            const readSortValue = (row, key) => {
+                if (key === 'symbol') {
+                    return row.dataset.symbol;
+                }
+
+                const rawValue = key === 'price' ? row.dataset.price : row.dataset.change;
+                return rawValue === '' ? null : Number(rawValue);
+            };
+
+            const updateSortIndicators = () => {
+                sortButtons.forEach(button => {
+                    const active = button.dataset.sortKey === sortState.key;
+                    const heading = button.closest('th');
+                    const icon = button.querySelector('i');
+                    const direction = active ? sortState.direction : null;
+
+                    heading.setAttribute('aria-sort', direction === 'asc' ? 'ascending' : direction === 'desc' ? 'descending' : 'none');
+                    button.classList.toggle('active', active);
+                    icon.className = `bi ${direction === 'asc' ? 'bi-arrow-up' : direction === 'desc' ? 'bi-arrow-down' : 'bi-arrow-down-up'}`;
+                });
+            };
+
+            const sortRows = key => {
+                sortState.direction = sortState.key === key
+                    ? (sortState.direction === 'asc' ? 'desc' : 'asc')
+                    : (key === 'symbol' ? 'asc' : 'desc');
+                sortState.key = key;
+
+                rows
+                    .map((row, originalIndex) => ({ row, originalIndex, value: readSortValue(row, key) }))
+                    .sort((left, right) => {
+                        const leftMissing = left.value === null || left.value === undefined;
+                        const rightMissing = right.value === null || right.value === undefined;
+                        if (leftMissing || rightMissing) {
+                            if (leftMissing && rightMissing) return left.originalIndex - right.originalIndex;
+                            return leftMissing ? 1 : -1;
+                        }
+
+                        const comparison = key === 'symbol'
+                            ? left.value.localeCompare(right.value, 'tr-TR', { numeric: true, sensitivity: 'base' })
+                            : left.value - right.value;
+                        return comparison === 0
+                            ? left.originalIndex - right.originalIndex
+                            : comparison * (sortState.direction === 'asc' ? 1 : -1);
+                    })
+                    .forEach(item => tableBody.appendChild(item.row));
+
+                updateSortIndicators();
+                applyFilters();
+            };
+
+            sortButtons.forEach(button => {
+                button.addEventListener('click', () => sortRows(button.dataset.sortKey));
+            });
+
+            rows.forEach(row => {
+                const openDetails = () => {
+                    if (row.dataset.href) window.location.href = row.dataset.href;
+                };
+
+                row.addEventListener('click', event => {
+                    if (!event.target.closest('a, button, input, select')) openDetails();
+                });
+                row.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openDetails();
+                    }
+                });
+            });
         })();
     </script>
 }
