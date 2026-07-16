@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-16 (deploy task rev 7 — Phase 3 complete; Phase 4 next)
+in-progress — 2026-07-16 (deploy task rev 8 — Phase 4 artifacts complete; Render deploy and public smoke tests awaiting user)
 
 ## Task Type
 
@@ -71,9 +71,9 @@ One phase per Codex run; each leaves the app building and runnable.
 
 ### Phase 4 — Render service (user dashboard steps, documented precisely)
 
-- [ ] Write `docs/DEPLOY.md` (Turkish): New → Web Service → connect GitHub repo → Runtime: Docker → Region: Frankfurt → Instance: Free → env vars `ConnectionStrings__DefaultConnection`, `Ai__ApiKey`, `ASPNETCORE_ENVIRONMENT=Production` (placeholders only, no real values). Note: free instance sleeps after 15 min idle (first request ~30 s); user should ROTATE the Gemini key before going public (old one appeared in chat).
-- [ ] Optional `render.yaml` blueprint at repo root (type web, env docker, plan free, secret envVars `sync: false`).
-- [ ] Verify (user-assisted): after the user reports the service deployed, HTTP-check the public URL (`/`, `/Stocks`, register/login, AI endpoint behavior) and record results.
+- [x] Write `docs/DEPLOY.md` (Turkish): documents both Blueprint and manual Web Service setup, private GitHub repo access, Docker/Frankfurt/Free settings, placeholder-only environment variables, key rotation, cold starts, smoke tests, and troubleshooting.
+- [x] Add root `render.yaml` Blueprint: web/Docker/Free/Frankfurt, `main` auto-deploy, root Dockerfile, `/` health check, Production environment, and both secrets as `sync: false`.
+- [ ] Verify (user-assisted): Render dashboard provisioning requires the user's Render account, GitHub authorization, and secret entry. After the user reports the service deployed and provides its public URL, HTTP-check `/`, `/Stocks`, register/login, portfolio/trades, redeploy session persistence, and AI behavior; then record results.
 
 ## Acceptance Criteria
 
@@ -174,3 +174,13 @@ The original build task completed `done` on 2026-07-16 in 5 phases (SDK install 
 - Created the private repository at `https://github.com/Farukckr/borsaAnaliz`, added it as `origin`, pushed `main`, and enabled `origin/main` upstream tracking.
 - File inventory: installed Git and GitHub CLI machine-wide; created local `.git` metadata and edited `.agents/PLAN.md`. No application source, runtime configuration, or secret file changed in this phase.
 - Phase 3 is complete. Phase 4 (Render deployment and production smoke tests) is next.
+
+### 2026-07-16 — Deploy Phase 4 partial (configuration complete; Render deploy awaiting user)
+
+- Added `docs/DEPLOY.md` in Turkish with exact Blueprint and manual Web Service flows for the private GitHub repository. It lists Docker runtime, Frankfurt region, Free instance, `main`, health check, the three production environment variables, and placeholder-only secret handling.
+- Documented mandatory AI-key rotation before publication, no manual `PORT` override, Supabase Session pooler requirements, first-deploy log checks, end-to-end production smoke tests, redeploy/session persistence verification, free-instance cold starts, and targeted troubleshooting.
+- Added root `render.yaml` with one `web` service using `runtime: docker`, `plan: free`, `region: frankfurt`, commit-triggered deploys from `main`, the root Dockerfile/build context, `/` health check, Production environment, and both secret values as `sync: false`.
+- Checked current official Render documentation for Web Service creation, Blueprint fields, secret environment variables, Frankfurt support, and Free service behavior. Free services currently spin down after 15 idle minutes and take about one minute to wake.
+- Verification: `dotnet build BorsaAnaliz.sln --configuration Release --no-restore` succeeded with 0 warnings and 0 errors; `render.yaml` parsed successfully and all required field/value assertions passed; secret scans found 0 API-key patterns and 0 real connection-string patterns; `git diff --check` passed.
+- A public Render URL and production smoke-test results do not exist yet because Render dashboard provisioning requires the user to authorize the private GitHub repository and enter the two secret values. Status remains `in-progress`; after that one dashboard action, the public checks can be completed.
+- File inventory: created `docs/DEPLOY.md` and `render.yaml`; edited `.agents/PLAN.md`. No application source, local secret, database, or runtime data changed.
