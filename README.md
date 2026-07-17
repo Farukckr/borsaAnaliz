@@ -1,205 +1,179 @@
-# Borsa Analiz
+# Borsa Analiz — Stock Analysis & Virtual Portfolio Platform
 
-Borsa Analiz; BIST ve ABD hisselerini takip etmek, teknik göstergeleri incelemek, Gemini destekli grafik yorumları almak ve sanal portföy yönetmek için geliştirilmiş Türkçe bir finans uygulamasıdır.
+Full-stack stock analysis web application for **Borsa Istanbul (BIST)** and **US markets**: live quotes, technical indicators, KAP corporate disclosures, per-user watchlists, virtual portfolio simulation, and Gemini-powered AI chart commentary — built with ASP.NET Core.
 
-> Canlı uygulama: [borsa-analiz-aqr9.onrender.com](https://borsa-analiz-aqr9.onrender.com)
+> **Live demo:** [borsa-analiz-aqr9.onrender.com](https://borsa-analiz-aqr9.onrender.com) · 🇹🇷 [Türkçe README](README.tr.md)
 
-Uygulama eğitim ve analiz amaçlıdır. Gösterilen veriler gecikmeli olabilir; hiçbir içerik yatırım tavsiyesi değildir.
+The application is for educational and analytical purposes. Displayed data may be delayed; nothing in this project constitutes investment advice.
 
-## Özellikler
+## Features
 
-### Piyasa ve hisse analizi
+### Market & stock analysis
 
-- 100 BIST ve 50 ABD hissesi içeren 150 sembollük katalog
-- Sembol arama, piyasa filtresi ve fiyat/değişim sıralaması
-- Ana sayfada piyasa göstergeleri ile en çok yükselen ve düşen hisseler
-- Yahoo Finance üzerinden fiyat, günlük değişim ve OHLCV geçmişi
-- Mum, hacim, RSI, MACD, SMA, EMA ve Bollinger grafikleri
-- TradingView gelişmiş grafik ve teknik analiz bileşenleri
+- ~550-symbol catalog: full **BIST 500** (official XU500 constituents) and 50 US large caps, browsable as **BIST 100 / BIST 500 / US** tabs with server-side pagination
+- Sector data for every stock (30 Turkish sector groups sourced from KAP's company directory) with sector filtering across all lists
+- Symbol search, market filters, price/change sorting, and a market-overview home page (XU100, USD/TRY, S&P 500, NASDAQ snapshots + top movers)
+- Prices, daily change, and OHLCV history via Yahoo Finance with layered caching and graceful degradation
+- Candlestick, volume, RSI, MACD, SMA, EMA, and Bollinger charts (TradingView Lightweight Charts, indicators computed in C#)
+- TradingView technical-analysis gauge integration
 
-### AI grafik yorumu
+### KAP corporate disclosures
 
-- `gemini-3.5-flash` ile son 60 günlük OHLC verisi ve teknik göstergelere dayalı Türkçe yorum
-- Özet, trend, göstergeler, destek/direnç ve riskler bölümlerinden oluşan sabit çıktı yapısı
-- Eksik veya token sınırına ulaşmış yanıtların kullanıcıya yarım analiz olarak gösterilmesini engelleyen doğrulamalar
-- Kullanıcı başına 30 saniyelik istek bekleme süresi ve başarılı yorumlar için 5 dakikalık önbellek
-- AI yorumları yalnızca oturum açmış kullanıcılar tarafından oluşturulabilir
+- Live disclosure feed from KAP (Turkey's Public Disclosure Platform) on a dedicated news page with a prominent home-page panel
+- Dedicated **share buyback** tracking tab (exact-subject filtering, cross-checked against official KAP records)
+- Per-company disclosure history on every BIST stock page
+- **Ownership structure & subsidiaries** on BIST detail pages, fetched from KAP company endpoints with 24 h caching
 
-### Sanal portföy
+### Watchlist & virtual portfolio
 
-- ASP.NET Core Identity ile kayıt ve oturum yönetimi
-- Kullanıcıya özel birden fazla sanal portföy
-- Güncel fiyatla alış/satış önizlemesi ve bakiye/pozisyon doğrulaması
-- Ortalama maliyet yöntemiyle maliyet, gerçekleşen ve gerçekleşmemiş kâr/zarar hesabı
-- Günlük değişim, pozisyon ağırlıkları, nakit oranı ve portföy dağılım grafiği
-- İşlem defteri ve hisse bazında açılabilir işlem geçmişi
-- İşlemler ve günlük kapanışlardan yeniden oluşturulan, en fazla bir yıllık portföy değer grafiği
+- Per-user **watchlist** with one-click star toggles across lists and detail pages
+- Multiple virtual portfolios per user with ₺100,000 starting cash, backed by ASP.NET Core Identity
+- Buy/sell at live prices with trade preview (estimated cost, post-trade cash, owned quantity) and balance/position validation
+- Average-cost accounting: cost basis, realized and unrealized P/L, daily change, position weights, and an allocation donut chart
+- Transaction ledger with per-symbol expandable history
+- Portfolio value-over-time chart reconstructed from the ledger and daily closes (up to 1 year)
 
-## Teknolojiler
+### AI chart commentary
 
-| Katman | Teknoloji |
+- Turkish technical commentary via `gemini-3.5-flash`, grounded in the last 60 days of OHLC data and computed indicators
+- Structured output (Summary / Trend / Indicators / Support-Resistance / Risks) with truncation detection — partial responses are never shown as finished analysis
+- Per-user 30 s cooldown, 5 min response cache, authenticated access only, and a mandatory investment-advice disclaimer on every response
+
+## Tech Stack
+
+| Layer | Technology |
 | --- | --- |
-| Uygulama | ASP.NET Core 8 MVC, C# |
-| Kimlik doğrulama | ASP.NET Core Identity |
-| Veri erişimi | Entity Framework Core 8, Npgsql |
-| Veritabanı | PostgreSQL / Supabase |
-| Piyasa verisi | Yahoo Finance Chart API |
+| Application | ASP.NET Core 8 MVC, C# |
+| Authentication | ASP.NET Core Identity |
+| Data access | Entity Framework Core 8, Npgsql |
+| Database | PostgreSQL / Supabase (Row Level Security enabled on all tables) |
+| Market data | Yahoo Finance Chart API |
+| Disclosures | KAP (kap.org.tr) JSON endpoints |
 | AI | Google Gemini API (`gemini-3.5-flash`) |
-| Arayüz | Razor Views, Bootstrap 5, özel CSS |
-| Grafikler | Lightweight Charts, Chart.js, TradingView Widgets |
-| Dağıtım | Docker, Render Blueprint |
+| UI | Razor Views, Bootstrap 5, custom theme |
+| Charts | Lightweight Charts, Chart.js, TradingView Widgets |
+| Deployment | Docker, Render Blueprint (auto-deploy on `main`) |
 
-## Gereksinimler
+## Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- PostgreSQL 14+ veya bir Supabase projesi
-- AI yorumlarını kullanmak için geçerli bir Gemini API anahtarı
-- Yahoo Finance erişimi için ek API anahtarı gerekmez
+- PostgreSQL 14+ or a Supabase project
+- A Gemini API key for AI commentary (all other features work without it)
+- No API key needed for Yahoo Finance or KAP
 
-## Yerel kurulum
+## Local Setup
 
-1. Repoyu klonlayın ve dizine geçin:
+1. Clone and enter the repository:
 
    ```bash
    git clone https://github.com/Farukckr/borsaAnaliz.git
    cd borsaAnaliz
    ```
 
-2. Bağımlılıkları geri yükleyin:
+2. Restore dependencies:
 
    ```bash
    dotnet restore BorsaAnaliz.sln
    ```
 
-3. Gizli ayarları .NET user-secrets ile tanımlayın:
+3. Configure secrets with .NET user-secrets:
 
    ```bash
    dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=<host>;Port=5432;Database=<database>;Username=<user>;Password=<password>;SSL Mode=Require;Trust Server Certificate=true" --project src/BorsaAnaliz.Web
    dotnet user-secrets set "Ai:ApiKey" "<gemini-api-key>" --project src/BorsaAnaliz.Web
    ```
 
-   Gerçek bağlantı dizesini veya API anahtarını `appsettings.json`, `.env`, commit mesajı ya da dokümana yazmayın. Kök dizindeki `.env` dosyası Git tarafından yok sayılır.
+   Never put real connection strings or API keys into `appsettings.json`, commits, or docs. The root `.env` file is gitignored.
 
-4. Uygulamayı derleyin ve çalıştırın:
+4. Build and run:
 
    ```bash
    dotnet build BorsaAnaliz.sln --configuration Release
    dotnet run --project src/BorsaAnaliz.Web
    ```
 
-5. Tarayıcıdan `http://localhost:5122` adresini açın.
+5. Open `http://localhost:5122`.
 
-Uygulama başlangıçta bekleyen Entity Framework migration'larını otomatik uygular. Kullanılan veritabanı hesabının şema oluşturma/değiştirme yetkisine sahip olması gerekir.
+Pending EF Core migrations are applied automatically at startup; the database account needs schema-modification rights.
 
-## Yapılandırma
+## Configuration
 
-| .NET anahtarı | Ortam değişkeni | Açıklama |
+| .NET key | Environment variable | Description |
 | --- | --- | --- |
-| `ConnectionStrings:DefaultConnection` | `ConnectionStrings__DefaultConnection` | Zorunlu PostgreSQL bağlantı dizesi |
-| `Ai:ApiKey` | `Ai__ApiKey` | Gemini yorumları için API anahtarı |
-| `Ai:Provider` | `Ai__Provider` | Varsayılan: `Gemini` |
-| `Ai:Model` | `Ai__Model` | Varsayılan: `gemini-3.5-flash` |
-| `ASPNETCORE_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` | Yerelde `Development`, üretimde `Production` |
+| `ConnectionStrings:DefaultConnection` | `ConnectionStrings__DefaultConnection` | Required PostgreSQL connection string |
+| `Ai:ApiKey` | `Ai__ApiKey` | Gemini API key for AI commentary |
+| `Ai:Provider` | `Ai__Provider` | Default: `Gemini` |
+| `Ai:Model` | `Ai__Model` | Default: `gemini-3.5-flash` |
+| `ASPNETCORE_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` | `Development` locally, `Production` in prod |
 
-AI anahtarı tanımlı değilse piyasa, grafik ve portföy özellikleri çalışmaya devam eder; yalnızca AI yorum alanı yapılandırma uyarısı gösterir.
+Without an AI key, market/chart/portfolio features keep working; only the AI card shows a configuration notice.
 
-## Docker ile çalıştırma
-
-İmajı oluşturun:
+## Running with Docker
 
 ```bash
 docker build -t borsa-analiz .
+docker run --rm --env-file .env -p 8080:8080 borsa-analiz
 ```
 
-Git tarafından izlenmeyen bir `.env` dosyası hazırlayın:
+with an untracked `.env` file:
 
 ```dotenv
 PORT=8080
 ASPNETCORE_ENVIRONMENT=Production
-ConnectionStrings__DefaultConnection=Host=<host>;Port=5432;Database=<database>;Username=<user>;Password=<password>;SSL Mode=Require;Trust Server Certificate=true
+ConnectionStrings__DefaultConnection=Host=<host>;Port=5432;Database=<db>;Username=<user>;Password=<password>;SSL Mode=Require;Trust Server Certificate=true
 Ai__ApiKey=<gemini-api-key>
 ```
 
-Konteyneri başlatın:
+## Deployment (Render)
 
-```bash
-docker run --rm --env-file .env -p 8080:8080 borsa-analiz
-```
+[`render.yaml`](render.yaml) defines a Docker-based Render web service (Frankfurt region, `/` health check, auto-deploy on `main`, secrets entered in the dashboard). See [`docs/DEPLOY.md`](docs/DEPLOY.md) for the step-by-step guide.
 
-Uygulama `http://localhost:8080` adresinden erişilebilir olur.
+## Key Routes & APIs
 
-## Render dağıtımı
-
-Kök dizindeki [`render.yaml`](render.yaml), Docker tabanlı Render servisini şu ayarlarla tanımlar:
-
-- Frankfurt bölgesi
-- `/` health check
-- `main` dalındaki commitlerde otomatik deploy
-- Render tarafından sağlanan `PORT` değerine otomatik bağlanma
-- PostgreSQL bağlantı dizesi ve Gemini anahtarının Render arayüzünden gizli değer olarak girilmesi
-
-Ayrıntılı Blueprint ve manuel servis adımları için [`docs/DEPLOY.md`](docs/DEPLOY.md) dosyasına bakın.
-
-## Önemli rotalar ve API'ler
-
-| Rota | Erişim | Açıklama |
+| Route | Access | Description |
 | --- | --- | --- |
-| `/` | Herkese açık | Piyasa özeti ve hareketli hisseler |
-| `/Stocks` | Herkese açık | Hisse kataloğu |
-| `/Stocks/Details/{symbol}` | Herkese açık | Grafikler, göstergeler ve AI kartı |
-| `/api/stocks/{symbol}/history` | Herkese açık | OHLCV geçmişi |
-| `/api/stocks/{symbol}/indicators` | Herkese açık | Teknik gösterge serileri |
-| `/api/stocks/{symbol}/ai-comment` | Oturum gerekli | Gemini teknik analiz yorumu |
-| `/Portfolio` | Oturum gerekli | Kullanıcının sanal portföyleri |
-| `/api/portfolios/{portfolioId}/trade-preview` | Sahibi | Alış/satış önizlemesi |
-| `/api/portfolios/{id}/value-history` | Sahibi | Günlük portföy değer serisi |
+| `/` | Public | Market overview, KAP panel, top movers |
+| `/Stocks` | Public | Stock catalog (BIST 100 / BIST 500 / US / Watchlist tabs) |
+| `/Stocks/Details/{symbol}` | Public | Charts, indicators, disclosures, ownership, AI card |
+| `/Haberler` | Public | KAP disclosure feed with buyback tab |
+| `/api/stocks/{symbol}/history` | Public | OHLCV history |
+| `/api/stocks/{symbol}/indicators` | Public | Technical indicator series |
+| `/api/stocks/{symbol}/ai-comment` | Authenticated | Gemini technical commentary |
+| `/api/watchlist/toggle` | Authenticated | Star/unstar a symbol |
+| `/Portfolio` | Authenticated | Virtual portfolios |
+| `/api/portfolios/{id}/trade-preview` | Owner | Buy/sell preview |
+| `/api/portfolios/{id}/value-history` | Owner | Daily portfolio value series |
 
-## Proje yapısı
+## Project Structure
 
 ```text
 borsaAnaliz/
 ├── src/BorsaAnaliz.Web/
-│   ├── Controllers/       MVC ve JSON API uçları
-│   ├── Data/              DbContext, migration'lar ve sembol kataloğu
-│   ├── Models/            Piyasa, portföy ve API modelleri
-│   ├── Services/          Yahoo, Gemini, göstergeler ve portföy hesapları
-│   ├── ViewModels/        Razor sayfa modelleri
-│   ├── Views/             Türkçe MVC arayüzü
-│   └── wwwroot/           CSS, JavaScript ve istemci kütüphaneleri
-├── docs/DEPLOY.md         Render dağıtım kılavuzu
+│   ├── Controllers/       MVC and JSON API endpoints
+│   ├── Data/              DbContext, migrations, symbol catalog, KAP member map
+│   ├── Models/            Market, portfolio, KAP, and API models
+│   ├── Services/          Yahoo, Gemini, KAP, indicators, portfolio logic
+│   ├── ViewModels/        Razor page models
+│   ├── Views/             Turkish MVC UI
+│   └── wwwroot/           CSS, JavaScript, client libraries
+├── docs/DEPLOY.md         Render deployment guide
 ├── Dockerfile
 ├── render.yaml
 └── BorsaAnaliz.sln
 ```
 
-## Doğrulama
+## Data & Security Notes
 
-Temel kalite kontrolü:
+- Portfolio, watchlist, and transaction queries are scoped to the authenticated user; Supabase Row Level Security is enabled on every table.
+- Anti-forgery validation on AI, watchlist, and trade POST endpoints; Data Protection keys persist in PostgreSQL so sessions survive redeploys.
+- Yahoo quotes cache for 60 s; history and portfolio series for 1 h; KAP feeds for 5–30 min; company profiles for 24 h.
+- All external data (Yahoo, KAP) degrades gracefully — outages render empty states, never errors.
+- AI output is grounded only in the provided OHLC/indicator data; it is not a news or fundamentals source.
 
-```bash
-dotnet build BorsaAnaliz.sln --configuration Release --no-restore
-```
+## Disclaimer
 
-Manuel smoke test sırasında aşağıdaki akışlar kontrol edilmelidir:
+This project does not provide investment advisory services. Prices, indicators, AI commentary, and virtual portfolio results must not be used as the sole basis for real investment decisions.
 
-1. Ana sayfa ve hisse listesi yükleniyor.
-2. BIST ve ABD hisse detaylarında grafik/göstergeler veri gösteriyor.
-3. Kullanıcı kaydı ve oturum açma çalışıyor.
-4. Portföy oluşturma, alış, kısmi satış ve işlem önizlemesi çalışıyor.
-5. Dağılım ve portföy değer grafikleri oluşuyor.
-6. AI yorumu beş bölümü eksiksiz üretip `Bu bir yatırım tavsiyesi değildir.` cümlesiyle bitiyor.
+## License
 
-Repoda şu anda ayrı bir otomatik test projesi bulunmamaktadır; Release derlemesi ve uygulama seviyesindeki smoke testler doğrulamanın temelini oluşturur.
-
-## Veri ve güvenlik notları
-
-- Portföy ve işlem sorguları oturum açmış kullanıcı kimliğiyle sınırlandırılır.
-- AI ve işlem POST uçlarında anti-forgery doğrulaması uygulanır.
-- Data Protection anahtarları PostgreSQL'de saklanır; yeni deploy sonrasında mevcut oturumlar korunabilir.
-- Yahoo fiyatları 60 saniye, geçmiş veriler ve portföy değer serileri 1 saat önbellekte tutulur.
-- Harici piyasa verileri gecikmeli, eksik veya geçici olarak erişilemez olabilir.
-- AI çıktıları yalnızca sağlanan OHLC ve teknik gösterge verilerine dayanır; haber veya temel analiz kaynağı değildir.
-
-## Yasal uyarı
-
-Bu proje yatırım danışmanlığı hizmeti sunmaz. Uygulamadaki fiyatlar, göstergeler, AI yorumları ve sanal portföy sonuçları gerçek yatırım kararlarının tek dayanağı olarak kullanılmamalıdır.
+[MIT](LICENSE)
