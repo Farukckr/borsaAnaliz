@@ -9,6 +9,7 @@ public interface IAiCommentaryService
     Task<AiCommentaryResult> GetCommentaryAsync(
         string symbol,
         IReadOnlyList<Candle> candles,
+        IReadOnlyList<string>? recentDisclosureLines = null,
         CancellationToken cancellationToken = default);
 }
 

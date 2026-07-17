@@ -13,6 +13,7 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
     public const string IncompleteResponseMessage = "AI yorumu tamamlanamadı, tekrar deneyin.";
 
     private const string SummaryHeading = "## Özet";
+    private const int RecentDisclosuresCharacterLimit = 600;
 
     private readonly HttpClient _httpClient;
     private readonly AiOptions _options;
@@ -35,6 +36,7 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
     public async Task<AiCommentaryResult> GetCommentaryAsync(
         string symbol,
         IReadOnlyList<Candle> candles,
+        IReadOnlyList<string>? recentDisclosureLines = null,
         CancellationToken cancellationToken = default)
     {
         if (!IsConfigured)
@@ -61,7 +63,7 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
                 new
                 {
                     role = "user",
-                    parts = new[] { new { text = BuildPrompt(symbol, candles) } }
+                    parts = new[] { new { text = BuildPrompt(symbol, candles, recentDisclosureLines) } }
                 }
             },
             generationConfig = new
@@ -130,7 +132,10 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
         }
     }
 
-    private static string BuildPrompt(string symbol, IReadOnlyList<Candle> candles)
+    private static string BuildPrompt(
+        string symbol,
+        IReadOnlyList<Candle> candles,
+        IReadOnlyList<string>? recentDisclosureLines)
     {
         var closes = candles.Select(candle => candle.Close).ToArray();
         var sma20 = IndicatorCalculator.Sma(closes, 20);
@@ -164,8 +169,19 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
                 $"{candle.Time:yyyy-MM-dd}, {candle.Open:0.####}, {candle.High:0.####}, {candle.Low:0.####}, {candle.Close:0.####}, {candle.Volume}"));
         }
 
+        var disclosureBlock = BuildRecentDisclosureBlock(recentDisclosureLines);
+        if (disclosureBlock is not null)
+        {
+            builder.AppendLine();
+            builder.AppendLine("Son şirket bildirimleri:");
+            builder.Append(disclosureBlock);
+            builder.AppendLine("Bildirimlere yalnızca fiyat hareketiyle ilgiliyse değin; verilen satırların ötesinde içerik veya sonuç uydurma.");
+        }
+
         builder.AppendLine();
-        builder.AppendLine("Türkçe, kısa ve aşağıdaki sabit Markdown yapısında bir yorum yaz. Başlıkları ve sıralarını kesinlikle değiştirme, başka başlık ekleme:");
+        builder.AppendLine(disclosureBlock is null
+            ? "Türkçe, kısa ve aşağıdaki sabit Markdown yapısında bir yorum yaz. Başlıkları ve sıralarını kesinlikle değiştirme, başka başlık ekleme:"
+            : "Türkçe, kısa ve aşağıdaki Markdown yapısında bir yorum yaz. Başlıkları ve sıralarını kesinlikle değiştirme; yalnızca belirtilen isteğe bağlı başlığı ekleyebilirsin:");
         builder.AppendLine("## Özet");
         builder.AppendLine("Tam olarak 2 cümlelik özet yaz.");
         builder.AppendLine("**Genel Görünüm:** Olumlu/Nötr/Olumsuz seçeneklerinden yalnızca birini yaz.");
@@ -173,6 +189,10 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
         builder.AppendLine("Fiyatın eğilimini, SMA ve EMA ilişkilerini somut değerlerle kısaca açıkla.");
         builder.AppendLine("## Göstergeler");
         builder.AppendLine("Her göstergeyi kendi maddesinde, güncel okuması ve kısa yorumuyla yaz: RSI 14, MACD/Sinyal/Histogram, SMA20/SMA50/SMA200, EMA12/EMA26 ve Bollinger üst/orta/alt.");
+        if (disclosureBlock is not null)
+        {
+            builder.AppendLine("Verilen şirket bildirimlerinden biri fiyat hareketi açısından ilgiliyse Göstergeler ile Destek ve Direnç arasına tam olarak `## Şirket Haberleri` başlıklı kısa bir bölüm ekle; aksi halde bu bölümü tamamen atla.");
+        }
         builder.AppendLine("## Destek ve Direnç");
         builder.AppendLine("Yalnızca verilen OHLC verilerinden türetilmiş somut fiyat seviyeleriyle en az bir destek ve bir direnç yaz.");
         builder.AppendLine("## Riskler");
@@ -180,6 +200,41 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
         builder.AppendLine("Kesin getiri iddiasında bulunma, al/sat talimatı verme ve haber ya da temel analiz uydurma.");
         builder.AppendLine($"Yanıtı aynen şu cümleyle bitir: {Disclaimer}");
         return builder.ToString();
+    }
+
+    private static string? BuildRecentDisclosureBlock(IReadOnlyList<string>? lines)
+    {
+        if (lines is null || lines.Count == 0)
+        {
+            return null;
+        }
+
+        var builder = new StringBuilder();
+        foreach (var line in lines
+                     .Where(line => !string.IsNullOrWhiteSpace(line))
+                     .Take(5))
+        {
+            var normalizedLine = string.Join(' ', line.Split(
+                (char[]?)null,
+                StringSplitOptions.RemoveEmptyEntries));
+            var prefix = "- ";
+            var remaining = RecentDisclosuresCharacterLimit - builder.Length - prefix.Length - Environment.NewLine.Length;
+            if (remaining <= 0)
+            {
+                break;
+            }
+
+            if (normalizedLine.Length > remaining)
+            {
+                normalizedLine = remaining > 1
+                    ? $"{normalizedLine[..(remaining - 1)].TrimEnd()}…"
+                    : normalizedLine[..remaining];
+            }
+
+            builder.Append(prefix).AppendLine(normalizedLine);
+        }
+
+        return builder.Length == 0 ? null : builder.ToString();
     }
 
     private static GeminiCandidateResponse? ReadFirstCandidate(JsonElement root)

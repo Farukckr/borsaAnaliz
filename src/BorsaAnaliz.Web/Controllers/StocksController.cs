@@ -249,7 +249,8 @@ public sealed class StocksController : Controller
                 cachedCommentary.Commentary,
                 true,
                 cachedCommentary.GeneratedAt,
-                true));
+                true,
+                cachedCommentary.IncludesRecentDisclosures));
         }
 
         if (!_aiCommentary.IsConfigured)
@@ -257,6 +258,7 @@ public sealed class StocksController : Controller
             var unconfigured = await _aiCommentary.GetCommentaryAsync(
                 stock.Symbol,
                 Array.Empty<Candle>(),
+                null,
                 cancellationToken);
             return Ok(new AiCommentaryResponse(
                 unconfigured.Commentary,
@@ -281,6 +283,7 @@ public sealed class StocksController : Controller
             var unavailable = await _aiCommentary.GetCommentaryAsync(
                 stock.Symbol,
                 candles,
+                null,
                 cancellationToken);
             return Ok(new AiCommentaryResponse(
                 unavailable.Commentary,
@@ -315,16 +318,31 @@ public sealed class StocksController : Controller
             AiCooldownGate.Release();
         }
 
+        IReadOnlyList<string> recentDisclosureLines = [];
+        if (stock.Market.Equals("BIST", StringComparison.OrdinalIgnoreCase))
+        {
+            var kapResult = await _kapNews.GetForSymbolAsync(stock.Symbol, cancellationToken);
+            if (kapResult.IsAvailable)
+            {
+                recentDisclosureLines = kapResult.Disclosures
+                    .Take(5)
+                    .Select(FormatDisclosureLine)
+                    .ToArray();
+            }
+        }
+
+        var includesRecentDisclosures = recentDisclosureLines.Count > 0;
         var result = await _aiCommentary.GetCommentaryAsync(
             stock.Symbol,
             candles,
+            recentDisclosureLines,
             cancellationToken);
         var generatedAt = DateTimeOffset.UtcNow;
         if (result.Succeeded)
         {
             _cache.Set(
                 responseCacheKey,
-                new AiCommentaryCacheEntry(result.Commentary, generatedAt),
+                new AiCommentaryCacheEntry(result.Commentary, generatedAt, includesRecentDisclosures),
                 TimeSpan.FromMinutes(5));
         }
 
@@ -332,7 +350,8 @@ public sealed class StocksController : Controller
             result.Commentary,
             false,
             generatedAt,
-            result.Succeeded));
+            result.Succeeded,
+            includesRecentDisclosures));
     }
 
     [HttpGet("/api/stocks/{symbol}/indicators")]
@@ -506,5 +525,18 @@ public sealed class StocksController : Controller
         return macd > signal ? "Pozitif" : macd < signal ? "Negatif" : "Nötr";
     }
 
-    private sealed record AiCommentaryCacheEntry(string Commentary, DateTimeOffset GeneratedAt);
+    private static string FormatDisclosureLine(KapDisclosure disclosure)
+    {
+        var summary = string.IsNullOrWhiteSpace(disclosure.Summary)
+            ? string.Empty
+            : $" — {disclosure.Summary.Trim()}";
+        return string.Create(
+            CultureInfo.InvariantCulture,
+            $"{disclosure.PublishedAt:yyyy-MM-dd} | {disclosure.Subject}{summary}");
+    }
+
+    private sealed record AiCommentaryCacheEntry(
+        string Commentary,
+        DateTimeOffset GeneratedAt,
+        bool IncludesRecentDisclosures);
 }

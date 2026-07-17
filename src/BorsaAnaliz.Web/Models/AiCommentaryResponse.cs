@@ -4,4 +4,5 @@ public sealed record AiCommentaryResponse(
     string Commentary,
     bool Cached,
     DateTimeOffset GeneratedAt,
-    bool Succeeded);
+    bool Succeeded,
+    bool IncludesRecentDisclosures = false);

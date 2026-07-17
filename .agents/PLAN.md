@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (Phase 1 implementation started; Phases 2–3 pending)
+in-progress — 2026-07-17 (Phases 1–2 complete; Phase 3 pending)
 
 ## Task Type
 
@@ -54,10 +54,10 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 
 ### Phase 2 — KAP bildirimleri AI yorumuna
 
-- [ ] `GeminiCommentaryService`: accept optional recent-disclosure lines (injected by the controller from the existing per-symbol KAP fetch — service composition, no new HTTP in the AI service); add the "Son şirket bildirimleri" prompt block with the ~600-char cap and the relevance/no-invention instruction; omit block when empty.
-- [ ] Response format: allow an optional "## Şirket Haberleri" section between Göstergeler and Destek/Direnç ONLY when disclosures were provided; sanity check must not require it.
-- [ ] AI card meta line: append "ve son KAP bildirimlerine" when disclosures were included.
-- [ ] Verify: symbol WITH recent disclosures (pick from /Haberler) produces commentary referencing at least the existence of news, with disclaimer intact across 3 tries; symbol without disclosures produces the exact current format; token usage stays within limits (no MAX_TOKENS failures in tries).
+- [x] `GeminiCommentaryService`: accept optional recent-disclosure lines (injected by the controller from the existing per-symbol KAP fetch — service composition, no new HTTP in the AI service); add the "Son şirket bildirimleri" prompt block with the ~600-char cap and the relevance/no-invention instruction; omit block when empty.
+- [x] Response format: allow an optional "## Şirket Haberleri" section between Göstergeler and Destek/Direnç ONLY when disclosures were provided; sanity check must not require it.
+- [x] AI card meta line: append "ve son KAP bildirimlerine" when disclosures were included.
+- [x] Verify: symbol WITH recent disclosures (pick from /Haberler) produces commentary referencing at least the existence of news, with disclaimer intact across 3 tries; symbol without disclosures produces the exact current format; token usage stays within limits (no MAX_TOKENS failures in tries).
 
 ### Phase 3 — Formasyon tespiti (pattern detection)
 
@@ -146,3 +146,12 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 - Files changed: `.agents/PLAN.md`, `Controllers/NewsController.cs`, `Models/KapDisclosure.cs`, `Services/IKapNewsService.cs`, `Services/KapNewsService.cs`, `ViewModels/NewsIndexViewModel.cs`, `Views/News/Index.cshtml`, `Views/Stocks/Details.cshtml`, `wwwroot/css/site.css`.
 - Verification: Release build passed with 0 warnings/errors. A real-KAP integration check returned 54 buybacks, 44 dividends, and 30 capital events; every row matched only its declared event set. The three calls shared exactly five upstream requests and repeated calls added none, confirming the cache path. Official KAP disclosure pages 1634548 and 1634534 (dividend) plus 1634576 and 1634471 (capital) all returned HTTP 200. A full local HTTP browser run could not start because the configured Supabase connection stalled during startup migration, but Razor compilation covered all empty-state and tab branches. Render deployment for commit `67f50a1` succeeded; live `/Haberler` returned 200 for all four tabs with 54/44/30 correctly filtered event rows, and PENGD/ARMGD/BAYRK details showed the expected badges. Headless Edge checks at 1440 px and 375 px passed; the mobile capture showed the non-wrapping pill row with horizontal scrolling and no overlap.
 - Status remains `in-progress` because Phases 2 and 3 are intentionally deferred to later runs.
+
+### 2026-07-17 — Phase 2 complete
+
+- `StocksController` now reuses the existing per-symbol 14-day KAP fetch for BIST AI requests and formats up to five latest records as invariant date + subject + optional summary lines. US symbols and unavailable/empty KAP results pass no disclosure context. No KAP HTTP dependency was added to the AI service.
+- `GeminiCommentaryService` accepts optional prepared disclosure lines, normalizes them, and caps the complete disclosure list at 600 characters. The prompt tells Gemini to mention only price-relevant disclosures, forbids invention beyond supplied lines, and permits an optional `## Şirket Haberleri` section only between `Göstergeler` and `Destek ve Direnç`. With no lines, the prompt's existing fixed format remains unchanged; the sanity check still requires only `## Özet`.
+- Successful response cache entries retain whether KAP context was included. The stock-detail AI meta line appends `ve son KAP bildirimlerine` for both fresh and cached enriched responses. Existing 30-second cooldown, five-minute response cache, token limit, and failure behavior are unchanged.
+- Files changed: `.agents/PLAN.md`, `Controllers/StocksController.cs`, `Models/AiCommentaryResponse.cs`, `Services/GeminiCommentaryService.cs`, `Services/IAiCommentaryService.cs`, `Views/Stocks/Details.cshtml`.
+- Verification: Release build passed with 0 warnings/errors and `git diff --check` passed. A disposable local harness (removed after verification) confirmed the no-disclosure prompt omits both KAP prompt additions, while an eight-line input is reduced to four complete lines / 596 characters. The real per-symbol KAP service returned four current PENGD.IS disclosures, including a dividend disclosure. Real Gemini calls produced multiple successful PENGD.IS commentaries that explicitly mentioned the supplied disclosures, retained the disclaimer, and used the optional company-news heading only when relevant; a successful AAPL/no-disclosure call returned exactly `Özet`, `Trend`, `Göstergeler`, `Destek ve Direnç`, and `Riskler`. No call produced `MAX_TOKENS`. Repeated verification eventually exhausted the provider's short-term quota (general HTTP failure), so three consecutive successful live calls could not be recorded; this was external-rate-limit behavior, not a token or prompt-format failure.
+- Status remains `in-progress` because Phase 3 is intentionally deferred to the next run.
