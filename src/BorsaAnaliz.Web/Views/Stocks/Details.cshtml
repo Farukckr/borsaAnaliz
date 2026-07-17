@@ -319,6 +319,96 @@
     </section>
 }
 
+@if (Model.Stock.Market == "BIST" && Model.KapCompanyProfile is not null)
+{
+    <section class="mb-4" aria-labelledby="ownershipHeading">
+        <div class="analysis-section-header mb-3">
+            <h2 id="ownershipHeading" class="h4 mb-1">Ortaklık Yapısı</h2>
+            <p class="text-muted small mb-0">KAP'ta yayımlanan güncel şirket genel bilgileri.</p>
+        </div>
+
+        <div class="row g-4">
+            @if (Model.KapCompanyProfile.Ownership.Count > 0)
+            {
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-0">
+                            <div class="p-4 pb-2">
+                                <h3 class="h5 mb-0">Sermaye Dağılımı</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="ps-4">Ortak</th>
+                                            <th scope="col" class="text-end pe-4">Pay (%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.KapCompanyProfile.Ownership)
+                                        {
+                                            <tr>
+                                                <td class="ps-4">@row.Holder</td>
+                                                <td class="text-end fw-semibold pe-4">%@row.SharePercentage.ToString("0.##", displayCulture)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.KapCompanyProfile.Subsidiaries.Count > 0)
+            {
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-3">Bağlı Ortaklıklar</h3>
+                            @if (Model.KapCompanyProfile.Subsidiaries.Count > 8)
+                            {
+                                <button class="btn btn-sm btn-outline-primary mb-3"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#subsidiariesList"
+                                        aria-expanded="false"
+                                        aria-controls="subsidiariesList">
+                                    @Model.KapCompanyProfile.Subsidiaries.Count bağlı ortaklığı göster
+                                </button>
+                            }
+                            <div id="subsidiariesList" class="@(Model.KapCompanyProfile.Subsidiaries.Count > 8 ? "collapse" : null)">
+                                <div class="list-group list-group-flush">
+                                    @foreach (var subsidiary in Model.KapCompanyProfile.Subsidiaries)
+                                    {
+                                        <div class="list-group-item px-0">
+                                            <div class="d-flex justify-content-between gap-3">
+                                                <div>
+                                                    <div class="fw-semibold">@subsidiary.Name</div>
+                                                    @if (!string.IsNullOrWhiteSpace(subsidiary.Activity))
+                                                    {
+                                                        <div class="small text-muted mt-1">@subsidiary.Activity</div>
+                                                    }
+                                                </div>
+                                                @if (subsidiary.SharePercentage is not null)
+                                                {
+                                                    <span class="badge text-bg-light align-self-start">
+                                                        %@subsidiary.SharePercentage.Value.ToString("0.##", displayCulture)
+                                                    </span>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+
 @functions {
     private static string RelativeKapTime(DateTimeOffset publishedAt)
     {

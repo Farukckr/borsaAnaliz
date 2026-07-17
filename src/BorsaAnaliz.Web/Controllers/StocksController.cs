@@ -29,6 +29,7 @@ public sealed class StocksController : Controller
     private readonly IMemoryCache _cache;
     private readonly IWatchlistService _watchlist;
     private readonly IKapNewsService _kapNews;
+    private readonly IKapCompanyService _kapCompany;
 
     public StocksController(
         IStockCatalogService stockCatalog,
@@ -36,7 +37,8 @@ public sealed class StocksController : Controller
         IAiCommentaryService aiCommentary,
         IMemoryCache cache,
         IWatchlistService watchlist,
-        IKapNewsService kapNews)
+        IKapNewsService kapNews,
+        IKapCompanyService kapCompany)
     {
         _stockCatalog = stockCatalog;
         _marketData = marketData;
@@ -44,6 +46,7 @@ public sealed class StocksController : Controller
         _cache = cache;
         _watchlist = watchlist;
         _kapNews = kapNews;
+        _kapCompany = kapCompany;
     }
 
     public async Task<IActionResult> Index(
@@ -150,6 +153,9 @@ public sealed class StocksController : Controller
         var kapTask = stock.Market.Equals("BIST", StringComparison.OrdinalIgnoreCase)
             ? _kapNews.GetForSymbolAsync(stock.Symbol, cancellationToken)
             : Task.FromResult(new KapDisclosureResult(false, []));
+        var companyProfileTask = stock.Market.Equals("BIST", StringComparison.OrdinalIgnoreCase)
+            ? _kapCompany.GetCompanyProfileAsync(stock.Symbol, cancellationToken)
+            : Task.FromResult<KapCompanyProfile?>(null);
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var isWatched = !string.IsNullOrWhiteSpace(userId) &&
             (await _watchlist.GetSymbolsAsync(userId, cancellationToken))
@@ -159,7 +165,8 @@ public sealed class StocksController : Controller
             stock,
             await quoteTask,
             isWatched,
-            kapResult.IsAvailable ? kapResult.Disclosures : null));
+            kapResult.IsAvailable ? kapResult.Disclosures : null,
+            await companyProfileTask));
     }
 
     [Authorize]

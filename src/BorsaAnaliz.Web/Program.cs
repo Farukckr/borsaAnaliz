@@ -52,6 +52,15 @@ builder.Services.AddHttpClient<IKapNewsService, KapNewsService>(client =>
     client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
     client.DefaultRequestHeaders.AcceptLanguage.ParseAdd("tr-TR");
 });
+builder.Services.AddHttpClient<IKapCompanyService, KapCompanyService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Kap:BaseUrl"] ?? "https://www.kap.org.tr/");
+    client.Timeout = TimeSpan.FromSeconds(10);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd(
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 BorsaAnaliz/1.0");
+    client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+    client.DefaultRequestHeaders.AcceptLanguage.ParseAdd("tr-TR");
+});
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

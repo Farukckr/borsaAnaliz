@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (Phase 2 complete; Phase 3 next)
+done — 2026-07-17 (all 3 phases implemented and verified)
 
 ## Task Type
 
@@ -56,11 +56,11 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 
 ### Phase 3 — Ortaklık yapısı ve bağlı ortaklıklar
 
-- [ ] Discovery step (time-boxed): identify KAP's JSON endpoints for (a) member/company list with ids, (b) per-company general info / ownership ("Ortaklık Yapısı" percentages) and subsidiaries ("Bağlı Ortaklıklar"). Record endpoint paths + response shapes in the report. If not achievable with JSON endpoints → set Status blocked with findings; do NOT scrape HTML.
-- [ ] Symbol→KAP id mapping generated once into a data file; loading follows the symbols.json pattern.
-- [ ] `IKapCompanyService`/`KapCompanyService`: `GetCompanyProfileAsync(symbol)` → ownership rows (holder name, share %), subsidiaries list (name, optional activity field); 24 h cache; 10 s timeout; null on any failure.
-- [ ] Stock detail (BIST only): "Ortaklık Yapısı" section — ownership table (% with tr-TR formatting, sorted desc, "Diğer/Halka açık" rows as delivered by KAP) + "Bağlı Ortaklıklar" list; collapsible if long; section hidden entirely when service returns null. Placed after the KAP disclosures section.
-- [ ] Verify: 3 large caps (e.g. AKBNK.IS, THYAO.IS, ASELS.IS) show plausible ownership tables cross-checked against kap.org.tr company pages; a symbol with no data hides the section; US stocks never show it; repeated loads hit the 24 h cache.
+- [x] Discovery step (time-boxed): identify KAP's JSON endpoints for (a) member/company list with ids, (b) per-company general info / ownership ("Ortaklık Yapısı" percentages) and subsidiaries ("Bağlı Ortaklıklar"). Record endpoint paths + response shapes in the report. If not achievable with JSON endpoints → set Status blocked with findings; do NOT scrape HTML.
+- [x] Symbol→KAP id mapping generated once into a data file; loading follows the symbols.json pattern.
+- [x] `IKapCompanyService`/`KapCompanyService`: `GetCompanyProfileAsync(symbol)` → ownership rows (holder name, share %), subsidiaries list (name, optional activity field); 24 h cache; 10 s timeout; null on any failure.
+- [x] Stock detail (BIST only): "Ortaklık Yapısı" section — ownership table (% with tr-TR formatting, sorted desc, "Diğer/Halka açık" rows as delivered by KAP) + "Bağlı Ortaklıklar" list; collapsible if long; section hidden entirely when service returns null. Placed after the KAP disclosures section.
+- [x] Verify: 3 large caps (e.g. AKBNK.IS, THYAO.IS, ASELS.IS) show plausible ownership tables cross-checked against kap.org.tr company pages; a symbol with no data hides the section; US stocks never show it; repeated loads hit the 24 h cache.
 
 ## Acceptance Criteria
 
@@ -147,3 +147,13 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 - Files changed: `.agents/PLAN.md`, `Controllers/StocksController.cs`, `Data/symbols.json`, `Models/StockSymbol.cs`, `Services/IStockCatalogService.cs`, `Services/JsonStockCatalogService.cs`, `ViewModels/StocksIndexViewModel.cs`, `Views/Stocks/Details.cshtml`, `Views/Stocks/Index.cshtml`, `wwwroot/css/site.css`.
 - Verification: Release build passed with 0 warnings/errors; catalog validation reported 550 entries, 0 missing sectors, and 30 labels; three sectors were checked on each public tab; BIST 500 `page=2` with a sector safely clamped after server-side filtering; AKBNK and AAPL badges linked to the correct filtered lists; anonymous watchlist still challenged with HTTP 302; Edge headless desktop and narrow mobile layouts passed after stacking the mobile filter controls.
 - Status remains `in-progress` because Phase 3 is intentionally deferred to the next run.
+
+### 2026-07-17 — Phase 3 complete
+
+- KAP JSON discovery found `GET /tr/api/member/filter/{search}` for member resolution. An exact stock-code search returns an array whose usable fields are `companyCode`, `mkkMemberOid`, `title`, and `permaLink`. The generated `Data/kap-members.json` contains 358 mappings observed before KAP's discovery-session rate limit; the same official endpoint resolves unmapped/new catalog symbols at runtime, and the resulting profile (including null) is cached for 24 hours.
+- Company data comes only from `GET /tr/api/company-detail/get-history/{mkkMemberOid}/{itemKey}/N`; no runtime HTML parsing was added. Ownership uses item key `kpy41_acc5_sermayede_dogrudan`, whose history items expose `creationDate` and a `value` array with `shareholder`, `shareInCapital`, `ratioInCapital`, and `votingRightRatio`. Subsidiaries use `kpy41_acc7_bagli_ortakliklar`, whose value rows expose `companyTitle`, `scopeOfActivitiesOfCompany`, `ratioOfCapitalShareOfCompany`, and `relationWithTheCompany` (plus capital/currency fields not needed by the UI). The service selects the newest dated item defensively.
+- `IKapCompanyService`/`KapCompanyService` loads the static mapping once, uses the shared KAP client settings and 10-second timeout, fetches ownership and subsidiary items concurrently, tolerates one missing item, caches each symbol for 24 hours, and returns null on total failure or empty data. Ownership excludes aggregate `TOPLAM/TOTAL`, preserves `DİĞER`, parses Turkish/invariant decimals, and sorts descending. The subsidiary list includes only rows identified by KAP as `Bağlı Ortaklık`, excluding ordinary iştirak rows.
+- BIST detail pages now render the new section after company disclosures. Percentages use Turkish formatting, long subsidiary lists use a Bootstrap collapse control, missing profiles hide the whole section, and US details never call or render the KAP company feature.
+- Files changed: `.agents/PLAN.md`, `Controllers/StocksController.cs`, `Data/kap-members.json`, `Models/KapCompanyProfile.cs`, `Program.cs`, `Services/IKapCompanyService.cs`, `Services/KapCompanyService.cs`, `ViewModels/StockDetailsViewModel.cs`, `Views/Stocks/Details.cshtml`.
+- Verification: Release build passed with 0 warnings/errors. A deterministic JSON integration check confirmed two ownership rows sorted 74.2/25.8, one subsidiary with an iştirak excluded, exactly two upstream requests across two AKBNK loads (24-hour cache hit), and no request/profile for AAPL. AKBNK, THYAO, and ASELS mapping ids were verified; their ownership/subsidiary values were cross-checked against the current official KAP pages (for example THYAO: Türkiye Varlık Fonu 49.12%, Diğer 50.88%; ASELS: TSKGV 74.2%, Diğer 25.8%). KOPOL's empty JSON fixture hid the section, and AAPL rendered no KAP company section.
+- Final status is `done`; all three planned phases are complete.

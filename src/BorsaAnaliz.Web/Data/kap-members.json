@@ -1,0 +1,1508 @@
+﻿[
+    {
+        "symbol":  "A1CAP.IS",
+        "memberOid":  "4028e4a1416e696301416f37201c5f2e"
+    },
+    {
+        "symbol":  "A1YEN.IS",
+        "memberOid":  "8acae2c5794d3d66017a62a693be689d"
+    },
+    {
+        "symbol":  "AAGYO.IS",
+        "memberOid":  "8acae2c49c81f743019d2dfb40633db8"
+    },
+    {
+        "symbol":  "ADEL.IS",
+        "memberOid":  "4028e4a240e8d16e0140e8f159dc0033"
+    },
+    {
+        "symbol":  "ADESE.IS",
+        "memberOid":  "4028e4a140f2ed720141164431b905a5"
+    },
+    {
+        "symbol":  "ADGYO.IS",
+        "memberOid":  "8acae2c586d22c53018a737800f804ae"
+    },
+    {
+        "symbol":  "AEFES.IS",
+        "memberOid":  "4028e4a140e95bea0140ed2fde10009d"
+    },
+    {
+        "symbol":  "AFYON.IS",
+        "memberOid":  "4028e4a24158e42401415af83d607fd3"
+    },
+    {
+        "symbol":  "AGESA.IS",
+        "memberOid":  "4028e4a140e95bea0140edeb7a54015d"
+    },
+    {
+        "symbol":  "AGHOL.IS",
+        "memberOid":  "4028e4a240f2ef4c014101b18dc000f7"
+    },
+    {
+        "symbol":  "AGROT.IS",
+        "memberOid":  "8acae2c48b2fa259018bb9e449415e84"
+    },
+    {
+        "symbol":  "AHGAZ.IS",
+        "memberOid":  "4028e4a14203278a0142095715f914d0"
+    },
+    {
+        "symbol":  "AHSGY.IS",
+        "memberOid":  "8acae2c59145e00a01915a44a01d1179"
+    },
+    {
+        "symbol":  "AKBNK.IS",
+        "memberOid":  "4028e4a240e8d1830140e905edcd0006"
+    },
+    {
+        "symbol":  "AKCNS.IS",
+        "memberOid":  "4028e4a140e8cfa00140e92b0c380016"
+    },
+    {
+        "symbol":  "AKENR.IS",
+        "memberOid":  "4028e4a14184e9cf01419bffce0b5a69"
+    },
+    {
+        "symbol":  "AKFGY.IS",
+        "memberOid":  "4028e4a141733b56014183c1c6ed426e"
+    },
+    {
+        "symbol":  "AKFIS.IS",
+        "memberOid":  "8acae2c59145e00a0192aedf5db86688"
+    },
+    {
+        "symbol":  "AKFYE.IS",
+        "memberOid":  "8acae2c48304fe9e0186a66e7a9568ea"
+    },
+    {
+        "symbol":  "AKGRT.IS",
+        "memberOid":  "4028e4a140e95be70140ed12e1f4002c"
+    },
+    {
+        "symbol":  "AKHAN.IS",
+        "memberOid":  "8acae2c49b85f8ce019beef9720d5cc5"
+    },
+    {
+        "symbol":  "AKSA.IS",
+        "memberOid":  [
+                          "4028e4a240f2ef470141175e189f0453",
+                          "4028e4a241733d42014179341a147ddb"
+                      ]
+    },
+    {
+        "symbol":  "AKSEN.IS",
+        "memberOid":  "4028e4a241733d42014179341a147ddb"
+    },
+    {
+        "symbol":  "AKSGY.IS",
+        "memberOid":  "4028e4a14158e41f01415a865c0e4d13"
+    },
+    {
+        "symbol":  "AKSUE.IS",
+        "memberOid":  "4028e4a140f2ed7201413a20480e0851"
+    },
+    {
+        "symbol":  "ALARK.IS",
+        "memberOid":  [
+                          "4028e4a241558bd9014155e085e305fd",
+                          "4028e4a241462fd801415005df1c3612",
+                          "4028e4a241462fd80141500c738e36be"
+                      ]
+    },
+    {
+        "symbol":  "ALBRK.IS",
+        "memberOid":  "4028e4a240f2ef4c014106a1c5ef016d"
+    },
+    {
+        "symbol":  "ALCAR.IS",
+        "memberOid":  "4028e4a241558bd9014155e085e305fd"
+    },
+    {
+        "symbol":  "ALCTL.IS",
+        "memberOid":  "4028e4a140f2ed71014110e38acb01b5"
+    },
+    {
+        "symbol":  "ALFAS.IS",
+        "memberOid":  "8acae2c5830502c30183559e2336223e"
+    },
+    {
+        "symbol":  "ALGYO.IS",
+        "memberOid":  "4028e4a241462fd801415005df1c3612"
+    },
+    {
+        "symbol":  "ALKA.IS",
+        "memberOid":  [
+                          "4028e4a140e95be70140ed147846003c",
+                          "4028e4a2416e697d01416f39965a5eb5"
+                      ]
+    },
+    {
+        "symbol":  "ALKIM.IS",
+        "memberOid":  "4028e4a140e95be70140ed147846003c"
+    },
+    {
+        "symbol":  "ALKLC.IS",
+        "memberOid":  "8acae2c48c3efac0018fabe7ce965048"
+    },
+    {
+        "symbol":  "ALTNY.IS",
+        "memberOid":  "8acae2c58b2fa64e018f3d2d712476e2"
+    },
+    {
+        "symbol":  "ALVES.IS",
+        "memberOid":  "8acae2c58b2fa64e018dc0263b1377aa"
+    },
+    {
+        "symbol":  "ANELE.IS",
+        "memberOid":  "4028e4a1416e696301416ecd11a12b86"
+    },
+    {
+        "symbol":  "ANGEN.IS",
+        "memberOid":  "8acae2c47afb298b017bed9f037a7185"
+    },
+    {
+        "symbol":  "ANHYT.IS",
+        "memberOid":  "4028e4a140e95be70140ed40cb930098"
+    },
+    {
+        "symbol":  "ANSGR.IS",
+        "memberOid":  "4028e4a140e95bea0140ed21b5c10078"
+    },
+    {
+        "symbol":  "ARASE.IS",
+        "memberOid":  "8acae2c47afb298b017ccb97632144e5"
+    },
+    {
+        "symbol":  "ARCLK.IS",
+        "memberOid":  "4028e4a240e95dc90140ed55b43900cf"
+    },
+    {
+        "symbol":  "ARDYZ.IS",
+        "memberOid":  "8acae2c46d7599a6016dde9d93aa2b52"
+    },
+    {
+        "symbol":  "ARENA.IS",
+        "memberOid":  "4028e4a140e95bea0140ed5af3a000da"
+    },
+    {
+        "symbol":  "ARFYE.IS",
+        "memberOid":  "8acae2c4998f24d8019b3576c66b77ad"
+    },
+    {
+        "symbol":  "ARMGD.IS",
+        "memberOid":  "8acae2c59145e00e0193f29ce775161c"
+    },
+    {
+        "symbol":  "ARSAN.IS",
+        "memberOid":  [
+                          "4028e4a240f27df70140f2e99d24002e",
+                          "4028e4a14158e41f01415b1862696142",
+                          "8acae2c569cee403016a8d2b85e8733f",
+                          "4028e4a140f275530140f2e357a501f7",
+                          "4028e4a140ee84900140f1ecef250011"
+                      ]
+    },
+    {
+        "symbol":  "ARTMS.IS",
+        "memberOid":  "8acae2c48c3efac0018dd4c742665c88"
+    },
+    {
+        "symbol":  "ARZUM.IS",
+        "memberOid":  "4028e4a1415f4d990141600875c531b9"
+    },
+    {
+        "symbol":  "ASELS.IS",
+        "memberOid":  "4028e4a1413b7ef401413bc2251e0047"
+    },
+    {
+        "symbol":  "ASGYO.IS",
+        "memberOid":  "8acae2c562329bd1016464c3796e08a0"
+    },
+    {
+        "symbol":  "ASTOR.IS",
+        "memberOid":  "8acae2c562329bd10164405fe6c17996"
+    },
+    {
+        "symbol":  "ASUZU.IS",
+        "memberOid":  "4028e4a140e95be70140ed43c4fe00a9"
+    },
+    {
+        "symbol":  "ATAKP.IS",
+        "memberOid":  "8acae2c586d22c53018953500b004578"
+    },
+    {
+        "symbol":  "ATATP.IS",
+        "memberOid":  "8acae2c4794d364801798f781baf0fad"
+    },
+    {
+        "symbol":  "ATATR.IS",
+        "memberOid":  "8acae2c59b85fa06019c31d76d8707fb"
+    },
+    {
+        "symbol":  "AVGYO.IS",
+        "memberOid":  "4028e4a240f2ef4c0141029cf7680164"
+    },
+    {
+        "symbol":  "AVHOL.IS",
+        "memberOid":  "1DE05DAA81E9073AE0530A4A622A2EBD"
+    },
+    {
+        "symbol":  "AVOD.IS",
+        "memberOid":  "4028e4a140f2ed72014107916fed023d"
+    },
+    {
+        "symbol":  "AVPGY.IS",
+        "memberOid":  "8acae2c48c3efabf018c4824da4a0623"
+    },
+    {
+        "symbol":  "AYCES.IS",
+        "memberOid":  "4028e4a240e95dc90140ed1bc88e0071"
+    },
+    {
+        "symbol":  "AYDEM.IS",
+        "memberOid":  "8acae2c4782a4d580178b56e7c5c4404"
+    },
+    {
+        "symbol":  "AYEN.IS",
+        "memberOid":  "4028e4a240e95dc90140edf072ef0165"
+    },
+    {
+        "symbol":  "AYGAZ.IS",
+        "memberOid":  "4028e4a140e95be70140ee03bd6000e0"
+    },
+    {
+        "symbol":  "AZTEK.IS",
+        "memberOid":  "8acae2c4819d0efe01826e96dd896e0e"
+    },
+    {
+        "symbol":  "BAGFS.IS",
+        "memberOid":  "4028e4a240f2ef4701410810f53601c4"
+    },
+    {
+        "symbol":  "BAHKM.IS",
+        "memberOid":  "8acae2c48c3efabf0191137b972152e7"
+    },
+    {
+        "symbol":  "BALSU.IS",
+        "memberOid":  "8acae2c580e9103101811f4715cc1821"
+    },
+    {
+        "symbol":  "BANVT.IS",
+        "memberOid":  "4028e4a1415f4d990141601902e33250"
+    },
+    {
+        "symbol":  "BARMA.IS",
+        "memberOid":  "8acae2c47f7cb491017fb5f0afdf174a"
+    },
+    {
+        "symbol":  "BASGZ.IS",
+        "memberOid":  "4028e4a240f2ef4701413a3410a605ce"
+    },
+    {
+        "symbol":  "BAYRK.IS",
+        "memberOid":  "8acae2c56faf888c0170a0e2d88d77c3"
+    },
+    {
+        "symbol":  "BEGYO.IS",
+        "memberOid":  "8acae2c48b2fa25a018c01ae7c3973de"
+    },
+    {
+        "symbol":  "BERA.IS",
+        "memberOid":  "4028e4a241733d42014174023cb0192b"
+    },
+    {
+        "symbol":  "BESLR.IS",
+        "memberOid":  "4028e4a1416e696301416ec5743e289d"
+    },
+    {
+        "symbol":  "BESTE.IS",
+        "memberOid":  "8acae2c49b85f8ce019c0d9c2cc26b56"
+    },
+    {
+        "symbol":  "BEYAZ.IS",
+        "memberOid":  [
+                          "4028e4a141558bdd01415619e62c0577",
+                          "4028e4a140f2ed7201412c223c9707e6"
+                      ]
+    },
+    {
+        "symbol":  "BFREN.IS",
+        "memberOid":  "4028e4a140e95bea0140ee30fb6001b9"
+    },
+    {
+        "symbol":  "BIENY.IS",
+        "memberOid":  "4028e4a24a5df6e7014ba1e60b464173"
+    },
+    {
+        "symbol":  "BIGCH.IS",
+        "memberOid":  "8acae2c486d22a3a0187c6822e7324e6"
+    },
+    {
+        "symbol":  "BIGEN.IS",
+        "memberOid":  "8acae2c49145e00b01949842f70b1a46"
+    },
+    {
+        "symbol":  "BIGTK.IS",
+        "memberOid":  "4028e4a240ee866c0140f2066a0400b8"
+    },
+    {
+        "symbol":  "BIMAS.IS",
+        "memberOid":  "4028e4a140e95be70140ee1b7b030119"
+    },
+    {
+        "symbol":  "BINBN.IS",
+        "memberOid":  "8acae2c49145e00b01922d34585110b6"
+    },
+    {
+        "symbol":  "BINHO.IS",
+        "memberOid":  "8acae2c48b2fa25a018bba0a5034596d"
+    },
+    {
+        "symbol":  "BIOEN.IS",
+        "memberOid":  "8acae2c4780814e2017826e1e07318d8"
+    },
+    {
+        "symbol":  "BJKAS.IS",
+        "memberOid":  "4028e4a241a25fcb0141a276cda10189"
+    },
+    {
+        "symbol":  "BLCYT.IS",
+        "memberOid":  "4028e4a2413b80d1014144caf7b90037"
+    },
+    {
+        "symbol":  "BLUME.IS",
+        "memberOid":  "4028e4a240f2ef4c0140f2f8fdcd0002"
+    },
+    {
+        "symbol":  "BMSCH.IS",
+        "memberOid":  "8acae2c56eccfc0c016f18f5b1e21747"
+    },
+    {
+        "symbol":  "BMSTL.IS",
+        "memberOid":  "8acae2c47f7cb49201802bda6cbf6b77"
+    },
+    {
+        "symbol":  "BNTAS.IS",
+        "memberOid":  "402821824da3aa9b014ef2c4cda22947"
+    },
+    {
+        "symbol":  "BOBET.IS",
+        "memberOid":  "8acae2c4782a4d560178d45481dc5948"
+    },
+    {
+        "symbol":  "BORLS.IS",
+        "memberOid":  "8acae2c486d22a3a018b03b5cfbe29b8"
+    },
+    {
+        "symbol":  "BORSK.IS",
+        "memberOid":  "8acae2c58b2fa64e018d63bcd2684e71"
+    },
+    {
+        "symbol":  "BOSSA.IS",
+        "memberOid":  "4028e4a1415f4d9b014160053ed13d39"
+    },
+    {
+        "symbol":  "BRISA.IS",
+        "memberOid":  "4028e4a140e95bea0140ee33bff201cd"
+    },
+    {
+        "symbol":  "BRKVY.IS",
+        "memberOid":  "8acae2c562329bd10162b9ff7a6b53d6"
+    },
+    {
+        "symbol":  "BRLSM.IS",
+        "memberOid":  "8acae2c4794d3648017aa01a43690c1f"
+    },
+    {
+        "symbol":  "BRSAN.IS",
+        "memberOid":  "4028e4a140f2ed7201412ac9ca5d06e6"
+    },
+    {
+        "symbol":  "BRYAT.IS",
+        "memberOid":  "4028e4a1415f4d9b0141603cd3904103"
+    },
+    {
+        "symbol":  "BSOKE.IS",
+        "memberOid":  "4028e4a24158e42401415920fc3308c5"
+    },
+    {
+        "symbol":  "BTCIM.IS",
+        "memberOid":  "4028e4a140e95be70140ee07044700eb"
+    },
+    {
+        "symbol":  "BUCIM.IS",
+        "memberOid":  "4028e4a140ee35c00140ee41a5e4000f"
+    },
+    {
+        "symbol":  "BULGS.IS",
+        "memberOid":  "8acae2c47afb298b017ceaa8534b5036"
+    },
+    {
+        "symbol":  "BURCE.IS",
+        "memberOid":  "4028e4a14158e41e01415b2636586ca7"
+    },
+    {
+        "symbol":  "BVSAN.IS",
+        "memberOid":  "8acae2c5830502c30185dea8694c5722"
+    },
+    {
+        "symbol":  "CANTE.IS",
+        "memberOid":  "8acae2c578080f31017811f4dca6032d"
+    },
+    {
+        "symbol":  "CATES.IS",
+        "memberOid":  "8acae2c58b2fa64e018bfaefef6b6fcd"
+    },
+    {
+        "symbol":  "CCOLA.IS",
+        "memberOid":  "4028e4a140ee35c00140ee586bdd0034"
+    },
+    {
+        "symbol":  "CELHA.IS",
+        "memberOid":  "4028e4a240f2ef4c0141164dd92d044c"
+    },
+    {
+        "symbol":  "CEMAS.IS",
+        "memberOid":  "4028e4a140f2ed7201413b14392508fb"
+    },
+    {
+        "symbol":  "CEMTS.IS",
+        "memberOid":  "4028e4a140ee84900140f1f334ce0025"
+    },
+    {
+        "symbol":  "CEMZY.IS",
+        "memberOid":  "8acae2c49145e00b01918463cdec27bb"
+    },
+    {
+        "symbol":  "CGCAM.IS",
+        "memberOid":  "8acae2c59145e00e01939c2384406d96"
+    },
+    {
+        "symbol":  "CIMSA.IS",
+        "memberOid":  "4028e4a240ee866c0140f1f64bdb0014"
+    },
+    {
+        "symbol":  "CLEBI.IS",
+        "memberOid":  "4028e4a140ee84900140f1f1584c0015"
+    },
+    {
+        "symbol":  "CMBTN.IS",
+        "memberOid":  "4028e4a24158e42401415ad0dece7d3a"
+    },
+    {
+        "symbol":  "CONSE.IS",
+        "memberOid":  "8acae2c57f7cbb48018007c3ad6154d4"
+    },
+    {
+        "symbol":  "CRFSA.IS",
+        "memberOid":  "4028e4a140ee35c00140ee56930f0024"
+    },
+    {
+        "symbol":  "CVKMD.IS",
+        "memberOid":  "8acae2c586d22c510187381ba299429a"
+    },
+    {
+        "symbol":  "CWENE.IS",
+        "memberOid":  "8acae2c56faf888c016fd6c2036e0a5d"
+    },
+    {
+        "symbol":  "DAGI.IS",
+        "memberOid":  "4028e4a140f2ed7101411160c8c6020f"
+    },
+    {
+        "symbol":  "DAPGM.IS",
+        "memberOid":  "8acae2c47d3bee4e017ea0492b6a0595"
+    },
+    {
+        "symbol":  "DARDL.IS",
+        "memberOid":  "4028e4a144a0804e014521a6ca1c0705"
+    },
+    {
+        "symbol":  "DCTTR.IS",
+        "memberOid":  "8acae2c48c3efac00190dade5a963277"
+    },
+    {
+        "symbol":  "DENGE.IS",
+        "memberOid":  [
+                          "33E5FED7251A00EAE0530A4A622B2AEA",
+                          "33E5FED7243F00EAE0530A4A622B2AEA",
+                          "8acae2c56d759b01016df39c37ac2af9",
+                          "4028e4a240ee866c0140f1f80b55002b"
+                      ]
+    },
+    {
+        "symbol":  "DERHL.IS",
+        "memberOid":  "8acae2c469cee2a4016a5492160c43c3"
+    },
+    {
+        "symbol":  "DESA.IS",
+        "memberOid":  "4028e4a240ee866c0140f1fe48fa0070"
+    },
+    {
+        "symbol":  "DEVA.IS",
+        "memberOid":  "4028e4a140f2ed710141116ab1d60241"
+    },
+    {
+        "symbol":  "DGATE.IS",
+        "memberOid":  "4028e4a2416e697d01416eabc02d14f8"
+    },
+    {
+        "symbol":  "DGNMO.IS",
+        "memberOid":  "4028e4a240f27df70140f2eae68c0032"
+    },
+    {
+        "symbol":  "DITAS.IS",
+        "memberOid":  "4028e4a140f2ed710141179798bb02ed"
+    },
+    {
+        "symbol":  "DMRGD.IS",
+        "memberOid":  "8acae2c486d22a3b018a97c880c913d6"
+    },
+    {
+        "symbol":  "DMSAS.IS",
+        "memberOid":  "4028e4a240f2ef4c0140f326817e0041"
+    },
+    {
+        "symbol":  "DNISI.IS",
+        "memberOid":  "8acae2c473646c5e017410b3f4b16fae"
+    },
+    {
+        "symbol":  "DOAS.IS",
+        "memberOid":  "4028e4a240e8d16e0140e951bf04007b"
+    },
+    {
+        "symbol":  "DOCO.IS",
+        "memberOid":  "1DE05DAA82B4073AE0530A4A622A2EBD"
+    },
+    {
+        "symbol":  "DOFER.IS",
+        "memberOid":  "8acae2c486d22a3a018b03b62cd429bd"
+    },
+    {
+        "symbol":  "DOFRB.IS",
+        "memberOid":  "8acae2c494bafc930198f4d3cccb4dbb"
+    },
+    {
+        "symbol":  "DOHOL.IS",
+        "memberOid":  "4028e4a141462df201414ff732983087"
+    },
+    {
+        "symbol":  "DSTKF.IS",
+        "memberOid":  "4028e4a1415f4d9b01415fe0caa830df"
+    },
+    {
+        "symbol":  "DUNYH.IS",
+        "memberOid":  "4028e4a141733b51014173e7419c13f1"
+    },
+    {
+        "symbol":  "DURDO.IS",
+        "memberOid":  "4028e4a141effedc0141fe14e2b41807"
+    },
+    {
+        "symbol":  "DURKN.IS",
+        "memberOid":  "8acae2c49145e00d0191c6164e8e4aca"
+    },
+    {
+        "symbol":  "DYOBY.IS",
+        "memberOid":  "4028e4a140e8cf9d0140e95835a30033"
+    },
+    {
+        "symbol":  "DZGYO.IS",
+        "memberOid":  "4028e4a240ee866c0140f1fad94e0047"
+    },
+    {
+        "symbol":  "EBEBK.IS",
+        "memberOid":  "8acae2c586d22c51018a2b6c8f5963cd"
+    },
+    {
+        "symbol":  "ECILC.IS",
+        "memberOid":  "4028e4a1415f4d99014160034b683108"
+    },
+    {
+        "symbol":  "ECOGR.IS",
+        "memberOid":  "8acae2c5991b90af019975bc2a6c244d"
+    },
+    {
+        "symbol":  "ECZYT.IS",
+        "memberOid":  "4028e4a1415f4d9901416012a278321f"
+    },
+    {
+        "symbol":  "EDATA.IS",
+        "memberOid":  "8acae2c47902e75101792325d43f2419"
+    },
+    {
+        "symbol":  "EDIP.IS",
+        "memberOid":  "4028e4a240e95dc90140ecc568850014"
+    },
+    {
+        "symbol":  "EFOR.IS",
+        "memberOid":  [
+                          "8acae2c5819d0efb0182923c4c307fbf",
+                          "8acae2c561c44d7401620088778531b5"
+                      ]
+    },
+    {
+        "symbol":  "EGEEN.IS",
+        "memberOid":  "1DE05DAA8254073AE0530A4A622A2EBD"
+    },
+    {
+        "symbol":  "EGEGY.IS",
+        "memberOid":  "8acae2c59145e00e019406e89bc4222c"
+    },
+    {
+        "symbol":  "EGEPO.IS",
+        "memberOid":  "8acae2c4794d3648017a9fceecca0bad"
+    },
+    {
+        "symbol":  "EGGUB.IS",
+        "memberOid":  "4028e4a2422d9a78014304d729e3673d"
+    },
+    {
+        "symbol":  "EGPRO.IS",
+        "memberOid":  "4028e4a240f2ef4701413a5c97b805ea"
+    },
+    {
+        "symbol":  "EKDMR.IS",
+        "memberOid":  "4028e4a241558bd9014155d8e91505c8"
+    },
+    {
+        "symbol":  "EKGYO.IS",
+        "memberOid":  "4028e4a2422d9a780142513cda5b232e"
+    },
+    {
+        "symbol":  "EKOS.IS",
+        "memberOid":  "8acae2c48b2fa25a018bb9a255865895"
+    },
+    {
+        "symbol":  "EKSUN.IS",
+        "memberOid":  "8acae2c48304fe9c0186ca8287b67657"
+    },
+    {
+        "symbol":  "ELITE.IS",
+        "memberOid":  "8acae2c4794d364a017aa049a089099f"
+    },
+    {
+        "symbol":  "EMKEL.IS",
+        "memberOid":  "4028e4a241a25fcb0141a289218b0302"
+    },
+    {
+        "symbol":  "EMPAE.IS",
+        "memberOid":  "8acae2c562329bd101626c30f98c1590"
+    },
+    {
+        "symbol":  "ENDAE.IS",
+        "memberOid":  "8acae2c49145e00b01949751383218b4"
+    },
+    {
+        "symbol":  "ENERY.IS",
+        "memberOid":  "4028e4a241733d4201417937d4337e22"
+    },
+    {
+        "symbol":  "ENJSA.IS",
+        "memberOid":  "4028e4a1422d98690142bceaa31957cf"
+    },
+    {
+        "symbol":  "ENKAI.IS",
+        "memberOid":  "4028e4a240e95dc90140ed3883fe0093"
+    },
+    {
+        "symbol":  "ENSRI.IS",
+        "memberOid":  "8acae2c47d3bee50017f77c935000e69"
+    },
+    {
+        "symbol":  "ENTRA.IS",
+        "memberOid":  "8acae2c48c3efabf018e64e77b5d3e77"
+    },
+    {
+        "symbol":  "EPLAS.IS",
+        "memberOid":  "4028e4a14158e41e01415aa30e206011"
+    },
+    {
+        "symbol":  "ERCB.IS",
+        "memberOid":  "2af53003ee3c4464b0b653225816518d"
+    },
+    {
+        "symbol":  "EREGL.IS",
+        "memberOid":  "4028e4a240e95dc90140ede4c12a0133"
+    },
+    {
+        "symbol":  "ESCAR.IS",
+        "memberOid":  "8acae2c4782a4d560178f8929f486aed"
+    },
+    {
+        "symbol":  "ESCOM.IS",
+        "memberOid":  "4028e4a142140a8d01421437e3fb036a"
+    },
+    {
+        "symbol":  "ESEN.IS",
+        "memberOid":  "8acae2c57436079f0174486159f4072f"
+    },
+    {
+        "symbol":  "ETILR.IS",
+        "memberOid":  "4028e4a240f2ef4701413b24736d0655"
+    },
+    {
+        "symbol":  "EUPWR.IS",
+        "memberOid":  "8acae2c486d22a3b01875b5644ea61c4"
+    },
+    {
+        "symbol":  "EUREN.IS",
+        "memberOid":  "8acae2c580e91030018105632b470bcd"
+    },
+    {
+        "symbol":  "EYGYO.IS",
+        "memberOid":  "8acae2c48304fe9c01843d2398a50797"
+    },
+    {
+        "symbol":  "FADE.IS",
+        "memberOid":  "8acae2c46e7fdc6d016f85a87ec9674e"
+    },
+    {
+        "symbol":  "FENER.IS",
+        "memberOid":  "4028e4a240e95dc90140ede7351a013d"
+    },
+    {
+        "symbol":  "FMIZP.IS",
+        "memberOid":  "4028e4a240f2ef4701410bb5cdab01cf"
+    },
+    {
+        "symbol":  "FONET.IS",
+        "memberOid":  "8acae2c55a980119015b435875566776"
+    },
+    {
+        "symbol":  "FORMT.IS",
+        "memberOid":  "8acae2c562329bd101633953d02b0477"
+    },
+    {
+        "symbol":  "FORTE.IS",
+        "memberOid":  "8acae2c47f7cb492018094784f6f309a"
+    },
+    {
+        "symbol":  "FRIGO.IS",
+        "memberOid":  "4028e4a1415f4d9b01415fee1db939f4"
+    },
+    {
+        "symbol":  "FRMPL.IS",
+        "memberOid":  "8acae2c5998f25d7019b732d9c623a64"
+    },
+    {
+        "symbol":  "FROTO.IS",
+        "memberOid":  "4028e4a140f2ed71014106890fae0138"
+    },
+    {
+        "symbol":  "FZLGY.IS",
+        "memberOid":  "8acae2c586d22c530189534dc2624568"
+    },
+    {
+        "symbol":  "GARAN.IS",
+        "memberOid":  [
+                          "4028e4a1422d986901430ed62de509f3",
+                          "4028e4a240e95dc90140ee1ab24b0189",
+                          "4028e4a240f2ef4c01413a53aa850684",
+                          "4028e4a241733d4a0141798b74ae0a6d",
+                          "4028e4a240f2ef4c01412b12128305d3",
+                          "4028e4a141da49e50141e08580772b86",
+                          "4028e4a240f2ef470141271e9d5104d3",
+                          "4028e4a140f2ed720140f37cb2a601b7"
+                      ]
+    },
+    {
+        "symbol":  "GARFA.IS",
+        "memberOid":  "4028e4a240e95dc90140ee1ab24b0189"
+    },
+    {
+        "symbol":  "GEDIK.IS",
+        "memberOid":  "4028e4a140e95bea0140ee1edd700174"
+    },
+    {
+        "symbol":  "GEDZA.IS",
+        "memberOid":  "4028e4a14158e41e01415b2a655f6cca"
+    },
+    {
+        "symbol":  "GENIL.IS",
+        "memberOid":  "8acae2c5794d3d6a017a89f2678a1118"
+    },
+    {
+        "symbol":  "GENKM.IS",
+        "memberOid":  "8acae2c49c81f746019c9a20ca2419a9"
+    },
+    {
+        "symbol":  "GENTS.IS",
+        "memberOid":  "4028e4a2416e696c01416f1e03364c9d"
+    },
+    {
+        "symbol":  "GEREL.IS",
+        "memberOid":  "4028e4a14158e41e01415aaad2ae618b"
+    },
+    {
+        "symbol":  "GESAN.IS",
+        "memberOid":  "8acae2c4794d364a017af66863e41bae"
+    },
+    {
+        "symbol":  "GIPTA.IS",
+        "memberOid":  "8acae2c486d22a3a018a5106156c5c3d"
+    },
+    {
+        "symbol":  "GLCVY.IS",
+        "memberOid":  "8acae2c465a51c3801683c2840c516cb"
+    },
+    {
+        "symbol":  "GLRMK.IS",
+        "memberOid":  "4028e4a1416e696301416f392897603f"
+    },
+    {
+        "symbol":  "GLRYH.IS",
+        "memberOid":  "4028e4a240f2ef4c01410cf733f303d9"
+    },
+    {
+        "symbol":  "GLYHO.IS",
+        "memberOid":  "4028e4a140e95bea0140ee24416e0197"
+    },
+    {
+        "symbol":  "GMTAS.IS",
+        "memberOid":  "a3ff494df37b408aa9088106fe98f59e"
+    },
+    {
+        "symbol":  "GOKNR.IS",
+        "memberOid":  "4028e4a1462cc5dd0146673d70055928"
+    },
+    {
+        "symbol":  "GOLTS.IS",
+        "memberOid":  "4028e4a140e95be70140ee27ccd40129"
+    },
+    {
+        "symbol":  "GOODY.IS",
+        "memberOid":  "4028e4a140f2ed7101412bfc6f340359"
+    },
+    {
+        "symbol":  "GOZDE.IS",
+        "memberOid":  "4028e4a24158e42201415b0210ba60ef"
+    },
+    {
+        "symbol":  "GRSEL.IS",
+        "memberOid":  "8acae2c47d3bee50017f2c2fc65150e6"
+    },
+    {
+        "symbol":  "GRTHO.IS",
+        "memberOid":  "8acae2c48304fe9c018466742a3b2960"
+    },
+    {
+        "symbol":  "GSDHO.IS",
+        "memberOid":  "4028e4a140e95be70140ee2be54b014a"
+    },
+    {
+        "symbol":  "GSRAY.IS",
+        "memberOid":  "4028e4a14203278a0142095598f114ba"
+    },
+    {
+        "symbol":  "GUBRF.IS",
+        "memberOid":  "4028e4a241733d4a01417989f3760a4d"
+    },
+    {
+        "symbol":  "GUNDG.IS",
+        "memberOid":  "8acae2c59145e00a019146a7cde301bc"
+    },
+    {
+        "symbol":  "GWIND.IS",
+        "memberOid":  "8acae2c46d7599a6016dee0b5aec36b2"
+    },
+    {
+        "symbol":  "GZNMI.IS",
+        "memberOid":  "8acae2c47d3bee50017e3445b465578f"
+    },
+    {
+        "symbol":  "HALKB.IS",
+        "memberOid":  "1DE05DAA82C3073AE0530A4A622A2EBD"
+    },
+    {
+        "symbol":  "HATEK.IS",
+        "memberOid":  "4028e4a141e536460141e5859f40059b"
+    },
+    {
+        "symbol":  "HATSN.IS",
+        "memberOid":  "8acae2c586d22c51018a739bad647f5a"
+    },
+    {
+        "symbol":  "HDFGS.IS",
+        "memberOid":  "4028e4a242140a9601422820b6da43f8"
+    },
+    {
+        "symbol":  "HEDEF.IS",
+        "memberOid":  [
+                          "4028e4a246b4c5ad0147c4b464893865",
+                          "4028e4a242140a9601422820b6da43f8",
+                          "8acae2c4794d3648017a8bd7bc0103df",
+                          "4028e4a242140a96014228206ea243f2",
+                          "8acae2c58b2fa64e018e0edc8c8619eb",
+                          "8acae2c48c3efabf018d10fc19010119"
+                      ]
+    },
+    {
+        "symbol":  "HEKTS.IS",
+        "memberOid":  "4028e4a140ee35c00140ee5d194a0055"
+    },
+    {
+        "symbol":  "HKTM.IS",
+        "memberOid":  "8acae2c5812b84a401816252165513b1"
+    },
+    {
+        "symbol":  "HLGYO.IS",
+        "memberOid":  "4028e4a240ee37a30140ee53e47c0057"
+    },
+    {
+        "symbol":  "HOROZ.IS",
+        "memberOid":  "8acae2c58b2fa64e018fabc0441664a1"
+    },
+    {
+        "symbol":  "HRKET.IS",
+        "memberOid":  "8acae2c48c3efabf018f632d8d082913"
+    },
+    {
+        "symbol":  "HTTBT.IS",
+        "memberOid":  "8acae2c57d3bf002017e016f30e442c6"
+    },
+    {
+        "symbol":  "HUNER.IS",
+        "memberOid":  "8acae2c47d3bee4e017e347a3f5a5b1a"
+    },
+    {
+        "symbol":  "HURGZ.IS",
+        "memberOid":  "4028e4a140ee35c70140ee6408650041"
+    },
+    {
+        "symbol":  "ICBCT.IS",
+        "memberOid":  "4028e4a24158e42401415a700e104f3f"
+    },
+    {
+        "symbol":  "ICUGS.IS",
+        "memberOid":  "4028e4a141e536460141e53ba7790052"
+    },
+    {
+        "symbol":  "IEYHO.IS",
+        "memberOid":  "4028e4a140f2ed7201410d315d200314"
+    },
+    {
+        "symbol":  "IHAAS.IS",
+        "memberOid":  "8acae2c57afb2d70017bdf2f5af067ed"
+    },
+    {
+        "symbol":  "IHGZT.IS",
+        "memberOid":  "4028e4a140ee84900140f1f8d5bc003c"
+    },
+    {
+        "symbol":  "IHLAS.IS",
+        "memberOid":  "4028e4a140ee84900140f1fbc6b1004f"
+    },
+    {
+        "symbol":  "IHLGM.IS",
+        "memberOid":  "4028e4a141a25dcb0141a2a7a0060471"
+    },
+    {
+        "symbol":  "IMASM.IS",
+        "memberOid":  "8acae2c47f7cb49201802cedfbb46d26"
+    },
+    {
+        "symbol":  "INDES.IS",
+        "memberOid":  "4028e4a2416e697d01416ead8a0615a7"
+    },
+    {
+        "symbol":  "INFO.IS",
+        "memberOid":  "4028e4a2416e696c01416edd30ca3148"
+    },
+    {
+        "symbol":  "INGRM.IS",
+        "memberOid":  "4028e4a241462fd80141556f6a9308a2"
+    },
+    {
+        "symbol":  "INTEM.IS",
+        "memberOid":  "4028e4a241e538b40141e572868704e7"
+    },
+    {
+        "symbol":  "INVEO.IS",
+        "memberOid":  [
+                          "8acae2c59c81f7f7019d530cc1b20b7a",
+                          "4028e4a240f2ef4c01413b5ccdb3075e",
+                          "4028e4a140f2ed7201413b67b22f0929"
+                      ]
+    },
+    {
+        "symbol":  "INVES.IS",
+        "memberOid":  [
+                          "4028e4a14184e9cf0141934f00662c2e",
+                          "8acae2c47d3bee50017f0bbbbbfa3c0e",
+                          "8acae2c562329bd101653d1829ca11eb",
+                          "4028e4a24158e42201415adceafc5e96"
+                      ]
+    },
+    {
+        "symbol":  "ISCTR.IS",
+        "memberOid":  "4028e4a140f2ed7201411682b0cb05c6"
+    },
+    {
+        "symbol":  "ISDMR.IS",
+        "memberOid":  "4028e4a2416e696c01416ee8eb7b3770"
+    },
+    {
+        "symbol":  "ISFIN.IS",
+        "memberOid":  "4028e4a140f2ed7101410d272d690188"
+    },
+    {
+        "symbol":  "ISGSY.IS",
+        "memberOid":  "4028e4a240ee866c0140f273ea66014d"
+    },
+    {
+        "symbol":  "ISGYO.IS",
+        "memberOid":  "4028e4a140f2ed7201412acbeb8b06f7"
+    },
+    {
+        "symbol":  "ISKPL.IS",
+        "memberOid":  "8acae2c575a1b5b601770603623b7c43"
+    },
+    {
+        "symbol":  "ISMEN.IS",
+        "memberOid":  "4028e4a140f275530140f277aa100008"
+    },
+    {
+        "symbol":  "IZENR.IS",
+        "memberOid":  "8acae2c5534651ff0153612ea22a02ec"
+    },
+    {
+        "symbol":  "IZFAS.IS",
+        "memberOid":  "4028e4a146b4c41301485f8c72095698"
+    },
+    {
+        "symbol":  "IZMDC.IS",
+        "memberOid":  "4028e4a140f275550140f27e319401ca"
+    },
+    {
+        "symbol":  "JANTS.IS",
+        "memberOid":  "4028e4a240f2ef4c01413b1b57300719"
+    },
+    {
+        "symbol":  "KAPLM.IS",
+        "memberOid":  "4028e4a1416e696501416f314a3960dc"
+    },
+    {
+        "symbol":  "KAREL.IS",
+        "memberOid":  "4028e4a246b4c5a90147d42c754a6bba"
+    },
+    {
+        "symbol":  "KARSN.IS",
+        "memberOid":  "4028e4a140f275530140f2e357a501f7"
+    },
+    {
+        "symbol":  "KARTN.IS",
+        "memberOid":  "4028e4a2416e697d01416e969af50d2e"
+    },
+    {
+        "symbol":  "KATMR.IS",
+        "memberOid":  "4028e4a14184e9cf01419c001e945a74"
+    },
+    {
+        "symbol":  "KAYSE.IS",
+        "memberOid":  "4028e4a144a0804f0145a837a7ad0a66"
+    },
+    {
+        "symbol":  "KBORU.IS",
+        "memberOid":  "8acae2c48b2fa259018c33b3ca910ba8"
+    },
+    {
+        "symbol":  "KCAER.IS",
+        "memberOid":  "4028e4a2416f888d01416f9ea04a058f"
+    },
+    {
+        "symbol":  "KCHOL.IS",
+        "memberOid":  "4028e4a140f2ed710140f2f4d6c70039"
+    },
+    {
+        "symbol":  "KFEIN.IS",
+        "memberOid":  "8acae2c55835f84c015848477328085a"
+    },
+    {
+        "symbol":  "KGYO.IS",
+        "memberOid":  [
+                          "4028e4a2422d9a780142513cda5b232e",
+                          "4028e4a240f2ef4c0141176f57ca04a5",
+                          "4028e4a140f2ed72014101a0d3b501f7"
+                      ]
+    },
+    {
+        "symbol":  "KIMMR.IS",
+        "memberOid":  "8acae2c5794d3d6a01795f597b820707"
+    },
+    {
+        "symbol":  "KLGYO.IS",
+        "memberOid":  "4028e4a2415f4f8101415f7009a809a2"
+    },
+    {
+        "symbol":  "KLKIM.IS",
+        "memberOid":  "4028e4a144a0804f01452d35e88a3208"
+    },
+    {
+        "symbol":  "KLMSN.IS",
+        "memberOid":  "4028e4a2416e696c01416f7763e874db"
+    },
+    {
+        "symbol":  "KLRHO.IS",
+        "memberOid":  "4028e4a1415f4d990141600b4b5331e2"
+    },
+    {
+        "symbol":  "KLSER.IS",
+        "memberOid":  "4028e4a140f275550140f285f6cf0246"
+    },
+    {
+        "symbol":  "KLSYN.IS",
+        "memberOid":  "402821814da3a99c014f3b4e25ff608e"
+    },
+    {
+        "symbol":  "KLYPV.IS",
+        "memberOid":  "8acae2c494bafc930194bb236113010e"
+    },
+    {
+        "symbol":  "KMPUR.IS",
+        "memberOid":  "8acae2c47d3bee4e017da32a238f235f"
+    },
+    {
+        "symbol":  "KNFRT.IS",
+        "memberOid":  "4028e4a140f2ed710140f2fc30bc006e"
+    },
+    {
+        "symbol":  "KOCMT.IS",
+        "memberOid":  "4028e4a2416e696c01416f734ce273ad"
+    },
+    {
+        "symbol":  "KONKA.IS",
+        "memberOid":  "4028e4a244a08180014619dea2160482"
+    },
+    {
+        "symbol":  "KONYA.IS",
+        "memberOid":  [
+                          "4028e4a140f2ed720140f3014c9400cf",
+                          "4028e4a244a08180014619dea2160482"
+                      ]
+    },
+    {
+        "symbol":  "KOPOL.IS",
+        "memberOid":  "8acae2c486d22a3b01873668ecf84494"
+    },
+    {
+        "symbol":  "KORDS.IS",
+        "memberOid":  "4028e4a140f2ed720140f30606a700ec"
+    },
+    {
+        "symbol":  "KOTON.IS",
+        "memberOid":  "4028e4a2422d9a7801429a4cc3d64f41"
+    },
+    {
+        "symbol":  "KRDMD.IS",
+        "memberOid":  "4028e4a140f2ed7201412ace3ada0707"
+    },
+    {
+        "symbol":  "KRGYO.IS",
+        "memberOid":  "4028e4a244a081810146002d6e0c555f"
+    },
+    {
+        "symbol":  "KRONT.IS",
+        "memberOid":  "4028e4a2415f4f8401415ffc858834e3"
+    },
+    {
+        "symbol":  "KRPLS.IS",
+        "memberOid":  "8acae2c47f7cb49101803bbfecdb76dd"
+    },
+    {
+        "symbol":  "KRSTL.IS",
+        "memberOid":  "4028e4a240f2ef4c0140f3180014001a"
+    },
+    {
+        "symbol":  "KRVGD.IS",
+        "memberOid":  "4028e4a246b4c5a90148127e32eb47e9"
+    },
+    {
+        "symbol":  "KTLEV.IS",
+        "memberOid":  "8acae2c5830502c20185a9e2e5ac488b"
+    },
+    {
+        "symbol":  "KTSKR.IS",
+        "memberOid":  "8acae2c5794d3d66017a1e5a8bfb4e07"
+    },
+    {
+        "symbol":  "KUTPO.IS",
+        "memberOid":  "4028e4a240f2ef4c014111cff01d0420"
+    },
+    {
+        "symbol":  "KUYAS.IS",
+        "memberOid":  "4028e4a241a25fd60141a2bf974c04e8"
+    },
+    {
+        "symbol":  "KZBGY.IS",
+        "memberOid":  "8acae2c5794d3d66017aadf2b6b719cb"
+    },
+    {
+        "symbol":  "KZGYO.IS",
+        "memberOid":  "8acae2c586d22c53018a02754e924a33"
+    },
+    {
+        "symbol":  "LIDER.IS",
+        "memberOid":  "8acae2c5570aaa2b0157be3a3ef749af"
+    },
+    {
+        "symbol":  "LIDFA.IS",
+        "memberOid":  "4028e4a141da49ea0141dfe0d2732d48"
+    },
+    {
+        "symbol":  "LILAK.IS",
+        "memberOid":  "8acae2c48c3efac0018f193ab573372b"
+    },
+    {
+        "symbol":  "LINK.IS",
+        "memberOid":  "4028e4a2422d9a6e01428f2d3d020b61"
+    },
+    {
+        "symbol":  "LKMNH.IS",
+        "memberOid":  "4028e4a24158e42401415f1d4417412e"
+    },
+    {
+        "symbol":  "LMKDC.IS",
+        "memberOid":  "8acae2c58b2fa64e018d8cfe461558d3"
+    },
+    {
+        "symbol":  "LOGO.IS",
+        "memberOid":  [
+                          "4028e4a14158e41e01415b41210a6e8c",
+                          "9376ae46e2b841f38f024cada869f7cb"
+                      ]
+    },
+    {
+        "symbol":  "LRSHO.IS",
+        "memberOid":  "4028e4a140f2ed7101411799cb9b02fc"
+    },
+    {
+        "symbol":  "LXGYO.IS",
+        "memberOid":  "8acae2c59b85fa03019c74a891e94f5d"
+    },
+    {
+        "symbol":  "LYDHO.IS",
+        "memberOid":  "4028e4a240f2ef4701411763ed38047c"
+    },
+    {
+        "symbol":  "LYDYE.IS",
+        "memberOid":  "4028e4a241a25fcb0141a7c3f3302405"
+    },
+    {
+        "symbol":  "MAALT.IS",
+        "memberOid":  "4028e4a140f2ed710141179bf0630308"
+    },
+    {
+        "symbol":  "MACKO.IS",
+        "memberOid":  "8acae2c48304fe9e0183694124c82d0a"
+    },
+    {
+        "symbol":  "MAGEN.IS",
+        "memberOid":  "8acae2c47afb298a017bf270b76b78f1"
+    },
+    {
+        "symbol":  "MAKIM.IS",
+        "memberOid":  "8acae2c57f7cbb49017f977f7f190949"
+    },
+    {
+        "symbol":  "MAKTK.IS",
+        "memberOid":  "4028e4a24158e42201415ad40fca5dd0"
+    },
+    {
+        "symbol":  "MANAS.IS",
+        "memberOid":  "8acae2c5794d3d660179f09f7061388a"
+    },
+    {
+        "symbol":  "MARBL.IS",
+        "memberOid":  "8acae2c45835eb6501593a986e7e57f7"
+    },
+    {
+        "symbol":  "MARKA.IS",
+        "memberOid":  [
+                          "4028e4a240f2ef470141166b45c0040d",
+                          "4028e4a140f2ed720141080991640264"
+                      ]
+    },
+    {
+        "symbol":  "MARMR.IS",
+        "memberOid":  "8acae2c5991b90b001993ca6c1951026"
+    },
+    {
+        "symbol":  "MARTI.IS",
+        "memberOid":  [
+                          "4028e4a1415f4d9b0141603d2b414108",
+                          "4028e4a1415f4d9b0141603d6cec410f"
+                      ]
+    },
+    {
+        "symbol":  "MAVI.IS",
+        "memberOid":  "4028e4a141733b5101417ea9aae11fec"
+    },
+    {
+        "symbol":  "MCARD.IS",
+        "memberOid":  "8acae2c59c81f7f7019c98b19b8c0af5"
+    },
+    {
+        "symbol":  "MEDTR.IS",
+        "memberOid":  "8acae2c5794d3d6a017a1de13bf04ff2"
+    },
+    {
+        "symbol":  "MEGMT.IS",
+        "memberOid":  "8acae2c5594ca644015964a5bef50e57"
+    },
+    {
+        "symbol":  "MEKAG.IS",
+        "memberOid":  "8acae2c586d22c51018adff79d0f2d15"
+    },
+    {
+        "symbol":  "MERCN.IS",
+        "memberOid":  "8acae2c4782a4d580178ee32b32864d5"
+    },
+    {
+        "symbol":  "MERIT.IS",
+        "memberOid":  "4028e4a140f2ed7101412b9f84390347"
+    },
+    {
+        "symbol":  "MERKO.IS",
+        "memberOid":  "4028e4a240f2ef4701412bf3fc980553"
+    },
+    {
+        "symbol":  "METRO.IS",
+        "memberOid":  [
+                          "4028e4a240f2ef4c01413a66cb250699",
+                          "8acae2c55f2e67ab015f34db7d2303bb",
+                          "4028e4a1416e696301416e9a320e1649",
+                          "4028e4a14158e41f01415b1cecc4619f",
+                          "8acae2c59c81f7f7019c98b19b8c0af5"
+                      ]
+    },
+    {
+        "symbol":  "MEYSU.IS",
+        "memberOid":  "8acae2c5998f25d7019b59665bd030f1"
+    },
+    {
+        "symbol":  "MGROS.IS",
+        "memberOid":  "4028e4a141462df2014150162e1c3424"
+    },
+    {
+        "symbol":  "MHRGY.IS",
+        "memberOid":  "8acae2c486d22a3a018b03ad439129a9"
+    },
+    {
+        "symbol":  "MIATK.IS",
+        "memberOid":  "8acae2c47afb298a017cbcef284245ba"
+    },
+    {
+        "symbol":  "MNDRS.IS",
+        "memberOid":  "4028e4a1422d986e01425bfb19b05165"
+    },
+    {
+        "symbol":  "MNDTR.IS",
+        "memberOid":  "4028e4a24158e42201415ae7c0875fab"
+    },
+    {
+        "symbol":  "MOBTL.IS",
+        "memberOid":  "8acae2c57afb2d70017d12c6d335669c"
+    },
+    {
+        "symbol":  "MOGAN.IS",
+        "memberOid":  "8acae2c473646c5e0173e77f33b35138"
+    },
+    {
+        "symbol":  "MOPAS.IS",
+        "memberOid":  "8acae2c49145e00d0194730c9f3e6d30"
+    },
+    {
+        "symbol":  "MPARK.IS",
+        "memberOid":  "4028e4a1462cc5dd01465c9550782baa"
+    },
+    {
+        "symbol":  "MRGYO.IS",
+        "memberOid":  "4028e4a1415f4d9b0141603d2b414108"
+    },
+    {
+        "symbol":  "MRSHL.IS",
+        "memberOid":  "4028e4a140f2ed720140f325b12e0172"
+    },
+    {
+        "symbol":  "MSGYO.IS",
+        "memberOid":  "8acae2c4540d444501545d374f8d070a"
+    },
+    {
+        "symbol":  "MTRKS.IS",
+        "memberOid":  "8acae2c575a1b5b60177de29c7177130"
+    },
+    {
+        "symbol":  "NATEN.IS",
+        "memberOid":  "8acae2c469cee2a2016bb6c259155c47"
+    },
+    {
+        "symbol":  "NETAS.IS",
+        "memberOid":  "4028e4a240f2ef47014111d7df220232"
+    },
+    {
+        "symbol":  "NETCD.IS",
+        "memberOid":  "8acae2c47f7cb492017fd60a82802767"
+    },
+    {
+        "symbol":  "NIBAS.IS",
+        "memberOid":  "4028e4a1413b7ef501413bc24123002f"
+    },
+    {
+        "symbol":  "NTGAZ.IS",
+        "memberOid":  "8acae2c4782a4d580178492e12820f4f"
+    },
+    {
+        "symbol":  "NTHOL.IS",
+        "memberOid":  "4028e4a140f2ed7101412ba0829f034d"
+    },
+    {
+        "symbol":  "NUGYO.IS",
+        "memberOid":  "4028e4a1416e696301416f6100e76fb9"
+    },
+    {
+        "symbol":  "NUHCM.IS",
+        "memberOid":  "4028e4a141558bdd014156053d9f04b2"
+    },
+    {
+        "symbol":  "OBAMS.IS",
+        "memberOid":  "8acae2c58b2fa64e018dc01d63686b27"
+    },
+    {
+        "symbol":  "ODAS.IS",
+        "memberOid":  "4028e4a2416e696c01416edd70713183"
+    },
+    {
+        "symbol":  "ODINE.IS",
+        "memberOid":  "8acae2c58b2fa64e018e1cbdc7e02623"
+    },
+    {
+        "symbol":  "OFSYM.IS",
+        "memberOid":  "8acae2c586d22c510189bf5dfc710286"
+    },
+    {
+        "symbol":  "ONCSM.IS",
+        "memberOid":  "8acae2c4812b870c018161f7cdde10f3"
+    },
+    {
+        "symbol":  "ONRYT.IS",
+        "memberOid":  "8acae2c58b2fa64e018f8540ca5f57d4"
+    },
+    {
+        "symbol":  "ORGE.IS",
+        "memberOid":  "4028e4a140ee35c00140ee3971130009"
+    },
+    {
+        "symbol":  "OSMEN.IS",
+        "memberOid":  "4028e4a240ee37a30140ee408ef80002"
+    },
+    {
+        "symbol":  "OSTIM.IS",
+        "memberOid":  "4028e4a241462fd8014149e82fb004c5"
+    },
+    {
+        "symbol":  "THYAO.IS",
+        "memberOid":  "4028e4a140f2ed720140f376bebb01a7"
+    }
+]
