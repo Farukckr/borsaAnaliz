@@ -52,6 +52,7 @@ public sealed class StocksController : Controller
     public async Task<IActionResult> Index(
         [FromQuery] string? list = "xu100",
         [FromQuery] string? sector = null,
+        [FromQuery] string? q = null,
         [FromQuery] int page = 1,
         CancellationToken cancellationToken = default)
     {
@@ -97,6 +98,10 @@ public sealed class StocksController : Controller
             }
         }
 
+        var trimmedQuery = q?.Trim();
+        var normalizedQuery = string.IsNullOrWhiteSpace(trimmedQuery)
+            ? null
+            : trimmedQuery[..Math.Min(trimmedQuery.Length, 100)];
         var allSectors = await _stockCatalog.GetSectorsAsync(cancellationToken);
         var availableSectors = allSectors
             .Where(candidate => symbols.Any(stock =>
@@ -111,13 +116,30 @@ public sealed class StocksController : Controller
                 .ToArray();
         }
 
+        var usedCatalogFallback = false;
+        if (normalizedQuery is not null)
+        {
+            symbols = symbols.Where(stock => MatchesSearch(stock, normalizedQuery)).ToArray();
+            if (symbols.Count == 0 && activeList != "watchlist")
+            {
+                var catalog = await _stockCatalog.GetSymbolsAsync(cancellationToken);
+                symbols = catalog
+                    .Where(stock => activeSector is null ||
+                        stock.Sector.Equals(activeSector, StringComparison.OrdinalIgnoreCase))
+                    .Where(stock => MatchesSearch(stock, normalizedQuery))
+                    .ToArray();
+                usedCatalogFallback = symbols.Count > 0;
+            }
+        }
+
         var watchedSet = watchedSymbols.ToHashSet(StringComparer.OrdinalIgnoreCase);
         var totalCount = symbols.Count;
-        var totalPages = activeList == "xu500"
+        var isPaginated = activeList == "xu500" || usedCatalogFallback;
+        var totalPages = isPaginated
             ? Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize))
             : 1;
         var currentPage = Math.Clamp(page, 1, totalPages);
-        var visibleSymbols = activeList == "xu500"
+        var visibleSymbols = isPaginated
             ? symbols.Skip((currentPage - 1) * pageSize).Take(pageSize).ToArray()
             : symbols;
         var quotes = await _marketData.GetQuotesAsync(
@@ -135,9 +157,39 @@ public sealed class StocksController : Controller
             activeList,
             availableSectors,
             activeSector,
+            normalizedQuery,
             currentPage,
             totalPages,
             totalCount));
+    }
+
+    [HttpGet("/api/stocks/search")]
+    public async Task<IActionResult> SearchSuggestions(
+        [FromQuery] string? q,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(q))
+        {
+            return Ok(Array.Empty<object>());
+        }
+
+        var trimmedQuery = q.Trim();
+        var query = trimmedQuery[..Math.Min(trimmedQuery.Length, 100)];
+        var symbols = await _stockCatalog.GetSymbolsAsync(cancellationToken);
+        var matches = symbols
+            .Where(stock => MatchesSearch(stock, query))
+            .OrderByDescending(stock => stock.Symbol.StartsWith(query, StringComparison.OrdinalIgnoreCase))
+            .ThenBy(stock => stock.Symbol, StringComparer.OrdinalIgnoreCase)
+            .Take(8)
+            .Select(stock => new
+            {
+                stock.Symbol,
+                stock.Name,
+                Market = stock.Market.Equals("BIST", StringComparison.OrdinalIgnoreCase) ? "BIST" : "ABD",
+                Url = $"/Stocks/Details/{Uri.EscapeDataString(stock.Symbol)}"
+            });
+
+        return Ok(matches);
     }
 
     [HttpGet("/Stocks/Details/{symbol}")]
@@ -432,6 +484,10 @@ public sealed class StocksController : Controller
         return symbols.FirstOrDefault(stock =>
             stock.Symbol.Equals(symbol, StringComparison.OrdinalIgnoreCase));
     }
+
+    private static bool MatchesSearch(StockSymbol stock, string query) =>
+        stock.Symbol.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+        stock.Name.Contains(query, StringComparison.OrdinalIgnoreCase);
 
     private static IReadOnlyList<IndicatorPoint> ToPoints(
         IReadOnlyList<Candle> candles,

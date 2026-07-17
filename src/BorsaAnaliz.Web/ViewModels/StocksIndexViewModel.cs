@@ -5,6 +5,7 @@ public sealed record StocksIndexViewModel(
     string ActiveList,
     IReadOnlyList<string> Sectors,
     string? ActiveSector,
+    string? SearchQuery,
     int CurrentPage,
     int TotalPages,
     int TotalCount);

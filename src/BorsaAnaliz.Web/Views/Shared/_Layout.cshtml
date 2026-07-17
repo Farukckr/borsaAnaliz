@@ -77,6 +77,27 @@
                             </li>
                         }
                     </ul>
+                    <form class="navbar-quick-search me-lg-3"
+                          role="search"
+                          data-global-stock-search
+                          data-search-endpoint="@Url.Action("SearchSuggestions", "Stocks")"
+                          data-stocks-url="@Url.Action("Index", "Stocks")">
+                        <label for="globalStockSearch" class="visually-hidden">Tüm hisselerde ara</label>
+                        <div class="navbar-search-control">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <input id="globalStockSearch"
+                                   type="search"
+                                   placeholder="Hisse ara..."
+                                   autocomplete="off"
+                                   aria-autocomplete="list"
+                                   aria-controls="globalStockResults"
+                                   aria-expanded="false" />
+                            <div id="globalStockResults"
+                                 class="navbar-search-results d-none"
+                                 role="listbox"
+                                 aria-label="Hisse arama sonuçları"></div>
+                        </div>
+                    </form>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
