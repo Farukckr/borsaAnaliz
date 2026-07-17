@@ -21,6 +21,14 @@
     </ol>
 </nav>
 
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <form class="d-none" data-watchlist-form data-endpoint="@Url.Action("ToggleWatchlist", "Stocks")">
+        @Html.AntiForgeryToken()
+    </form>
+}
+<div id="watchlistStatus" class="visually-hidden" aria-live="polite"></div>
+
 <section class="stock-detail-hero mb-4" aria-labelledby="stockTitle">
     <div class="stock-detail-main">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
@@ -57,10 +65,34 @@
         {
             <div class="fs-5 text-muted">Fiyat verisi alınamadı</div>
         }
-        <a class="btn btn-primary stock-trade-button mt-3" asp-controller="Portfolio" asp-action="Trade" asp-route-symbol="@Model.Stock.Symbol">
-            <i class="bi bi-plus-circle" aria-hidden="true"></i>
-            Portföye ekle
-        </a>
+        <div class="d-flex flex-wrap justify-content-lg-end gap-2 mt-3">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <button type="button"
+                        class="btn btn-outline-primary watchlist-toggle"
+                        data-watchlist-toggle
+                        data-symbol="@Model.Stock.Symbol"
+                        data-watchlisted="@Model.IsWatched.ToString().ToLowerInvariant()"
+                        aria-pressed="@Model.IsWatched.ToString().ToLowerInvariant()">
+                    <i class="bi @(Model.IsWatched ? "bi-star-fill" : "bi-star")" aria-hidden="true"></i>
+                    <span>@(Model.IsWatched ? "Takipten çıkar" : "Takibe ekle")</span>
+                </button>
+            }
+            else
+            {
+                <a class="btn btn-outline-primary"
+                   asp-area="Identity"
+                   asp-page="/Account/Login"
+                   asp-route-returnUrl="@Context.Request.Path">
+                    <i class="bi bi-star" aria-hidden="true"></i>
+                    Takip için giriş yap
+                </a>
+            }
+            <a class="btn btn-primary stock-trade-button" asp-controller="Portfolio" asp-action="Trade" asp-route-symbol="@Model.Stock.Symbol">
+                <i class="bi bi-plus-circle" aria-hidden="true"></i>
+                Portföye ekle
+            </a>
+        </div>
     </div>
 </section>
 

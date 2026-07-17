@@ -27,6 +27,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<IStockCatalogService, JsonStockCatalogService>();
 builder.Services.AddScoped<IPortfolioService, PortfolioService>();
+builder.Services.AddScoped<IWatchlistService, WatchlistService>();
 builder.Services.Configure<AiOptions>(builder.Configuration.GetSection(AiOptions.SectionName));
 builder.Services.AddHttpClient<IMarketDataService, YahooMarketDataService>(client =>
 {

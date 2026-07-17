@@ -27,17 +27,20 @@ public sealed class StocksController : Controller
     private readonly IMarketDataService _marketData;
     private readonly IAiCommentaryService _aiCommentary;
     private readonly IMemoryCache _cache;
+    private readonly IWatchlistService _watchlist;
 
     public StocksController(
         IStockCatalogService stockCatalog,
         IMarketDataService marketData,
         IAiCommentaryService aiCommentary,
-        IMemoryCache cache)
+        IMemoryCache cache,
+        IWatchlistService watchlist)
     {
         _stockCatalog = stockCatalog;
         _marketData = marketData;
         _aiCommentary = aiCommentary;
         _cache = cache;
+        _watchlist = watchlist;
     }
 
     public async Task<IActionResult> Index(
@@ -50,14 +53,44 @@ public sealed class StocksController : Controller
         {
             "xu500" => "xu500",
             "us" => "us",
+            "watchlist" => "watchlist",
             _ => "xu100"
         };
-        var symbols = activeList switch
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (activeList == "watchlist" && string.IsNullOrWhiteSpace(userId))
         {
-            "xu500" => await _stockCatalog.GetByIndexAsync("XU500", cancellationToken),
-            "us" => await _stockCatalog.GetByMarketAsync("US", cancellationToken),
-            _ => await _stockCatalog.GetByIndexAsync("XU100", cancellationToken)
-        };
+            return Challenge();
+        }
+
+        IReadOnlyList<string> watchedSymbols = [];
+        IReadOnlyList<StockSymbol> symbols;
+        if (activeList == "watchlist")
+        {
+            watchedSymbols = await _watchlist.GetSymbolsAsync(userId!, cancellationToken);
+            var catalog = await _stockCatalog.GetSymbolsAsync(cancellationToken);
+            var catalogBySymbol = catalog.ToDictionary(
+                stock => stock.Symbol,
+                StringComparer.OrdinalIgnoreCase);
+            symbols = watchedSymbols
+                .Where(catalogBySymbol.ContainsKey)
+                .Select(symbol => catalogBySymbol[symbol])
+                .ToArray();
+        }
+        else
+        {
+            symbols = activeList switch
+            {
+                "xu500" => await _stockCatalog.GetByIndexAsync("XU500", cancellationToken),
+                "us" => await _stockCatalog.GetByMarketAsync("US", cancellationToken),
+                _ => await _stockCatalog.GetByIndexAsync("XU100", cancellationToken)
+            };
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+                watchedSymbols = await _watchlist.GetSymbolsAsync(userId, cancellationToken);
+            }
+        }
+
+        var watchedSet = watchedSymbols.ToHashSet(StringComparer.OrdinalIgnoreCase);
         var totalCount = symbols.Count;
         var totalPages = activeList == "xu500"
             ? Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize))
@@ -72,7 +105,8 @@ public sealed class StocksController : Controller
         var stocks = visibleSymbols
             .Select(stock => new StockListItemViewModel(
                 stock,
-                quotes.GetValueOrDefault(stock.Symbol)))
+                quotes.GetValueOrDefault(stock.Symbol),
+                watchedSet.Contains(stock.Symbol)))
             .ToArray();
 
         return View(new StocksIndexViewModel(
@@ -93,7 +127,36 @@ public sealed class StocksController : Controller
         }
 
         var quote = await _marketData.GetQuoteAsync(stock.Symbol, cancellationToken);
-        return View(new StockDetailsViewModel(stock, quote));
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var isWatched = !string.IsNullOrWhiteSpace(userId) &&
+            (await _watchlist.GetSymbolsAsync(userId, cancellationToken))
+            .Contains(stock.Symbol, StringComparer.OrdinalIgnoreCase);
+        return View(new StockDetailsViewModel(stock, quote, isWatched));
+    }
+
+    [Authorize]
+    [HttpPost("/api/watchlist/toggle")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ToggleWatchlist(
+        [FromForm] string symbol,
+        CancellationToken cancellationToken = default)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Challenge();
+        }
+
+        try
+        {
+            var added = await _watchlist.ToggleAsync(userId, symbol, cancellationToken);
+            var count = await _watchlist.CountAsync(userId, cancellationToken);
+            return Ok(new { added, count });
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new { message = exception.Message });
+        }
     }
 
     [HttpGet("/api/stocks/{symbol}/history")]

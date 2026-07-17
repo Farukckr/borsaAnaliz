@@ -1,5 +1,7 @@
 @{
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var isWatchlist = currentController == "Stocks" &&
+        Context.Request.Query["list"].ToString().Equals("watchlist", StringComparison.OrdinalIgnoreCase);
 }
 <!DOCTYPE html>
 <html lang="tr">
@@ -40,8 +42,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(currentController == "Stocks" ? "active" : null)"
-                               aria-current="@(currentController == "Stocks" ? "page" : null)"
+                            <a class="nav-link @(currentController == "Stocks" && !isWatchlist ? "active" : null)"
+                               aria-current="@(currentController == "Stocks" && !isWatchlist ? "page" : null)"
                                asp-area="" asp-controller="Stocks" asp-action="Index">
                                 <i class="bi bi-bar-chart-line-fill" aria-hidden="true"></i>
                                 <span>Hisseler</span>
@@ -55,6 +57,17 @@
                                 <span>Portföyüm</span>
                             </a>
                         </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(isWatchlist ? "active" : null)"
+                                   aria-current="@(isWatchlist ? "page" : null)"
+                                   asp-area="" asp-controller="Stocks" asp-action="Index" asp-route-list="watchlist">
+                                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                                    <span>Takip Listem</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -3,16 +3,19 @@
 @{
     ViewData["Title"] = "Hisseler";
     var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
+    var returnUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
     var listTitle = Model.ActiveList switch
     {
         "xu500" => "BIST 500",
         "us" => "ABD piyasası",
+        "watchlist" => "Takip Listem",
         _ => "BIST 100"
     };
     var listDescription = Model.ActiveList switch
     {
         "xu500" => "BIST 500 kapsamındaki şirketleri 50 hisselik sayfalar halinde inceleyin.",
         "us" => "Öne çıkan ABD şirketlerini ve günlük piyasa hareketlerini inceleyin.",
+        "watchlist" => "Takip ettiğiniz hisseleri ve günlük piyasa hareketlerini tek yerde inceleyin.",
         _ => "BIST 100 kapsamındaki şirketleri ve günlük piyasa hareketlerini inceleyin."
     };
 }
@@ -38,7 +41,25 @@
        asp-action="Index"
        asp-route-list="us"
        aria-current="@(Model.ActiveList == "us" ? "page" : null)">ABD</a>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <a class="nav-link @(Model.ActiveList == "watchlist" ? "active" : string.Empty)"
+           asp-action="Index"
+           asp-route-list="watchlist"
+           aria-current="@(Model.ActiveList == "watchlist" ? "page" : null)">
+            <i class="bi bi-star-fill" aria-hidden="true"></i>
+            Takip Listem
+        </a>
+    }
 </nav>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <form class="d-none" data-watchlist-form data-endpoint="@Url.Action("ToggleWatchlist", "Stocks")">
+        @Html.AntiForgeryToken()
+    </form>
+}
+<div id="watchlistStatus" class="visually-hidden" aria-live="polite"></div>
 
 <div class="card stocks-filter-card border-0 shadow-sm mb-4">
     <div class="card-body">
@@ -53,7 +74,21 @@
 
 @if (Model.Stocks.Count == 0)
 {
-    <div class="alert alert-warning">Hisse listesi şu anda yüklenemiyor. Lütfen daha sonra tekrar deneyin.</div>
+    @if (Model.ActiveList == "watchlist")
+    {
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body py-5">
+                <i class="bi bi-star display-5 text-primary" aria-hidden="true"></i>
+                <h2 class="h5 mt-3">Takip listeniz henüz boş</h2>
+                <p class="text-muted mb-3">İzlemek istediğiniz hisselerdeki yıldız simgesine dokunun.</p>
+                <a class="btn btn-primary" asp-action="Index" asp-route-list="xu100">BIST 100 hisselerini keşfet</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">Hisse listesi şu anda yüklenemiyor. Lütfen daha sonra tekrar deneyin.</div>
+    }
 }
 else
 {
@@ -61,6 +96,7 @@ else
         <table class="table stock-table align-middle mb-0" aria-describedby="stockCount">
             <thead>
                 <tr>
+                    <th scope="col" class="text-center"><span class="visually-hidden">Takip</span></th>
                     <th scope="col" data-sort-column="symbol" aria-sort="none">
                         <button type="button" class="table-sort-button" data-sort-key="symbol">
                             Sembol
@@ -98,6 +134,32 @@ else
                         tabindex="0"
                         role="link"
                         aria-label="@item.Stock.Symbol detayını aç">
+                        <td class="text-center">
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <button type="button"
+                                        class="btn btn-sm btn-link text-decoration-none watchlist-toggle"
+                                        data-watchlist-toggle
+                                        data-symbol="@item.Stock.Symbol"
+                                        data-watchlisted="@item.IsWatched.ToString().ToLowerInvariant()"
+                                        aria-pressed="@item.IsWatched.ToString().ToLowerInvariant()"
+                                        title="@(item.IsWatched ? "Takipten çıkar" : "Takibe ekle")">
+                                    <i class="bi @(item.IsWatched ? "bi-star-fill" : "bi-star")" aria-hidden="true"></i>
+                                    <span class="visually-hidden">@(item.IsWatched ? "Takipten çıkar" : "Takibe ekle")</span>
+                                </button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-sm btn-link text-decoration-none"
+                                   asp-area="Identity"
+                                   asp-page="/Account/Login"
+                                   asp-route-returnUrl="@returnUrl"
+                                   title="Takip etmek için giriş yap">
+                                    <i class="bi bi-star" aria-hidden="true"></i>
+                                    <span class="visually-hidden">Takip etmek için giriş yap</span>
+                                </a>
+                            }
+                        </td>
                         <td class="fw-semibold stock-symbol">
                             <a class="text-decoration-none" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">@item.Stock.Symbol</a>
                         </td>

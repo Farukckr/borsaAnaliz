@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (Phase 1 market segmentation complete; Phase 2 per-user watchlist is next.)
+in-progress — 2026-07-17 (Phases 1–2 complete; Phase 3 KAP disclosures is next.)
 
 ## Task Type
 
@@ -50,11 +50,11 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 
 ### Phase 2 — Per-user watchlist (Takip Listem)
 
-- [ ] `WatchlistItem` entity + migration (unique UserId+Symbol, cascade delete) **with RLS enable SQL embedded in the migration**.
-- [ ] `WatchlistService` (`IWatchlistService`): get user's symbols, toggle (validate symbol exists in catalog), count.
-- [ ] `POST /api/watchlist/toggle` (auth + anti-forgery) returning `{added: bool}`; star buttons on stock list rows + detail header reflect state (filled/empty), anonymous → login link.
-- [ ] "Takip Listem" tab on `/Stocks` (auth; friendly empty state with CTA) + navbar link with `bi-star` icon.
-- [ ] Verify: toggle from list and detail persists across reload; unique constraint holds (double-toggle removes); another user's watchlist is not visible; anonymous sees login prompt; RLS confirmed enabled on the new table.
+- [x] `WatchlistItem` entity + migration (unique UserId+Symbol, cascade delete) **with RLS enable SQL embedded in the migration**.
+- [x] `WatchlistService` (`IWatchlistService`): get user's symbols, toggle (validate symbol exists in catalog), count.
+- [x] `POST /api/watchlist/toggle` (auth + anti-forgery) returning `{added: bool}`; star buttons on stock list rows + detail header reflect state (filled/empty), anonymous → login link.
+- [x] "Takip Listem" tab on `/Stocks` (auth; friendly empty state with CTA) + navbar link with `bi-star` icon.
+- [x] Verify: toggle from list and detail persists across reload; unique constraint holds (double-toggle removes); another user's watchlist is not visible; anonymous sees login prompt; RLS confirmed enabled on the new table.
 
 ### Phase 3 — KAP disclosures (news system)
 
@@ -145,3 +145,12 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 - Verification: `dotnet build src/BorsaAnaliz.Web/BorsaAnaliz.Web.csproj -c Release --no-restore` completed with 0 warnings/errors; `git diff --check` passed. Local HTTP checks returned 100/50/50 rows for XU100/XU500/US, both XU500 page 1 and page 10 returned 50 rows, invalid/clamped queries behaved correctly, and `A1CAP.IS` detail plus one-month history returned HTTP 200 with 22 candles. Search and sort scripts remain attached to the rendered rows.
 - File inventory: `.agents/PLAN.md`; `src/BorsaAnaliz.Web/Controllers/HomeController.cs`; `src/BorsaAnaliz.Web/Controllers/StocksController.cs`; `src/BorsaAnaliz.Web/Data/symbols.json`; `src/BorsaAnaliz.Web/Models/StockSymbol.cs`; `src/BorsaAnaliz.Web/Services/IStockCatalogService.cs`; `src/BorsaAnaliz.Web/Services/JsonStockCatalogService.cs`; `src/BorsaAnaliz.Web/ViewModels/StocksIndexViewModel.cs`; `src/BorsaAnaliz.Web/Views/Stocks/Index.cshtml`.
 - No database schema, migration, secret, AI, portfolio, or chart implementation was changed in this phase.
+
+### 2026-07-17 — Phase 2 per-user watchlist complete
+
+- Added `WatchlistItems` with a cascade FK to `AspNetUsers`, a unique `(UserId, Symbol)` index, and migration-embedded `ENABLE ROW LEVEL SECURITY`. The migration was applied to Supabase successfully.
+- Added a user-scoped watchlist service with catalog validation, ordered symbol reads, toggle, and count operations. All reads and mutations include the authenticated user's id.
+- Added the authenticated anti-forgery-protected `POST /api/watchlist/toggle` endpoint, shared client-side toggle behavior, filled/empty stars on stock rows and detail pages, anonymous login links, an authenticated "Takip Listem" stocks tab with empty-state CTA, and an authenticated navbar link.
+- Verification: `dotnet build BorsaAnaliz.sln -c Release --no-restore` completed with 0 warnings/errors and `git diff --check` passed. PostgreSQL catalog checks returned `rls=True`, `uniqueIndex=True`, and `cascadeFk=True`. Two temporary users verified persistence, double-toggle removal, and cross-user isolation; a separate detail-page test persisted `AKBNK.IS`; anonymous list/direct-watchlist behavior routed to login; missing anti-forgery and invalid symbols returned HTTP 400. A 375×812 headless-browser check confirmed the star remains visible as the first responsive table column. All temporary test users were deleted and the database check returned `leftoverTestUsers=0`.
+- File inventory: `.agents/PLAN.md`; `src/BorsaAnaliz.Web/Controllers/HomeController.cs`; `src/BorsaAnaliz.Web/Controllers/StocksController.cs`; `src/BorsaAnaliz.Web/Data/ApplicationDbContext.cs`; `src/BorsaAnaliz.Web/Data/Migrations/20260717101243_AddWatchlist.cs`; `src/BorsaAnaliz.Web/Data/Migrations/20260717101243_AddWatchlist.Designer.cs`; `src/BorsaAnaliz.Web/Data/Migrations/ApplicationDbContextModelSnapshot.cs`; `src/BorsaAnaliz.Web/Models/WatchlistItem.cs`; `src/BorsaAnaliz.Web/Program.cs`; `src/BorsaAnaliz.Web/Services/IWatchlistService.cs`; `src/BorsaAnaliz.Web/Services/WatchlistService.cs`; `src/BorsaAnaliz.Web/ViewModels/StockDetailsViewModel.cs`; `src/BorsaAnaliz.Web/ViewModels/StockListItemViewModel.cs`; `src/BorsaAnaliz.Web/Views/Shared/_Layout.cshtml`; `src/BorsaAnaliz.Web/Views/Stocks/Details.cshtml`; `src/BorsaAnaliz.Web/Views/Stocks/Index.cshtml`; `src/BorsaAnaliz.Web/wwwroot/js/site.js`.
+- No new secret, AI, portfolio transaction, chart, or KAP implementation was introduced in this phase.

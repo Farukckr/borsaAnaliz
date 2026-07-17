@@ -46,7 +46,8 @@ public class HomeController : Controller
         var stocks = symbols
             .Select(stock => new StockListItemViewModel(
                 stock,
-                quotes.GetValueOrDefault(stock.Symbol)))
+                quotes.GetValueOrDefault(stock.Symbol),
+                false))
             .Where(item => item.Quote?.ChangePercent is not null)
             .ToArray();
         var gainers = stocks
