@@ -71,7 +71,7 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
                 responseMimeType = "text/plain",
                 thinkingConfig = new
                 {
-                    thinkingLevel = "low"
+                    thinkingLevel = "minimal"
                 }
             }
         });

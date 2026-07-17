@@ -2,7 +2,9 @@
 
 ## Status
 
-blocked — 2026-07-17 (UI task rev 10 — Phase 5 implemented; live AI/deploy verification blocked by external configuration)
+in-progress — 2026-07-17 (UI task rev 12 — final Phase 5 live verification underway)
+
+> **Blocker resolution (planner, 2026-07-17):** (1) Local `Ai:ApiKey` user-secret was stale after the user rotated the Gemini key — updated to the new key and verified directly against `gemini-3.5-flash` (successful response). (2) Render was mid-deploy when checked; the live site now serves the latest `main` (Phase 1 theme markers AND the Phase 5 AI meta line are present on https://borsa-analiz-aqr9.onrender.com). Remaining work for the next run: live AKSA.IS/AAPL AI commentary checks (complete sectioned output, no truncation across 3 tries) locally; production AI check needs an authenticated browser session — if not feasible, verify locally and note that Render's `Ai__ApiKey` env var must hold the rotated key (user entered it during blueprint setup). Then mark the plan `done`.
 
 ## Task Type
 
