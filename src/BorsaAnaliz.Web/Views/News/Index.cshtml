@@ -3,10 +3,20 @@
 @{
     ViewData["Title"] = "KAP Haberleri";
     var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
-    var pageTitle = Model.IsBuybacks ? "Pay Geri Alımları" : "Son KAP Bildirimleri";
-    var pageDescription = Model.IsBuybacks
-        ? "Şirketlerin son 14 gündeki pay geri alım bildirimlerini takip edin."
-        : "Şirketlerin son iki gündeki resmi açıklamalarını takip edin.";
+    var pageTitle = Model.ActiveTab switch
+    {
+        "geri-alimlar" => "Pay Geri Alımları",
+        "temettu" => "Temettü Bildirimleri",
+        "sermaye-artirimlari" => "Sermaye Artırımları",
+        _ => "Son KAP Bildirimleri"
+    };
+    var pageDescription = Model.ActiveTab switch
+    {
+        "geri-alimlar" => "Şirketlerin son 14 gündeki pay geri alım bildirimlerini takip edin.",
+        "temettu" => "Şirketlerin son 14 gündeki kâr payı dağıtım bildirimlerini takip edin.",
+        "sermaye-artirimlari" => "Şirketlerin son 14 gündeki sermaye artırımı ve azaltımı bildirimlerini takip edin.",
+        _ => "Şirketlerin son iki gündeki resmi açıklamalarını takip edin."
+    };
 }
 
 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
@@ -20,25 +30,41 @@
     </a>
 </div>
 
-<nav class="nav nav-pills gap-2 mb-4" aria-label="KAP bildirim türleri">
-    <a class="nav-link @(!Model.IsBuybacks ? "active" : string.Empty)"
+<nav class="kap-news-tabs nav nav-pills flex-nowrap gap-2 mb-4" aria-label="KAP bildirim türleri">
+    <a class="nav-link @(Model.IsAll ? "active" : string.Empty)"
        asp-action="Index"
-       aria-current="@(!Model.IsBuybacks ? "page" : null)">Tüm Bildirimler</a>
+       aria-current="@(Model.IsAll ? "page" : null)">Tüm Bildirimler</a>
     <a class="nav-link @(Model.IsBuybacks ? "active" : string.Empty)"
        asp-action="Index"
        asp-route-tab="geri-alimlar"
        aria-current="@(Model.IsBuybacks ? "page" : null)">Geri Alımlar</a>
+    <a class="nav-link @(Model.IsDividends ? "active" : string.Empty)"
+       asp-action="Index"
+       asp-route-tab="temettu"
+       aria-current="@(Model.IsDividends ? "page" : null)">Temettü</a>
+    <a class="nav-link @(Model.IsCapitalIncreases ? "active" : string.Empty)"
+       asp-action="Index"
+       asp-route-tab="sermaye-artirimlari"
+       aria-current="@(Model.IsCapitalIncreases ? "page" : null)">Sermaye Artırımları</a>
 </nav>
 
 @if (Model.Disclosures.Count == 0)
 {
-    @if (Model.IsBuybacks)
+    @if (Model.IsAll)
+    {
+        <div class="alert alert-warning">KAP bildirimlerine şu anda ulaşılamıyor.</div>
+    }
+    else if (Model.IsBuybacks)
     {
         <div class="alert alert-light border">Son 14 günde geri alım bildirimi bulunmuyor.</div>
     }
+    else if (Model.IsDividends)
+    {
+        <div class="alert alert-light border">Son 14 günde temettü bildirimi bulunmuyor.</div>
+    }
     else
     {
-        <div class="alert alert-warning">KAP bildirimlerine şu anda ulaşılamıyor.</div>
+        <div class="alert alert-light border">Son 14 günde sermaye artırımı bildirimi bulunmuyor.</div>
     }
 }
 else

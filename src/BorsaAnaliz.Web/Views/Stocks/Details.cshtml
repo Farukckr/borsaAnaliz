@@ -306,6 +306,14 @@
                                 {
                                     <span class="badge text-bg-primary">Geri Alım</span>
                                 }
+                                @if (disclosure.IsDividend)
+                                {
+                                    <span class="badge text-bg-success">Temettü</span>
+                                }
+                                @if (disclosure.IsCapitalIncrease)
+                                {
+                                    <span class="badge text-bg-warning">Sermaye Art.</span>
+                                }
                             </div>
                             <p class="kap-news-subject mb-0">@disclosure.Subject</p>
                         </div>

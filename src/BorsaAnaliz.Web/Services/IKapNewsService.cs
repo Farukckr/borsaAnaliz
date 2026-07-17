@@ -11,6 +11,14 @@ public interface IKapNewsService
         int days = 14,
         CancellationToken cancellationToken = default);
 
+    Task<IReadOnlyList<KapDisclosure>> GetDividendsAsync(
+        int days = 14,
+        CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<KapDisclosure>> GetCapitalIncreasesAsync(
+        int days = 14,
+        CancellationToken cancellationToken = default);
+
     Task<KapDisclosureResult> GetForSymbolAsync(
         string symbol,
         CancellationToken cancellationToken = default);

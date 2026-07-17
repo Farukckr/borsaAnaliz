@@ -574,6 +574,17 @@ a:focus-visible {
   box-shadow: var(--ba-shadow-sm);
 }
 
+.kap-news-tabs {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.kap-news-tabs .nav-link {
+  white-space: nowrap;
+}
+
 .kap-home-row,
 .kap-news-item {
   min-width: 0;

@@ -10,7 +10,7 @@ public sealed class KapNewsService : IKapNewsService
 {
     private const string CacheKey = "kap-disclosures:latest";
     private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(5);
-    private static readonly TimeSpan BuybackCacheDuration = TimeSpan.FromMinutes(15);
+    private static readonly TimeSpan EventCacheDuration = TimeSpan.FromMinutes(15);
     private static readonly TimeSpan SymbolCacheDuration = TimeSpan.FromMinutes(30);
     private static readonly TimeSpan IstanbulOffset = TimeSpan.FromHours(3);
 
@@ -66,10 +66,27 @@ public sealed class KapNewsService : IKapNewsService
 
     public async Task<IReadOnlyList<KapDisclosure>> GetBuybacksAsync(
         int days = 14,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default) =>
+        await GetEventsAsync(KapDisclosureEventKind.Buyback, days, cancellationToken);
+
+    public async Task<IReadOnlyList<KapDisclosure>> GetDividendsAsync(
+        int days = 14,
+        CancellationToken cancellationToken = default) =>
+        await GetEventsAsync(KapDisclosureEventKind.Dividend, days, cancellationToken);
+
+    public async Task<IReadOnlyList<KapDisclosure>> GetCapitalIncreasesAsync(
+        int days = 14,
+        CancellationToken cancellationToken = default) =>
+        await GetEventsAsync(KapDisclosureEventKind.CapitalIncrease, days, cancellationToken);
+
+    private async Task<IReadOnlyList<KapDisclosure>> GetEventsAsync(
+        KapDisclosureEventKind eventKind,
+        int days,
+        CancellationToken cancellationToken)
     {
         var safeDays = Math.Clamp(days, 1, 90);
-        var cacheKey = $"kap-disclosures:buybacks:{safeDays}";
+        var eventKey = eventKind.ToString().ToLowerInvariant();
+        var cacheKey = $"kap-disclosures:events:{eventKey}:{safeDays}";
         if (_cache.TryGetValue(cacheKey, out IReadOnlyList<KapDisclosure>? cached) &&
             cached is not null)
         {
@@ -79,11 +96,11 @@ public sealed class KapNewsService : IKapNewsService
         IReadOnlyList<KapDisclosure> disclosures;
         try
         {
-            disclosures = await FetchBuybacksAsync(safeDays, cancellationToken);
+            disclosures = await FetchEventsAsync(eventKind, safeDays, cancellationToken);
         }
         catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
         {
-            _logger.LogWarning("KAP geri alım bildirim isteği zaman aşımına uğradı.");
+            _logger.LogWarning("KAP {EventKind} bildirim isteği zaman aşımına uğradı.", eventKind);
             disclosures = [];
         }
         catch (OperationCanceledException)
@@ -92,11 +109,14 @@ public sealed class KapNewsService : IKapNewsService
         }
         catch (Exception exception)
         {
-            _logger.LogWarning(exception, "KAP geri alım bildirimleri alınamadı veya ayrıştırılamadı.");
+            _logger.LogWarning(
+                exception,
+                "KAP {EventKind} bildirimleri alınamadı veya ayrıştırılamadı.",
+                eventKind);
             disclosures = [];
         }
 
-        _cache.Set(cacheKey, disclosures, BuybackCacheDuration);
+        _cache.Set(cacheKey, disclosures, EventCacheDuration);
         return disclosures;
     }
 
@@ -157,40 +177,53 @@ public sealed class KapNewsService : IKapNewsService
             cancellationToken);
     }
 
-    private async Task<IReadOnlyList<KapDisclosure>> FetchBuybacksAsync(
+    private async Task<IReadOnlyList<KapDisclosure>> FetchEventsAsync(
+        KapDisclosureEventKind eventKind,
         int days,
         CancellationToken cancellationToken)
     {
-        var today = DateOnly.FromDateTime(DateTimeOffset.UtcNow.ToOffset(IstanbulOffset).Date);
-        var firstDay = today.AddDays(-(days - 1));
-        var requests = new List<Task<IReadOnlyList<KapDisclosure>>>();
-        for (var windowStart = firstDay; windowStart <= today; windowStart = windowStart.AddDays(3))
+        var sourceCacheKey = $"kap-disclosures:events:source:{days}";
+        if (!_cache.TryGetValue(
+                sourceCacheKey,
+                out IReadOnlyList<KapDisclosure>? allDisclosures) ||
+            allDisclosures is null)
         {
-            var windowEnd = windowStart.AddDays(2);
-            if (windowEnd > today)
+            var today = DateOnly.FromDateTime(DateTimeOffset.UtcNow.ToOffset(IstanbulOffset).Date);
+            var firstDay = today.AddDays(-(days - 1));
+            var requests = new List<Task<IReadOnlyList<KapDisclosure>>>();
+            for (var windowStart = firstDay; windowStart <= today; windowStart = windowStart.AddDays(3))
             {
-                windowEnd = today;
+                var windowEnd = windowStart.AddDays(2);
+                if (windowEnd > today)
+                {
+                    windowEnd = today;
+                }
+
+                requests.Add(FetchRangeAsync(
+                    windowStart,
+                    windowEnd,
+                    int.MaxValue,
+                    null,
+                    cancellationToken));
             }
 
-            requests.Add(FetchRangeAsync(
-                windowStart,
-                windowEnd,
-                int.MaxValue,
-                null,
-                cancellationToken));
+            var windows = await Task.WhenAll(requests);
+            allDisclosures = windows
+                .SelectMany(disclosures => disclosures)
+                .DistinctBy(disclosure => disclosure.Id)
+                .OrderByDescending(disclosure => disclosure.PublishedAt)
+                .ToArray();
+            _cache.Set(sourceCacheKey, allDisclosures, EventCacheDuration);
         }
 
-        var windows = await Task.WhenAll(requests);
-        var result = windows
-            .SelectMany(disclosures => disclosures)
-            .Where(disclosure => disclosure.IsBuyback)
-            .DistinctBy(disclosure => disclosure.Id)
-            .OrderByDescending(disclosure => disclosure.PublishedAt)
+        var result = allDisclosures
+            .Where(disclosure => disclosure.IsEvent(eventKind))
             .ToArray();
         _logger.LogInformation(
-            "KAP üzerinden son {Days} gün için {Count} geri alım bildirimi alındı.",
+            "KAP üzerinden son {Days} gün için {Count} {EventKind} bildirimi alındı.",
             days,
-            result.Length);
+            result.Length,
+            eventKind);
         return result;
     }
 

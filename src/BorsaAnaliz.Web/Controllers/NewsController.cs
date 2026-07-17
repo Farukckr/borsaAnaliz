@@ -16,12 +16,20 @@ public sealed class NewsController : Controller
     [HttpGet("/Haberler")]
     public async Task<IActionResult> Index(string? tab, CancellationToken cancellationToken)
     {
-        var activeTab = tab?.Equals("geri-alimlar", StringComparison.OrdinalIgnoreCase) == true
-            ? "geri-alimlar"
-            : "tum";
-        var disclosures = activeTab == "geri-alimlar"
-            ? await _kapNews.GetBuybacksAsync(cancellationToken: cancellationToken)
-            : await _kapNews.GetLatestAsync(cancellationToken);
+        var activeTab = tab?.Trim().ToLowerInvariant() switch
+        {
+            "geri-alimlar" => "geri-alimlar",
+            "temettu" => "temettu",
+            "sermaye-artirimlari" => "sermaye-artirimlari",
+            _ => "tum"
+        };
+        var disclosures = activeTab switch
+        {
+            "geri-alimlar" => await _kapNews.GetBuybacksAsync(cancellationToken: cancellationToken),
+            "temettu" => await _kapNews.GetDividendsAsync(cancellationToken: cancellationToken),
+            "sermaye-artirimlari" => await _kapNews.GetCapitalIncreasesAsync(cancellationToken: cancellationToken),
+            _ => await _kapNews.GetLatestAsync(cancellationToken)
+        };
         return View(new NewsIndexViewModel(activeTab, disclosures));
     }
 }
