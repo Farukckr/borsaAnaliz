@@ -11,5 +11,9 @@ public sealed record KapDisclosure(
     string Subject,
     string? Summary)
 {
+    public const string BuybackSubject = "Payların Geri Alınmasına İlişkin Bildirim";
+
+    public bool IsBuyback => Subject.Equals(BuybackSubject, StringComparison.OrdinalIgnoreCase);
+
     public string SourceUrl => $"https://www.kap.org.tr/tr/Bildirim/{Id}";
 }

@@ -1,24 +1,45 @@
 @using System.Globalization
-@model IReadOnlyList<KapDisclosure>
+@model NewsIndexViewModel
 @{
     ViewData["Title"] = "KAP Haberleri";
     var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
+    var pageTitle = Model.IsBuybacks ? "Pay Geri Alımları" : "Son KAP Bildirimleri";
+    var pageDescription = Model.IsBuybacks
+        ? "Şirketlerin son 14 gündeki pay geri alım bildirimlerini takip edin."
+        : "Şirketlerin son iki gündeki resmi açıklamalarını takip edin.";
 }
 
 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
     <div>
         <div class="section-kicker">Kamuyu Aydınlatma Platformu</div>
-        <h1 class="mb-1">Son KAP Bildirimleri</h1>
-        <p class="text-muted mb-0">Şirketlerin son iki gündeki resmi açıklamalarını takip edin.</p>
+        <h1 class="mb-1">@pageTitle</h1>
+        <p class="text-muted mb-0">@pageDescription</p>
     </div>
     <a class="btn btn-sm btn-outline-primary" href="https://www.kap.org.tr/tr" target="_blank" rel="noopener noreferrer">
         KAP'a git <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
     </a>
 </div>
 
-@if (Model.Count == 0)
+<nav class="nav nav-pills gap-2 mb-4" aria-label="KAP bildirim türleri">
+    <a class="nav-link @(!Model.IsBuybacks ? "active" : string.Empty)"
+       asp-action="Index"
+       aria-current="@(!Model.IsBuybacks ? "page" : null)">Tüm Bildirimler</a>
+    <a class="nav-link @(Model.IsBuybacks ? "active" : string.Empty)"
+       asp-action="Index"
+       asp-route-tab="geri-alimlar"
+       aria-current="@(Model.IsBuybacks ? "page" : null)">Geri Alımlar</a>
+</nav>
+
+@if (Model.Disclosures.Count == 0)
 {
-    <div class="alert alert-warning">KAP bildirimlerine şu anda ulaşılamıyor.</div>
+    @if (Model.IsBuybacks)
+    {
+        <div class="alert alert-light border">Son 14 günde geri alım bildirimi bulunmuyor.</div>
+    }
+    else
+    {
+        <div class="alert alert-warning">KAP bildirimlerine şu anda ulaşılamıyor.</div>
+    }
 }
 else
 {
@@ -30,7 +51,7 @@ else
     </div>
 
     <div class="kap-news-list" id="kapNewsList">
-        @foreach (var disclosure in Model)
+        @foreach (var disclosure in Model.Disclosures)
         {
             var searchText = $"{disclosure.CompanyName} {string.Join(' ', disclosure.StockCodes)} {disclosure.Category} {disclosure.Type} {disclosure.Subject} {disclosure.Summary}";
             <article class="kap-news-item" data-news-item data-search="@searchText">

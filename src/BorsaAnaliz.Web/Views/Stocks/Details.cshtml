@@ -296,7 +296,13 @@
                             <span>@disclosure.PublishedAt.ToString("HH:mm")</span>
                         </div>
                         <div class="kap-news-content min-w-0">
-                            <div class="mb-2"><span class="kap-category-badge">@disclosure.Category</span></div>
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <span class="kap-category-badge">@disclosure.Category</span>
+                                @if (disclosure.IsBuyback)
+                                {
+                                    <span class="badge text-bg-primary">Geri Alım</span>
+                                }
+                            </div>
                             <p class="kap-news-subject mb-0">@disclosure.Subject</p>
                         </div>
                         <a class="kap-source-link" href="@disclosure.SourceUrl" target="_blank" rel="noopener noreferrer" aria-label="KAP bildirimini yeni sekmede aç">

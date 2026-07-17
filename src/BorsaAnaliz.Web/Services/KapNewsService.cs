@@ -10,6 +10,7 @@ public sealed class KapNewsService : IKapNewsService
 {
     private const string CacheKey = "kap-disclosures:latest";
     private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(5);
+    private static readonly TimeSpan BuybackCacheDuration = TimeSpan.FromMinutes(15);
     private static readonly TimeSpan SymbolCacheDuration = TimeSpan.FromMinutes(30);
     private static readonly TimeSpan IstanbulOffset = TimeSpan.FromHours(3);
 
@@ -63,6 +64,42 @@ public sealed class KapNewsService : IKapNewsService
         return disclosures;
     }
 
+    public async Task<IReadOnlyList<KapDisclosure>> GetBuybacksAsync(
+        int days = 14,
+        CancellationToken cancellationToken = default)
+    {
+        var safeDays = Math.Clamp(days, 1, 90);
+        var cacheKey = $"kap-disclosures:buybacks:{safeDays}";
+        if (_cache.TryGetValue(cacheKey, out IReadOnlyList<KapDisclosure>? cached) &&
+            cached is not null)
+        {
+            return cached;
+        }
+
+        IReadOnlyList<KapDisclosure> disclosures;
+        try
+        {
+            disclosures = await FetchBuybacksAsync(safeDays, cancellationToken);
+        }
+        catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
+        {
+            _logger.LogWarning("KAP geri alım bildirim isteği zaman aşımına uğradı.");
+            disclosures = [];
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception exception)
+        {
+            _logger.LogWarning(exception, "KAP geri alım bildirimleri alınamadı veya ayrıştırılamadı.");
+            disclosures = [];
+        }
+
+        _cache.Set(cacheKey, disclosures, BuybackCacheDuration);
+        return disclosures;
+    }
+
     public async Task<KapDisclosureResult> GetForSymbolAsync(
         string symbol,
         CancellationToken cancellationToken = default)
@@ -112,10 +149,62 @@ public sealed class KapNewsService : IKapNewsService
         CancellationToken cancellationToken)
     {
         var today = DateOnly.FromDateTime(DateTimeOffset.UtcNow.ToOffset(IstanbulOffset).Date);
+        return await FetchRangeAsync(
+            today.AddDays(-lookbackDays),
+            today,
+            limit,
+            stockCode,
+            cancellationToken);
+    }
+
+    private async Task<IReadOnlyList<KapDisclosure>> FetchBuybacksAsync(
+        int days,
+        CancellationToken cancellationToken)
+    {
+        var today = DateOnly.FromDateTime(DateTimeOffset.UtcNow.ToOffset(IstanbulOffset).Date);
+        var firstDay = today.AddDays(-(days - 1));
+        var requests = new List<Task<IReadOnlyList<KapDisclosure>>>();
+        for (var windowStart = firstDay; windowStart <= today; windowStart = windowStart.AddDays(3))
+        {
+            var windowEnd = windowStart.AddDays(2);
+            if (windowEnd > today)
+            {
+                windowEnd = today;
+            }
+
+            requests.Add(FetchRangeAsync(
+                windowStart,
+                windowEnd,
+                int.MaxValue,
+                null,
+                cancellationToken));
+        }
+
+        var windows = await Task.WhenAll(requests);
+        var result = windows
+            .SelectMany(disclosures => disclosures)
+            .Where(disclosure => disclosure.IsBuyback)
+            .DistinctBy(disclosure => disclosure.Id)
+            .OrderByDescending(disclosure => disclosure.PublishedAt)
+            .ToArray();
+        _logger.LogInformation(
+            "KAP üzerinden son {Days} gün için {Count} geri alım bildirimi alındı.",
+            days,
+            result.Length);
+        return result;
+    }
+
+    private async Task<IReadOnlyList<KapDisclosure>> FetchRangeAsync(
+        DateOnly fromDate,
+        DateOnly toDate,
+        int limit,
+        string? stockCode,
+        CancellationToken cancellationToken)
+    {
         var payload = new
         {
-            fromDate = today.AddDays(-lookbackDays).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
-            toDate = today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+            fromDate = fromDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+            toDate = toDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
             memberType = string.Empty,
             mkkMemberOidList = Array.Empty<string>(),
             inactiveMkkMemberOidList = Array.Empty<string>(),

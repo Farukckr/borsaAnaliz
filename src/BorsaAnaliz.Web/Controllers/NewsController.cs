@@ -1,4 +1,5 @@
 using BorsaAnaliz.Web.Services;
+using BorsaAnaliz.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BorsaAnaliz.Web.Controllers;
@@ -13,9 +14,14 @@ public sealed class NewsController : Controller
     }
 
     [HttpGet("/Haberler")]
-    public async Task<IActionResult> Index(CancellationToken cancellationToken)
+    public async Task<IActionResult> Index(string? tab, CancellationToken cancellationToken)
     {
-        var disclosures = await _kapNews.GetLatestAsync(cancellationToken);
-        return View(disclosures);
+        var activeTab = tab?.Equals("geri-alimlar", StringComparison.OrdinalIgnoreCase) == true
+            ? "geri-alimlar"
+            : "tum";
+        var disclosures = activeTab == "geri-alimlar"
+            ? await _kapNews.GetBuybacksAsync(cancellationToken: cancellationToken)
+            : await _kapNews.GetLatestAsync(cancellationToken);
+        return View(new NewsIndexViewModel(activeTab, disclosures));
     }
 }
