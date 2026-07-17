@@ -32,7 +32,12 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
-        var symbols = await _stockCatalog.GetSymbolsAsync(cancellationToken);
+        var xu100 = await _stockCatalog.GetByIndexAsync("XU100", cancellationToken);
+        var us = await _stockCatalog.GetByMarketAsync("US", cancellationToken);
+        var symbols = xu100
+            .Concat(us)
+            .DistinctBy(stock => stock.Symbol, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         var requestedSymbols = symbols
             .Select(stock => stock.Symbol)
             .Concat(MarketSnapshots.Select(snapshot => snapshot.Symbol));

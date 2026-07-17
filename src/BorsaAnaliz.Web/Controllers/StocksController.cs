@@ -40,19 +40,47 @@ public sealed class StocksController : Controller
         _cache = cache;
     }
 
-    public async Task<IActionResult> Index(CancellationToken cancellationToken)
+    public async Task<IActionResult> Index(
+        [FromQuery] string? list = "xu100",
+        [FromQuery] int page = 1,
+        CancellationToken cancellationToken = default)
     {
-        var symbols = await _stockCatalog.GetSymbolsAsync(cancellationToken);
+        const int pageSize = 50;
+        var activeList = list?.Trim().ToLowerInvariant() switch
+        {
+            "xu500" => "xu500",
+            "us" => "us",
+            _ => "xu100"
+        };
+        var symbols = activeList switch
+        {
+            "xu500" => await _stockCatalog.GetByIndexAsync("XU500", cancellationToken),
+            "us" => await _stockCatalog.GetByMarketAsync("US", cancellationToken),
+            _ => await _stockCatalog.GetByIndexAsync("XU100", cancellationToken)
+        };
+        var totalCount = symbols.Count;
+        var totalPages = activeList == "xu500"
+            ? Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize))
+            : 1;
+        var currentPage = Math.Clamp(page, 1, totalPages);
+        var visibleSymbols = activeList == "xu500"
+            ? symbols.Skip((currentPage - 1) * pageSize).Take(pageSize).ToArray()
+            : symbols;
         var quotes = await _marketData.GetQuotesAsync(
-            symbols.Select(stock => stock.Symbol),
+            visibleSymbols.Select(stock => stock.Symbol),
             cancellationToken);
-        var stocks = symbols
+        var stocks = visibleSymbols
             .Select(stock => new StockListItemViewModel(
                 stock,
                 quotes.GetValueOrDefault(stock.Symbol)))
             .ToArray();
 
-        return View(new StocksIndexViewModel(stocks));
+        return View(new StocksIndexViewModel(
+            stocks,
+            activeList,
+            currentPage,
+            totalPages,
+            totalCount));
     }
 
     [HttpGet("/Stocks/Details/{symbol}")]

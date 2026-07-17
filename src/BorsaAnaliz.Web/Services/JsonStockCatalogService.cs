@@ -18,6 +18,27 @@ public sealed class JsonStockCatalogService : IStockCatalogService
         return await _symbols.Value.WaitAsync(cancellationToken);
     }
 
+    public async Task<IReadOnlyList<StockSymbol>> GetByIndexAsync(
+        string indexCode,
+        CancellationToken cancellationToken = default)
+    {
+        var symbols = await GetSymbolsAsync(cancellationToken);
+        return symbols
+            .Where(stock => stock.Indices.Any(index =>
+                index.Equals(indexCode, StringComparison.OrdinalIgnoreCase)))
+            .ToArray();
+    }
+
+    public async Task<IReadOnlyList<StockSymbol>> GetByMarketAsync(
+        string market,
+        CancellationToken cancellationToken = default)
+    {
+        var symbols = await GetSymbolsAsync(cancellationToken);
+        return symbols
+            .Where(stock => stock.Market.Equals(market, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+    }
+
     private static async Task<IReadOnlyList<StockSymbol>> LoadAsync(
         string path,
         ILogger<JsonStockCatalogService> logger)

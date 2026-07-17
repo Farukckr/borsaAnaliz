@@ -1,902 +1,4902 @@
 [
-  {
-    "symbol": "AEFES.IS",
-    "tvSymbol": "BIST:AEFES",
-    "name": "ANADOLU EFES",
-    "market": "BIST"
-  },
-  {
-    "symbol": "AKBNK.IS",
-    "tvSymbol": "BIST:AKBNK",
-    "name": "AKBANK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "AKSA.IS",
-    "tvSymbol": "BIST:AKSA",
-    "name": "AKSA",
-    "market": "BIST"
-  },
-  {
-    "symbol": "AKSEN.IS",
-    "tvSymbol": "BIST:AKSEN",
-    "name": "AKSA ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ALARK.IS",
-    "tvSymbol": "BIST:ALARK",
-    "name": "ALARKO HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ALTNY.IS",
-    "tvSymbol": "BIST:ALTNY",
-    "name": "ALTINAY SAVUNMA",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ANSGR.IS",
-    "tvSymbol": "BIST:ANSGR",
-    "name": "ANADOLU SIGORTA",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ARCLK.IS",
-    "tvSymbol": "BIST:ARCLK",
-    "name": "ARCELIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ASELS.IS",
-    "tvSymbol": "BIST:ASELS",
-    "name": "ASELSAN",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ASTOR.IS",
-    "tvSymbol": "BIST:ASTOR",
-    "name": "ASTOR ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BALSU.IS",
-    "tvSymbol": "BIST:BALSU",
-    "name": "BALSU GIDA",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BERA.IS",
-    "tvSymbol": "BIST:BERA",
-    "name": "BERA HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BIMAS.IS",
-    "tvSymbol": "BIST:BIMAS",
-    "name": "BIM MAGAZALAR",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BRSAN.IS",
-    "tvSymbol": "BIST:BRSAN",
-    "name": "BORUSAN BORU SANAYI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BRYAT.IS",
-    "tvSymbol": "BIST:BRYAT",
-    "name": "BORUSAN YAT. PAZ.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BSOKE.IS",
-    "tvSymbol": "BIST:BSOKE",
-    "name": "BATICIM CIMENTO",
-    "market": "BIST"
-  },
-  {
-    "symbol": "BTCIM.IS",
-    "tvSymbol": "BIST:BTCIM",
-    "name": "BATICIM BATI ANADOLU",
-    "market": "BIST"
-  },
-  {
-    "symbol": "CANTE.IS",
-    "tvSymbol": "BIST:CANTE",
-    "name": "CAN2 TERMIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "CCOLA.IS",
-    "tvSymbol": "BIST:CCOLA",
-    "name": "COCA COLA ICECEK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "CIMSA.IS",
-    "tvSymbol": "BIST:CIMSA",
-    "name": "CIMSA",
-    "market": "BIST"
-  },
-  {
-    "symbol": "CVKMD.IS",
-    "tvSymbol": "BIST:CVKMD",
-    "name": "CVK MADEN",
-    "market": "BIST"
-  },
-  {
-    "symbol": "CWENE.IS",
-    "tvSymbol": "BIST:CWENE",
-    "name": "CW ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "DAPGM.IS",
-    "tvSymbol": "BIST:DAPGM",
-    "name": "DAP GAYRIMENKUL",
-    "market": "BIST"
-  },
-  {
-    "symbol": "DOAS.IS",
-    "tvSymbol": "BIST:DOAS",
-    "name": "DOGUS OTOMOTIV",
-    "market": "BIST"
-  },
-  {
-    "symbol": "DOHOL.IS",
-    "tvSymbol": "BIST:DOHOL",
-    "name": "DOGAN HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "DSTKF.IS",
-    "tvSymbol": "BIST:DSTKF",
-    "name": "DESTEK FINANS FAKTORING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ECILC.IS",
-    "tvSymbol": "BIST:ECILC",
-    "name": "ECZACIBASI ILAC",
-    "market": "BIST"
-  },
-  {
-    "symbol": "EFOR.IS",
-    "tvSymbol": "BIST:EFOR",
-    "name": "EFOR YATIRIM",
-    "market": "BIST"
-  },
-  {
-    "symbol": "EKGYO.IS",
-    "tvSymbol": "BIST:EKGYO",
-    "name": "EMLAK KONUT GMYO",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ENERY.IS",
-    "tvSymbol": "BIST:ENERY",
-    "name": "ENERYA ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ENJSA.IS",
-    "tvSymbol": "BIST:ENJSA",
-    "name": "ENERJISA ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ENKAI.IS",
-    "tvSymbol": "BIST:ENKAI",
-    "name": "ENKA INSAAT",
-    "market": "BIST"
-  },
-  {
-    "symbol": "EREGL.IS",
-    "tvSymbol": "BIST:EREGL",
-    "name": "EREGLI DEMIR CELIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ESEN.IS",
-    "tvSymbol": "BIST:ESEN",
-    "name": "ESENBOGA ELEKTRIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "EUPWR.IS",
-    "tvSymbol": "BIST:EUPWR",
-    "name": "EUROPOWER ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "EUREN.IS",
-    "tvSymbol": "BIST:EUREN",
-    "name": "EUROPEN ENDUSTRI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "FENER.IS",
-    "tvSymbol": "BIST:FENER",
-    "name": "FENERBAHCE FUTBOL",
-    "market": "BIST"
-  },
-  {
-    "symbol": "FROTO.IS",
-    "tvSymbol": "BIST:FROTO",
-    "name": "FORD OTOSAN",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GARAN.IS",
-    "tvSymbol": "BIST:GARAN",
-    "name": "GARANTI BANKASI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GENIL.IS",
-    "tvSymbol": "BIST:GENIL",
-    "name": "GEN ILAC",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GESAN.IS",
-    "tvSymbol": "BIST:GESAN",
-    "name": "GIRISIM ELEKTRIK SANAYI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GLRMK.IS",
-    "tvSymbol": "BIST:GLRMK",
-    "name": "GULERMAK AGIR SANAYI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GRSEL.IS",
-    "tvSymbol": "BIST:GRSEL",
-    "name": "GUR-SEL TURIZM TASIMACILIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GRTHO.IS",
-    "tvSymbol": "BIST:GRTHO",
-    "name": "GRAINTURK HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GSRAY.IS",
-    "tvSymbol": "BIST:GSRAY",
-    "name": "GALATASARAY SPORTIF",
-    "market": "BIST"
-  },
-  {
-    "symbol": "GUBRF.IS",
-    "tvSymbol": "BIST:GUBRF",
-    "name": "GUBRE FABRIK.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "HALKB.IS",
-    "tvSymbol": "BIST:HALKB",
-    "name": "T. HALK BANKASI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "HEKTS.IS",
-    "tvSymbol": "BIST:HEKTS",
-    "name": "HEKTAS",
-    "market": "BIST"
-  },
-  {
-    "symbol": "IEYHO.IS",
-    "tvSymbol": "BIST:IEYHO",
-    "name": "ISIKLAR ENERJI YAPI HOL.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ISCTR.IS",
-    "tvSymbol": "BIST:ISCTR",
-    "name": "IS BANKASI (C)",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ISMEN.IS",
-    "tvSymbol": "BIST:ISMEN",
-    "name": "IS Y. MEN. DEG.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "IZENR.IS",
-    "tvSymbol": "BIST:IZENR",
-    "name": "IZDEMIR ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "KCHOL.IS",
-    "tvSymbol": "BIST:KCHOL",
-    "name": "KOC HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "KLRHO.IS",
-    "tvSymbol": "BIST:KLRHO",
-    "name": "KILER HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "KRDMD.IS",
-    "tvSymbol": "BIST:KRDMD",
-    "name": "KARDEMIR (D)",
-    "market": "BIST"
-  },
-  {
-    "symbol": "KTLEV.IS",
-    "tvSymbol": "BIST:KTLEV",
-    "name": "KATILIMEVIM TAS. FIN.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "KUYAS.IS",
-    "tvSymbol": "BIST:KUYAS",
-    "name": "KUYAS YATIRIM",
-    "market": "BIST"
-  },
-  {
-    "symbol": "MAGEN.IS",
-    "tvSymbol": "BIST:MAGEN",
-    "name": "MARGUN ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "MAVI.IS",
-    "tvSymbol": "BIST:MAVI",
-    "name": "MAVI GIYIM",
-    "market": "BIST"
-  },
-  {
-    "symbol": "MGROS.IS",
-    "tvSymbol": "BIST:MGROS",
-    "name": "MIGROS TICARET",
-    "market": "BIST"
-  },
-  {
-    "symbol": "MIATK.IS",
-    "tvSymbol": "BIST:MIATK",
-    "name": "MIA TEKNOLOJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "MPARK.IS",
-    "tvSymbol": "BIST:MPARK",
-    "name": "MLP SAGLIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "OBAMS.IS",
-    "tvSymbol": "BIST:OBAMS",
-    "name": "OBA MAKARNACILIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ODAS.IS",
-    "tvSymbol": "BIST:ODAS",
-    "name": "ODAS ELEKTRIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ODINE.IS",
-    "tvSymbol": "BIST:ODINE",
-    "name": "ODINE TEKNOLOJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "OTKAR.IS",
-    "tvSymbol": "BIST:OTKAR",
-    "name": "OTOKAR",
-    "market": "BIST"
-  },
-  {
-    "symbol": "OYAKC.IS",
-    "tvSymbol": "BIST:OYAKC",
-    "name": "OYAK CIMENTO",
-    "market": "BIST"
-  },
-  {
-    "symbol": "PAHOL.IS",
-    "tvSymbol": "BIST:PAHOL",
-    "name": "PASIFIK HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "PASEU.IS",
-    "tvSymbol": "BIST:PASEU",
-    "name": "PASIFIK EURASIA LOJISTIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "PATEK.IS",
-    "tvSymbol": "BIST:PATEK",
-    "name": "PASIFIK TEKNOLOJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "PETKM.IS",
-    "tvSymbol": "BIST:PETKM",
-    "name": "PETKIM",
-    "market": "BIST"
-  },
-  {
-    "symbol": "PGSUS.IS",
-    "tvSymbol": "BIST:PGSUS",
-    "name": "PEGASUS",
-    "market": "BIST"
-  },
-  {
-    "symbol": "PSGYO.IS",
-    "tvSymbol": "BIST:PSGYO",
-    "name": "PASIFIK GMYO",
-    "market": "BIST"
-  },
-  {
-    "symbol": "QUAGR.IS",
-    "tvSymbol": "BIST:QUAGR",
-    "name": "QUA GRANITE HAYAL YAPI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "RALYH.IS",
-    "tvSymbol": "BIST:RALYH",
-    "name": "RAL YATIRIM HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "REEDR.IS",
-    "tvSymbol": "BIST:REEDR",
-    "name": "REEDER TEKNOLOJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "SAHOL.IS",
-    "tvSymbol": "BIST:SAHOL",
-    "name": "SABANCI HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "SARKY.IS",
-    "tvSymbol": "BIST:SARKY",
-    "name": "SARKUYSAN",
-    "market": "BIST"
-  },
-  {
-    "symbol": "SASA.IS",
-    "tvSymbol": "BIST:SASA",
-    "name": "SASA POLYESTER",
-    "market": "BIST"
-  },
-  {
-    "symbol": "SISE.IS",
-    "tvSymbol": "BIST:SISE",
-    "name": "SISE CAM",
-    "market": "BIST"
-  },
-  {
-    "symbol": "SKBNK.IS",
-    "tvSymbol": "BIST:SKBNK",
-    "name": "SEKERBANK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "SOKM.IS",
-    "tvSymbol": "BIST:SOKM",
-    "name": "SOK MARKETLER TICARET",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TAVHL.IS",
-    "tvSymbol": "BIST:TAVHL",
-    "name": "TAV HAVALIMANLARI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TCELL.IS",
-    "tvSymbol": "BIST:TCELL",
-    "name": "TURKCELL",
-    "market": "BIST"
-  },
-  {
-    "symbol": "THYAO.IS",
-    "tvSymbol": "BIST:THYAO",
-    "name": "TURK HAVA YOLLARI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TKFEN.IS",
-    "tvSymbol": "BIST:TKFEN",
-    "name": "TEKFEN HOLDING",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TOASO.IS",
-    "tvSymbol": "BIST:TOASO",
-    "name": "TOFAS OTO. FAB.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TRALT.IS",
-    "tvSymbol": "BIST:TRALT",
-    "name": "TURK ALTIN ISLETMELERI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TRENJ.IS",
-    "tvSymbol": "BIST:TRENJ",
-    "name": "TR DOGAL ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TRMET.IS",
-    "tvSymbol": "BIST:TRMET",
-    "name": "TR ANADOLU METAL MADENCILIK",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TSKB.IS",
-    "tvSymbol": "BIST:TSKB",
-    "name": "T.S.K.B.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TTKOM.IS",
-    "tvSymbol": "BIST:TTKOM",
-    "name": "TURK TELEKOM",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TUKAS.IS",
-    "tvSymbol": "BIST:TUKAS",
-    "name": "TUKAS",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TUPRS.IS",
-    "tvSymbol": "BIST:TUPRS",
-    "name": "TUPRAS",
-    "market": "BIST"
-  },
-  {
-    "symbol": "TURSG.IS",
-    "tvSymbol": "BIST:TURSG",
-    "name": "TURKIYE SIGORTA",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ULKER.IS",
-    "tvSymbol": "BIST:ULKER",
-    "name": "ULKER BISKUVI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "VAKBN.IS",
-    "tvSymbol": "BIST:VAKBN",
-    "name": "VAKIFLAR BANKASI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "VESTL.IS",
-    "tvSymbol": "BIST:VESTL",
-    "name": "VESTEL",
-    "market": "BIST"
-  },
-  {
-    "symbol": "YKBNK.IS",
-    "tvSymbol": "BIST:YKBNK",
-    "name": "YAPI VE KREDI BANK.",
-    "market": "BIST"
-  },
-  {
-    "symbol": "ZOREN.IS",
-    "tvSymbol": "BIST:ZOREN",
-    "name": "ZORLU ENERJI",
-    "market": "BIST"
-  },
-  {
-    "symbol": "AAPL",
-    "tvSymbol": "NASDAQ:AAPL",
-    "name": "Apple",
-    "market": "US"
-  },
-  {
-    "symbol": "MSFT",
-    "tvSymbol": "NASDAQ:MSFT",
-    "name": "Microsoft",
-    "market": "US"
-  },
-  {
-    "symbol": "NVDA",
-    "tvSymbol": "NASDAQ:NVDA",
-    "name": "NVIDIA",
-    "market": "US"
-  },
-  {
-    "symbol": "AMZN",
-    "tvSymbol": "NASDAQ:AMZN",
-    "name": "Amazon",
-    "market": "US"
-  },
-  {
-    "symbol": "GOOGL",
-    "tvSymbol": "NASDAQ:GOOGL",
-    "name": "Alphabet Class A",
-    "market": "US"
-  },
-  {
-    "symbol": "META",
-    "tvSymbol": "NASDAQ:META",
-    "name": "Meta Platforms",
-    "market": "US"
-  },
-  {
-    "symbol": "TSLA",
-    "tvSymbol": "NASDAQ:TSLA",
-    "name": "Tesla",
-    "market": "US"
-  },
-  {
-    "symbol": "AVGO",
-    "tvSymbol": "NASDAQ:AVGO",
-    "name": "Broadcom",
-    "market": "US"
-  },
-  {
-    "symbol": "COST",
-    "tvSymbol": "NASDAQ:COST",
-    "name": "Costco Wholesale",
-    "market": "US"
-  },
-  {
-    "symbol": "NFLX",
-    "tvSymbol": "NASDAQ:NFLX",
-    "name": "Netflix",
-    "market": "US"
-  },
-  {
-    "symbol": "AMD",
-    "tvSymbol": "NASDAQ:AMD",
-    "name": "Advanced Micro Devices",
-    "market": "US"
-  },
-  {
-    "symbol": "INTC",
-    "tvSymbol": "NASDAQ:INTC",
-    "name": "Intel",
-    "market": "US"
-  },
-  {
-    "symbol": "QCOM",
-    "tvSymbol": "NASDAQ:QCOM",
-    "name": "Qualcomm",
-    "market": "US"
-  },
-  {
-    "symbol": "ADBE",
-    "tvSymbol": "NASDAQ:ADBE",
-    "name": "Adobe",
-    "market": "US"
-  },
-  {
-    "symbol": "CSCO",
-    "tvSymbol": "NASDAQ:CSCO",
-    "name": "Cisco Systems",
-    "market": "US"
-  },
-  {
-    "symbol": "PEP",
-    "tvSymbol": "NASDAQ:PEP",
-    "name": "PepsiCo",
-    "market": "US"
-  },
-  {
-    "symbol": "AMGN",
-    "tvSymbol": "NASDAQ:AMGN",
-    "name": "Amgen",
-    "market": "US"
-  },
-  {
-    "symbol": "TXN",
-    "tvSymbol": "NASDAQ:TXN",
-    "name": "Texas Instruments",
-    "market": "US"
-  },
-  {
-    "symbol": "INTU",
-    "tvSymbol": "NASDAQ:INTU",
-    "name": "Intuit",
-    "market": "US"
-  },
-  {
-    "symbol": "AMAT",
-    "tvSymbol": "NASDAQ:AMAT",
-    "name": "Applied Materials",
-    "market": "US"
-  },
-  {
-    "symbol": "BKNG",
-    "tvSymbol": "NASDAQ:BKNG",
-    "name": "Booking Holdings",
-    "market": "US"
-  },
-  {
-    "symbol": "SBUX",
-    "tvSymbol": "NASDAQ:SBUX",
-    "name": "Starbucks",
-    "market": "US"
-  },
-  {
-    "symbol": "GILD",
-    "tvSymbol": "NASDAQ:GILD",
-    "name": "Gilead Sciences",
-    "market": "US"
-  },
-  {
-    "symbol": "ADP",
-    "tvSymbol": "NASDAQ:ADP",
-    "name": "Automatic Data Processing",
-    "market": "US"
-  },
-  {
-    "symbol": "MU",
-    "tvSymbol": "NASDAQ:MU",
-    "name": "Micron Technology",
-    "market": "US"
-  },
-  {
-    "symbol": "JPM",
-    "tvSymbol": "NYSE:JPM",
-    "name": "JPMorgan Chase",
-    "market": "US"
-  },
-  {
-    "symbol": "V",
-    "tvSymbol": "NYSE:V",
-    "name": "Visa",
-    "market": "US"
-  },
-  {
-    "symbol": "MA",
-    "tvSymbol": "NYSE:MA",
-    "name": "Mastercard",
-    "market": "US"
-  },
-  {
-    "symbol": "LLY",
-    "tvSymbol": "NYSE:LLY",
-    "name": "Eli Lilly",
-    "market": "US"
-  },
-  {
-    "symbol": "WMT",
-    "tvSymbol": "NYSE:WMT",
-    "name": "Walmart",
-    "market": "US"
-  },
-  {
-    "symbol": "XOM",
-    "tvSymbol": "NYSE:XOM",
-    "name": "Exxon Mobil",
-    "market": "US"
-  },
-  {
-    "symbol": "UNH",
-    "tvSymbol": "NYSE:UNH",
-    "name": "UnitedHealth Group",
-    "market": "US"
-  },
-  {
-    "symbol": "JNJ",
-    "tvSymbol": "NYSE:JNJ",
-    "name": "Johnson & Johnson",
-    "market": "US"
-  },
-  {
-    "symbol": "ORCL",
-    "tvSymbol": "NYSE:ORCL",
-    "name": "Oracle",
-    "market": "US"
-  },
-  {
-    "symbol": "HD",
-    "tvSymbol": "NYSE:HD",
-    "name": "Home Depot",
-    "market": "US"
-  },
-  {
-    "symbol": "PG",
-    "tvSymbol": "NYSE:PG",
-    "name": "Procter & Gamble",
-    "market": "US"
-  },
-  {
-    "symbol": "KO",
-    "tvSymbol": "NYSE:KO",
-    "name": "Coca-Cola",
-    "market": "US"
-  },
-  {
-    "symbol": "BAC",
-    "tvSymbol": "NYSE:BAC",
-    "name": "Bank of America",
-    "market": "US"
-  },
-  {
-    "symbol": "CRM",
-    "tvSymbol": "NYSE:CRM",
-    "name": "Salesforce",
-    "market": "US"
-  },
-  {
-    "symbol": "CVX",
-    "tvSymbol": "NYSE:CVX",
-    "name": "Chevron",
-    "market": "US"
-  },
-  {
-    "symbol": "ABBV",
-    "tvSymbol": "NYSE:ABBV",
-    "name": "AbbVie",
-    "market": "US"
-  },
-  {
-    "symbol": "MRK",
-    "tvSymbol": "NYSE:MRK",
-    "name": "Merck",
-    "market": "US"
-  },
-  {
-    "symbol": "DIS",
-    "tvSymbol": "NYSE:DIS",
-    "name": "Walt Disney",
-    "market": "US"
-  },
-  {
-    "symbol": "MCD",
-    "tvSymbol": "NYSE:MCD",
-    "name": "McDonald's",
-    "market": "US"
-  },
-  {
-    "symbol": "IBM",
-    "tvSymbol": "NYSE:IBM",
-    "name": "IBM",
-    "market": "US"
-  },
-  {
-    "symbol": "GE",
-    "tvSymbol": "NYSE:GE",
-    "name": "GE Aerospace",
-    "market": "US"
-  },
-  {
-    "symbol": "CAT",
-    "tvSymbol": "NYSE:CAT",
-    "name": "Caterpillar",
-    "market": "US"
-  },
-  {
-    "symbol": "NKE",
-    "tvSymbol": "NYSE:NKE",
-    "name": "Nike",
-    "market": "US"
-  },
-  {
-    "symbol": "UBER",
-    "tvSymbol": "NYSE:UBER",
-    "name": "Uber Technologies",
-    "market": "US"
-  },
-  {
-    "symbol": "BRK-B",
-    "tvSymbol": "NYSE:BRK.B",
-    "name": "Berkshire Hathaway Class B",
-    "market": "US"
-  }
+    {
+        "symbol":  "A1CAP.IS",
+        "tvSymbol":  "BIST:A1CAP",
+        "name":  "A1 CAPITAL YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "A1YEN.IS",
+        "tvSymbol":  "BIST:A1YEN",
+        "name":  "A1 YENILENEBILIR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AAGYO.IS",
+        "tvSymbol":  "BIST:AAGYO",
+        "name":  "AGAOGLU GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ADEL.IS",
+        "tvSymbol":  "BIST:ADEL",
+        "name":  "ADEL KALEMCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ADESE.IS",
+        "tvSymbol":  "BIST:ADESE",
+        "name":  "ADESE GAYRIMENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ADGYO.IS",
+        "tvSymbol":  "BIST:ADGYO",
+        "name":  "ADRA GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AEFES.IS",
+        "tvSymbol":  "BIST:AEFES",
+        "name":  "ANADOLU EFES",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AFYON.IS",
+        "tvSymbol":  "BIST:AFYON",
+        "name":  "AFYON CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AGESA.IS",
+        "tvSymbol":  "BIST:AGESA",
+        "name":  "AGESA HAYAT EMEKLILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AGHOL.IS",
+        "tvSymbol":  "BIST:AGHOL",
+        "name":  "ANADOLU GRUBU HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AGROT.IS",
+        "tvSymbol":  "BIST:AGROT",
+        "name":  "AGROTECH TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AHGAZ.IS",
+        "tvSymbol":  "BIST:AHGAZ",
+        "name":  "AHLATCI DOGALGAZ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AHSGY.IS",
+        "tvSymbol":  "BIST:AHSGY",
+        "name":  "AHES GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKBNK.IS",
+        "tvSymbol":  "BIST:AKBNK",
+        "name":  "AKBANK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKCNS.IS",
+        "tvSymbol":  "BIST:AKCNS",
+        "name":  "AKCANSA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKENR.IS",
+        "tvSymbol":  "BIST:AKENR",
+        "name":  "AKENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKFGY.IS",
+        "tvSymbol":  "BIST:AKFGY",
+        "name":  "AKFEN GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKFIS.IS",
+        "tvSymbol":  "BIST:AKFIS",
+        "name":  "AKFEN INSAAT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKFYE.IS",
+        "tvSymbol":  "BIST:AKFYE",
+        "name":  "AKFEN YEN. ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKGRT.IS",
+        "tvSymbol":  "BIST:AKGRT",
+        "name":  "AKSIGORTA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKHAN.IS",
+        "tvSymbol":  "BIST:AKHAN",
+        "name":  "AKHAN UN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKSA.IS",
+        "tvSymbol":  "BIST:AKSA",
+        "name":  "AKSA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKSEN.IS",
+        "tvSymbol":  "BIST:AKSEN",
+        "name":  "AKSA ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKSGY.IS",
+        "tvSymbol":  "BIST:AKSGY",
+        "name":  "AKIS GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AKSUE.IS",
+        "tvSymbol":  "BIST:AKSUE",
+        "name":  "AKSU ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALARK.IS",
+        "tvSymbol":  "BIST:ALARK",
+        "name":  "ALARKO HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALBRK.IS",
+        "tvSymbol":  "BIST:ALBRK",
+        "name":  "ALBARAKA TURK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALCAR.IS",
+        "tvSymbol":  "BIST:ALCAR",
+        "name":  "ALARKO CARRIER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALCTL.IS",
+        "tvSymbol":  "BIST:ALCTL",
+        "name":  "ALCATEL LUCENT TELETAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALFAS.IS",
+        "tvSymbol":  "BIST:ALFAS",
+        "name":  "ALFA SOLAR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALGYO.IS",
+        "tvSymbol":  "BIST:ALGYO",
+        "name":  "ALARKO GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALKA.IS",
+        "tvSymbol":  "BIST:ALKA",
+        "name":  "ALKIM KAGIT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALKIM.IS",
+        "tvSymbol":  "BIST:ALKIM",
+        "name":  "ALKIM KIMYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALKLC.IS",
+        "tvSymbol":  "BIST:ALKLC",
+        "name":  "ALTINKILIC GIDA VE SUT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALTNY.IS",
+        "tvSymbol":  "BIST:ALTNY",
+        "name":  "ALTINAY SAVUNMA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ALVES.IS",
+        "tvSymbol":  "BIST:ALVES",
+        "name":  "ALVES KABLO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ANELE.IS",
+        "tvSymbol":  "BIST:ANELE",
+        "name":  "ANEL ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ANGEN.IS",
+        "tvSymbol":  "BIST:ANGEN",
+        "name":  "ANATOLIA TANI VE BIYOTEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ANHYT.IS",
+        "tvSymbol":  "BIST:ANHYT",
+        "name":  "ANADOLU HAYAT EMEK.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ANSGR.IS",
+        "tvSymbol":  "BIST:ANSGR",
+        "name":  "ANADOLU SIGORTA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARASE.IS",
+        "tvSymbol":  "BIST:ARASE",
+        "name":  "DOGU ARAS ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARCLK.IS",
+        "tvSymbol":  "BIST:ARCLK",
+        "name":  "ARCELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARDYZ.IS",
+        "tvSymbol":  "BIST:ARDYZ",
+        "name":  "ARD BILISIM TEKNOLOJILERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARENA.IS",
+        "tvSymbol":  "BIST:ARENA",
+        "name":  "ARENA BILGISAYAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARFYE.IS",
+        "tvSymbol":  "BIST:ARFYE",
+        "name":  "ARF BIO YENILENEBILIR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARMGD.IS",
+        "tvSymbol":  "BIST:ARMGD",
+        "name":  "ARMADA GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARSAN.IS",
+        "tvSymbol":  "BIST:ARSAN",
+        "name":  "ARSAN HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARTMS.IS",
+        "tvSymbol":  "BIST:ARTMS",
+        "name":  "ARTEMIS HALI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ARZUM.IS",
+        "tvSymbol":  "BIST:ARZUM",
+        "name":  "ARZUM EV ALETLERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ASELS.IS",
+        "tvSymbol":  "BIST:ASELS",
+        "name":  "ASELSAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ASGYO.IS",
+        "tvSymbol":  "BIST:ASGYO",
+        "name":  "ASCE GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ASTOR.IS",
+        "tvSymbol":  "BIST:ASTOR",
+        "name":  "ASTOR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ASUZU.IS",
+        "tvSymbol":  "BIST:ASUZU",
+        "name":  "ANADOLU ISUZU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ATAKP.IS",
+        "tvSymbol":  "BIST:ATAKP",
+        "name":  "ATAKEY PATATES",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ATATP.IS",
+        "tvSymbol":  "BIST:ATATP",
+        "name":  "ATP YAZILIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ATATR.IS",
+        "tvSymbol":  "BIST:ATATR",
+        "name":  "ATA TURIZM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AVGYO.IS",
+        "tvSymbol":  "BIST:AVGYO",
+        "name":  "AVRASYA GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AVHOL.IS",
+        "tvSymbol":  "BIST:AVHOL",
+        "name":  "AVRUPA YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AVOD.IS",
+        "tvSymbol":  "BIST:AVOD",
+        "name":  "A.V.O.D GIDA VE TARIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AVPGY.IS",
+        "tvSymbol":  "BIST:AVPGY",
+        "name":  "AVRUPAKENT GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AYCES.IS",
+        "tvSymbol":  "BIST:AYCES",
+        "name":  "ALTINYUNUS CESME",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AYDEM.IS",
+        "tvSymbol":  "BIST:AYDEM",
+        "name":  "AYDEM ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AYEN.IS",
+        "tvSymbol":  "BIST:AYEN",
+        "name":  "AYEN ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AYGAZ.IS",
+        "tvSymbol":  "BIST:AYGAZ",
+        "name":  "AYGAZ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AZTEK.IS",
+        "tvSymbol":  "BIST:AZTEK",
+        "name":  "AZTEK TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BAGFS.IS",
+        "tvSymbol":  "BIST:BAGFS",
+        "name":  "BAGFAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BAHKM.IS",
+        "tvSymbol":  "BIST:BAHKM",
+        "name":  "BAHADIR KIMYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BALSU.IS",
+        "tvSymbol":  "BIST:BALSU",
+        "name":  "BALSU GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BANVT.IS",
+        "tvSymbol":  "BIST:BANVT",
+        "name":  "BANVIT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BARMA.IS",
+        "tvSymbol":  "BIST:BARMA",
+        "name":  "BAREM AMBALAJ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BASGZ.IS",
+        "tvSymbol":  "BIST:BASGZ",
+        "name":  "BASKENT DOGALGAZ GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BAYRK.IS",
+        "tvSymbol":  "BIST:BAYRK",
+        "name":  "BAYRAK TABAN SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BEGYO.IS",
+        "tvSymbol":  "BIST:BEGYO",
+        "name":  "BATI EGE GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BERA.IS",
+        "tvSymbol":  "BIST:BERA",
+        "name":  "BERA HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BESLR.IS",
+        "tvSymbol":  "BIST:BESLR",
+        "name":  "BESLER GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BESTE.IS",
+        "tvSymbol":  "BIST:BESTE",
+        "name":  "BEST BRANDS ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BEYAZ.IS",
+        "tvSymbol":  "BIST:BEYAZ",
+        "name":  "BEYAZ FILO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BFREN.IS",
+        "tvSymbol":  "BIST:BFREN",
+        "name":  "BOSCH FREN SISTEMLERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BIENY.IS",
+        "tvSymbol":  "BIST:BIENY",
+        "name":  "BIEN YAPI URUNLERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BIGCH.IS",
+        "tvSymbol":  "BIST:BIGCH",
+        "name":  "BUYUK SEFLER BIGCHEFS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BIGEN.IS",
+        "tvSymbol":  "BIST:BIGEN",
+        "name":  "BIRLESIM GRUP ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BIGTK.IS",
+        "tvSymbol":  "BIST:BIGTK",
+        "name":  "BIG MEDYA TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BIMAS.IS",
+        "tvSymbol":  "BIST:BIMAS",
+        "name":  "BIM MAGAZALAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BINBN.IS",
+        "tvSymbol":  "BIST:BINBN",
+        "name":  "BIN ULASIM TEKNOLOJILERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BINHO.IS",
+        "tvSymbol":  "BIST:BINHO",
+        "name":  "1000 YATIRIMLAR HOL.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BIOEN.IS",
+        "tvSymbol":  "BIST:BIOEN",
+        "name":  "BIOTREND CEVRE VE ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BJKAS.IS",
+        "tvSymbol":  "BIST:BJKAS",
+        "name":  "BESIKTAS FUTBOL YAT.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BLCYT.IS",
+        "tvSymbol":  "BIST:BLCYT",
+        "name":  "BILICI YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BLUME.IS",
+        "tvSymbol":  "BIST:BLUME",
+        "name":  "BLUME METAL KIMYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BMSCH.IS",
+        "tvSymbol":  "BIST:BMSCH",
+        "name":  "BMS CELIK HASIR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BMSTL.IS",
+        "tvSymbol":  "BIST:BMSTL",
+        "name":  "BMS BIRLESIK METAL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BNTAS.IS",
+        "tvSymbol":  "BIST:BNTAS",
+        "name":  "BANTAS AMBALAJ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BOBET.IS",
+        "tvSymbol":  "BIST:BOBET",
+        "name":  "BOGAZICI BETON SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BORLS.IS",
+        "tvSymbol":  "BIST:BORLS",
+        "name":  "BORLEASE OTOMOTIV",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BORSK.IS",
+        "tvSymbol":  "BIST:BORSK",
+        "name":  "BOR SEKER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BOSSA.IS",
+        "tvSymbol":  "BIST:BOSSA",
+        "name":  "BOSSA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BRISA.IS",
+        "tvSymbol":  "BIST:BRISA",
+        "name":  "BRISA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BRKVY.IS",
+        "tvSymbol":  "BIST:BRKVY",
+        "name":  "BIRIKIM VARLIK YONETIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BRLSM.IS",
+        "tvSymbol":  "BIST:BRLSM",
+        "name":  "BIRLESIM MUHENDISLIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BRSAN.IS",
+        "tvSymbol":  "BIST:BRSAN",
+        "name":  "BORUSAN BORU SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BRYAT.IS",
+        "tvSymbol":  "BIST:BRYAT",
+        "name":  "BORUSAN YAT. PAZ.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BSOKE.IS",
+        "tvSymbol":  "BIST:BSOKE",
+        "name":  "BATICIM CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BTCIM.IS",
+        "tvSymbol":  "BIST:BTCIM",
+        "name":  "BATICIM BATI ANADOLU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BUCIM.IS",
+        "tvSymbol":  "BIST:BUCIM",
+        "name":  "BURSA CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BULGS.IS",
+        "tvSymbol":  "BIST:BULGS",
+        "name":  "BULLS GSYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BURCE.IS",
+        "tvSymbol":  "BIST:BURCE",
+        "name":  "BURCELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "BVSAN.IS",
+        "tvSymbol":  "BIST:BVSAN",
+        "name":  "BULBULOGLU VINC",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CANTE.IS",
+        "tvSymbol":  "BIST:CANTE",
+        "name":  "CAN2 TERMIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CATES.IS",
+        "tvSymbol":  "BIST:CATES",
+        "name":  "CATES ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CCOLA.IS",
+        "tvSymbol":  "BIST:CCOLA",
+        "name":  "COCA COLA ICECEK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CELHA.IS",
+        "tvSymbol":  "BIST:CELHA",
+        "name":  "CELIK HALAT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CEMAS.IS",
+        "tvSymbol":  "BIST:CEMAS",
+        "name":  "CEMAS DOKUM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CEMTS.IS",
+        "tvSymbol":  "BIST:CEMTS",
+        "name":  "CEMTAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CEMZY.IS",
+        "tvSymbol":  "BIST:CEMZY",
+        "name":  "CEM ZEYTIN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CGCAM.IS",
+        "tvSymbol":  "BIST:CGCAM",
+        "name":  "CAGDAS CAM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CIMSA.IS",
+        "tvSymbol":  "BIST:CIMSA",
+        "name":  "CIMSA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CLEBI.IS",
+        "tvSymbol":  "BIST:CLEBI",
+        "name":  "CELEBI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CMBTN.IS",
+        "tvSymbol":  "BIST:CMBTN",
+        "name":  "CIMBETON",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CONSE.IS",
+        "tvSymbol":  "BIST:CONSE",
+        "name":  "CONSUS ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CRFSA.IS",
+        "tvSymbol":  "BIST:CRFSA",
+        "name":  "CARREFOURSA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CVKMD.IS",
+        "tvSymbol":  "BIST:CVKMD",
+        "name":  "CVK MADEN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "CWENE.IS",
+        "tvSymbol":  "BIST:CWENE",
+        "name":  "CW ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DAGI.IS",
+        "tvSymbol":  "BIST:DAGI",
+        "name":  "DAGI GIYIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DAPGM.IS",
+        "tvSymbol":  "BIST:DAPGM",
+        "name":  "DAP GAYRIMENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DARDL.IS",
+        "tvSymbol":  "BIST:DARDL",
+        "name":  "DARDANEL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DCTTR.IS",
+        "tvSymbol":  "BIST:DCTTR",
+        "name":  "DCT TRADING DIS TICARET",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DENGE.IS",
+        "tvSymbol":  "BIST:DENGE",
+        "name":  "DENGE HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DERHL.IS",
+        "tvSymbol":  "BIST:DERHL",
+        "name":  "DERLUKS YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DESA.IS",
+        "tvSymbol":  "BIST:DESA",
+        "name":  "DESA DERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DEVA.IS",
+        "tvSymbol":  "BIST:DEVA",
+        "name":  "DEVA HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DGATE.IS",
+        "tvSymbol":  "BIST:DGATE",
+        "name":  "DATAGATE BILGISAYAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DGNMO.IS",
+        "tvSymbol":  "BIST:DGNMO",
+        "name":  "DOGANLAR MOBILYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DITAS.IS",
+        "tvSymbol":  "BIST:DITAS",
+        "name":  "DITAS BDY",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DMRGD.IS",
+        "tvSymbol":  "BIST:DMRGD",
+        "name":  "DMR UNLU MAMULLER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DMSAS.IS",
+        "tvSymbol":  "BIST:DMSAS",
+        "name":  "DEMISAS DOKUM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DNISI.IS",
+        "tvSymbol":  "BIST:DNISI",
+        "name":  "DINAMIK ISI MAKINA YALITIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DOAS.IS",
+        "tvSymbol":  "BIST:DOAS",
+        "name":  "DOGUS OTOMOTIV",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DOCO.IS",
+        "tvSymbol":  "BIST:DOCO",
+        "name":  "DO-CO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DOFER.IS",
+        "tvSymbol":  "BIST:DOFER",
+        "name":  "DOFER YAPI MALZEMELERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DOFRB.IS",
+        "tvSymbol":  "BIST:DOFRB",
+        "name":  "DOF ROBOTIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DOHOL.IS",
+        "tvSymbol":  "BIST:DOHOL",
+        "name":  "DOGAN HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DSTKF.IS",
+        "tvSymbol":  "BIST:DSTKF",
+        "name":  "DESTEK FINANS FAKTORING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DUNYH.IS",
+        "tvSymbol":  "BIST:DUNYH",
+        "name":  "DUNYA HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DURDO.IS",
+        "tvSymbol":  "BIST:DURDO",
+        "name":  "DURAN DOGAN BASIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DURKN.IS",
+        "tvSymbol":  "BIST:DURKN",
+        "name":  "DURUKAN SEKERLEME",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DYOBY.IS",
+        "tvSymbol":  "BIST:DYOBY",
+        "name":  "DYO BOYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "DZGYO.IS",
+        "tvSymbol":  "BIST:DZGYO",
+        "name":  "DENIZ GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EBEBK.IS",
+        "tvSymbol":  "BIST:EBEBK",
+        "name":  "EBEBEK MAGAZACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ECILC.IS",
+        "tvSymbol":  "BIST:ECILC",
+        "name":  "ECZACIBASI ILAC",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ECOGR.IS",
+        "tvSymbol":  "BIST:ECOGR",
+        "name":  "ECOGREEN ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ECZYT.IS",
+        "tvSymbol":  "BIST:ECZYT",
+        "name":  "ECZACIBASI YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EDATA.IS",
+        "tvSymbol":  "BIST:EDATA",
+        "name":  "E-DATA TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EDIP.IS",
+        "tvSymbol":  "BIST:EDIP",
+        "name":  "EDIP GAYRIMENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EFOR.IS",
+        "tvSymbol":  "BIST:EFOR",
+        "name":  "EFOR YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EGEEN.IS",
+        "tvSymbol":  "BIST:EGEEN",
+        "name":  "EGE ENDUSTRI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EGEGY.IS",
+        "tvSymbol":  "BIST:EGEGY",
+        "name":  "EGEYAPI AVRUPA GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EGEPO.IS",
+        "tvSymbol":  "BIST:EGEPO",
+        "name":  "NASMED EGEPOL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EGGUB.IS",
+        "tvSymbol":  "BIST:EGGUB",
+        "name":  "EGE GUBRE",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EGPRO.IS",
+        "tvSymbol":  "BIST:EGPRO",
+        "name":  "EGE PROFIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EKDMR.IS",
+        "tvSymbol":  "BIST:EKDMR",
+        "name":  "EKINCILER DEMIR CELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EKGYO.IS",
+        "tvSymbol":  "BIST:EKGYO",
+        "name":  "EMLAK KONUT GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EKOS.IS",
+        "tvSymbol":  "BIST:EKOS",
+        "name":  "EKOS TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EKSUN.IS",
+        "tvSymbol":  "BIST:EKSUN",
+        "name":  "EKSUN GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ELITE.IS",
+        "tvSymbol":  "BIST:ELITE",
+        "name":  "ELITE NATUREL ORGANIK GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EMKEL.IS",
+        "tvSymbol":  "BIST:EMKEL",
+        "name":  "EMEK ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EMPAE.IS",
+        "tvSymbol":  "BIST:EMPAE",
+        "name":  "EMPA ELEKTRONIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ENDAE.IS",
+        "tvSymbol":  "BIST:ENDAE",
+        "name":  "ENDA ENERJI HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ENERY.IS",
+        "tvSymbol":  "BIST:ENERY",
+        "name":  "ENERYA ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ENJSA.IS",
+        "tvSymbol":  "BIST:ENJSA",
+        "name":  "ENERJISA ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ENKAI.IS",
+        "tvSymbol":  "BIST:ENKAI",
+        "name":  "ENKA INSAAT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ENSRI.IS",
+        "tvSymbol":  "BIST:ENSRI",
+        "name":  "ENSARI SINAI YATIRIMLAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ENTRA.IS",
+        "tvSymbol":  "BIST:ENTRA",
+        "name":  "IC ENTERRA YEN. ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EPLAS.IS",
+        "tvSymbol":  "BIST:EPLAS",
+        "name":  "EGEPLAST",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ERCB.IS",
+        "tvSymbol":  "BIST:ERCB",
+        "name":  "ERCIYAS CELIK BORU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EREGL.IS",
+        "tvSymbol":  "BIST:EREGL",
+        "name":  "EREGLI DEMIR CELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ESCAR.IS",
+        "tvSymbol":  "BIST:ESCAR",
+        "name":  "ESCAR FILO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ESCOM.IS",
+        "tvSymbol":  "BIST:ESCOM",
+        "name":  "ESCORT TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ESEN.IS",
+        "tvSymbol":  "BIST:ESEN",
+        "name":  "ESENBOGA ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ETILR.IS",
+        "tvSymbol":  "BIST:ETILR",
+        "name":  "ETILER GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EUPWR.IS",
+        "tvSymbol":  "BIST:EUPWR",
+        "name":  "EUROPOWER ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EUREN.IS",
+        "tvSymbol":  "BIST:EUREN",
+        "name":  "EUROPEN ENDUSTRI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "EYGYO.IS",
+        "tvSymbol":  "BIST:EYGYO",
+        "name":  "EYG GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FADE.IS",
+        "tvSymbol":  "BIST:FADE",
+        "name":  "FADE GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FENER.IS",
+        "tvSymbol":  "BIST:FENER",
+        "name":  "FENERBAHCE FUTBOL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FMIZP.IS",
+        "tvSymbol":  "BIST:FMIZP",
+        "name":  "F-M IZMIT PISTON",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FONET.IS",
+        "tvSymbol":  "BIST:FONET",
+        "name":  "FONET BILGI TEKNOLOJILERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FORMT.IS",
+        "tvSymbol":  "BIST:FORMT",
+        "name":  "FORMET METAL VE CAM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FORTE.IS",
+        "tvSymbol":  "BIST:FORTE",
+        "name":  "FORTE BILGI ILETISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FRIGO.IS",
+        "tvSymbol":  "BIST:FRIGO",
+        "name":  "FRIGO PAK GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FRMPL.IS",
+        "tvSymbol":  "BIST:FRMPL",
+        "name":  "FORMUL PLASTIK VE METAL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FROTO.IS",
+        "tvSymbol":  "BIST:FROTO",
+        "name":  "FORD OTOSAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "FZLGY.IS",
+        "tvSymbol":  "BIST:FZLGY",
+        "name":  "FUZUL GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GARAN.IS",
+        "tvSymbol":  "BIST:GARAN",
+        "name":  "GARANTI BANKASI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GARFA.IS",
+        "tvSymbol":  "BIST:GARFA",
+        "name":  "GARANTI FAKTORING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GEDIK.IS",
+        "tvSymbol":  "BIST:GEDIK",
+        "name":  "GEDIK Y. MEN. DEG.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GEDZA.IS",
+        "tvSymbol":  "BIST:GEDZA",
+        "name":  "GEDIZ AMBALAJ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GENIL.IS",
+        "tvSymbol":  "BIST:GENIL",
+        "name":  "GEN ILAC",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GENKM.IS",
+        "tvSymbol":  "BIST:GENKM",
+        "name":  "GENTAS KIMYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GENTS.IS",
+        "tvSymbol":  "BIST:GENTS",
+        "name":  "GENTAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GEREL.IS",
+        "tvSymbol":  "BIST:GEREL",
+        "name":  "GERSAN ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GESAN.IS",
+        "tvSymbol":  "BIST:GESAN",
+        "name":  "GIRISIM ELEKTRIK SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GIPTA.IS",
+        "tvSymbol":  "BIST:GIPTA",
+        "name":  "GIPTA OFIS KIRTASIYE",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GLCVY.IS",
+        "tvSymbol":  "BIST:GLCVY",
+        "name":  "GELECEK VARLIK YONETIMI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GLRMK.IS",
+        "tvSymbol":  "BIST:GLRMK",
+        "name":  "GULERMAK AGIR SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GLRYH.IS",
+        "tvSymbol":  "BIST:GLRYH",
+        "name":  "GULER YAT. HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GLYHO.IS",
+        "tvSymbol":  "BIST:GLYHO",
+        "name":  "GLOBAL YAT. HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GMTAS.IS",
+        "tvSymbol":  "BIST:GMTAS",
+        "name":  "GIMAT MAGAZACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GOKNR.IS",
+        "tvSymbol":  "BIST:GOKNR",
+        "name":  "GOKNUR GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GOLTS.IS",
+        "tvSymbol":  "BIST:GOLTS",
+        "name":  "GOLTAS CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GOODY.IS",
+        "tvSymbol":  "BIST:GOODY",
+        "name":  "GOOD-YEAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GOZDE.IS",
+        "tvSymbol":  "BIST:GOZDE",
+        "name":  "GOZDE GIRISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GRSEL.IS",
+        "tvSymbol":  "BIST:GRSEL",
+        "name":  "GUR-SEL TURIZM TASIMACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GRTHO.IS",
+        "tvSymbol":  "BIST:GRTHO",
+        "name":  "GRAINTURK HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GSDHO.IS",
+        "tvSymbol":  "BIST:GSDHO",
+        "name":  "GSD HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GSRAY.IS",
+        "tvSymbol":  "BIST:GSRAY",
+        "name":  "GALATASARAY SPORTIF",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GUBRF.IS",
+        "tvSymbol":  "BIST:GUBRF",
+        "name":  "GUBRE FABRIK.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GUNDG.IS",
+        "tvSymbol":  "BIST:GUNDG",
+        "name":  "GUNDOGDU GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GWIND.IS",
+        "tvSymbol":  "BIST:GWIND",
+        "name":  "GALATA WIND ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "GZNMI.IS",
+        "tvSymbol":  "BIST:GZNMI",
+        "name":  "GEZINOMI SEYAHAT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HALKB.IS",
+        "tvSymbol":  "BIST:HALKB",
+        "name":  "T. HALK BANKASI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HATEK.IS",
+        "tvSymbol":  "BIST:HATEK",
+        "name":  "HATAY TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HATSN.IS",
+        "tvSymbol":  "BIST:HATSN",
+        "name":  "HATSAN GEMI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HDFGS.IS",
+        "tvSymbol":  "BIST:HDFGS",
+        "name":  "HEDEF GIRISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HEDEF.IS",
+        "tvSymbol":  "BIST:HEDEF",
+        "name":  "HEDEF HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HEKTS.IS",
+        "tvSymbol":  "BIST:HEKTS",
+        "name":  "HEKTAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HKTM.IS",
+        "tvSymbol":  "BIST:HKTM",
+        "name":  "HIDROPAR HAREKET KONTROL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HLGYO.IS",
+        "tvSymbol":  "BIST:HLGYO",
+        "name":  "HALK GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HOROZ.IS",
+        "tvSymbol":  "BIST:HOROZ",
+        "name":  "HOROZ LOJISTIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HRKET.IS",
+        "tvSymbol":  "BIST:HRKET",
+        "name":  "HAREKET PROJE TASIMACILIGI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HTTBT.IS",
+        "tvSymbol":  "BIST:HTTBT",
+        "name":  "HITIT BILGISAYAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HUNER.IS",
+        "tvSymbol":  "BIST:HUNER",
+        "name":  "HUN YENILENEBILIR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "HURGZ.IS",
+        "tvSymbol":  "BIST:HURGZ",
+        "name":  "HURRIYET GZT.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ICBCT.IS",
+        "tvSymbol":  "BIST:ICBCT",
+        "name":  "ICBC TURKEY BANK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ICUGS.IS",
+        "tvSymbol":  "BIST:ICUGS",
+        "name":  "ICU GIRISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IEYHO.IS",
+        "tvSymbol":  "BIST:IEYHO",
+        "name":  "ISIKLAR ENERJI YAPI HOL.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IHAAS.IS",
+        "tvSymbol":  "BIST:IHAAS",
+        "name":  "IHLAS HABER AJANSI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IHGZT.IS",
+        "tvSymbol":  "BIST:IHGZT",
+        "name":  "IHLAS GAZETECILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IHLAS.IS",
+        "tvSymbol":  "BIST:IHLAS",
+        "name":  "IHLAS HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IHLGM.IS",
+        "tvSymbol":  "BIST:IHLGM",
+        "name":  "IHLAS GAYRIMENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IMASM.IS",
+        "tvSymbol":  "BIST:IMASM",
+        "name":  "IMAS MAKINA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "INDES.IS",
+        "tvSymbol":  "BIST:INDES",
+        "name":  "INDEKS BILGISAYAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "INFO.IS",
+        "tvSymbol":  "BIST:INFO",
+        "name":  "INFO YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "INGRM.IS",
+        "tvSymbol":  "BIST:INGRM",
+        "name":  "INGRAM BILISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "INTEM.IS",
+        "tvSymbol":  "BIST:INTEM",
+        "name":  "INTEMA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "INVEO.IS",
+        "tvSymbol":  "BIST:INVEO",
+        "name":  "INVEO YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "INVES.IS",
+        "tvSymbol":  "BIST:INVES",
+        "name":  "INVESTCO HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISCTR.IS",
+        "tvSymbol":  "BIST:ISCTR",
+        "name":  "IS BANKASI (C)",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISDMR.IS",
+        "tvSymbol":  "BIST:ISDMR",
+        "name":  "ISKENDERUN DEMIR CELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISFIN.IS",
+        "tvSymbol":  "BIST:ISFIN",
+        "name":  "IS FIN.KIR.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISGSY.IS",
+        "tvSymbol":  "BIST:ISGSY",
+        "name":  "IS GIRISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISGYO.IS",
+        "tvSymbol":  "BIST:ISGYO",
+        "name":  "IS GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISKPL.IS",
+        "tvSymbol":  "BIST:ISKPL",
+        "name":  "ISIK PLASTIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ISMEN.IS",
+        "tvSymbol":  "BIST:ISMEN",
+        "name":  "IS Y. MEN. DEG.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IZENR.IS",
+        "tvSymbol":  "BIST:IZENR",
+        "name":  "IZDEMIR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IZFAS.IS",
+        "tvSymbol":  "BIST:IZFAS",
+        "name":  "IZMIR FIRCA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "IZMDC.IS",
+        "tvSymbol":  "BIST:IZMDC",
+        "name":  "IZMIR DEMIR CELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "JANTS.IS",
+        "tvSymbol":  "BIST:JANTS",
+        "name":  "JANTSA JANT SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KAPLM.IS",
+        "tvSymbol":  "BIST:KAPLM",
+        "name":  "KAPLAMIN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KAREL.IS",
+        "tvSymbol":  "BIST:KAREL",
+        "name":  "KAREL ELEKTRONIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KARSN.IS",
+        "tvSymbol":  "BIST:KARSN",
+        "name":  "KARSAN OTOMOTIV",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KARTN.IS",
+        "tvSymbol":  "BIST:KARTN",
+        "name":  "KARTONSAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KATMR.IS",
+        "tvSymbol":  "BIST:KATMR",
+        "name":  "KATMERCILER EKIPMAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KAYSE.IS",
+        "tvSymbol":  "BIST:KAYSE",
+        "name":  "KAYSERI SEKER FABRIKASI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KBORU.IS",
+        "tvSymbol":  "BIST:KBORU",
+        "name":  "KUZEY BORU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KCAER.IS",
+        "tvSymbol":  "BIST:KCAER",
+        "name":  "KOCAER CELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KCHOL.IS",
+        "tvSymbol":  "BIST:KCHOL",
+        "name":  "KOC HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KFEIN.IS",
+        "tvSymbol":  "BIST:KFEIN",
+        "name":  "KAFEIN YAZILIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KGYO.IS",
+        "tvSymbol":  "BIST:KGYO",
+        "name":  "KORAY GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KIMMR.IS",
+        "tvSymbol":  "BIST:KIMMR",
+        "name":  "KIM MARKET-ERSAN ALISVERIS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLGYO.IS",
+        "tvSymbol":  "BIST:KLGYO",
+        "name":  "KILER GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLKIM.IS",
+        "tvSymbol":  "BIST:KLKIM",
+        "name":  "KALEKIM KIMYEVI MADDELER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLMSN.IS",
+        "tvSymbol":  "BIST:KLMSN",
+        "name":  "KLIMASAN KLIMA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLRHO.IS",
+        "tvSymbol":  "BIST:KLRHO",
+        "name":  "KILER HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLSER.IS",
+        "tvSymbol":  "BIST:KLSER",
+        "name":  "KALESERAMIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLSYN.IS",
+        "tvSymbol":  "BIST:KLSYN",
+        "name":  "KOLEKSIYON MOBILYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KLYPV.IS",
+        "tvSymbol":  "BIST:KLYPV",
+        "name":  "KALYON GUNES TEKNOLOJILERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KMPUR.IS",
+        "tvSymbol":  "BIST:KMPUR",
+        "name":  "KIMTEKS POLIURETAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KNFRT.IS",
+        "tvSymbol":  "BIST:KNFRT",
+        "name":  "KONFRUT TARIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KOCMT.IS",
+        "tvSymbol":  "BIST:KOCMT",
+        "name":  "KOC METALURJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KONKA.IS",
+        "tvSymbol":  "BIST:KONKA",
+        "name":  "KONYA KAGIT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KONYA.IS",
+        "tvSymbol":  "BIST:KONYA",
+        "name":  "KONYA CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KOPOL.IS",
+        "tvSymbol":  "BIST:KOPOL",
+        "name":  "KOZA POLYESTER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KORDS.IS",
+        "tvSymbol":  "BIST:KORDS",
+        "name":  "KORDSA TEKNIK TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KOTON.IS",
+        "tvSymbol":  "BIST:KOTON",
+        "name":  "KOTON MAGAZACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KRDMD.IS",
+        "tvSymbol":  "BIST:KRDMD",
+        "name":  "KARDEMIR (D)",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KRGYO.IS",
+        "tvSymbol":  "BIST:KRGYO",
+        "name":  "KORFEZ GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KRONT.IS",
+        "tvSymbol":  "BIST:KRONT",
+        "name":  "KRON TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KRPLS.IS",
+        "tvSymbol":  "BIST:KRPLS",
+        "name":  "KOROPLAST TEMIZLIK AMBALAJ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KRSTL.IS",
+        "tvSymbol":  "BIST:KRSTL",
+        "name":  "KRISTAL KOLA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KRVGD.IS",
+        "tvSymbol":  "BIST:KRVGD",
+        "name":  "KERVAN GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KTLEV.IS",
+        "tvSymbol":  "BIST:KTLEV",
+        "name":  "KATILIMEVIM TAS. FIN.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KTSKR.IS",
+        "tvSymbol":  "BIST:KTSKR",
+        "name":  "KUTAHYA SEKER FABRIKASI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KUTPO.IS",
+        "tvSymbol":  "BIST:KUTPO",
+        "name":  "KUTAHYA PORSELEN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KUYAS.IS",
+        "tvSymbol":  "BIST:KUYAS",
+        "name":  "KUYAS YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KZBGY.IS",
+        "tvSymbol":  "BIST:KZBGY",
+        "name":  "KIZILBUK GYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "KZGYO.IS",
+        "tvSymbol":  "BIST:KZGYO",
+        "name":  "KUZUGRUP GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LIDER.IS",
+        "tvSymbol":  "BIST:LIDER",
+        "name":  "LDR TURIZM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LIDFA.IS",
+        "tvSymbol":  "BIST:LIDFA",
+        "name":  "LIDER FAKTORING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LILAK.IS",
+        "tvSymbol":  "BIST:LILAK",
+        "name":  "LILA KAGIT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LINK.IS",
+        "tvSymbol":  "BIST:LINK",
+        "name":  "LINK BILGISAYAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LKMNH.IS",
+        "tvSymbol":  "BIST:LKMNH",
+        "name":  "LOKMAN HEKIM SAGLIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LMKDC.IS",
+        "tvSymbol":  "BIST:LMKDC",
+        "name":  "LIMAK DOGU ANADOLU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LOGO.IS",
+        "tvSymbol":  "BIST:LOGO",
+        "name":  "LOGO YAZILIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LRSHO.IS",
+        "tvSymbol":  "BIST:LRSHO",
+        "name":  "LORAS HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LXGYO.IS",
+        "tvSymbol":  "BIST:LXGYO",
+        "name":  "LUXERA GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LYDHO.IS",
+        "tvSymbol":  "BIST:LYDHO",
+        "name":  "LYDIA HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "LYDYE.IS",
+        "tvSymbol":  "BIST:LYDYE",
+        "name":  "LYDIA YESIL ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MAALT.IS",
+        "tvSymbol":  "BIST:MAALT",
+        "name":  "MARMARIS ALTINYUNUS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MACKO.IS",
+        "tvSymbol":  "BIST:MACKO",
+        "name":  "MACKOLIK INTERNET HIZMETLERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MAGEN.IS",
+        "tvSymbol":  "BIST:MAGEN",
+        "name":  "MARGUN ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MAKIM.IS",
+        "tvSymbol":  "BIST:MAKIM",
+        "name":  "MAKIM MAKINE",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MAKTK.IS",
+        "tvSymbol":  "BIST:MAKTK",
+        "name":  "MAKINA TAKIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MANAS.IS",
+        "tvSymbol":  "BIST:MANAS",
+        "name":  "MANAS ENERJI YONETIMI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MARBL.IS",
+        "tvSymbol":  "BIST:MARBL",
+        "name":  "TUREKS TURUNC MADENCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MARKA.IS",
+        "tvSymbol":  "BIST:MARKA",
+        "name":  "MARKA YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MARMR.IS",
+        "tvSymbol":  "BIST:MARMR",
+        "name":  "MARMARA HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MARTI.IS",
+        "tvSymbol":  "BIST:MARTI",
+        "name":  "MARTI OTEL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MAVI.IS",
+        "tvSymbol":  "BIST:MAVI",
+        "name":  "MAVI GIYIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MCARD.IS",
+        "tvSymbol":  "BIST:MCARD",
+        "name":  "METROPAL KURUMSAL HIZMETLER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MEDTR.IS",
+        "tvSymbol":  "BIST:MEDTR",
+        "name":  "MEDITERA TIBBI MALZEME",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MEGMT.IS",
+        "tvSymbol":  "BIST:MEGMT",
+        "name":  "MEGA METAL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MEKAG.IS",
+        "tvSymbol":  "BIST:MEKAG",
+        "name":  "MEKA GLOBAL MAKINE",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MERCN.IS",
+        "tvSymbol":  "BIST:MERCN",
+        "name":  "MERCAN KIMYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MERIT.IS",
+        "tvSymbol":  "BIST:MERIT",
+        "name":  "MERIT TURIZM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MERKO.IS",
+        "tvSymbol":  "BIST:MERKO",
+        "name":  "MERKO GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "METRO.IS",
+        "tvSymbol":  "BIST:METRO",
+        "name":  "METRO HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MEYSU.IS",
+        "tvSymbol":  "BIST:MEYSU",
+        "name":  "MEYSU GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MGROS.IS",
+        "tvSymbol":  "BIST:MGROS",
+        "name":  "MIGROS TICARET",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MHRGY.IS",
+        "tvSymbol":  "BIST:MHRGY",
+        "name":  "MHR GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MIATK.IS",
+        "tvSymbol":  "BIST:MIATK",
+        "name":  "MIA TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MNDRS.IS",
+        "tvSymbol":  "BIST:MNDRS",
+        "name":  "MENDERES TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MNDTR.IS",
+        "tvSymbol":  "BIST:MNDTR",
+        "name":  "MONDI TURKEY",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MOBTL.IS",
+        "tvSymbol":  "BIST:MOBTL",
+        "name":  "MOBILTEL ILETISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MOGAN.IS",
+        "tvSymbol":  "BIST:MOGAN",
+        "name":  "MOGAN ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MOPAS.IS",
+        "tvSymbol":  "BIST:MOPAS",
+        "name":  "MOPAS MARKETCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MPARK.IS",
+        "tvSymbol":  "BIST:MPARK",
+        "name":  "MLP SAGLIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MRGYO.IS",
+        "tvSymbol":  "BIST:MRGYO",
+        "name":  "MARTI GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MRSHL.IS",
+        "tvSymbol":  "BIST:MRSHL",
+        "name":  "MARSHALL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MSGYO.IS",
+        "tvSymbol":  "BIST:MSGYO",
+        "name":  "MISTRAL GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "MTRKS.IS",
+        "tvSymbol":  "BIST:MTRKS",
+        "name":  "MATRIKS FINANSAL TEKNOLOJILER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NATEN.IS",
+        "tvSymbol":  "BIST:NATEN",
+        "name":  "NATUREL ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NETAS.IS",
+        "tvSymbol":  "BIST:NETAS",
+        "name":  "NETAS TELEKOM.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NETCD.IS",
+        "tvSymbol":  "BIST:NETCD",
+        "name":  "NETCAD YAZILIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NIBAS.IS",
+        "tvSymbol":  "BIST:NIBAS",
+        "name":  "NIGBAS NIGDE BETON",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NTGAZ.IS",
+        "tvSymbol":  "BIST:NTGAZ",
+        "name":  "NATURELGAZ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NTHOL.IS",
+        "tvSymbol":  "BIST:NTHOL",
+        "name":  "NET HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NUGYO.IS",
+        "tvSymbol":  "BIST:NUGYO",
+        "name":  "NUROL GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "NUHCM.IS",
+        "tvSymbol":  "BIST:NUHCM",
+        "name":  "NUH CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OBAMS.IS",
+        "tvSymbol":  "BIST:OBAMS",
+        "name":  "OBA MAKARNACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ODAS.IS",
+        "tvSymbol":  "BIST:ODAS",
+        "name":  "ODAS ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ODINE.IS",
+        "tvSymbol":  "BIST:ODINE",
+        "name":  "ODINE TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OFSYM.IS",
+        "tvSymbol":  "BIST:OFSYM",
+        "name":  "OFIS YEM GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ONCSM.IS",
+        "tvSymbol":  "BIST:ONCSM",
+        "name":  "ONCOSEM ONKOLOJIK SISTEMLER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ONRYT.IS",
+        "tvSymbol":  "BIST:ONRYT",
+        "name":  "ONUR TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ORGE.IS",
+        "tvSymbol":  "BIST:ORGE",
+        "name":  "ORGE ENERJI ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OSMEN.IS",
+        "tvSymbol":  "BIST:OSMEN",
+        "name":  "OSMANLI MENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OSTIM.IS",
+        "tvSymbol":  "BIST:OSTIM",
+        "name":  "OSTIM ENDUSTRIYEL YAT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OTKAR.IS",
+        "tvSymbol":  "BIST:OTKAR",
+        "name":  "OTOKAR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OTTO.IS",
+        "tvSymbol":  "BIST:OTTO",
+        "name":  "OTTO HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OYAKC.IS",
+        "tvSymbol":  "BIST:OYAKC",
+        "name":  "OYAK CIMENTO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OYYAT.IS",
+        "tvSymbol":  "BIST:OYYAT",
+        "name":  "OYAK YATIRIM MENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OZATD.IS",
+        "tvSymbol":  "BIST:OZATD",
+        "name":  "OZATA DENIZCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OZGYO.IS",
+        "tvSymbol":  "BIST:OZGYO",
+        "name":  "OZDERICI GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OZKGY.IS",
+        "tvSymbol":  "BIST:OZKGY",
+        "name":  "OZAK GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OZSUB.IS",
+        "tvSymbol":  "BIST:OZSUB",
+        "name":  "OZSU BALIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "OZYSR.IS",
+        "tvSymbol":  "BIST:OZYSR",
+        "name":  "OZYASAR TEL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PAGYO.IS",
+        "tvSymbol":  "BIST:PAGYO",
+        "name":  "PANORA GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PAHOL.IS",
+        "tvSymbol":  "BIST:PAHOL",
+        "name":  "PASIFIK HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PAPIL.IS",
+        "tvSymbol":  "BIST:PAPIL",
+        "name":  "PAPILON SAVUNMA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PARSN.IS",
+        "tvSymbol":  "BIST:PARSN",
+        "name":  "PARSAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PASEU.IS",
+        "tvSymbol":  "BIST:PASEU",
+        "name":  "PASIFIK EURASIA LOJISTIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PATEK.IS",
+        "tvSymbol":  "BIST:PATEK",
+        "name":  "PASIFIK TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PCILT.IS",
+        "tvSymbol":  "BIST:PCILT",
+        "name":  "PC ILETISIM MEDYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PEKGY.IS",
+        "tvSymbol":  "BIST:PEKGY",
+        "name":  "PEKER GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PENGD.IS",
+        "tvSymbol":  "BIST:PENGD",
+        "name":  "PENGUEN GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PENTA.IS",
+        "tvSymbol":  "BIST:PENTA",
+        "name":  "PENTA TEKNOLOJI URUNLERI DAGITIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PETKM.IS",
+        "tvSymbol":  "BIST:PETKM",
+        "name":  "PETKIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PETUN.IS",
+        "tvSymbol":  "BIST:PETUN",
+        "name":  "PINAR ET VE UN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PGSUS.IS",
+        "tvSymbol":  "BIST:PGSUS",
+        "name":  "PEGASUS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PINSU.IS",
+        "tvSymbol":  "BIST:PINSU",
+        "name":  "PINAR SU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PKART.IS",
+        "tvSymbol":  "BIST:PKART",
+        "name":  "PLASTIKKART",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PKENT.IS",
+        "tvSymbol":  "BIST:PKENT",
+        "name":  "PETROKENT TURIZM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PLTUR.IS",
+        "tvSymbol":  "BIST:PLTUR",
+        "name":  "PLATFORM TURIZM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PNLSN.IS",
+        "tvSymbol":  "BIST:PNLSN",
+        "name":  "PANELSAN CATI CEPHE",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PNSUT.IS",
+        "tvSymbol":  "BIST:PNSUT",
+        "name":  "PINAR SUT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "POLHO.IS",
+        "tvSymbol":  "BIST:POLHO",
+        "name":  "POLISAN HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "POLTK.IS",
+        "tvSymbol":  "BIST:POLTK",
+        "name":  "POLITEKNIK METAL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PRDGS.IS",
+        "tvSymbol":  "BIST:PRDGS",
+        "name":  "PARDUS GIRISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PRKAB.IS",
+        "tvSymbol":  "BIST:PRKAB",
+        "name":  "TURK PRYSMIAN KABLO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PRKME.IS",
+        "tvSymbol":  "BIST:PRKME",
+        "name":  "PARK ELEK.MADENCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "PSGYO.IS",
+        "tvSymbol":  "BIST:PSGYO",
+        "name":  "PASIFIK GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "QUAGR.IS",
+        "tvSymbol":  "BIST:QUAGR",
+        "name":  "QUA GRANITE HAYAL YAPI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RALYH.IS",
+        "tvSymbol":  "BIST:RALYH",
+        "name":  "RAL YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RAYSG.IS",
+        "tvSymbol":  "BIST:RAYSG",
+        "name":  "RAY SIGORTA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "REEDR.IS",
+        "tvSymbol":  "BIST:REEDR",
+        "name":  "REEDER TEKNOLOJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RGYAS.IS",
+        "tvSymbol":  "BIST:RGYAS",
+        "name":  "RONESANS GAYRIMENKUL YAT.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RTALB.IS",
+        "tvSymbol":  "BIST:RTALB",
+        "name":  "RTA LABORATUVARLARI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RUBNS.IS",
+        "tvSymbol":  "BIST:RUBNS",
+        "name":  "RUBENIS TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RUZYE.IS",
+        "tvSymbol":  "BIST:RUZYE",
+        "name":  "RUZY MADENCILIK VE ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RYGYO.IS",
+        "tvSymbol":  "BIST:RYGYO",
+        "name":  "REYSAS GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "RYSAS.IS",
+        "tvSymbol":  "BIST:RYSAS",
+        "name":  "REYSAS LOJISTIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SAFKR.IS",
+        "tvSymbol":  "BIST:SAFKR",
+        "name":  "SAFKAR EGE SOGUTMACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SAHOL.IS",
+        "tvSymbol":  "BIST:SAHOL",
+        "name":  "SABANCI HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SANFM.IS",
+        "tvSymbol":  "BIST:SANFM",
+        "name":  "SANIFOAM ENDUSTRI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SARKY.IS",
+        "tvSymbol":  "BIST:SARKY",
+        "name":  "SARKUYSAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SASA.IS",
+        "tvSymbol":  "BIST:SASA",
+        "name":  "SASA POLYESTER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SAYAS.IS",
+        "tvSymbol":  "BIST:SAYAS",
+        "name":  "SAY YENILENEBILIR ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SDTTR.IS",
+        "tvSymbol":  "BIST:SDTTR",
+        "name":  "SDT UZAY VE SAVUNMA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SEGMN.IS",
+        "tvSymbol":  "BIST:SEGMN",
+        "name":  "SEGMEN KARDESLER GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SEGYO.IS",
+        "tvSymbol":  "BIST:SEGYO",
+        "name":  "SEKER GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SELEC.IS",
+        "tvSymbol":  "BIST:SELEC",
+        "name":  "SELCUK ECZA DEPOSU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SELVA.IS",
+        "tvSymbol":  "BIST:SELVA",
+        "name":  "SELVA GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SERNT.IS",
+        "tvSymbol":  "BIST:SERNT",
+        "name":  "SERANIT GRANIT SERAMIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SISE.IS",
+        "tvSymbol":  "BIST:SISE",
+        "name":  "SISE CAM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SKBNK.IS",
+        "tvSymbol":  "BIST:SKBNK",
+        "name":  "SEKERBANK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SKTAS.IS",
+        "tvSymbol":  "BIST:SKTAS",
+        "name":  "SOKTAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SKYMD.IS",
+        "tvSymbol":  "BIST:SKYMD",
+        "name":  "SEKER YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SMART.IS",
+        "tvSymbol":  "BIST:SMART",
+        "name":  "SMARTIKS YAZILIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SMRTG.IS",
+        "tvSymbol":  "BIST:SMRTG",
+        "name":  "SMART GUNES ENERJISI TEK.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SMRVA.IS",
+        "tvSymbol":  "BIST:SMRVA",
+        "name":  "SUMER VARLIK YONETIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SNGYO.IS",
+        "tvSymbol":  "BIST:SNGYO",
+        "name":  "SINPAS GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SNICA.IS",
+        "tvSymbol":  "BIST:SNICA",
+        "name":  "SANICA ISI SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SOKE.IS",
+        "tvSymbol":  "BIST:SOKE",
+        "name":  "SOKE DEGIRMENCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SOKM.IS",
+        "tvSymbol":  "BIST:SOKM",
+        "name":  "SOK MARKETLER TICARET",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SRVGY.IS",
+        "tvSymbol":  "BIST:SRVGY",
+        "name":  "SERVET GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SUNTK.IS",
+        "tvSymbol":  "BIST:SUNTK",
+        "name":  "SUN TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SURGY.IS",
+        "tvSymbol":  "BIST:SURGY",
+        "name":  "SUR TATIL EVLERI GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SUWEN.IS",
+        "tvSymbol":  "BIST:SUWEN",
+        "name":  "SUWEN TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "SVGYO.IS",
+        "tvSymbol":  "BIST:SVGYO",
+        "name":  "SAVUR GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TABGD.IS",
+        "tvSymbol":  "BIST:TABGD",
+        "name":  "TAB GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TARKM.IS",
+        "tvSymbol":  "BIST:TARKM",
+        "name":  "TARKIM BITKI KORUMA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TATEN.IS",
+        "tvSymbol":  "BIST:TATEN",
+        "name":  "TATLIPINAR ENERJI URETIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TATGD.IS",
+        "tvSymbol":  "BIST:TATGD",
+        "name":  "TAT GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TAVHL.IS",
+        "tvSymbol":  "BIST:TAVHL",
+        "name":  "TAV HAVALIMANLARI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TBORG.IS",
+        "tvSymbol":  "BIST:TBORG",
+        "name":  "T.TUBORG",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TCELL.IS",
+        "tvSymbol":  "BIST:TCELL",
+        "name":  "TURKCELL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TCKRC.IS",
+        "tvSymbol":  "BIST:TCKRC",
+        "name":  "KIRAC GALVANIZ",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TEHOL.IS",
+        "tvSymbol":  "BIST:TEHOL",
+        "name":  "TERA YATIRIM TEK. HOL.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TEKTU.IS",
+        "tvSymbol":  "BIST:TEKTU",
+        "name":  "TEK-ART TURIZM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TERA.IS",
+        "tvSymbol":  "BIST:TERA",
+        "name":  "TERA YATIRIM MENKUL DEGERLER",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TEZOL.IS",
+        "tvSymbol":  "BIST:TEZOL",
+        "name":  "EUROPAP TEZOL KAGIT",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TGSAS.IS",
+        "tvSymbol":  "BIST:TGSAS",
+        "name":  "TGS DIS TICARET",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "THYAO.IS",
+        "tvSymbol":  "BIST:THYAO",
+        "name":  "TURK HAVA YOLLARI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TKFEN.IS",
+        "tvSymbol":  "BIST:TKFEN",
+        "name":  "TEKFEN HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TKNSA.IS",
+        "tvSymbol":  "BIST:TKNSA",
+        "name":  "TEKNOSA IC VE DIS TICARET",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TLMAN.IS",
+        "tvSymbol":  "BIST:TLMAN",
+        "name":  "TRABZON LIMAN",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TMPOL.IS",
+        "tvSymbol":  "BIST:TMPOL",
+        "name":  "TEMAPOL POLIMER PLASTIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TMSN.IS",
+        "tvSymbol":  "BIST:TMSN",
+        "name":  "TUMOSAN MOTOR VE TRAKTOR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TNZTP.IS",
+        "tvSymbol":  "BIST:TNZTP",
+        "name":  "TAPDI TINAZTEPE",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TOASO.IS",
+        "tvSymbol":  "BIST:TOASO",
+        "name":  "TOFAS OTO. FAB.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TRALT.IS",
+        "tvSymbol":  "BIST:TRALT",
+        "name":  "TURK ALTIN ISLETMELERI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TRCAS.IS",
+        "tvSymbol":  "BIST:TRCAS",
+        "name":  "TURCAS HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TRENJ.IS",
+        "tvSymbol":  "BIST:TRENJ",
+        "name":  "TR DOGAL ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TRGYO.IS",
+        "tvSymbol":  "BIST:TRGYO",
+        "name":  "TORUNLAR GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TRMET.IS",
+        "tvSymbol":  "BIST:TRMET",
+        "name":  "TR ANADOLU METAL MADENCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TSKB.IS",
+        "tvSymbol":  "BIST:TSKB",
+        "name":  "T.S.K.B.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TSPOR.IS",
+        "tvSymbol":  "BIST:TSPOR",
+        "name":  "TRABZONSPOR SPORTIF",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TTKOM.IS",
+        "tvSymbol":  "BIST:TTKOM",
+        "name":  "TURK TELEKOM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TTRAK.IS",
+        "tvSymbol":  "BIST:TTRAK",
+        "name":  "TURK TRAKTOR",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TUCLK.IS",
+        "tvSymbol":  "BIST:TUCLK",
+        "name":  "TUGCELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TUKAS.IS",
+        "tvSymbol":  "BIST:TUKAS",
+        "name":  "TUKAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TUPRS.IS",
+        "tvSymbol":  "BIST:TUPRS",
+        "name":  "TUPRAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TUREX.IS",
+        "tvSymbol":  "BIST:TUREX",
+        "name":  "TUREKS TURIZM TASIMACILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TURGG.IS",
+        "tvSymbol":  "BIST:TURGG",
+        "name":  "TURKER PROJE GAYRIMENKUL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "TURSG.IS",
+        "tvSymbol":  "BIST:TURSG",
+        "name":  "TURKIYE SIGORTA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "UCAYM.IS",
+        "tvSymbol":  "BIST:UCAYM",
+        "name":  "UCAY MUHENDISLIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "UFUK.IS",
+        "tvSymbol":  "BIST:UFUK",
+        "name":  "UFUK YATIRIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ULKER.IS",
+        "tvSymbol":  "BIST:ULKER",
+        "name":  "ULKER BISKUVI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ULUFA.IS",
+        "tvSymbol":  "BIST:ULUFA",
+        "name":  "ULUSAL FAKTORING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ULUSE.IS",
+        "tvSymbol":  "BIST:ULUSE",
+        "name":  "ULUSOY ELEKTRIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ULUUN.IS",
+        "tvSymbol":  "BIST:ULUUN",
+        "name":  "ULUSOY UN SANAYI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "UNLU.IS",
+        "tvSymbol":  "BIST:UNLU",
+        "name":  "UNLU YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "USAK.IS",
+        "tvSymbol":  "BIST:USAK",
+        "name":  "USAK SERAMIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VAKBN.IS",
+        "tvSymbol":  "BIST:VAKBN",
+        "name":  "VAKIFLAR BANKASI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VAKFA.IS",
+        "tvSymbol":  "BIST:VAKFA",
+        "name":  "VAKIF FAKTORING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VAKFN.IS",
+        "tvSymbol":  "BIST:VAKFN",
+        "name":  "VAKIF FIN. KIR.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VAKKO.IS",
+        "tvSymbol":  "BIST:VAKKO",
+        "name":  "VAKKO TEKSTIL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VBTYZ.IS",
+        "tvSymbol":  "BIST:VBTYZ",
+        "name":  "VBT YAZILIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VERTU.IS",
+        "tvSymbol":  "BIST:VERTU",
+        "name":  "VERUSATURK GIRISIM",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VERUS.IS",
+        "tvSymbol":  "BIST:VERUS",
+        "name":  "VERUSA HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VESBE.IS",
+        "tvSymbol":  "BIST:VESBE",
+        "name":  "VESTEL BEYAZ ESYA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VESTL.IS",
+        "tvSymbol":  "BIST:VESTL",
+        "name":  "VESTEL",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VKGYO.IS",
+        "tvSymbol":  "BIST:VKGYO",
+        "name":  "VAKIF GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VRGYO.IS",
+        "tvSymbol":  "BIST:VRGYO",
+        "name":  "VERA KONSEPT GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "VSNMD.IS",
+        "tvSymbol":  "BIST:VSNMD",
+        "name":  "VISNE MADENCILIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YAPRK.IS",
+        "tvSymbol":  "BIST:YAPRK",
+        "name":  "YAPRAK SUT VE BESI CIFT.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YATAS.IS",
+        "tvSymbol":  "BIST:YATAS",
+        "name":  "YATAS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YAYLA.IS",
+        "tvSymbol":  "BIST:YAYLA",
+        "name":  "YAYLA EN. UR. TUR. VE INS",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YEOTK.IS",
+        "tvSymbol":  "BIST:YEOTK",
+        "name":  "YEO TEKNOLOJI ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YESIL.IS",
+        "tvSymbol":  "BIST:YESIL",
+        "name":  "YESIL YATIRIM HOLDING",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YGGYO.IS",
+        "tvSymbol":  "BIST:YGGYO",
+        "name":  "YENI GIMAT GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YIGIT.IS",
+        "tvSymbol":  "BIST:YIGIT",
+        "name":  "YIGIT AKU",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YKBNK.IS",
+        "tvSymbol":  "BIST:YKBNK",
+        "name":  "YAPI VE KREDI BANK.",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YKSLN.IS",
+        "tvSymbol":  "BIST:YKSLN",
+        "name":  "YUKSELEN CELIK",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YUNSA.IS",
+        "tvSymbol":  "BIST:YUNSA",
+        "name":  "YUNSA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "YYLGD.IS",
+        "tvSymbol":  "BIST:YYLGD",
+        "name":  "YAYLA GIDA",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ZERGY.IS",
+        "tvSymbol":  "BIST:ZERGY",
+        "name":  "ZERAY GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ZGYO.IS",
+        "tvSymbol":  "BIST:ZGYO",
+        "name":  "Z GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ZOREN.IS",
+        "tvSymbol":  "BIST:ZOREN",
+        "name":  "ZORLU ENERJI",
+        "market":  "BIST",
+        "indices":  [
+                        "XU100",
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "ZRGYO.IS",
+        "tvSymbol":  "BIST:ZRGYO",
+        "name":  "ZIRAAT GMYO",
+        "market":  "BIST",
+        "indices":  [
+                        "XU500"
+                    ]
+    },
+    {
+        "symbol":  "AAPL",
+        "tvSymbol":  "NASDAQ:AAPL",
+        "name":  "Apple",
+        "market":  "US"
+    },
+    {
+        "symbol":  "MSFT",
+        "tvSymbol":  "NASDAQ:MSFT",
+        "name":  "Microsoft",
+        "market":  "US"
+    },
+    {
+        "symbol":  "NVDA",
+        "tvSymbol":  "NASDAQ:NVDA",
+        "name":  "NVIDIA",
+        "market":  "US"
+    },
+    {
+        "symbol":  "AMZN",
+        "tvSymbol":  "NASDAQ:AMZN",
+        "name":  "Amazon",
+        "market":  "US"
+    },
+    {
+        "symbol":  "GOOGL",
+        "tvSymbol":  "NASDAQ:GOOGL",
+        "name":  "Alphabet Class A",
+        "market":  "US"
+    },
+    {
+        "symbol":  "META",
+        "tvSymbol":  "NASDAQ:META",
+        "name":  "Meta Platforms",
+        "market":  "US"
+    },
+    {
+        "symbol":  "TSLA",
+        "tvSymbol":  "NASDAQ:TSLA",
+        "name":  "Tesla",
+        "market":  "US"
+    },
+    {
+        "symbol":  "AVGO",
+        "tvSymbol":  "NASDAQ:AVGO",
+        "name":  "Broadcom",
+        "market":  "US"
+    },
+    {
+        "symbol":  "COST",
+        "tvSymbol":  "NASDAQ:COST",
+        "name":  "Costco Wholesale",
+        "market":  "US"
+    },
+    {
+        "symbol":  "NFLX",
+        "tvSymbol":  "NASDAQ:NFLX",
+        "name":  "Netflix",
+        "market":  "US"
+    },
+    {
+        "symbol":  "AMD",
+        "tvSymbol":  "NASDAQ:AMD",
+        "name":  "Advanced Micro Devices",
+        "market":  "US"
+    },
+    {
+        "symbol":  "INTC",
+        "tvSymbol":  "NASDAQ:INTC",
+        "name":  "Intel",
+        "market":  "US"
+    },
+    {
+        "symbol":  "QCOM",
+        "tvSymbol":  "NASDAQ:QCOM",
+        "name":  "Qualcomm",
+        "market":  "US"
+    },
+    {
+        "symbol":  "ADBE",
+        "tvSymbol":  "NASDAQ:ADBE",
+        "name":  "Adobe",
+        "market":  "US"
+    },
+    {
+        "symbol":  "CSCO",
+        "tvSymbol":  "NASDAQ:CSCO",
+        "name":  "Cisco Systems",
+        "market":  "US"
+    },
+    {
+        "symbol":  "PEP",
+        "tvSymbol":  "NASDAQ:PEP",
+        "name":  "PepsiCo",
+        "market":  "US"
+    },
+    {
+        "symbol":  "AMGN",
+        "tvSymbol":  "NASDAQ:AMGN",
+        "name":  "Amgen",
+        "market":  "US"
+    },
+    {
+        "symbol":  "TXN",
+        "tvSymbol":  "NASDAQ:TXN",
+        "name":  "Texas Instruments",
+        "market":  "US"
+    },
+    {
+        "symbol":  "INTU",
+        "tvSymbol":  "NASDAQ:INTU",
+        "name":  "Intuit",
+        "market":  "US"
+    },
+    {
+        "symbol":  "AMAT",
+        "tvSymbol":  "NASDAQ:AMAT",
+        "name":  "Applied Materials",
+        "market":  "US"
+    },
+    {
+        "symbol":  "BKNG",
+        "tvSymbol":  "NASDAQ:BKNG",
+        "name":  "Booking Holdings",
+        "market":  "US"
+    },
+    {
+        "symbol":  "SBUX",
+        "tvSymbol":  "NASDAQ:SBUX",
+        "name":  "Starbucks",
+        "market":  "US"
+    },
+    {
+        "symbol":  "GILD",
+        "tvSymbol":  "NASDAQ:GILD",
+        "name":  "Gilead Sciences",
+        "market":  "US"
+    },
+    {
+        "symbol":  "ADP",
+        "tvSymbol":  "NASDAQ:ADP",
+        "name":  "Automatic Data Processing",
+        "market":  "US"
+    },
+    {
+        "symbol":  "MU",
+        "tvSymbol":  "NASDAQ:MU",
+        "name":  "Micron Technology",
+        "market":  "US"
+    },
+    {
+        "symbol":  "JPM",
+        "tvSymbol":  "NYSE:JPM",
+        "name":  "JPMorgan Chase",
+        "market":  "US"
+    },
+    {
+        "symbol":  "V",
+        "tvSymbol":  "NYSE:V",
+        "name":  "Visa",
+        "market":  "US"
+    },
+    {
+        "symbol":  "MA",
+        "tvSymbol":  "NYSE:MA",
+        "name":  "Mastercard",
+        "market":  "US"
+    },
+    {
+        "symbol":  "LLY",
+        "tvSymbol":  "NYSE:LLY",
+        "name":  "Eli Lilly",
+        "market":  "US"
+    },
+    {
+        "symbol":  "WMT",
+        "tvSymbol":  "NYSE:WMT",
+        "name":  "Walmart",
+        "market":  "US"
+    },
+    {
+        "symbol":  "XOM",
+        "tvSymbol":  "NYSE:XOM",
+        "name":  "Exxon Mobil",
+        "market":  "US"
+    },
+    {
+        "symbol":  "UNH",
+        "tvSymbol":  "NYSE:UNH",
+        "name":  "UnitedHealth Group",
+        "market":  "US"
+    },
+    {
+        "symbol":  "JNJ",
+        "tvSymbol":  "NYSE:JNJ",
+        "name":  "Johnson \u0026 Johnson",
+        "market":  "US"
+    },
+    {
+        "symbol":  "ORCL",
+        "tvSymbol":  "NYSE:ORCL",
+        "name":  "Oracle",
+        "market":  "US"
+    },
+    {
+        "symbol":  "HD",
+        "tvSymbol":  "NYSE:HD",
+        "name":  "Home Depot",
+        "market":  "US"
+    },
+    {
+        "symbol":  "PG",
+        "tvSymbol":  "NYSE:PG",
+        "name":  "Procter \u0026 Gamble",
+        "market":  "US"
+    },
+    {
+        "symbol":  "KO",
+        "tvSymbol":  "NYSE:KO",
+        "name":  "Coca-Cola",
+        "market":  "US"
+    },
+    {
+        "symbol":  "BAC",
+        "tvSymbol":  "NYSE:BAC",
+        "name":  "Bank of America",
+        "market":  "US"
+    },
+    {
+        "symbol":  "CRM",
+        "tvSymbol":  "NYSE:CRM",
+        "name":  "Salesforce",
+        "market":  "US"
+    },
+    {
+        "symbol":  "CVX",
+        "tvSymbol":  "NYSE:CVX",
+        "name":  "Chevron",
+        "market":  "US"
+    },
+    {
+        "symbol":  "ABBV",
+        "tvSymbol":  "NYSE:ABBV",
+        "name":  "AbbVie",
+        "market":  "US"
+    },
+    {
+        "symbol":  "MRK",
+        "tvSymbol":  "NYSE:MRK",
+        "name":  "Merck",
+        "market":  "US"
+    },
+    {
+        "symbol":  "DIS",
+        "tvSymbol":  "NYSE:DIS",
+        "name":  "Walt Disney",
+        "market":  "US"
+    },
+    {
+        "symbol":  "MCD",
+        "tvSymbol":  "NYSE:MCD",
+        "name":  "McDonald\u0027s",
+        "market":  "US"
+    },
+    {
+        "symbol":  "IBM",
+        "tvSymbol":  "NYSE:IBM",
+        "name":  "IBM",
+        "market":  "US"
+    },
+    {
+        "symbol":  "GE",
+        "tvSymbol":  "NYSE:GE",
+        "name":  "GE Aerospace",
+        "market":  "US"
+    },
+    {
+        "symbol":  "CAT",
+        "tvSymbol":  "NYSE:CAT",
+        "name":  "Caterpillar",
+        "market":  "US"
+    },
+    {
+        "symbol":  "NKE",
+        "tvSymbol":  "NYSE:NKE",
+        "name":  "Nike",
+        "market":  "US"
+    },
+    {
+        "symbol":  "UBER",
+        "tvSymbol":  "NYSE:UBER",
+        "name":  "Uber Technologies",
+        "market":  "US"
+    },
+    {
+        "symbol":  "BRK-B",
+        "tvSymbol":  "NYSE:BRK.B",
+        "name":  "Berkshire Hathaway Class B",
+        "market":  "US"
+    }
 ]
