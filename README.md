@@ -1,137 +1,205 @@
-﻿# AI Agent Workflow
+# Borsa Analiz
 
-A small workflow for using one model as the planner and Codex as the implementer.
+Borsa Analiz; BIST ve ABD hisselerini takip etmek, teknik göstergeleri incelemek, Gemini destekli grafik yorumları almak ve sanal portföy yönetmek için geliştirilmiş Türkçe bir finans uygulamasıdır.
 
-## Roles
+> Canlı uygulama: [borsa-analiz-aqr9.onrender.com](https://borsa-analiz-aqr9.onrender.com)
 
-- Planner model: Claude/Fable or another high-reasoning model. It writes the plan only.
-- Implementer model: Codex. It edits files, runs checks, and reports the result.
+Uygulama eğitim ve analiz amaçlıdır. Gösterilen veriler gecikmeli olabilir; hiçbir içerik yatırım tavsiyesi değildir.
 
-## Quick Start
+## Özellikler
 
-1. Copy `AGENTS.md` and the `.agents` folder into the root of a project.
-2. Ask the planner model:
+### Piyasa ve hisse analizi
 
-```text
-Read .agents/CLAUDE_PLANNER_PROMPT.md.
-My request is: <describe the site/app/feature>.
-Do not code. Write or update .agents/PLAN.md only.
+- 100 BIST ve 50 ABD hissesi içeren 150 sembollük katalog
+- Sembol arama, piyasa filtresi ve fiyat/değişim sıralaması
+- Ana sayfada piyasa göstergeleri ile en çok yükselen ve düşen hisseler
+- Yahoo Finance üzerinden fiyat, günlük değişim ve OHLCV geçmişi
+- Mum, hacim, RSI, MACD, SMA, EMA ve Bollinger grafikleri
+- TradingView gelişmiş grafik ve teknik analiz bileşenleri
+
+### AI grafik yorumu
+
+- `gemini-3.5-flash` ile son 60 günlük OHLC verisi ve teknik göstergelere dayalı Türkçe yorum
+- Özet, trend, göstergeler, destek/direnç ve riskler bölümlerinden oluşan sabit çıktı yapısı
+- Eksik veya token sınırına ulaşmış yanıtların kullanıcıya yarım analiz olarak gösterilmesini engelleyen doğrulamalar
+- Kullanıcı başına 30 saniyelik istek bekleme süresi ve başarılı yorumlar için 5 dakikalık önbellek
+- AI yorumları yalnızca oturum açmış kullanıcılar tarafından oluşturulabilir
+
+### Sanal portföy
+
+- ASP.NET Core Identity ile kayıt ve oturum yönetimi
+- Kullanıcıya özel birden fazla sanal portföy
+- Güncel fiyatla alış/satış önizlemesi ve bakiye/pozisyon doğrulaması
+- Ortalama maliyet yöntemiyle maliyet, gerçekleşen ve gerçekleşmemiş kâr/zarar hesabı
+- Günlük değişim, pozisyon ağırlıkları, nakit oranı ve portföy dağılım grafiği
+- İşlem defteri ve hisse bazında açılabilir işlem geçmişi
+- İşlemler ve günlük kapanışlardan yeniden oluşturulan, en fazla bir yıllık portföy değer grafiği
+
+## Teknolojiler
+
+| Katman | Teknoloji |
+| --- | --- |
+| Uygulama | ASP.NET Core 8 MVC, C# |
+| Kimlik doğrulama | ASP.NET Core Identity |
+| Veri erişimi | Entity Framework Core 8, Npgsql |
+| Veritabanı | PostgreSQL / Supabase |
+| Piyasa verisi | Yahoo Finance Chart API |
+| AI | Google Gemini API (`gemini-3.5-flash`) |
+| Arayüz | Razor Views, Bootstrap 5, özel CSS |
+| Grafikler | Lightweight Charts, Chart.js, TradingView Widgets |
+| Dağıtım | Docker, Render Blueprint |
+
+## Gereksinimler
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- PostgreSQL 14+ veya bir Supabase projesi
+- AI yorumlarını kullanmak için geçerli bir Gemini API anahtarı
+- Yahoo Finance erişimi için ek API anahtarı gerekmez
+
+## Yerel kurulum
+
+1. Repoyu klonlayın ve dizine geçin:
+
+   ```bash
+   git clone https://github.com/Farukckr/borsaAnaliz.git
+   cd borsaAnaliz
+   ```
+
+2. Bağımlılıkları geri yükleyin:
+
+   ```bash
+   dotnet restore BorsaAnaliz.sln
+   ```
+
+3. Gizli ayarları .NET user-secrets ile tanımlayın:
+
+   ```bash
+   dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=<host>;Port=5432;Database=<database>;Username=<user>;Password=<password>;SSL Mode=Require;Trust Server Certificate=true" --project src/BorsaAnaliz.Web
+   dotnet user-secrets set "Ai:ApiKey" "<gemini-api-key>" --project src/BorsaAnaliz.Web
+   ```
+
+   Gerçek bağlantı dizesini veya API anahtarını `appsettings.json`, `.env`, commit mesajı ya da dokümana yazmayın. Kök dizindeki `.env` dosyası Git tarafından yok sayılır.
+
+4. Uygulamayı derleyin ve çalıştırın:
+
+   ```bash
+   dotnet build BorsaAnaliz.sln --configuration Release
+   dotnet run --project src/BorsaAnaliz.Web
+   ```
+
+5. Tarayıcıdan `http://localhost:5122` adresini açın.
+
+Uygulama başlangıçta bekleyen Entity Framework migration'larını otomatik uygular. Kullanılan veritabanı hesabının şema oluşturma/değiştirme yetkisine sahip olması gerekir.
+
+## Yapılandırma
+
+| .NET anahtarı | Ortam değişkeni | Açıklama |
+| --- | --- | --- |
+| `ConnectionStrings:DefaultConnection` | `ConnectionStrings__DefaultConnection` | Zorunlu PostgreSQL bağlantı dizesi |
+| `Ai:ApiKey` | `Ai__ApiKey` | Gemini yorumları için API anahtarı |
+| `Ai:Provider` | `Ai__Provider` | Varsayılan: `Gemini` |
+| `Ai:Model` | `Ai__Model` | Varsayılan: `gemini-3.5-flash` |
+| `ASPNETCORE_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` | Yerelde `Development`, üretimde `Production` |
+
+AI anahtarı tanımlı değilse piyasa, grafik ve portföy özellikleri çalışmaya devam eder; yalnızca AI yorum alanı yapılandırma uyarısı gösterir.
+
+## Docker ile çalıştırma
+
+İmajı oluşturun:
+
+```bash
+docker build -t borsa-analiz .
 ```
 
-3. Skim `.agents/PLAN.md` yourself. If the goal, scope, or acceptance criteria look wrong, tell the planner to fix them now — it is much cheaper than fixing the implementation later.
-4. Commit (or back up) the project before implementation so any bad run is easy to undo.
-5. Ask Codex:
+Git tarafından izlenmeyen bir `.env` dosyası hazırlayın:
 
-```text
-Read .agents/CODEX_IMPLEMENTER_PROMPT.md and .agents/PLAN.md.
-Implement the plan.
+```dotenv
+PORT=8080
+ASPNETCORE_ENVIRONMENT=Production
+ConnectionStrings__DefaultConnection=Host=<host>;Port=5432;Database=<database>;Username=<user>;Password=<password>;SSL Mode=Require;Trust Server Certificate=true
+Ai__ApiKey=<gemini-api-key>
 ```
 
-## If Codex Gets Blocked
+Konteyneri başlatın:
 
-Codex sets the plan's Status to `blocked` and writes what went wrong into the plan's Implementation Report. Send the planner back in:
-
-```text
-Read .agents/CLAUDE_PLANNER_PROMPT.md and .agents/PLAN.md.
-Codex is blocked. Read the Implementation Report and revise the plan.
+```bash
+docker run --rm --env-file .env -p 8080:8080 borsa-analiz
 ```
 
-Then ask Codex to implement again. Repeat until Status is `done`.
+Uygulama `http://localhost:8080` adresinden erişilebilir olur.
 
-## Plan Lifecycle
+## Render dağıtımı
 
-`placeholder -> ready (planner) -> in-progress (Codex) -> done | blocked (Codex)`
+Kök dizindeki [`render.yaml`](render.yaml), Docker tabanlı Render servisini şu ayarlarla tanımlar:
 
-Codex only implements plans whose Status is `ready` or `in-progress`, which prevents re-running stale or unfinished plans by accident.
+- Frankfurt bölgesi
+- `/` health check
+- `main` dalındaki commitlerde otomatik deploy
+- Render tarafından sağlanan `PORT` değerine otomatik bağlanma
+- PostgreSQL bağlantı dizesi ve Gemini anahtarının Render arayüzünden gizli değer olarak girilmesi
 
-## When To Use The Full Workflow
+Ayrıntılı Blueprint ve manuel servis adımları için [`docs/DEPLOY.md`](docs/DEPLOY.md) dosyasına bakın.
 
-Use planner -> Codex for:
+## Önemli rotalar ve API'ler
 
-- New websites, apps, dashboards, or larger UI changes.
-- Multi-file features.
-- Refactors.
-- Deploy or infrastructure work.
-- Work where scope control matters.
+| Rota | Erişim | Açıklama |
+| --- | --- | --- |
+| `/` | Herkese açık | Piyasa özeti ve hareketli hisseler |
+| `/Stocks` | Herkese açık | Hisse kataloğu |
+| `/Stocks/Details/{symbol}` | Herkese açık | Grafikler, göstergeler ve AI kartı |
+| `/api/stocks/{symbol}/history` | Herkese açık | OHLCV geçmişi |
+| `/api/stocks/{symbol}/indicators` | Herkese açık | Teknik gösterge serileri |
+| `/api/stocks/{symbol}/ai-comment` | Oturum gerekli | Gemini teknik analiz yorumu |
+| `/Portfolio` | Oturum gerekli | Kullanıcının sanal portföyleri |
+| `/api/portfolios/{portfolioId}/trade-preview` | Sahibi | Alış/satış önizlemesi |
+| `/api/portfolios/{id}/value-history` | Sahibi | Günlük portföy değer serisi |
 
-Use Codex directly for:
-
-- Tiny copy edits.
-- Color/text/link changes.
-- One-file fixes.
-- Obvious bug fixes with clear expected behavior.
-
-## Rule Of Thumb
-
-If the task needs design decisions, architecture decisions, or more than 15 minutes of coding, plan first.
-If the task is obvious, use Codex directly.
-
----
-
-# Türkçe
-
-İki yapay zekâyı iş bölümüyle kullanan küçük bir workflow: güçlü bir model (Claude/Fable) sadece **plan yazar**, Codex sadece **kodu yazar**. Aradaki köprü `.agents/PLAN.md` dosyasıdır — planner oraya yazar, Codex oradan okur.
-
-## Roller
-
-- Planner model: Claude/Fable veya başka bir güçlü muhakeme modeli. Sadece planı yazar.
-- Implementer model: Codex. Dosyaları düzenler, kontrolleri çalıştırır, sonucu raporlar.
-
-## Hızlı Başlangıç
-
-1. `AGENTS.md` dosyasını ve `.agents` klasörünü projenin kök dizinine kopyala.
-2. Planner modele şunu yapıştır:
+## Proje yapısı
 
 ```text
-Read .agents/CLAUDE_PLANNER_PROMPT.md.
-My request is: <istediğin site/uygulama/özelliği buraya yaz>.
-Do not code. Write or update .agents/PLAN.md only.
+borsaAnaliz/
+├── src/BorsaAnaliz.Web/
+│   ├── Controllers/       MVC ve JSON API uçları
+│   ├── Data/              DbContext, migration'lar ve sembol kataloğu
+│   ├── Models/            Piyasa, portföy ve API modelleri
+│   ├── Services/          Yahoo, Gemini, göstergeler ve portföy hesapları
+│   ├── ViewModels/        Razor sayfa modelleri
+│   ├── Views/             Türkçe MVC arayüzü
+│   └── wwwroot/           CSS, JavaScript ve istemci kütüphaneleri
+├── docs/DEPLOY.md         Render dağıtım kılavuzu
+├── Dockerfile
+├── render.yaml
+└── BorsaAnaliz.sln
 ```
 
-3. `.agents/PLAN.md` dosyasına kendin göz at. Hedef, kapsam veya kabul kriterleri yanlışsa planner'a hemen düzelttir — plandaki hatayı düzeltmek, koddaki hatayı düzeltmekten çok daha ucuzdur.
-4. Implementasyondan önce commit al (veya yedekle) ki kötü giden bir koşu kolayca geri alınabilsin.
-5. Codex'e şunu yapıştır:
+## Doğrulama
 
-```text
-Read .agents/CODEX_IMPLEMENTER_PROMPT.md and .agents/PLAN.md.
-Implement the plan.
+Temel kalite kontrolü:
+
+```bash
+dotnet build BorsaAnaliz.sln --configuration Release --no-restore
 ```
 
-## Codex Takılırsa
+Manuel smoke test sırasında aşağıdaki akışlar kontrol edilmelidir:
 
-Codex, planın Status alanını `blocked` yapar ve neyin ters gittiğini planın Implementation Report bölümüne yazar. Planner'ı tekrar devreye sok:
+1. Ana sayfa ve hisse listesi yükleniyor.
+2. BIST ve ABD hisse detaylarında grafik/göstergeler veri gösteriyor.
+3. Kullanıcı kaydı ve oturum açma çalışıyor.
+4. Portföy oluşturma, alış, kısmi satış ve işlem önizlemesi çalışıyor.
+5. Dağılım ve portföy değer grafikleri oluşuyor.
+6. AI yorumu beş bölümü eksiksiz üretip `Bu bir yatırım tavsiyesi değildir.` cümlesiyle bitiyor.
 
-```text
-Read .agents/CLAUDE_PLANNER_PROMPT.md and .agents/PLAN.md.
-Codex is blocked. Read the Implementation Report and revise the plan.
-```
+Repoda şu anda ayrı bir otomatik test projesi bulunmamaktadır; Release derlemesi ve uygulama seviyesindeki smoke testler doğrulamanın temelini oluşturur.
 
-Sonra Codex'e tekrar uygulamasını söyle. Status `done` olana kadar bu döngüyü tekrarla.
+## Veri ve güvenlik notları
 
-## Plan Yaşam Döngüsü
+- Portföy ve işlem sorguları oturum açmış kullanıcı kimliğiyle sınırlandırılır.
+- AI ve işlem POST uçlarında anti-forgery doğrulaması uygulanır.
+- Data Protection anahtarları PostgreSQL'de saklanır; yeni deploy sonrasında mevcut oturumlar korunabilir.
+- Yahoo fiyatları 60 saniye, geçmiş veriler ve portföy değer serileri 1 saat önbellekte tutulur.
+- Harici piyasa verileri gecikmeli, eksik veya geçici olarak erişilemez olabilir.
+- AI çıktıları yalnızca sağlanan OHLC ve teknik gösterge verilerine dayanır; haber veya temel analiz kaynağı değildir.
 
-`placeholder -> ready (planner) -> in-progress (Codex) -> done | blocked (Codex)`
+## Yasal uyarı
 
-Codex yalnızca Status'u `ready` veya `in-progress` olan planları uygular; böylece bayat veya bitmemiş bir plan yanlışlıkla yeniden çalıştırılamaz.
-
-## Tam Workflow Ne Zaman Kullanılır?
-
-Planner -> Codex şunlar için:
-
-- Yeni web sitesi, uygulama, dashboard veya büyük arayüz değişiklikleri.
-- Çok dosyalı özellikler.
-- Refactor işleri.
-- Deploy veya altyapı işleri.
-- Kapsam kontrolünün önemli olduğu işler.
-
-Doğrudan Codex şunlar için:
-
-- Ufak metin düzeltmeleri.
-- Renk/yazı/link değişiklikleri.
-- Tek dosyalık düzeltmeler.
-- Beklenen davranışı net olan bariz hata düzeltmeleri.
-
-## Pratik Kural
-
-İş tasarım kararı, mimari kararı veya 15 dakikadan fazla kodlama gerektiriyorsa önce plan yaptır.
-İş barizse doğrudan Codex'i kullan.
+Bu proje yatırım danışmanlığı hizmeti sunmaz. Uygulamadaki fiyatlar, göstergeler, AI yorumları ve sanal portföy sonuçları gerçek yatırım kararlarının tek dayanağı olarak kullanılmamalıdır.
