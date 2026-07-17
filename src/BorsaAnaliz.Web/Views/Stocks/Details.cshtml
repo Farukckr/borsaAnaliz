@@ -179,29 +179,41 @@
         <p class="text-muted small mb-0">İnternet üzerinden sağlanan gelişmiş grafik ve teknik analiz özeti.</p>
     </div>
     <div class="row g-4">
-        <div class="col-xl-8">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body p-2 tradingview-panel tradingview-chart-panel">
-                    <div class="tradingview-widget-container h-100 w-100">
-                        <div class="tradingview-widget-container__widget h-100 w-100"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                        {
-                            "autosize": true,
-                            "symbol": @Html.Raw(tvSymbolJson),
-                            "interval": "D",
-                            "timezone": "Europe/Istanbul",
-                            "theme": "light",
-                            "style": "1",
-                            "locale": "tr",
-                            "allow_symbol_change": false,
-                            "hide_side_toolbar": false,
-                            "support_host": "https://www.tradingview.com"
-                        }
-                        </script>
+        @if (Model.Stock.Market == "BIST")
+        {
+            <div class="col-xl-8">
+                <div class="alert alert-info h-100 mb-0 d-flex align-items-center gap-3" role="note">
+                    <i class="bi bi-info-circle fs-4 flex-shrink-0" aria-hidden="true"></i>
+                    <p class="mb-0">TradingView gelişmiş grafik bileşeni BIST sembollerini desteklemediği için gösterilmiyor. Bu hisseyi <a href="#priceChart" class="alert-link">yukarıdaki interaktif fiyat grafiğimizden</a> inceleyebilirsiniz.</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-xl-8">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-2 tradingview-panel tradingview-chart-panel">
+                        <div class="tradingview-widget-container h-100 w-100">
+                            <div class="tradingview-widget-container__widget h-100 w-100"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                            {
+                                "autosize": true,
+                                "symbol": @Html.Raw(tvSymbolJson),
+                                "interval": "D",
+                                "timezone": "Europe/Istanbul",
+                                "theme": "light",
+                                "style": "1",
+                                "locale": "tr",
+                                "allow_symbol_change": false,
+                                "hide_side_toolbar": false,
+                                "support_host": "https://www.tradingview.com"
+                            }
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
         <div class="col-xl-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-2 tradingview-panel tradingview-analysis-panel">
