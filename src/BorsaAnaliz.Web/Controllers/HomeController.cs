@@ -19,19 +19,23 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IStockCatalogService _stockCatalog;
     private readonly IMarketDataService _marketData;
+    private readonly IKapNewsService _kapNews;
 
     public HomeController(
         ILogger<HomeController> logger,
         IStockCatalogService stockCatalog,
-        IMarketDataService marketData)
+        IMarketDataService marketData,
+        IKapNewsService kapNews)
     {
         _logger = logger;
         _stockCatalog = stockCatalog;
         _marketData = marketData;
+        _kapNews = kapNews;
     }
 
     public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
+        var disclosuresTask = _kapNews.GetLatestAsync(cancellationToken);
         var xu100 = await _stockCatalog.GetByIndexAsync("XU100", cancellationToken);
         var us = await _stockCatalog.GetByMarketAsync("US", cancellationToken);
         var symbols = xu100
@@ -78,6 +82,7 @@ public class HomeController : Controller
             snapshots,
             gainers,
             losers,
+            (await disclosuresTask).Take(6).ToArray(),
             marketTimes.Length > 0 ? marketTimes.Max() : null));
     }
 

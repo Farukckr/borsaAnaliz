@@ -120,6 +120,51 @@
     </div>
 </section>
 
+@if (Model.LatestDisclosures.Count > 0)
+{
+    <section class="mb-5" aria-labelledby="latestKapTitle">
+        <div class="section-heading">
+            <div>
+                <div class="section-kicker">Gündemdeki şirketler</div>
+                <h2 id="latestKapTitle">Son KAP Bildirimleri</h2>
+                <p class="text-muted mb-0">Şirketlerden gelen en güncel resmi açıklamalar.</p>
+            </div>
+            <a class="btn btn-sm btn-outline-primary" asp-controller="News" asp-action="Index">
+                Tümünü gör <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="kap-home-panel">
+            @foreach (var disclosure in Model.LatestDisclosures)
+            {
+                <article class="kap-home-row">
+                    <div class="kap-home-time">
+                        <i class="bi bi-megaphone-fill" aria-hidden="true"></i>
+                        <time datetime="@disclosure.PublishedAt.ToString("O")">@disclosure.PublishedAt.ToString("HH:mm", displayCulture)</time>
+                    </div>
+                    <div class="min-w-0 flex-grow-1">
+                        <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                            @if (disclosure.MatchedSymbol is not null)
+                            {
+                                <a class="kap-home-company" asp-controller="Stocks" asp-action="Details" asp-route-symbol="@disclosure.MatchedSymbol">@disclosure.CompanyName</a>
+                            }
+                            else
+                            {
+                                <span class="kap-home-company">@disclosure.CompanyName</span>
+                            }
+                            <span class="kap-category-badge">@disclosure.Category</span>
+                        </div>
+                        <div class="kap-home-subject">@disclosure.Subject</div>
+                    </div>
+                    <a class="kap-source-link" href="@disclosure.SourceUrl" target="_blank" rel="noopener noreferrer" aria-label="KAP bildirimini yeni sekmede aç">
+                        KAP <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+            }
+        </div>
+    </section>
+}
+
 <section class="mb-5" aria-labelledby="moversTitle">
     <div class="section-heading">
         <div>

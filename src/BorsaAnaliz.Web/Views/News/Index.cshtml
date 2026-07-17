@@ -1,0 +1,108 @@
+@using System.Globalization
+@model IReadOnlyList<KapDisclosure>
+@{
+    ViewData["Title"] = "KAP Haberleri";
+    var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
+}
+
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+    <div>
+        <div class="section-kicker">Kamuyu Aydınlatma Platformu</div>
+        <h1 class="mb-1">Son KAP Bildirimleri</h1>
+        <p class="text-muted mb-0">Şirketlerin son iki gündeki resmi açıklamalarını takip edin.</p>
+    </div>
+    <a class="btn btn-sm btn-outline-primary" href="https://www.kap.org.tr/tr" target="_blank" rel="noopener noreferrer">
+        KAP'a git <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+    </a>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning">KAP bildirimlerine şu anda ulaşılamıyor.</div>
+}
+else
+{
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <label for="newsSearch" class="form-label">Bildirimlerde ara</label>
+            <input id="newsSearch" class="form-control" type="search" placeholder="Şirket, hisse kodu veya konu" autocomplete="off" />
+        </div>
+    </div>
+
+    <div class="kap-news-list" id="kapNewsList">
+        @foreach (var disclosure in Model)
+        {
+            var searchText = $"{disclosure.CompanyName} {string.Join(' ', disclosure.StockCodes)} {disclosure.Category} {disclosure.Type} {disclosure.Subject} {disclosure.Summary}";
+            <article class="kap-news-item" data-news-item data-search="@searchText">
+                <div class="kap-news-time">
+                    <time datetime="@disclosure.PublishedAt.ToString("O")" title="@disclosure.PublishedAt.ToString("dd MMMM yyyy HH:mm", displayCulture)">
+                        @RelativeTime(disclosure.PublishedAt)
+                    </time>
+                    <span>@disclosure.PublishedAt.ToString("HH:mm", displayCulture)</span>
+                </div>
+                <div class="kap-news-content min-w-0">
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                        <span class="kap-category-badge">@disclosure.Category</span>
+                        @if (disclosure.StockCodes.Count > 0)
+                        {
+                            <span class="small text-muted">@string.Join(" · ", disclosure.StockCodes)</span>
+                        }
+                    </div>
+                    <h2 class="h6 mb-1">
+                        @if (disclosure.MatchedSymbol is not null)
+                        {
+                            <a asp-controller="Stocks" asp-action="Details" asp-route-symbol="@disclosure.MatchedSymbol">@disclosure.CompanyName</a>
+                        }
+                        else
+                        {
+                            @disclosure.CompanyName
+                        }
+                    </h2>
+                    <p class="kap-news-subject mb-1">@disclosure.Subject</p>
+                    @if (!string.IsNullOrWhiteSpace(disclosure.Summary) &&
+                         !disclosure.Summary.Equals(disclosure.Subject, StringComparison.OrdinalIgnoreCase))
+                    {
+                        <p class="small text-muted mb-0">@disclosure.Summary</p>
+                    }
+                </div>
+                <a class="kap-source-link" href="@disclosure.SourceUrl" target="_blank" rel="noopener noreferrer" aria-label="KAP bildirimini yeni sekmede aç">
+                    KAP <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+            </article>
+        }
+    </div>
+    <div id="noNewsResults" class="alert alert-info d-none">Aramanızla eşleşen bildirim bulunamadı.</div>
+}
+
+@section Scripts {
+    <script>
+        (() => {
+            const search = document.getElementById('newsSearch');
+            const items = Array.from(document.querySelectorAll('[data-news-item]'));
+            const empty = document.getElementById('noNewsResults');
+            if (!search || items.length === 0) return;
+
+            search.addEventListener('input', () => {
+                const query = search.value.trim().toLocaleLowerCase('tr-TR');
+                let visible = 0;
+                items.forEach(item => {
+                    const matches = !query || item.dataset.search.toLocaleLowerCase('tr-TR').includes(query);
+                    item.classList.toggle('d-none', !matches);
+                    visible += matches ? 1 : 0;
+                });
+                empty.classList.toggle('d-none', visible !== 0);
+            });
+        })();
+    </script>
+}
+
+@functions {
+    private static string RelativeTime(DateTimeOffset publishedAt)
+    {
+        var elapsed = DateTimeOffset.UtcNow - publishedAt.ToUniversalTime();
+        if (elapsed < TimeSpan.FromMinutes(1)) return "az önce";
+        if (elapsed < TimeSpan.FromHours(1)) return $"{Math.Max(1, (int)elapsed.TotalMinutes)} dk önce";
+        if (elapsed < TimeSpan.FromDays(1)) return $"{Math.Max(1, (int)elapsed.TotalHours)} sa önce";
+        return $"{Math.Max(1, (int)elapsed.TotalDays)} gün önce";
+    }
+}

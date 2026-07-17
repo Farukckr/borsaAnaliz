@@ -6,6 +6,7 @@ public sealed record HomeDashboardViewModel(
     IReadOnlyList<MarketSnapshotViewModel> MarketSnapshots,
     IReadOnlyList<StockListItemViewModel> Gainers,
     IReadOnlyList<StockListItemViewModel> Losers,
+    IReadOnlyList<KapDisclosure> LatestDisclosures,
     DateTimeOffset? LastUpdatedAt);
 
 public sealed record MarketSnapshotViewModel(

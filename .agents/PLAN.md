@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (Phases 1–2 complete; Phase 3 KAP disclosures is next.)
+done — 2026-07-17 (all three phases implemented, verified, and deployed.)
 
 ## Task Type
 
@@ -58,12 +58,12 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 
 ### Phase 3 — KAP disclosures (news system)
 
-- [ ] `Models/KapDisclosure` (id, time, companyName, stockCodes, matchedSymbol?, category/type, subject/title) + `IKapNewsService`/`KapNewsService` per Architecture Decisions. First implementation step: fetch the endpoint once, inspect the real response shape, and parse defensively (unknown fields tolerated, log+empty on parse failure).
-- [ ] `NewsController` + `Views/News/Index.cshtml` (`/Haberler`): latest ~100 disclosures (2-day window), rows with relative time ("12 dk önce"), company link to our detail page when matched, category badge, KAP source link (new tab); client-side text filter box. Empty/failed state: "KAP bildirimlerine şu anda ulaşılamıyor."
-- [ ] Home page: "Son KAP Bildirimleri" card panel (latest 6, compact rows, "Tümünü gör →" to /Haberler) placed prominently below the index cards; renders nothing (collapsed) if the service returns empty — never an error.
-- [ ] Navbar: "Haberler" link.
-- [ ] Optional if trivial: on stock detail, a small "Şirket bildirimleri" list filtered to that symbol.
-- [ ] Verify: /Haberler lists real current disclosures with working KAP links and matched company links; home panel shows 6 and degrades to hidden when the service is forced to fail; repeated loads hit the 5 min cache (no request spam in logs).
+- [x] `Models/KapDisclosure` (id, time, companyName, stockCodes, matchedSymbol?, category/type, subject/title) + `IKapNewsService`/`KapNewsService` per Architecture Decisions. First implementation step: fetch the endpoint once, inspect the real response shape, and parse defensively (unknown fields tolerated, log+empty on parse failure).
+- [x] `NewsController` + `Views/News/Index.cshtml` (`/Haberler`): latest ~100 disclosures (2-day window), rows with relative time ("12 dk önce"), company link to our detail page when matched, category badge, KAP source link (new tab); client-side text filter box. Empty/failed state: "KAP bildirimlerine şu anda ulaşılamıyor."
+- [x] Home page: "Son KAP Bildirimleri" card panel (latest 6, compact rows, "Tümünü gör →" to /Haberler) placed prominently below the index cards; renders nothing (collapsed) if the service returns empty — never an error.
+- [x] Navbar: "Haberler" link.
+- [x] Optional if trivial: on stock detail, a small "Şirket bildirimleri" list filtered to that symbol. (Reviewed and intentionally omitted: it would expand the stock-detail model/controller path; the dedicated page and home panel satisfy the required scope.)
+- [x] Verify: /Haberler lists real current disclosures with working KAP links and matched company links; home panel shows 6 and degrades to hidden when the service is forced to fail; repeated loads hit the 5 min cache (no request spam in logs).
 
 ## Acceptance Criteria
 
@@ -154,3 +154,12 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 - Verification: `dotnet build BorsaAnaliz.sln -c Release --no-restore` completed with 0 warnings/errors and `git diff --check` passed. PostgreSQL catalog checks returned `rls=True`, `uniqueIndex=True`, and `cascadeFk=True`. Two temporary users verified persistence, double-toggle removal, and cross-user isolation; a separate detail-page test persisted `AKBNK.IS`; anonymous list/direct-watchlist behavior routed to login; missing anti-forgery and invalid symbols returned HTTP 400. A 375×812 headless-browser check confirmed the star remains visible as the first responsive table column. All temporary test users were deleted and the database check returned `leftoverTestUsers=0`.
 - File inventory: `.agents/PLAN.md`; `src/BorsaAnaliz.Web/Controllers/HomeController.cs`; `src/BorsaAnaliz.Web/Controllers/StocksController.cs`; `src/BorsaAnaliz.Web/Data/ApplicationDbContext.cs`; `src/BorsaAnaliz.Web/Data/Migrations/20260717101243_AddWatchlist.cs`; `src/BorsaAnaliz.Web/Data/Migrations/20260717101243_AddWatchlist.Designer.cs`; `src/BorsaAnaliz.Web/Data/Migrations/ApplicationDbContextModelSnapshot.cs`; `src/BorsaAnaliz.Web/Models/WatchlistItem.cs`; `src/BorsaAnaliz.Web/Program.cs`; `src/BorsaAnaliz.Web/Services/IWatchlistService.cs`; `src/BorsaAnaliz.Web/Services/WatchlistService.cs`; `src/BorsaAnaliz.Web/ViewModels/StockDetailsViewModel.cs`; `src/BorsaAnaliz.Web/ViewModels/StockListItemViewModel.cs`; `src/BorsaAnaliz.Web/Views/Shared/_Layout.cshtml`; `src/BorsaAnaliz.Web/Views/Stocks/Details.cshtml`; `src/BorsaAnaliz.Web/Views/Stocks/Index.cshtml`; `src/BorsaAnaliz.Web/wwwroot/js/site.js`.
 - No new secret, AI, portfolio transaction, chart, or KAP implementation was introduced in this phase.
+
+### 2026-07-17 — Phase 3 KAP disclosures complete
+
+- Inspected KAP's current official client request and response before implementation. The endpoint is a JSON `POST`; the live response is a flat array containing `publishDate`, `kapTitle`, disclosure class/type, subject/summary, stock codes/related stocks, and `disclosureIndex`.
+- Added a defensive KAP service using a browser-like request, a two-day date window, 10-second timeout, five-minute shared memory cache, tolerant field parsing, catalog symbol matching, Turkish category labels, a 100-item limit, and logged empty-list degradation on network, timeout, or JSON failures.
+- Added `/Haberler` with relative times, category badges, text filtering, matched stock-detail links, official KAP links, and a friendly unavailable state. Added the latest six disclosures below the home market cards and a navbar "Haberler" link. The optional stock-detail disclosure panel was deliberately omitted to avoid expanding that otherwise unrelated controller/model path.
+- Verification: `dotnet build BorsaAnaliz.sln -c Release --no-restore` completed with 0 warnings/errors and `git diff --check` passed. Local live-data checks rendered 100 disclosures, 100 KAP links, 55 catalog-matched stock links, correct Turkish text, and exactly six home rows; repeated `/Haberler` and home requests reused the five-minute cache. The first official KAP source link and matched `ALCAR.IS` detail link both returned HTTP 200. With `Kap:BaseUrl` forced to an unreachable address, home returned HTTP 200 with no KAP panel and `/Haberler` returned HTTP 200 with the required unavailable message; the repeated failure request returned from the cached empty result. The 375×812 browser view rendered the responsive news cards and filter.
+- File inventory: `.agents/PLAN.md`; `src/BorsaAnaliz.Web/Controllers/HomeController.cs`; `src/BorsaAnaliz.Web/Controllers/NewsController.cs`; `src/BorsaAnaliz.Web/Models/KapDisclosure.cs`; `src/BorsaAnaliz.Web/Program.cs`; `src/BorsaAnaliz.Web/Services/IKapNewsService.cs`; `src/BorsaAnaliz.Web/Services/KapNewsService.cs`; `src/BorsaAnaliz.Web/ViewModels/HomeDashboardViewModel.cs`; `src/BorsaAnaliz.Web/Views/Home/Index.cshtml`; `src/BorsaAnaliz.Web/Views/News/Index.cshtml`; `src/BorsaAnaliz.Web/Views/Shared/_Layout.cshtml`; `src/BorsaAnaliz.Web/wwwroot/css/site.css`.
+- No database schema, migration, secret, AI, portfolio, or chart implementation was changed in this phase.

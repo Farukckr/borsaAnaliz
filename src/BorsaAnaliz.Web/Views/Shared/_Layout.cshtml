@@ -57,6 +57,14 @@
                                 <span>Portföyüm</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "News" ? "active" : null)"
+                               aria-current="@(currentController == "News" ? "page" : null)"
+                               asp-area="" asp-controller="News" asp-action="Index">
+                                <i class="bi bi-newspaper" aria-hidden="true"></i>
+                                <span>Haberler</span>
+                            </a>
+                        </li>
                         @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
