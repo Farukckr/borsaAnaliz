@@ -63,18 +63,52 @@
 
 <div class="card stocks-filter-card border-0 shadow-sm mb-4">
     <div class="card-body">
-        <label for="stockSearch" class="form-label">Hisse ara</label>
-        <input id="stockSearch" class="form-control" type="search" placeholder="Sembol veya şirket adı" autocomplete="off" />
+        <div class="row g-3 align-items-end">
+            <div class="col-lg-7">
+                <label for="stockSearch" class="form-label">Hisse ara</label>
+                <input id="stockSearch" class="form-control" type="search" placeholder="Sembol, şirket veya sektör" autocomplete="off" />
+            </div>
+            <form class="col-lg-5" method="get" asp-action="Index">
+                <input type="hidden" name="list" value="@Model.ActiveList" />
+                <div class="d-flex flex-column flex-sm-row gap-2 align-items-stretch align-items-sm-end">
+                    <div class="flex-grow-1">
+                        <label for="sectorFilter" class="form-label">Sektör</label>
+                        <select id="sectorFilter" class="form-select" name="sector">
+                            <option value="">Tüm sektörler</option>
+                            @foreach (var sector in Model.Sectors)
+                            {
+                                @if (sector.Equals(Model.ActiveSector, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <option value="@sector" selected>@sector</option>
+                                }
+                                else
+                                {
+                                    <option value="@sector">@sector</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Filtrele</button>
+                </div>
+            </form>
+        </div>
         @if (Model.ActiveList == "xu500")
         {
-            <div class="form-text">Arama bu sayfadaki 50 hisse içinde çalışır. Tüm BIST 500 şirketlerini görmek için sayfalar arasında ilerleyin.</div>
+            <div class="form-text">Sektör filtresi tüm BIST 500 listesine, arama ise bu sayfadaki hisselere uygulanır.</div>
         }
     </div>
 </div>
 
 @if (Model.Stocks.Count == 0)
 {
-    @if (Model.ActiveList == "watchlist")
+    @if (Model.ActiveSector is not null)
+    {
+        <div class="alert alert-info">
+            <strong>@Model.ActiveSector</strong> sektöründe bu listede hisse bulunmuyor.
+            <a asp-action="Index" asp-route-list="@Model.ActiveList" class="alert-link ms-1">Filtreyi temizle</a>
+        </div>
+    }
+    else if (Model.ActiveList == "watchlist")
     {
         <div class="card border-0 shadow-sm text-center">
             <div class="card-body py-5">
@@ -104,6 +138,7 @@ else
                         </button>
                     </th>
                     <th scope="col">Şirket</th>
+                    <th scope="col">Sektör</th>
                     <th scope="col">Piyasa</th>
                     <th scope="col" class="text-end" data-sort-column="price" aria-sort="none">
                         <button type="button" class="table-sort-button justify-content-end ms-auto" data-sort-key="price">
@@ -126,7 +161,7 @@ else
                     <tr class="stock-table-row"
                         data-stock-row
                         data-market="@item.Stock.Market"
-                        data-search="@($"{item.Stock.Symbol} {item.Stock.Name}")"
+                        data-search="@($"{item.Stock.Symbol} {item.Stock.Name} {item.Stock.Sector}")"
                         data-symbol="@item.Stock.Symbol"
                         data-price="@(item.Quote?.Price.ToString(CultureInfo.InvariantCulture) ?? string.Empty)"
                         data-change="@(item.Quote?.ChangePercent?.ToString(CultureInfo.InvariantCulture) ?? string.Empty)"
@@ -165,6 +200,12 @@ else
                         </td>
                         <td>
                             <a class="text-reset text-decoration-none" asp-action="Details" asp-route-symbol="@item.Stock.Symbol">@item.Stock.Name</a>
+                        </td>
+                        <td>
+                            <a class="sector-badge"
+                               asp-action="Index"
+                               asp-route-list="@Model.ActiveList"
+                               asp-route-sector="@item.Stock.Sector">@item.Stock.Sector</a>
                         </td>
                         <td><span class="market-badge">@(item.Stock.Market == "BIST" ? "BIST" : "ABD")</span></td>
                         <td class="text-end text-nowrap">
@@ -208,11 +249,11 @@ else
         <nav class="mt-4" aria-label="BIST 500 sayfaları">
             <ul class="pagination justify-content-center flex-wrap mb-0">
                 <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : string.Empty)">
-                    <a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-page="@(Model.CurrentPage - 1)" aria-label="Önceki sayfa">Önceki</a>
+                    <a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-sector="@Model.ActiveSector" asp-route-page="@(Model.CurrentPage - 1)" aria-label="Önceki sayfa">Önceki</a>
                 </li>
                 @if (firstPage > 1)
                 {
-                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-page="1">1</a></li>
+                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-sector="@Model.ActiveSector" asp-route-page="1">1</a></li>
                     @if (firstPage > 2)
                     {
                         <li class="page-item disabled"><span class="page-link">…</span></li>
@@ -221,7 +262,7 @@ else
                 @for (var pageNumber = firstPage; pageNumber <= lastPage; pageNumber++)
                 {
                     <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : string.Empty)">
-                        <a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-page="@pageNumber" aria-current="@(pageNumber == Model.CurrentPage ? "page" : null)">@pageNumber</a>
+                        <a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-sector="@Model.ActiveSector" asp-route-page="@pageNumber" aria-current="@(pageNumber == Model.CurrentPage ? "page" : null)">@pageNumber</a>
                     </li>
                 }
                 @if (lastPage < Model.TotalPages)
@@ -230,10 +271,10 @@ else
                     {
                         <li class="page-item disabled"><span class="page-link">…</span></li>
                     }
-                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-page="@Model.TotalPages">@Model.TotalPages</a></li>
+                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-sector="@Model.ActiveSector" asp-route-page="@Model.TotalPages">@Model.TotalPages</a></li>
                 }
                 <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : string.Empty)">
-                    <a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-page="@(Model.CurrentPage + 1)" aria-label="Sonraki sayfa">Sonraki</a>
+                    <a class="page-link" asp-action="Index" asp-route-list="@Model.ActiveList" asp-route-sector="@Model.ActiveSector" asp-route-page="@(Model.CurrentPage + 1)" aria-label="Sonraki sayfa">Sonraki</a>
                 </li>
             </ul>
         </nav>

@@ -6,7 +6,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "A1YEN.IS",
@@ -15,7 +16,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AAGYO.IS",
@@ -24,7 +26,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "ADEL.IS",
@@ -33,7 +36,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Diğer İmalat"
     },
     {
         "symbol":  "ADESE.IS",
@@ -42,7 +46,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gayrimenkul"
     },
     {
         "symbol":  "ADGYO.IS",
@@ -51,7 +56,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AEFES.IS",
@@ -61,7 +67,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "AFYON.IS",
@@ -70,7 +77,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "AGESA.IS",
@@ -79,7 +87,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sigorta"
     },
     {
         "symbol":  "AGHOL.IS",
@@ -88,7 +97,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "AGROT.IS",
@@ -97,7 +107,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tarım ve Su Ürünleri"
     },
     {
         "symbol":  "AHGAZ.IS",
@@ -106,7 +117,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AHSGY.IS",
@@ -115,7 +127,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AKBNK.IS",
@@ -125,7 +138,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "AKCNS.IS",
@@ -134,7 +148,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "AKENR.IS",
@@ -143,7 +158,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AKFGY.IS",
@@ -152,7 +168,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AKFIS.IS",
@@ -161,7 +178,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "AKFYE.IS",
@@ -170,7 +188,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AKGRT.IS",
@@ -179,7 +198,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sigorta"
     },
     {
         "symbol":  "AKHAN.IS",
@@ -188,7 +208,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "AKSA.IS",
@@ -198,7 +219,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "AKSEN.IS",
@@ -208,7 +230,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AKSGY.IS",
@@ -217,7 +240,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AKSUE.IS",
@@ -226,7 +250,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ALARK.IS",
@@ -236,7 +261,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "ALBRK.IS",
@@ -245,7 +271,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "ALCAR.IS",
@@ -254,7 +281,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "ALCTL.IS",
@@ -263,7 +291,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ALFAS.IS",
@@ -272,7 +301,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ALGYO.IS",
@@ -281,7 +311,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "ALKA.IS",
@@ -290,7 +321,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "ALKIM.IS",
@@ -299,7 +331,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ALKLC.IS",
@@ -308,7 +341,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ALTNY.IS",
@@ -318,7 +352,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Savunma"
     },
     {
         "symbol":  "ALVES.IS",
@@ -327,7 +362,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "ANELE.IS",
@@ -336,7 +372,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "ANGEN.IS",
@@ -345,7 +382,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ANHYT.IS",
@@ -354,7 +392,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sigorta"
     },
     {
         "symbol":  "ANSGR.IS",
@@ -364,7 +403,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sigorta"
     },
     {
         "symbol":  "ARASE.IS",
@@ -373,7 +413,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ARCLK.IS",
@@ -383,7 +424,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "ARDYZ.IS",
@@ -392,7 +434,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ARENA.IS",
@@ -401,7 +444,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ARFYE.IS",
@@ -410,7 +454,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ARMGD.IS",
@@ -419,7 +464,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ARSAN.IS",
@@ -428,7 +474,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "ARTMS.IS",
@@ -437,7 +484,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "ARZUM.IS",
@@ -446,7 +494,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "ASELS.IS",
@@ -456,7 +505,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Savunma"
     },
     {
         "symbol":  "ASGYO.IS",
@@ -465,7 +515,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "ASTOR.IS",
@@ -475,7 +526,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "ASUZU.IS",
@@ -484,7 +536,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "ATAKP.IS",
@@ -493,7 +546,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ATATP.IS",
@@ -502,7 +556,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ATATR.IS",
@@ -511,7 +566,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "AVGYO.IS",
@@ -520,7 +576,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AVHOL.IS",
@@ -529,7 +586,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "AVOD.IS",
@@ -538,7 +596,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "AVPGY.IS",
@@ -547,7 +606,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AYCES.IS",
@@ -556,7 +616,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "AYDEM.IS",
@@ -565,7 +626,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AYEN.IS",
@@ -574,7 +636,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "AYGAZ.IS",
@@ -583,7 +646,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "AZTEK.IS",
@@ -592,7 +656,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "BAGFS.IS",
@@ -601,7 +666,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "BAHKM.IS",
@@ -610,7 +676,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "BALSU.IS",
@@ -620,7 +687,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "BANVT.IS",
@@ -629,7 +697,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "BARMA.IS",
@@ -638,7 +707,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "BASGZ.IS",
@@ -647,7 +717,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "BAYRK.IS",
@@ -656,7 +727,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "BEGYO.IS",
@@ -665,7 +737,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "BERA.IS",
@@ -675,7 +748,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "BESLR.IS",
@@ -684,7 +758,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "BESTE.IS",
@@ -693,7 +768,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "BEYAZ.IS",
@@ -702,7 +778,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "BFREN.IS",
@@ -711,7 +788,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "BIENY.IS",
@@ -720,7 +798,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "BIGCH.IS",
@@ -729,7 +808,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "BIGEN.IS",
@@ -738,7 +818,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "BIGTK.IS",
@@ -747,7 +828,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Medya ve Yayıncılık"
     },
     {
         "symbol":  "BIMAS.IS",
@@ -757,7 +839,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "BINBN.IS",
@@ -766,7 +849,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "BINHO.IS",
@@ -775,7 +859,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "BIOEN.IS",
@@ -784,7 +869,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "BJKAS.IS",
@@ -793,7 +879,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Spor ve Eğlence"
     },
     {
         "symbol":  "BLCYT.IS",
@@ -802,7 +889,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "BLUME.IS",
@@ -811,7 +899,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "BMSCH.IS",
@@ -820,7 +909,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "BMSTL.IS",
@@ -829,7 +919,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "BNTAS.IS",
@@ -838,7 +929,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "BOBET.IS",
@@ -847,7 +939,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "BORLS.IS",
@@ -856,7 +949,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "BORSK.IS",
@@ -865,7 +959,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "BOSSA.IS",
@@ -874,7 +969,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "BRISA.IS",
@@ -883,7 +979,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "BRKVY.IS",
@@ -892,7 +989,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "BRLSM.IS",
@@ -901,7 +999,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "BRSAN.IS",
@@ -911,7 +1010,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "BRYAT.IS",
@@ -921,7 +1021,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "BSOKE.IS",
@@ -931,7 +1032,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "BTCIM.IS",
@@ -941,7 +1043,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "BUCIM.IS",
@@ -950,7 +1053,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "BULGS.IS",
@@ -959,7 +1063,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "BURCE.IS",
@@ -968,7 +1073,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "BVSAN.IS",
@@ -977,7 +1083,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "CANTE.IS",
@@ -987,7 +1094,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "CATES.IS",
@@ -996,7 +1104,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "CCOLA.IS",
@@ -1006,7 +1115,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "CELHA.IS",
@@ -1015,7 +1125,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "CEMAS.IS",
@@ -1024,7 +1135,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "CEMTS.IS",
@@ -1033,7 +1145,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "CEMZY.IS",
@@ -1042,7 +1155,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "CGCAM.IS",
@@ -1051,7 +1165,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "CIMSA.IS",
@@ -1061,7 +1176,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "CLEBI.IS",
@@ -1070,7 +1186,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "CMBTN.IS",
@@ -1079,7 +1196,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "CONSE.IS",
@@ -1088,7 +1206,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "CRFSA.IS",
@@ -1097,7 +1216,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "CVKMD.IS",
@@ -1107,7 +1227,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Madencilik"
     },
     {
         "symbol":  "CWENE.IS",
@@ -1117,7 +1238,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "DAGI.IS",
@@ -1126,7 +1248,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "DAPGM.IS",
@@ -1136,7 +1259,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "DARDL.IS",
@@ -1145,7 +1269,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "DCTTR.IS",
@@ -1154,7 +1279,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "DENGE.IS",
@@ -1163,7 +1289,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "DERHL.IS",
@@ -1172,7 +1299,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "DESA.IS",
@@ -1181,7 +1309,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "DEVA.IS",
@@ -1190,7 +1319,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "DGATE.IS",
@@ -1199,7 +1329,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "DGNMO.IS",
@@ -1208,7 +1339,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "DITAS.IS",
@@ -1217,7 +1349,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "DMRGD.IS",
@@ -1226,7 +1359,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "DMSAS.IS",
@@ -1235,7 +1369,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "DNISI.IS",
@@ -1244,7 +1379,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "DOAS.IS",
@@ -1254,7 +1390,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "DOCO.IS",
@@ -1263,7 +1400,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "DOFER.IS",
@@ -1272,7 +1410,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "DOFRB.IS",
@@ -1281,7 +1420,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "DOHOL.IS",
@@ -1291,7 +1431,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "DSTKF.IS",
@@ -1301,7 +1442,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "DUNYH.IS",
@@ -1310,7 +1452,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "DURDO.IS",
@@ -1319,7 +1462,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "DURKN.IS",
@@ -1328,7 +1472,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "DYOBY.IS",
@@ -1337,7 +1482,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "DZGYO.IS",
@@ -1346,7 +1492,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "EBEBK.IS",
@@ -1355,7 +1502,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "ECILC.IS",
@@ -1365,7 +1513,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "ECOGR.IS",
@@ -1374,7 +1523,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ECZYT.IS",
@@ -1383,7 +1533,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "EDATA.IS",
@@ -1392,7 +1543,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "EDIP.IS",
@@ -1401,7 +1553,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "EFOR.IS",
@@ -1411,7 +1564,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "EGEEN.IS",
@@ -1420,7 +1574,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "EGEGY.IS",
@@ -1429,7 +1584,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "EGEPO.IS",
@@ -1438,7 +1594,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sağlık"
     },
     {
         "symbol":  "EGGUB.IS",
@@ -1447,7 +1604,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "EGPRO.IS",
@@ -1456,7 +1614,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "EKDMR.IS",
@@ -1465,7 +1624,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "EKGYO.IS",
@@ -1475,7 +1635,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "EKOS.IS",
@@ -1484,7 +1645,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "EKSUN.IS",
@@ -1493,7 +1655,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ELITE.IS",
@@ -1502,7 +1665,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "EMKEL.IS",
@@ -1511,7 +1675,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "EMPAE.IS",
@@ -1520,7 +1685,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ENDAE.IS",
@@ -1529,7 +1695,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ENERY.IS",
@@ -1539,7 +1706,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ENJSA.IS",
@@ -1549,7 +1717,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ENKAI.IS",
@@ -1559,7 +1728,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "ENSRI.IS",
@@ -1568,7 +1738,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "ENTRA.IS",
@@ -1577,7 +1748,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "EPLAS.IS",
@@ -1586,7 +1758,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ERCB.IS",
@@ -1595,7 +1768,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "EREGL.IS",
@@ -1605,7 +1779,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "ESCAR.IS",
@@ -1614,7 +1789,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "ESCOM.IS",
@@ -1623,7 +1799,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ESEN.IS",
@@ -1633,7 +1810,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ETILR.IS",
@@ -1642,7 +1820,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "EUPWR.IS",
@@ -1652,7 +1831,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "EUREN.IS",
@@ -1662,7 +1842,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "EYGYO.IS",
@@ -1671,7 +1852,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "FADE.IS",
@@ -1680,7 +1862,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "FENER.IS",
@@ -1690,7 +1873,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Spor ve Eğlence"
     },
     {
         "symbol":  "FMIZP.IS",
@@ -1699,7 +1883,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "FONET.IS",
@@ -1708,7 +1893,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "FORMT.IS",
@@ -1717,7 +1903,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "FORTE.IS",
@@ -1726,7 +1913,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "FRIGO.IS",
@@ -1735,7 +1923,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "FRMPL.IS",
@@ -1744,7 +1933,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "FROTO.IS",
@@ -1754,7 +1944,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "FZLGY.IS",
@@ -1763,7 +1954,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "GARAN.IS",
@@ -1773,7 +1965,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "GARFA.IS",
@@ -1782,7 +1975,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "GEDIK.IS",
@@ -1791,7 +1985,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "GEDZA.IS",
@@ -1800,7 +1995,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "GENIL.IS",
@@ -1810,7 +2006,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "GENKM.IS",
@@ -1819,7 +2016,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "GENTS.IS",
@@ -1828,7 +2026,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "GEREL.IS",
@@ -1837,7 +2036,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "GESAN.IS",
@@ -1847,7 +2047,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "GIPTA.IS",
@@ -1856,7 +2057,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "GLCVY.IS",
@@ -1865,7 +2067,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "GLRMK.IS",
@@ -1875,7 +2078,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "GLRYH.IS",
@@ -1884,7 +2088,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "GLYHO.IS",
@@ -1893,7 +2098,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "GMTAS.IS",
@@ -1902,7 +2108,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "GOKNR.IS",
@@ -1911,7 +2118,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "GOLTS.IS",
@@ -1920,7 +2128,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "GOODY.IS",
@@ -1929,7 +2138,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "GOZDE.IS",
@@ -1938,7 +2148,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "GRSEL.IS",
@@ -1948,7 +2159,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "GRTHO.IS",
@@ -1958,7 +2170,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "GSDHO.IS",
@@ -1967,7 +2180,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "GSRAY.IS",
@@ -1977,7 +2191,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Spor ve Eğlence"
     },
     {
         "symbol":  "GUBRF.IS",
@@ -1987,7 +2202,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "GUNDG.IS",
@@ -1996,7 +2212,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "GWIND.IS",
@@ -2005,7 +2222,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "GZNMI.IS",
@@ -2014,7 +2232,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "HALKB.IS",
@@ -2024,7 +2243,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "HATEK.IS",
@@ -2033,7 +2253,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "HATSN.IS",
@@ -2042,7 +2263,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "HDFGS.IS",
@@ -2051,7 +2273,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "HEDEF.IS",
@@ -2060,7 +2283,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "HEKTS.IS",
@@ -2070,7 +2294,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "HKTM.IS",
@@ -2079,7 +2304,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "HLGYO.IS",
@@ -2088,7 +2314,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "HOROZ.IS",
@@ -2097,7 +2324,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "HRKET.IS",
@@ -2106,7 +2334,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "HTTBT.IS",
@@ -2115,7 +2344,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "HUNER.IS",
@@ -2124,7 +2354,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "HURGZ.IS",
@@ -2133,7 +2364,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Medya ve Yayıncılık"
     },
     {
         "symbol":  "ICBCT.IS",
@@ -2142,7 +2374,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "ICUGS.IS",
@@ -2151,7 +2384,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "IEYHO.IS",
@@ -2161,7 +2395,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "IHAAS.IS",
@@ -2170,7 +2405,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "IHGZT.IS",
@@ -2179,7 +2415,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Medya ve Yayıncılık"
     },
     {
         "symbol":  "IHLAS.IS",
@@ -2188,7 +2425,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "IHLGM.IS",
@@ -2197,7 +2435,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gayrimenkul"
     },
     {
         "symbol":  "IMASM.IS",
@@ -2206,7 +2445,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "INDES.IS",
@@ -2215,7 +2455,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "INFO.IS",
@@ -2224,7 +2465,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "INGRM.IS",
@@ -2233,7 +2475,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "INTEM.IS",
@@ -2242,7 +2485,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "INVEO.IS",
@@ -2251,7 +2495,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "INVES.IS",
@@ -2260,7 +2505,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "ISCTR.IS",
@@ -2270,7 +2516,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "ISDMR.IS",
@@ -2279,7 +2526,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "ISFIN.IS",
@@ -2288,7 +2536,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "ISGSY.IS",
@@ -2297,7 +2546,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "ISGYO.IS",
@@ -2306,7 +2556,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "ISKPL.IS",
@@ -2315,7 +2566,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ISMEN.IS",
@@ -2325,7 +2577,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "IZENR.IS",
@@ -2335,7 +2588,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "IZFAS.IS",
@@ -2344,7 +2598,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "IZMDC.IS",
@@ -2353,7 +2608,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "JANTS.IS",
@@ -2362,7 +2618,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "KAPLM.IS",
@@ -2371,7 +2628,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "KAREL.IS",
@@ -2380,7 +2638,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "KARSN.IS",
@@ -2389,7 +2648,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "KARTN.IS",
@@ -2398,7 +2658,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "KATMR.IS",
@@ -2407,7 +2668,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "KAYSE.IS",
@@ -2416,7 +2678,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "KBORU.IS",
@@ -2425,7 +2688,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "KCAER.IS",
@@ -2434,7 +2698,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "KCHOL.IS",
@@ -2444,7 +2709,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "KFEIN.IS",
@@ -2453,7 +2719,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "KGYO.IS",
@@ -2462,7 +2729,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "KIMMR.IS",
@@ -2471,7 +2739,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "KLGYO.IS",
@@ -2480,7 +2749,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "KLKIM.IS",
@@ -2489,7 +2759,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "KLMSN.IS",
@@ -2498,7 +2769,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "KLRHO.IS",
@@ -2508,7 +2780,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "KLSER.IS",
@@ -2517,7 +2790,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "KLSYN.IS",
@@ -2526,7 +2800,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "KLYPV.IS",
@@ -2535,7 +2810,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "KMPUR.IS",
@@ -2544,7 +2820,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "KNFRT.IS",
@@ -2553,7 +2830,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tarım ve Su Ürünleri"
     },
     {
         "symbol":  "KOCMT.IS",
@@ -2562,7 +2840,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "KONKA.IS",
@@ -2571,7 +2850,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "KONYA.IS",
@@ -2580,7 +2860,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "KOPOL.IS",
@@ -2589,7 +2870,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "KORDS.IS",
@@ -2598,7 +2880,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "KOTON.IS",
@@ -2607,7 +2890,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "KRDMD.IS",
@@ -2617,7 +2901,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "KRGYO.IS",
@@ -2626,7 +2911,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "KRONT.IS",
@@ -2635,7 +2921,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "KRPLS.IS",
@@ -2644,7 +2931,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "KRSTL.IS",
@@ -2653,7 +2941,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "KRVGD.IS",
@@ -2662,7 +2951,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "KTLEV.IS",
@@ -2672,7 +2962,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "KTSKR.IS",
@@ -2681,7 +2972,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "KUTPO.IS",
@@ -2690,7 +2982,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "KUYAS.IS",
@@ -2700,7 +2993,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "KZBGY.IS",
@@ -2709,7 +3003,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "KZGYO.IS",
@@ -2718,7 +3013,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "LIDER.IS",
@@ -2727,7 +3023,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "LIDFA.IS",
@@ -2736,7 +3033,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "LILAK.IS",
@@ -2745,7 +3043,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "LINK.IS",
@@ -2754,7 +3053,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "LKMNH.IS",
@@ -2763,7 +3063,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sağlık"
     },
     {
         "symbol":  "LMKDC.IS",
@@ -2772,7 +3073,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "LOGO.IS",
@@ -2781,7 +3083,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "LRSHO.IS",
@@ -2790,7 +3093,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "LXGYO.IS",
@@ -2799,7 +3103,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "LYDHO.IS",
@@ -2808,7 +3113,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "LYDYE.IS",
@@ -2817,7 +3123,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "MAALT.IS",
@@ -2826,7 +3133,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "MACKO.IS",
@@ -2835,7 +3143,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Spor ve Eğlence"
     },
     {
         "symbol":  "MAGEN.IS",
@@ -2845,7 +3154,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "MAKIM.IS",
@@ -2854,7 +3164,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "MAKTK.IS",
@@ -2863,7 +3174,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "MANAS.IS",
@@ -2872,7 +3184,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "MARBL.IS",
@@ -2881,7 +3194,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "MARKA.IS",
@@ -2890,7 +3204,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "MARMR.IS",
@@ -2899,7 +3214,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "MARTI.IS",
@@ -2908,7 +3224,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "MAVI.IS",
@@ -2918,7 +3235,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "MCARD.IS",
@@ -2927,7 +3245,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "MEDTR.IS",
@@ -2936,7 +3255,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "MEGMT.IS",
@@ -2945,7 +3265,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "MEKAG.IS",
@@ -2954,7 +3275,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "MERCN.IS",
@@ -2963,7 +3285,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "MERIT.IS",
@@ -2972,7 +3295,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "MERKO.IS",
@@ -2981,7 +3305,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "METRO.IS",
@@ -2990,7 +3315,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "MEYSU.IS",
@@ -2999,7 +3325,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "MGROS.IS",
@@ -3009,7 +3336,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "MHRGY.IS",
@@ -3018,7 +3346,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "MIATK.IS",
@@ -3028,7 +3357,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "MNDRS.IS",
@@ -3037,7 +3367,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "MNDTR.IS",
@@ -3046,7 +3377,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "MOBTL.IS",
@@ -3055,7 +3387,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "MOGAN.IS",
@@ -3064,7 +3397,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "MOPAS.IS",
@@ -3073,7 +3407,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "MPARK.IS",
@@ -3083,7 +3418,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sağlık"
     },
     {
         "symbol":  "MRGYO.IS",
@@ -3092,7 +3428,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "MRSHL.IS",
@@ -3101,7 +3438,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "MSGYO.IS",
@@ -3110,7 +3448,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "MTRKS.IS",
@@ -3119,7 +3458,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "NATEN.IS",
@@ -3128,7 +3468,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "NETAS.IS",
@@ -3137,7 +3478,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "NETCD.IS",
@@ -3146,7 +3488,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "NIBAS.IS",
@@ -3155,7 +3498,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "NTGAZ.IS",
@@ -3164,7 +3508,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "NTHOL.IS",
@@ -3173,7 +3518,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "NUGYO.IS",
@@ -3182,7 +3528,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "NUHCM.IS",
@@ -3191,7 +3538,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "OBAMS.IS",
@@ -3201,7 +3549,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ODAS.IS",
@@ -3211,7 +3560,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ODINE.IS",
@@ -3221,7 +3571,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "OFSYM.IS",
@@ -3230,7 +3581,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ONCSM.IS",
@@ -3239,7 +3591,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ONRYT.IS",
@@ -3248,7 +3601,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Savunma"
     },
     {
         "symbol":  "ORGE.IS",
@@ -3257,7 +3611,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "OSMEN.IS",
@@ -3266,7 +3621,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "OSTIM.IS",
@@ -3275,7 +3631,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "OTKAR.IS",
@@ -3285,7 +3642,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "OTTO.IS",
@@ -3294,7 +3652,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "OYAKC.IS",
@@ -3304,7 +3663,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "OYYAT.IS",
@@ -3313,7 +3673,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "OZATD.IS",
@@ -3322,7 +3683,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "OZGYO.IS",
@@ -3331,7 +3693,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "OZKGY.IS",
@@ -3340,7 +3703,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "OZSUB.IS",
@@ -3349,7 +3713,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tarım ve Su Ürünleri"
     },
     {
         "symbol":  "OZYSR.IS",
@@ -3358,7 +3723,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "PAGYO.IS",
@@ -3367,7 +3733,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "PAHOL.IS",
@@ -3377,7 +3744,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "PAPIL.IS",
@@ -3386,7 +3754,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "PARSN.IS",
@@ -3395,7 +3764,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "PASEU.IS",
@@ -3405,7 +3775,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "PATEK.IS",
@@ -3415,7 +3786,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "PCILT.IS",
@@ -3424,7 +3796,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "PEKGY.IS",
@@ -3433,7 +3806,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "PENGD.IS",
@@ -3442,7 +3816,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "PENTA.IS",
@@ -3451,7 +3826,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "PETKM.IS",
@@ -3461,7 +3837,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "PETUN.IS",
@@ -3470,7 +3847,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "PGSUS.IS",
@@ -3480,7 +3858,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "PINSU.IS",
@@ -3489,7 +3868,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "PKART.IS",
@@ -3498,7 +3878,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "PKENT.IS",
@@ -3507,7 +3888,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "PLTUR.IS",
@@ -3516,7 +3898,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "PNLSN.IS",
@@ -3525,7 +3908,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "PNSUT.IS",
@@ -3534,7 +3918,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "POLHO.IS",
@@ -3543,7 +3928,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "POLTK.IS",
@@ -3552,7 +3938,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "PRDGS.IS",
@@ -3561,7 +3948,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "PRKAB.IS",
@@ -3570,7 +3958,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "PRKME.IS",
@@ -3579,7 +3968,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Madencilik"
     },
     {
         "symbol":  "PSGYO.IS",
@@ -3589,7 +3979,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "QUAGR.IS",
@@ -3599,7 +3990,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "RALYH.IS",
@@ -3609,7 +4001,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "RAYSG.IS",
@@ -3618,7 +4011,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sigorta"
     },
     {
         "symbol":  "REEDR.IS",
@@ -3628,7 +4022,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "RGYAS.IS",
@@ -3637,7 +4032,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gayrimenkul"
     },
     {
         "symbol":  "RTALB.IS",
@@ -3646,7 +4042,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "RUBNS.IS",
@@ -3655,7 +4052,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "RUZYE.IS",
@@ -3664,7 +4062,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Madencilik"
     },
     {
         "symbol":  "RYGYO.IS",
@@ -3673,7 +4072,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "RYSAS.IS",
@@ -3682,7 +4082,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "SAFKR.IS",
@@ -3691,7 +4092,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "SAHOL.IS",
@@ -3701,7 +4103,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "SANFM.IS",
@@ -3710,7 +4113,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "SARKY.IS",
@@ -3720,7 +4124,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "SASA.IS",
@@ -3730,7 +4135,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "SAYAS.IS",
@@ -3739,7 +4145,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "SDTTR.IS",
@@ -3748,7 +4155,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Savunma"
     },
     {
         "symbol":  "SEGMN.IS",
@@ -3757,7 +4165,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "SEGYO.IS",
@@ -3766,7 +4175,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "SELEC.IS",
@@ -3775,7 +4185,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "SELVA.IS",
@@ -3784,7 +4195,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "SERNT.IS",
@@ -3793,7 +4205,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "SISE.IS",
@@ -3803,7 +4216,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "SKBNK.IS",
@@ -3813,7 +4227,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "SKTAS.IS",
@@ -3822,7 +4237,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "SKYMD.IS",
@@ -3831,7 +4247,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "SMART.IS",
@@ -3840,7 +4257,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "SMRTG.IS",
@@ -3849,7 +4267,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "SMRVA.IS",
@@ -3858,7 +4277,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "SNGYO.IS",
@@ -3867,7 +4287,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "SNICA.IS",
@@ -3876,7 +4297,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "SOKE.IS",
@@ -3885,7 +4307,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "SOKM.IS",
@@ -3895,7 +4318,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "SRVGY.IS",
@@ -3904,7 +4328,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "SUNTK.IS",
@@ -3913,7 +4338,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "SURGY.IS",
@@ -3922,7 +4348,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "SUWEN.IS",
@@ -3931,7 +4358,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "SVGYO.IS",
@@ -3940,7 +4368,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "TABGD.IS",
@@ -3949,7 +4378,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "TARKM.IS",
@@ -3958,7 +4388,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "TATEN.IS",
@@ -3967,7 +4398,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "TATGD.IS",
@@ -3976,7 +4408,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "TAVHL.IS",
@@ -3986,7 +4419,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "TBORG.IS",
@@ -3995,7 +4429,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "TCELL.IS",
@@ -4005,7 +4440,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Telekomünikasyon"
     },
     {
         "symbol":  "TCKRC.IS",
@@ -4014,7 +4450,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "TEHOL.IS",
@@ -4023,7 +4460,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "TEKTU.IS",
@@ -4032,7 +4470,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "TERA.IS",
@@ -4041,7 +4480,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Aracı Kurumlar"
     },
     {
         "symbol":  "TEZOL.IS",
@@ -4050,7 +4490,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Orman, Kağıt ve Mobilya"
     },
     {
         "symbol":  "TGSAS.IS",
@@ -4059,7 +4500,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "THYAO.IS",
@@ -4069,7 +4511,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "TKFEN.IS",
@@ -4079,7 +4522,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "TKNSA.IS",
@@ -4088,7 +4532,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "TLMAN.IS",
@@ -4097,7 +4542,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "TMPOL.IS",
@@ -4106,7 +4552,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "TMSN.IS",
@@ -4115,7 +4562,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "TNZTP.IS",
@@ -4124,7 +4572,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sağlık"
     },
     {
         "symbol":  "TOASO.IS",
@@ -4134,7 +4583,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "TRALT.IS",
@@ -4144,7 +4594,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Madencilik"
     },
     {
         "symbol":  "TRCAS.IS",
@@ -4153,7 +4604,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "TRENJ.IS",
@@ -4163,7 +4615,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "TRGYO.IS",
@@ -4172,7 +4625,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "TRMET.IS",
@@ -4182,7 +4636,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Madencilik"
     },
     {
         "symbol":  "TSKB.IS",
@@ -4192,7 +4647,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "TSPOR.IS",
@@ -4201,7 +4657,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Spor ve Eğlence"
     },
     {
         "symbol":  "TTKOM.IS",
@@ -4211,7 +4668,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Telekomünikasyon"
     },
     {
         "symbol":  "TTRAK.IS",
@@ -4220,7 +4678,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "TUCLK.IS",
@@ -4229,7 +4688,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "TUKAS.IS",
@@ -4239,7 +4699,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "TUPRS.IS",
@@ -4249,7 +4710,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "TUREX.IS",
@@ -4258,7 +4720,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "TURGG.IS",
@@ -4267,7 +4730,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "TURSG.IS",
@@ -4277,7 +4741,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Sigorta"
     },
     {
         "symbol":  "UCAYM.IS",
@@ -4286,7 +4751,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "UFUK.IS",
@@ -4295,7 +4761,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "ULKER.IS",
@@ -4305,7 +4772,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ULUFA.IS",
@@ -4314,7 +4782,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "ULUSE.IS",
@@ -4323,7 +4792,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "ULUUN.IS",
@@ -4332,7 +4802,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "UNLU.IS",
@@ -4341,7 +4812,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "USAK.IS",
@@ -4350,7 +4822,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Çimento ve Yapı Malzemeleri"
     },
     {
         "symbol":  "VAKBN.IS",
@@ -4360,7 +4833,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "VAKFA.IS",
@@ -4369,7 +4843,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "VAKFN.IS",
@@ -4378,7 +4853,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "VAKKO.IS",
@@ -4387,7 +4863,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "VBTYZ.IS",
@@ -4396,7 +4873,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "VERTU.IS",
@@ -4405,7 +4883,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Yatırım Ortaklıkları"
     },
     {
         "symbol":  "VERUS.IS",
@@ -4414,7 +4893,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "VESBE.IS",
@@ -4423,7 +4903,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "VESTL.IS",
@@ -4433,7 +4914,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "VKGYO.IS",
@@ -4442,7 +4924,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "VRGYO.IS",
@@ -4451,7 +4934,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "VSNMD.IS",
@@ -4460,7 +4944,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Madencilik"
     },
     {
         "symbol":  "YAPRK.IS",
@@ -4469,7 +4954,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tarım ve Su Ürünleri"
     },
     {
         "symbol":  "YATAS.IS",
@@ -4478,7 +4964,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "YAYLA.IS",
@@ -4487,7 +4974,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "İnşaat"
     },
     {
         "symbol":  "YEOTK.IS",
@@ -4496,7 +4984,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "YESIL.IS",
@@ -4505,7 +4994,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Holding"
     },
     {
         "symbol":  "YGGYO.IS",
@@ -4514,7 +5004,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "YIGIT.IS",
@@ -4523,7 +5014,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "YKBNK.IS",
@@ -4533,7 +5025,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "YKSLN.IS",
@@ -4542,7 +5035,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Metal Sanayi"
     },
     {
         "symbol":  "YUNSA.IS",
@@ -4551,7 +5045,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "YYLGD.IS",
@@ -4560,7 +5055,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "ZERGY.IS",
@@ -4569,7 +5065,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "ZGYO.IS",
@@ -4578,7 +5075,8 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "ZOREN.IS",
@@ -4588,7 +5086,8 @@
         "indices":  [
                         "XU100",
                         "XU500"
-                    ]
+                    ],
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ZRGYO.IS",
@@ -4597,306 +5096,357 @@
         "market":  "BIST",
         "indices":  [
                         "XU500"
-                    ]
+                    ],
+        "sector":  "GYO"
     },
     {
         "symbol":  "AAPL",
         "tvSymbol":  "NASDAQ:AAPL",
         "name":  "Apple",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "MSFT",
         "tvSymbol":  "NASDAQ:MSFT",
         "name":  "Microsoft",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "NVDA",
         "tvSymbol":  "NASDAQ:NVDA",
         "name":  "NVIDIA",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "AMZN",
         "tvSymbol":  "NASDAQ:AMZN",
         "name":  "Amazon",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "GOOGL",
         "tvSymbol":  "NASDAQ:GOOGL",
         "name":  "Alphabet Class A",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "META",
         "tvSymbol":  "NASDAQ:META",
         "name":  "Meta Platforms",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "TSLA",
         "tvSymbol":  "NASDAQ:TSLA",
         "name":  "Tesla",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "AVGO",
         "tvSymbol":  "NASDAQ:AVGO",
         "name":  "Broadcom",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "COST",
         "tvSymbol":  "NASDAQ:COST",
         "name":  "Costco Wholesale",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "NFLX",
         "tvSymbol":  "NASDAQ:NFLX",
         "name":  "Netflix",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Medya ve Yayıncılık"
     },
     {
         "symbol":  "AMD",
         "tvSymbol":  "NASDAQ:AMD",
         "name":  "Advanced Micro Devices",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "INTC",
         "tvSymbol":  "NASDAQ:INTC",
         "name":  "Intel",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "QCOM",
         "tvSymbol":  "NASDAQ:QCOM",
         "name":  "Qualcomm",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "ADBE",
         "tvSymbol":  "NASDAQ:ADBE",
         "name":  "Adobe",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "CSCO",
         "tvSymbol":  "NASDAQ:CSCO",
         "name":  "Cisco Systems",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "PEP",
         "tvSymbol":  "NASDAQ:PEP",
         "name":  "PepsiCo",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "AMGN",
         "tvSymbol":  "NASDAQ:AMGN",
         "name":  "Amgen",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "TXN",
         "tvSymbol":  "NASDAQ:TXN",
         "name":  "Texas Instruments",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "INTU",
         "tvSymbol":  "NASDAQ:INTU",
         "name":  "Intuit",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "AMAT",
         "tvSymbol":  "NASDAQ:AMAT",
         "name":  "Applied Materials",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "BKNG",
         "tvSymbol":  "NASDAQ:BKNG",
         "name":  "Booking Holdings",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "SBUX",
         "tvSymbol":  "NASDAQ:SBUX",
         "name":  "Starbucks",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "GILD",
         "tvSymbol":  "NASDAQ:GILD",
         "name":  "Gilead Sciences",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ADP",
         "tvSymbol":  "NASDAQ:ADP",
         "name":  "Automatic Data Processing",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Profesyonel Hizmetler"
     },
     {
         "symbol":  "MU",
         "tvSymbol":  "NASDAQ:MU",
         "name":  "Micron Technology",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "JPM",
         "tvSymbol":  "NYSE:JPM",
         "name":  "JPMorgan Chase",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "V",
         "tvSymbol":  "NYSE:V",
         "name":  "Visa",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "MA",
         "tvSymbol":  "NYSE:MA",
         "name":  "Mastercard",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Finansal Hizmetler"
     },
     {
         "symbol":  "LLY",
         "tvSymbol":  "NYSE:LLY",
         "name":  "Eli Lilly",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "WMT",
         "tvSymbol":  "NYSE:WMT",
         "name":  "Walmart",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "XOM",
         "tvSymbol":  "NYSE:XOM",
         "name":  "Exxon Mobil",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Enerji"
     },
     {
         "symbol":  "UNH",
         "tvSymbol":  "NYSE:UNH",
         "name":  "UnitedHealth Group",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Sağlık"
     },
     {
         "symbol":  "JNJ",
         "tvSymbol":  "NYSE:JNJ",
         "name":  "Johnson \u0026 Johnson",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "ORCL",
         "tvSymbol":  "NYSE:ORCL",
         "name":  "Oracle",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "HD",
         "tvSymbol":  "NYSE:HD",
         "name":  "Home Depot",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Ticaret"
     },
     {
         "symbol":  "PG",
         "tvSymbol":  "NYSE:PG",
         "name":  "Procter \u0026 Gamble",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Diğer İmalat"
     },
     {
         "symbol":  "KO",
         "tvSymbol":  "NYSE:KO",
         "name":  "Coca-Cola",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Gıda ve İçecek"
     },
     {
         "symbol":  "BAC",
         "tvSymbol":  "NYSE:BAC",
         "name":  "Bank of America",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bankacılık"
     },
     {
         "symbol":  "CRM",
         "tvSymbol":  "NYSE:CRM",
         "name":  "Salesforce",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "CVX",
         "tvSymbol":  "NYSE:CVX",
         "name":  "Chevron",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Enerji"
     },
     {
         "symbol":  "ABBV",
         "tvSymbol":  "NYSE:ABBV",
         "name":  "AbbVie",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "MRK",
         "tvSymbol":  "NYSE:MRK",
         "name":  "Merck",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Kimya, İlaç ve Plastik"
     },
     {
         "symbol":  "DIS",
         "tvSymbol":  "NYSE:DIS",
         "name":  "Walt Disney",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Medya ve Yayıncılık"
     },
     {
         "symbol":  "MCD",
         "tvSymbol":  "NYSE:MCD",
         "name":  "McDonald\u0027s",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Turizm ve Yeme-İçme"
     },
     {
         "symbol":  "IBM",
         "tvSymbol":  "NYSE:IBM",
         "name":  "IBM",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Bilişim"
     },
     {
         "symbol":  "GE",
         "tvSymbol":  "NYSE:GE",
         "name":  "GE Aerospace",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "CAT",
         "tvSymbol":  "NYSE:CAT",
         "name":  "Caterpillar",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Makine ve Otomotiv"
     },
     {
         "symbol":  "NKE",
         "tvSymbol":  "NYSE:NKE",
         "name":  "Nike",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Tekstil ve Giyim"
     },
     {
         "symbol":  "UBER",
         "tvSymbol":  "NYSE:UBER",
         "name":  "Uber Technologies",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Ulaştırma"
     },
     {
         "symbol":  "BRK-B",
         "tvSymbol":  "NYSE:BRK.B",
         "name":  "Berkshire Hathaway Class B",
-        "market":  "US"
+        "market":  "US",
+        "sector":  "Holding"
     }
 ]

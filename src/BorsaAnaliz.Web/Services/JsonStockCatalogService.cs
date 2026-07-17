@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Globalization;
 using BorsaAnaliz.Web.Models;
 
 namespace BorsaAnaliz.Web.Services;
@@ -36,6 +37,20 @@ public sealed class JsonStockCatalogService : IStockCatalogService
         var symbols = await GetSymbolsAsync(cancellationToken);
         return symbols
             .Where(stock => stock.Market.Equals(market, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+    }
+
+    public async Task<IReadOnlyList<string>> GetSectorsAsync(
+        CancellationToken cancellationToken = default)
+    {
+        var symbols = await GetSymbolsAsync(cancellationToken);
+        return symbols
+            .Select(stock => stock.Sector)
+            .Where(sector => !string.IsNullOrWhiteSpace(sector))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(
+                sector => sector,
+                StringComparer.Create(CultureInfo.GetCultureInfo("tr-TR"), ignoreCase: true))
             .ToArray();
     }
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-in-progress — 2026-07-17 (Phase 1: Geri Alımlar)
+in-progress — 2026-07-17 (Phase 2 complete; Phase 3 next)
 
 ## Task Type
 
@@ -47,12 +47,12 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 
 ### Phase 2 — Sektör verileri
 
-- [ ] Enrich `symbols.json`: add `"sector"` to all ~550 entries. BIST from KAP company directory or BIST sector lists; US statically. Validate: no entry without sector; keep a consistent Turkish label set (aim for ~20–30 labels, not 100 variants).
-- [ ] `StockSymbol` model + catalog service: parse `sector`; add `Sectors()` helper (distinct, sorted).
-- [ ] Stocks page: sector column (after name) + sector dropdown filter working alongside existing tabs/search/sort (server-side filter param `sector=` so it composes with BIST 500 pagination).
-- [ ] Stock detail header: sector badge next to market badge, linking to the filtered list.
-- [ ] Optional if trivial: home page "Sektör görünümü" mini-card — avg daily change of the 5 biggest sectors computed ONLY from already-quoted XU100 symbols (no extra quote fan-out).
-- [ ] Verify: filter by 3 different sectors on each tab incl. a paginated BIST 500 page; detail badge navigates correctly; no sector shows "-".
+- [x] Enrich `symbols.json`: add `"sector"` to all ~550 entries. BIST from KAP company directory or BIST sector lists; US statically. Validate: no entry without sector; keep a consistent Turkish label set (aim for ~20–30 labels, not 100 variants).
+- [x] `StockSymbol` model + catalog service: parse `sector`; add `Sectors()` helper (distinct, sorted).
+- [x] Stocks page: sector column (after name) + sector dropdown filter working alongside existing tabs/search/sort (server-side filter param `sector=` so it composes with BIST 500 pagination).
+- [x] Stock detail header: sector badge next to market badge, linking to the filtered list.
+- [x] Optional if trivial: home page "Sektör görünümü" mini-card — evaluated and intentionally skipped because it would expand this phase into dashboard aggregation/UI work; no extra quote fan-out was introduced.
+- [x] Verify: filter by 3 different sectors on each tab incl. a paginated BIST 500 page; detail badge navigates correctly; no sector shows "-".
 
 ### Phase 3 — Ortaklık yapısı ve bağlı ortaklıklar
 
@@ -137,3 +137,13 @@ One phase per Codex run; each leaves the app building, locally verified, then pu
 - Files changed: `.agents/PLAN.md`, `Controllers/NewsController.cs`, `Models/KapDisclosure.cs`, `Services/IKapNewsService.cs`, `Services/KapNewsService.cs`, `ViewModels/NewsIndexViewModel.cs`, `Views/News/Index.cshtml`, `Views/Stocks/Details.cshtml`.
 - Verification: Release build passed with 0 warnings/errors; local default and buyback tabs returned 200; all 54 current buyback rows had the exact observed subject and official KAP links; JANTS/AVGYO/BIMAS disclosure ids 1634684/1634672/1634671 returned 200 at kap.org.tr; BIMAS detail showed the badge; a forced KAP connection failure returned the buyback empty state with HTTP 200; Edge headless checks were captured at desktop and narrow mobile widths.
 - Status remains `in-progress` because Phases 2 and 3 are intentionally deferred to later runs.
+
+### 2026-07-17 — Phase 2 complete
+
+- Source: the official KAP `https://www.kap.org.tr/tr/Sektorler` company directory embeds current company records with `sectorName`, `mkkMemberOid`, `stockCode`, and `title`. Multi-code records were split and all 500 BIST catalog symbols matched. KAP's 48 detailed labels were normalized into user-facing Turkish groups; the 50 fixed US large caps received static labels from the same vocabulary.
+- Catalog result: all 550 entries have a non-empty `sector`; there are 30 distinct labels. No runtime sector fetch or database/schema change was added.
+- `StockSymbol` and `IStockCatalogService` now expose sector metadata and a culture-aware, distinct sorted sector list. The stocks controller validates `sector=`, filters before quote fan-out and pagination, and supplies list-specific sector options.
+- The stocks page has a server-side sector selector, a sector column after company name, sector-aware search text, and pagination links that retain the active sector. Detail pages show a linked sector badge targeting BIST 500 or the US list.
+- Files changed: `.agents/PLAN.md`, `Controllers/StocksController.cs`, `Data/symbols.json`, `Models/StockSymbol.cs`, `Services/IStockCatalogService.cs`, `Services/JsonStockCatalogService.cs`, `ViewModels/StocksIndexViewModel.cs`, `Views/Stocks/Details.cshtml`, `Views/Stocks/Index.cshtml`, `wwwroot/css/site.css`.
+- Verification: Release build passed with 0 warnings/errors; catalog validation reported 550 entries, 0 missing sectors, and 30 labels; three sectors were checked on each public tab; BIST 500 `page=2` with a sector safely clamped after server-side filtering; AKBNK and AAPL badges linked to the correct filtered lists; anonymous watchlist still challenged with HTTP 302; Edge headless desktop and narrow mobile layouts passed after stacking the mobile filter controls.
+- Status remains `in-progress` because Phase 3 is intentionally deferred to the next run.

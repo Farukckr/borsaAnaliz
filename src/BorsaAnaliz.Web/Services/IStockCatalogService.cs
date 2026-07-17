@@ -13,4 +13,7 @@ public interface IStockCatalogService
     Task<IReadOnlyList<StockSymbol>> GetByMarketAsync(
         string market,
         CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<string>> GetSectorsAsync(
+        CancellationToken cancellationToken = default);
 }

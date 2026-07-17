@@ -48,6 +48,7 @@ public sealed class StocksController : Controller
 
     public async Task<IActionResult> Index(
         [FromQuery] string? list = "xu100",
+        [FromQuery] string? sector = null,
         [FromQuery] int page = 1,
         CancellationToken cancellationToken = default)
     {
@@ -93,6 +94,20 @@ public sealed class StocksController : Controller
             }
         }
 
+        var allSectors = await _stockCatalog.GetSectorsAsync(cancellationToken);
+        var availableSectors = allSectors
+            .Where(candidate => symbols.Any(stock =>
+                stock.Sector.Equals(candidate, StringComparison.OrdinalIgnoreCase)))
+            .ToArray();
+        var activeSector = availableSectors.FirstOrDefault(candidate =>
+            candidate.Equals(sector?.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (activeSector is not null)
+        {
+            symbols = symbols
+                .Where(stock => stock.Sector.Equals(activeSector, StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+        }
+
         var watchedSet = watchedSymbols.ToHashSet(StringComparer.OrdinalIgnoreCase);
         var totalCount = symbols.Count;
         var totalPages = activeList == "xu500"
@@ -115,6 +130,8 @@ public sealed class StocksController : Controller
         return View(new StocksIndexViewModel(
             stocks,
             activeList,
+            availableSectors,
+            activeSector,
             currentPage,
             totalPages,
             totalCount));

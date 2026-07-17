@@ -844,6 +844,7 @@ a:focus-visible {
 }
 
 .market-badge,
+.sector-badge,
 .stock-code-badge {
   display: inline-flex;
   align-items: center;
@@ -853,6 +854,21 @@ a:focus-visible {
   font-weight: 750;
   letter-spacing: 0.045em;
   text-transform: uppercase;
+}
+
+.sector-badge {
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.sector-badge:hover,
+.sector-badge:focus {
+  color: #065f46;
+  background: #d1fae5;
 }
 
 .market-badge {

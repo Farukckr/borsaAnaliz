@@ -10,5 +10,7 @@ public sealed class StockSymbol
 
     public string Market { get; init; } = string.Empty;
 
+    public string Sector { get; init; } = string.Empty;
+
     public IReadOnlyList<string> Indices { get; init; } = [];
 }

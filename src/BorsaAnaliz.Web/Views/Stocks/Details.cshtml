@@ -33,6 +33,10 @@
     <div class="stock-detail-main">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
             <span class="market-badge">@(Model.Stock.Market == "BIST" ? "BIST" : "ABD")</span>
+            <a class="sector-badge"
+               asp-action="Index"
+               asp-route-list="@(Model.Stock.Market == "BIST" ? "xu500" : "us")"
+               asp-route-sector="@Model.Stock.Sector">@Model.Stock.Sector</a>
             <span class="stock-code-badge">@Model.ShortSymbol</span>
             <span class="data-delay-note"><i class="bi bi-clock-history" aria-hidden="true"></i> Veriler gecikmeli olabilir</span>
         </div>
