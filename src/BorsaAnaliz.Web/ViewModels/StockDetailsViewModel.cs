@@ -2,7 +2,11 @@ using BorsaAnaliz.Web.Models;
 
 namespace BorsaAnaliz.Web.ViewModels;
 
-public sealed record StockDetailsViewModel(StockSymbol Stock, Quote? Quote, bool IsWatched)
+public sealed record StockDetailsViewModel(
+    StockSymbol Stock,
+    Quote? Quote,
+    bool IsWatched,
+    IReadOnlyList<KapDisclosure>? KapDisclosures)
 {
     public string CurrencySymbol => Stock.Market.Equals("BIST", StringComparison.OrdinalIgnoreCase) ? "₺" : "$";
 

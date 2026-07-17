@@ -271,6 +271,55 @@
     </div>
 </section>
 
+@if (Model.Stock.Market == "BIST" && Model.KapDisclosures is not null)
+{
+    <section class="mb-4" aria-labelledby="companyKapHeading">
+        <div class="analysis-section-header mb-3">
+            <h2 id="companyKapHeading" class="h4 mb-1">Şirket Bildirimleri (KAP)</h2>
+            <p class="text-muted small mb-0">Son 14 gündeki resmi şirket açıklamaları.</p>
+        </div>
+
+        @if (Model.KapDisclosures.Count == 0)
+        {
+            <div class="alert alert-light border mb-0">Son 14 günde KAP bildirimi bulunmuyor.</div>
+        }
+        else
+        {
+            <div class="kap-news-list">
+                @foreach (var disclosure in Model.KapDisclosures.Take(10))
+                {
+                    <article class="kap-news-item">
+                        <div class="kap-news-time">
+                            <time datetime="@disclosure.PublishedAt.ToString("O")" title="@disclosure.PublishedAt.ToString("dd.MM.yyyy HH:mm")">
+                                @RelativeKapTime(disclosure.PublishedAt)
+                            </time>
+                            <span>@disclosure.PublishedAt.ToString("HH:mm")</span>
+                        </div>
+                        <div class="kap-news-content min-w-0">
+                            <div class="mb-2"><span class="kap-category-badge">@disclosure.Category</span></div>
+                            <p class="kap-news-subject mb-0">@disclosure.Subject</p>
+                        </div>
+                        <a class="kap-source-link" href="@disclosure.SourceUrl" target="_blank" rel="noopener noreferrer" aria-label="KAP bildirimini yeni sekmede aç">
+                            KAP <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+                }
+            </div>
+        }
+    </section>
+}
+
+@functions {
+    private static string RelativeKapTime(DateTimeOffset publishedAt)
+    {
+        var elapsed = DateTimeOffset.UtcNow - publishedAt.ToUniversalTime();
+        if (elapsed < TimeSpan.FromMinutes(1)) return "az önce";
+        if (elapsed < TimeSpan.FromHours(1)) return $"{Math.Max(1, (int)elapsed.TotalMinutes)} dk önce";
+        if (elapsed < TimeSpan.FromDays(1)) return $"{Math.Max(1, (int)elapsed.TotalHours)} sa önce";
+        return $"{Math.Max(1, (int)elapsed.TotalDays)} gün önce";
+    }
+}
+
 @section Scripts {
     <script>
         (() => {

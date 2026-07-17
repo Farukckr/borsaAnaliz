@@ -10,6 +10,7 @@ public sealed class KapNewsService : IKapNewsService
 {
     private const string CacheKey = "kap-disclosures:latest";
     private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(5);
+    private static readonly TimeSpan SymbolCacheDuration = TimeSpan.FromMinutes(30);
     private static readonly TimeSpan IstanbulOffset = TimeSpan.FromHours(3);
 
     private readonly HttpClient _httpClient;
@@ -41,14 +42,18 @@ public sealed class KapNewsService : IKapNewsService
         IReadOnlyList<KapDisclosure> disclosures;
         try
         {
-            disclosures = await FetchAsync(cancellationToken);
+            disclosures = await FetchAsync(2, 100, null, cancellationToken);
         }
         catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
         {
             _logger.LogWarning("KAP bildirim isteği zaman aşımına uğradı.");
             disclosures = [];
         }
-        catch (Exception exception) when (exception is HttpRequestException or JsonException or FormatException)
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception exception)
         {
             _logger.LogWarning(exception, "KAP bildirimleri alınamadı veya ayrıştırılamadı.");
             disclosures = [];
@@ -58,12 +63,58 @@ public sealed class KapNewsService : IKapNewsService
         return disclosures;
     }
 
-    private async Task<IReadOnlyList<KapDisclosure>> FetchAsync(CancellationToken cancellationToken)
+    public async Task<KapDisclosureResult> GetForSymbolAsync(
+        string symbol,
+        CancellationToken cancellationToken = default)
+    {
+        var normalizedSymbol = symbol?.Trim().ToUpperInvariant() ?? string.Empty;
+        if (!normalizedSymbol.EndsWith(".IS", StringComparison.OrdinalIgnoreCase))
+        {
+            return new KapDisclosureResult(true, []);
+        }
+
+        var stockCode = normalizedSymbol[..^3];
+        var cacheKey = $"kap-disclosures:symbol:{stockCode}";
+        if (_cache.TryGetValue(cacheKey, out KapDisclosureResult? cached) && cached is not null)
+        {
+            return cached;
+        }
+
+        KapDisclosureResult result;
+        try
+        {
+            var disclosures = await FetchAsync(14, 10, stockCode, cancellationToken);
+            result = new KapDisclosureResult(true, disclosures);
+        }
+        catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
+        {
+            _logger.LogWarning("{Symbol} için KAP bildirim isteği zaman aşımına uğradı.", normalizedSymbol);
+            result = new KapDisclosureResult(false, []);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception exception)
+        {
+            _logger.LogWarning(exception, "{Symbol} için KAP bildirimleri alınamadı.", normalizedSymbol);
+            result = new KapDisclosureResult(false, []);
+        }
+
+        _cache.Set(cacheKey, result, SymbolCacheDuration);
+        return result;
+    }
+
+    private async Task<IReadOnlyList<KapDisclosure>> FetchAsync(
+        int lookbackDays,
+        int limit,
+        string? stockCode,
+        CancellationToken cancellationToken)
     {
         var today = DateOnly.FromDateTime(DateTimeOffset.UtcNow.ToOffset(IstanbulOffset).Date);
         var payload = new
         {
-            fromDate = today.AddDays(-2).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+            fromDate = today.AddDays(-lookbackDays).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
             toDate = today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
             memberType = string.Empty,
             mkkMemberOidList = Array.Empty<string>(),
@@ -114,10 +165,22 @@ public sealed class KapNewsService : IKapNewsService
         }
 
         var result = disclosures
+            .Where(item => stockCode is null ||
+                item.StockCodes.Contains(stockCode, StringComparer.OrdinalIgnoreCase))
             .OrderByDescending(item => item.PublishedAt)
-            .Take(100)
+            .Take(limit)
             .ToArray();
-        _logger.LogInformation("KAP üzerinden {Count} güncel bildirim alındı.", result.Length);
+        if (stockCode is null)
+        {
+            _logger.LogInformation("KAP üzerinden {Count} güncel bildirim alındı.", result.Length);
+        }
+        else
+        {
+            _logger.LogInformation(
+                "KAP üzerinden {StockCode} için {Count} bildirim alındı.",
+                stockCode,
+                result.Length);
+        }
         return result;
     }
 
@@ -269,4 +332,5 @@ public sealed class KapNewsService : IKapNewsService
             _ => value
         };
     }
+
 }

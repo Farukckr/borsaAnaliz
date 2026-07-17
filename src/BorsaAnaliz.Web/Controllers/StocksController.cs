@@ -28,19 +28,22 @@ public sealed class StocksController : Controller
     private readonly IAiCommentaryService _aiCommentary;
     private readonly IMemoryCache _cache;
     private readonly IWatchlistService _watchlist;
+    private readonly IKapNewsService _kapNews;
 
     public StocksController(
         IStockCatalogService stockCatalog,
         IMarketDataService marketData,
         IAiCommentaryService aiCommentary,
         IMemoryCache cache,
-        IWatchlistService watchlist)
+        IWatchlistService watchlist,
+        IKapNewsService kapNews)
     {
         _stockCatalog = stockCatalog;
         _marketData = marketData;
         _aiCommentary = aiCommentary;
         _cache = cache;
         _watchlist = watchlist;
+        _kapNews = kapNews;
     }
 
     public async Task<IActionResult> Index(
@@ -126,12 +129,20 @@ public sealed class StocksController : Controller
             return NotFound();
         }
 
-        var quote = await _marketData.GetQuoteAsync(stock.Symbol, cancellationToken);
+        var quoteTask = _marketData.GetQuoteAsync(stock.Symbol, cancellationToken);
+        var kapTask = stock.Market.Equals("BIST", StringComparison.OrdinalIgnoreCase)
+            ? _kapNews.GetForSymbolAsync(stock.Symbol, cancellationToken)
+            : Task.FromResult(new KapDisclosureResult(false, []));
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var isWatched = !string.IsNullOrWhiteSpace(userId) &&
             (await _watchlist.GetSymbolsAsync(userId, cancellationToken))
             .Contains(stock.Symbol, StringComparer.OrdinalIgnoreCase);
-        return View(new StockDetailsViewModel(stock, quote, isWatched));
+        var kapResult = await kapTask;
+        return View(new StockDetailsViewModel(
+            stock,
+            await quoteTask,
+            isWatched,
+            kapResult.IsAvailable ? kapResult.Disclosures : null));
     }
 
     [Authorize]
