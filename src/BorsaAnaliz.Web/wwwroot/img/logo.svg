@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Borsa Analiz logosu">
+  <rect x="3" y="19" width="7" height="10" rx="1.6" fill="#60a5fa"/>
+  <rect x="12.5" y="13" width="7" height="16" rx="1.6" fill="#3b82f6"/>
+  <rect x="22" y="7" width="7" height="22" rx="1.6" fill="#2563eb"/>
+  <polyline points="5,13 14,7 20,10 27,3" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="21.5,2.6 27.4,2.6 27.4,8.4" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
