@@ -167,6 +167,7 @@
                    asp-route-returnUrl="@Context.Request.Path">Yorum için giriş yap</a>
             }
         </div>
+        <p id="aiCommentaryMeta" class="small text-muted mt-4 mb-0 d-none"></p>
         <div id="aiCommentaryResult" class="ai-commentary mt-4 d-none" aria-live="polite"></div>
         <p class="small text-muted mb-0 mt-3">AI çıktıları hatalı olabilir; yatırım kararlarınızı bağımsız kaynaklarla doğrulayın.</p>
     </div>
@@ -418,6 +419,7 @@
             const button = document.getElementById('aiCommentaryButton');
             const buttonText = document.getElementById('aiCommentaryButtonText');
             const spinner = document.getElementById('aiCommentarySpinner');
+            const meta = document.getElementById('aiCommentaryMeta');
             const result = document.getElementById('aiCommentaryResult');
             const token = form.querySelector('input[name="__RequestVerificationToken"]').value;
 
@@ -469,6 +471,8 @@
                 button.disabled = true;
                 buttonText.textContent = 'Yorum hazırlanıyor...';
                 spinner.classList.remove('d-none');
+                meta.classList.add('d-none');
+                meta.textContent = '';
                 result.className = 'ai-commentary mt-4 alert alert-light border';
                 result.textContent = 'Son 60 günlük fiyat hareketi inceleniyor...';
 
@@ -482,9 +486,22 @@
                         throw new Error(payload.message || 'AI yorumu alınamadı.');
                     }
 
-                    result.className = 'ai-commentary mt-4 alert alert-light border';
+                    if (payload.succeeded === false) {
+                        result.className = 'ai-commentary mt-4 alert alert-warning';
+                        result.innerHTML = renderMarkdown(payload.commentary);
+                        return;
+                    }
+
+                    const generatedAt = new Date(payload.generatedAt);
+                    const timestamp = Number.isNaN(generatedAt.getTime())
+                        ? 'zaman bilgisi alınamadı'
+                        : generatedAt.toLocaleString('tr-TR', { dateStyle: 'medium', timeStyle: 'short' });
+                    meta.textContent = `Son 60 günlük OHLC verisi ve teknik göstergelere göre üretildi · ${timestamp}`;
+                    meta.classList.remove('d-none');
+                    result.className = 'ai-commentary mt-2 alert alert-light border';
                     result.innerHTML = renderMarkdown(payload.commentary);
                 } catch (exception) {
+                    meta.classList.add('d-none');
                     result.className = 'ai-commentary mt-4 alert alert-warning';
                     result.textContent = exception.message || 'AI yorumu alınamadı. Lütfen yeniden deneyin.';
                 } finally {

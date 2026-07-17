@@ -116,10 +116,14 @@ public sealed class StocksController : Controller
         }
 
         var responseCacheKey = $"ai-commentary:{stock.Symbol.ToUpperInvariant()}";
-        if (_cache.TryGetValue(responseCacheKey, out string? cachedCommentary) &&
-            !string.IsNullOrWhiteSpace(cachedCommentary))
+        if (_cache.TryGetValue(responseCacheKey, out AiCommentaryCacheEntry? cachedCommentary) &&
+            cachedCommentary is not null)
         {
-            return Ok(new AiCommentaryResponse(cachedCommentary, true));
+            return Ok(new AiCommentaryResponse(
+                cachedCommentary.Commentary,
+                true,
+                cachedCommentary.GeneratedAt,
+                true));
         }
 
         if (!_aiCommentary.IsConfigured)
@@ -128,7 +132,11 @@ public sealed class StocksController : Controller
                 stock.Symbol,
                 Array.Empty<Candle>(),
                 cancellationToken);
-            return Ok(new AiCommentaryResponse(unconfigured.Commentary, false));
+            return Ok(new AiCommentaryResponse(
+                unconfigured.Commentary,
+                false,
+                DateTimeOffset.UtcNow,
+                unconfigured.Succeeded));
         }
 
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -148,7 +156,11 @@ public sealed class StocksController : Controller
                 stock.Symbol,
                 candles,
                 cancellationToken);
-            return Ok(new AiCommentaryResponse(unavailable.Commentary, false));
+            return Ok(new AiCommentaryResponse(
+                unavailable.Commentary,
+                false,
+                DateTimeOffset.UtcNow,
+                unavailable.Succeeded));
         }
 
         var cooldownKey = $"ai-commentary-cooldown:{userId}";
@@ -181,12 +193,20 @@ public sealed class StocksController : Controller
             stock.Symbol,
             candles,
             cancellationToken);
+        var generatedAt = DateTimeOffset.UtcNow;
         if (result.Succeeded)
         {
-            _cache.Set(responseCacheKey, result.Commentary, TimeSpan.FromMinutes(5));
+            _cache.Set(
+                responseCacheKey,
+                new AiCommentaryCacheEntry(result.Commentary, generatedAt),
+                TimeSpan.FromMinutes(5));
         }
 
-        return Ok(new AiCommentaryResponse(result.Commentary, false));
+        return Ok(new AiCommentaryResponse(
+            result.Commentary,
+            false,
+            generatedAt,
+            result.Succeeded));
     }
 
     [HttpGet("/api/stocks/{symbol}/indicators")]
@@ -359,4 +379,6 @@ public sealed class StocksController : Controller
 
         return macd > signal ? "Pozitif" : macd < signal ? "Negatif" : "Nötr";
     }
+
+    private sealed record AiCommentaryCacheEntry(string Commentary, DateTimeOffset GeneratedAt);
 }

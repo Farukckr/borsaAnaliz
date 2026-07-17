@@ -10,6 +10,9 @@ namespace BorsaAnaliz.Web.Services;
 public sealed class GeminiCommentaryService : IAiCommentaryService
 {
     public const string Disclaimer = "Bu bir yatırım tavsiyesi değildir.";
+    public const string IncompleteResponseMessage = "AI yorumu tamamlanamadı, tekrar deneyin.";
+
+    private const string SummaryHeading = "## Özet";
 
     private readonly HttpClient _httpClient;
     private readonly AiOptions _options;
@@ -64,7 +67,7 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
             generationConfig = new
             {
                 temperature = 0.35,
-                maxOutputTokens = 800,
+                maxOutputTokens = 2048,
                 responseMimeType = "text/plain",
                 thinkingConfig = new
                 {
@@ -87,14 +90,28 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
 
             await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
             using var document = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken);
-            var commentary = ReadCommentary(document.RootElement);
+            var candidate = ReadFirstCandidate(document.RootElement);
+            if (candidate?.FinishReason.Equals("MAX_TOKENS", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                _logger.LogWarning("Gemini commentary for {Symbol} reached the output token limit.", symbol);
+                return Failure(IncompleteResponseMessage);
+            }
+
+            var commentary = candidate?.Commentary;
             if (string.IsNullOrWhiteSpace(commentary))
             {
                 _logger.LogWarning("Gemini returned no commentary text for {Symbol}.", symbol);
                 return Failure("AI servisi bu hisse için yorum üretemedi. Lütfen daha sonra yeniden deneyin.");
             }
 
-            return new AiCommentaryResult(EnsureDisclaimer(commentary.Trim()), true);
+            var normalizedCommentary = commentary.Trim();
+            if (!HasSummaryHeading(normalizedCommentary))
+            {
+                _logger.LogWarning("Gemini commentary for {Symbol} did not follow the required Markdown format.", symbol);
+                return Failure(IncompleteResponseMessage);
+            }
+
+            return new AiCommentaryResult(EnsureDisclaimer(normalizedCommentary), true);
         }
         catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
         {
@@ -124,6 +141,7 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
         var rsi14 = IndicatorCalculator.Rsi(closes);
         var macd = IndicatorCalculator.Macd(closes);
         var bollinger = IndicatorCalculator.Bollinger(closes);
+        var recentCandles = candles.TakeLast(60).ToArray();
         var builder = new StringBuilder();
 
         builder.AppendLine("Bir teknik analiz yardımcısısın. Yalnızca aşağıdaki fiyat ve gösterge verilerini kullan.");
@@ -134,10 +152,12 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
         builder.AppendLine($"- RSI14: {Format(LastValue(rsi14))}");
         builder.AppendLine($"- MACD: {Format(LastValue(macd.Macd))}; Sinyal: {Format(LastValue(macd.Signal))}; Histogram: {Format(LastValue(macd.Histogram))}");
         builder.AppendLine($"- Bollinger üst/orta/alt: {Format(LastValue(bollinger.Upper))} / {Format(LastValue(bollinger.Middle))} / {Format(LastValue(bollinger.Lower))}");
+        builder.AppendLine($"- Son kapanış: {Format(recentCandles.LastOrDefault()?.Close)}");
+        builder.AppendLine($"- Son 60 günlük en düşük/en yüksek: {Format(recentCandles.Min(candle => candle.Low))} / {Format(recentCandles.Max(candle => candle.High))}");
         builder.AppendLine();
         builder.AppendLine("Son fiyat verileri (tarih, açılış, yüksek, düşük, kapanış, hacim):");
 
-        foreach (var candle in candles.TakeLast(60))
+        foreach (var candle in recentCandles)
         {
             builder.AppendLine(string.Create(
                 CultureInfo.InvariantCulture,
@@ -145,29 +165,41 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
         }
 
         builder.AppendLine();
-        builder.AppendLine("Türkçe ve kısa bir Markdown yorum yaz. Başlıklar altında trendi, olası destek/direnç bölgelerini, RSI/MACD/ortalamalar/Bollinger okumalarını ve başlıca riskleri açıkla.");
+        builder.AppendLine("Türkçe, kısa ve aşağıdaki sabit Markdown yapısında bir yorum yaz. Başlıkları ve sıralarını kesinlikle değiştirme, başka başlık ekleme:");
+        builder.AppendLine("## Özet");
+        builder.AppendLine("Tam olarak 2 cümlelik özet yaz.");
+        builder.AppendLine("**Genel Görünüm:** Olumlu/Nötr/Olumsuz seçeneklerinden yalnızca birini yaz.");
+        builder.AppendLine("## Trend");
+        builder.AppendLine("Fiyatın eğilimini, SMA ve EMA ilişkilerini somut değerlerle kısaca açıkla.");
+        builder.AppendLine("## Göstergeler");
+        builder.AppendLine("Her göstergeyi kendi maddesinde, güncel okuması ve kısa yorumuyla yaz: RSI 14, MACD/Sinyal/Histogram, SMA20/SMA50/SMA200, EMA12/EMA26 ve Bollinger üst/orta/alt.");
+        builder.AppendLine("## Destek ve Direnç");
+        builder.AppendLine("Yalnızca verilen OHLC verilerinden türetilmiş somut fiyat seviyeleriyle en az bir destek ve bir direnç yaz.");
+        builder.AppendLine("## Riskler");
+        builder.AppendLine("Veride görülen başlıca teknik riskleri kısa maddeler halinde yaz.");
         builder.AppendLine("Kesin getiri iddiasında bulunma, al/sat talimatı verme ve haber ya da temel analiz uydurma.");
         builder.AppendLine($"Yanıtı aynen şu cümleyle bitir: {Disclaimer}");
         return builder.ToString();
     }
 
-    private static string? ReadCommentary(JsonElement root)
+    private static GeminiCandidateResponse? ReadFirstCandidate(JsonElement root)
     {
         if (!root.TryGetProperty("candidates", out var candidates) ||
-            candidates.ValueKind != JsonValueKind.Array)
+            candidates.ValueKind != JsonValueKind.Array ||
+            candidates.GetArrayLength() == 0)
         {
             return null;
         }
 
-        foreach (var candidate in candidates.EnumerateArray())
+        var candidate = candidates[0];
+        var finishReason = candidate.TryGetProperty("finishReason", out var finishReasonElement)
+            ? finishReasonElement.GetString()
+            : null;
+        string? commentary = null;
+        if (candidate.TryGetProperty("content", out var content) &&
+            content.TryGetProperty("parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
         {
-            if (!candidate.TryGetProperty("content", out var content) ||
-                !content.TryGetProperty("parts", out var parts) ||
-                parts.ValueKind != JsonValueKind.Array)
-            {
-                continue;
-            }
-
             var texts = parts.EnumerateArray()
                 .Where(part => part.TryGetProperty("text", out _))
                 .Select(part => part.GetProperty("text").GetString())
@@ -175,12 +207,17 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
             var combined = string.Join(Environment.NewLine, texts);
             if (!string.IsNullOrWhiteSpace(combined))
             {
-                return combined;
+                commentary = combined;
             }
         }
 
-        return null;
+        return new GeminiCandidateResponse(commentary, finishReason ?? string.Empty);
     }
+
+    private static bool HasSummaryHeading(string commentary) =>
+        commentary.Replace("\r", string.Empty, StringComparison.Ordinal)
+            .Split('\n')
+            .Any(line => line.Trim().Equals(SummaryHeading, StringComparison.OrdinalIgnoreCase));
 
     private static decimal? LastValue(IReadOnlyList<decimal?> values)
     {
@@ -210,4 +247,6 @@ public sealed class GeminiCommentaryService : IAiCommentaryService
 
         return $"{commentary.TrimEnd()}\n\n{Disclaimer}";
     }
+
+    private sealed record GeminiCandidateResponse(string? Commentary, string FinishReason);
 }
