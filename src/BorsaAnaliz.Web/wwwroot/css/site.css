@@ -2306,9 +2306,9 @@ body {
 
 h1,
 h2 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.035em;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 h3,
@@ -3125,4 +3125,28 @@ main > :nth-child(3) {
   background-size: 26px 26px;
   border-color: rgba(200, 255, 83, 0.38) !important;
   box-shadow: 6px 6px 0 var(--ba-acid);
+}
+
+/* Reserve the editorial face for genuinely large display headings. */
+.market-hero h1,
+.page-heading h1,
+.section-heading h2,
+.stock-detail-hero h1,
+.portfolio-detail-heading h1,
+.trade-page-heading h1,
+.form-feature-card h1,
+.content-panel > h1,
+.action-panel h2 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.kap-news-content h2,
+.movers-panel h3,
+.analysis-section h2,
+.portfolio-card h2,
+.portfolio-section h2 {
+  font-family: "DM Sans", system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
