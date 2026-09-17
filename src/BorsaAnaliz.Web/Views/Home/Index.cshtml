@@ -8,15 +8,15 @@
 <section class="market-hero mb-5" aria-labelledby="heroTitle">
     <div class="row align-items-center g-4 g-xl-5 position-relative">
         <div class="col-lg-7">
-            <div class="eyebrow"><i class="bi bi-broadcast-pin" aria-hidden="true"></i> BIST ve ABD tek ekranda</div>
-            <h1 id="heroTitle" class="mb-3">Piyasayı net görün.</h1>
+            <div class="eyebrow"><span>01</span> BIST ve ABD tek çalışma alanında</div>
+            <h1 id="heroTitle" class="mb-3">Piyasa gürültüsünü <em>sinyale</em> dönüştürün.</h1>
             <p class="hero-copy mb-4">
                 Hisse fiyatlarını, teknik göstergeleri ve sanal portföyünüzü tek bir çalışma alanında izleyin.
-                Gürültüyü azaltın, veriye odaklanın.
+                Kararınızı kalabalık ekranlarla değil, anlamlı verilerle şekillendirin.
             </p>
-            <div class="d-flex flex-column flex-sm-row gap-2">
+            <div class="hero-actions d-flex flex-column flex-sm-row gap-2">
                 <a class="btn btn-primary px-4 py-2" asp-controller="Stocks" asp-action="Index">
-                    Hisseleri incele <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+                    Piyasayı keşfet <i class="bi bi-arrow-up-right ms-1" aria-hidden="true"></i>
                 </a>
                 @if (User.Identity?.IsAuthenticated == true)
                 {
@@ -31,9 +31,32 @@
                     </a>
                 }
             </div>
+            <div class="hero-proof" aria-label="Platform kapsamı">
+                <span><strong>150+</strong> sembol</span>
+                <span><strong>5</strong> teknik gösterge</span>
+                <span><strong>1</strong> sade çalışma alanı</span>
+            </div>
         </div>
         <div class="col-lg-5">
-            <div class="hero-signal-panel" aria-label="Platform özellikleri">
+            <div class="hero-signal-panel" aria-label="Analiz çalışma alanı önizlemesi">
+                <div class="signal-panel-head">
+                    <span><i aria-hidden="true"></i> ANALİZ MODÜLÜ</span>
+                    <span>TR / USD</span>
+                </div>
+                <div class="signal-chart" aria-hidden="true">
+                    <div class="signal-chart-label">Fiyat hareketi</div>
+                    <svg viewBox="0 0 520 180" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="signalFill" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#c8ff53" stop-opacity=".30" />
+                                <stop offset="1" stop-color="#c8ff53" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <path class="signal-chart-area" d="M0 148 C45 140,65 126,102 132 S160 110,190 118 S242 70,274 86 S324 56,350 66 S414 25,445 42 S486 24,520 13 L520 180 L0 180 Z" />
+                        <path class="signal-chart-line" d="M0 148 C45 140,65 126,102 132 S160 110,190 118 S242 70,274 86 S324 56,350 66 S414 25,445 42 S486 24,520 13" />
+                    </svg>
+                    <span class="signal-chart-end">SİNYAL</span>
+                </div>
                 <div class="hero-signal-row">
                     <span class="hero-signal-icon"><i class="bi bi-activity" aria-hidden="true"></i></span>
                     <div>
@@ -63,7 +86,7 @@
 <section class="mb-5" aria-labelledby="marketSnapshotTitle">
     <div class="section-heading">
         <div>
-            <div class="section-kicker">Piyasa nabzı</div>
+            <div class="section-kicker"><span>02</span> Piyasa nabzı</div>
             <h2 id="marketSnapshotTitle">Küresel görünüm</h2>
             <p class="text-muted mb-0">Türkiye, döviz ve ABD endekslerinden hızlı bir özet.</p>
         </div>
@@ -125,7 +148,7 @@
     <section class="mb-5" aria-labelledby="latestKapTitle">
         <div class="section-heading">
             <div>
-                <div class="section-kicker">Gündemdeki şirketler</div>
+                <div class="section-kicker"><span>03</span> Gündemdeki şirketler</div>
                 <h2 id="latestKapTitle">Son KAP Bildirimleri</h2>
                 <p class="text-muted mb-0">Şirketlerden gelen en güncel resmi açıklamalar.</p>
             </div>
@@ -168,7 +191,7 @@
 <section class="mb-5" aria-labelledby="moversTitle">
     <div class="section-heading">
         <div>
-            <div class="section-kicker">Günün hareketi</div>
+            <div class="section-kicker"><span>04</span> Günün hareketi</div>
             <h2 id="moversTitle">Öne çıkan hisseler</h2>
             <p class="text-muted mb-0">Takip listesindeki en güçlü günlük yükseliş ve düşüşler.</p>
         </div>
@@ -244,7 +267,7 @@
     {
         <div class="row align-items-center g-4">
             <div class="col-lg-4">
-                <div class="section-kicker">Çalışma alanınız</div>
+                <div class="section-kicker"><span>05</span> Çalışma alanınız</div>
                 <h2 id="actionTitle" class="h3 mb-2">Nereden devam edelim?</h2>
                 <p class="text-muted mb-0">Piyasayı inceleyin, portföyünüzü yönetin veya yeni bir sanal işlem açın.</p>
             </div>
@@ -276,7 +299,7 @@
     {
         <div class="row align-items-center g-4">
             <div class="col-lg-8">
-                <div class="section-kicker">Ücretsiz başlayın</div>
+                <div class="section-kicker"><span>05</span> Ücretsiz başlayın</div>
                 <h2 id="actionTitle" class="h3 mb-2">Kendi piyasa çalışma alanınızı oluşturun.</h2>
                 <p class="text-muted mb-0">Sanal portföy açın, işlemlerinizi kaydedin ve performansınızı tek ekranda takip edin.</p>
             </div>

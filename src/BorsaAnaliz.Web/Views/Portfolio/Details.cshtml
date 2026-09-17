@@ -9,7 +9,7 @@
     var dayClass = Model.DayChange > 0 ? "gain" : Model.DayChange < 0 ? "loss" : "neutral";
     var dayIcon = Model.DayChange > 0 ? "bi-caret-up-fill" : Model.DayChange < 0 ? "bi-caret-down-fill" : "bi-dash";
     var daySign = Model.DayChange > 0 ? "+" : string.Empty;
-    var allocationColors = new[] { "#2563eb", "#0f9f75", "#7c3aed", "#f59e0b", "#0891b2", "#e11d48", "#64748b", "#14b8a6" };
+    var allocationColors = new[] { "#171a15", "#c8ff53", "#087a55", "#ff705a", "#8066d6", "#d8a62a", "#5e6459", "#4d8edd" };
     var allocationItems = Model.Positions
         .Where(position => position.Value > 0)
         .Select(position => new
@@ -47,7 +47,7 @@
 
 <div class="portfolio-detail-heading mb-4">
     <div>
-        <span class="section-kicker">Portföy görünümü</span>
+        <div class="section-kicker"><span>01</span> Portföy görünümü</div>
         <h1 class="mb-1">@Model.Portfolio.Name</h1>
         <p class="text-muted mb-0">Sanal portföy · @Model.Portfolio.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", displayCulture) tarihinden beri</p>
     </div>
@@ -337,7 +337,7 @@
                 const numberFormatter = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 new Chart(canvas, {
                     type: 'doughnut',
-                    data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#ffffff', borderWidth: 3, hoverOffset: 5 }] },
+                    data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#fbfaf5', borderWidth: 3, hoverOffset: 5 }] },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
@@ -394,26 +394,26 @@
                     const chart = LightweightCharts.createChart(container, {
                         width: container.clientWidth,
                         height: window.matchMedia('(max-width: 575.98px)').matches ? 280 : 330,
-                        layout: { background: { color: '#ffffff' }, textColor: '#64748b' },
+                        layout: { background: { color: '#fbfaf5' }, textColor: '#5e6459' },
                         localization: { priceFormatter: value => `₺${moneyFormatter.format(value)}` },
                         grid: {
-                            vertLines: { color: '#f1f5f9' },
-                            horzLines: { color: '#eef2f7' }
+                            vertLines: { color: '#ecece4' },
+                            horzLines: { color: '#e5e5dc' }
                         },
-                        rightPriceScale: { borderColor: '#dbe3ec' },
-                        timeScale: { borderColor: '#dbe3ec', timeVisible: false },
+                        rightPriceScale: { borderColor: '#c7c9be' },
+                        timeScale: { borderColor: '#c7c9be', timeVisible: false },
                         crosshair: { mode: LightweightCharts.CrosshairMode.Normal }
                     });
                     const valueSeries = chart.addAreaSeries({
-                        lineColor: '#2563eb',
-                        topColor: 'rgba(37, 99, 235, 0.28)',
-                        bottomColor: 'rgba(37, 99, 235, 0.02)',
+                        lineColor: '#739b18',
+                        topColor: 'rgba(200, 255, 83, 0.34)',
+                        bottomColor: 'rgba(200, 255, 83, 0.03)',
                         lineWidth: 2,
                         priceLineVisible: false,
                         title: 'Portföy değeri'
                     });
                     const baselineSeries = chart.addLineSeries({
-                        color: '#94a3b8',
+                        color: '#777d72',
                         lineWidth: 1,
                         lineStyle: LightweightCharts.LineStyle.Dashed,
                         priceLineVisible: false,

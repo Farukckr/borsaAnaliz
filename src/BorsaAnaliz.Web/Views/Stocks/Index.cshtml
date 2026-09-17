@@ -20,13 +20,14 @@
     };
 }
 
-<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+<header class="page-heading page-heading-split mb-4">
     <div>
+        <div class="section-kicker"><span>01</span> Piyasa evreni</div>
         <h1 class="mb-1">@listTitle</h1>
         <p class="text-muted mb-0">@listDescription</p>
     </div>
-    <div class="text-muted small">Fiyatlar gecikmeli olabilir.</div>
-</div>
+    <div class="page-heading-note"><i class="bi bi-clock-history" aria-hidden="true"></i> Fiyatlar gecikmeli olabilir</div>
+</header>
 
 <nav class="nav nav-pills gap-2 mb-4" aria-label="Piyasa listeleri">
     <a class="nav-link @(Model.ActiveList == "xu100" ? "active" : string.Empty)"
@@ -69,7 +70,7 @@
 }
 <div id="watchlistStatus" class="visually-hidden" aria-live="polite"></div>
 
-<div class="card stocks-filter-card border-0 shadow-sm mb-4">
+<div class="card stocks-filter-card filter-panel mb-4">
     <div class="card-body">
         <form method="get" asp-action="Index" class="row g-3 align-items-end">
             <input type="hidden" name="list" value="@Model.ActiveList" />
@@ -144,7 +145,7 @@
 }
 else
 {
-    <div class="table-responsive stock-table-shell bg-white rounded shadow-sm">
+    <div class="table-responsive stock-table-shell">
         <table class="table stock-table align-middle mb-0" aria-describedby="stockCount">
             <thead>
                 <tr>

@@ -450,20 +450,20 @@
             const chartOptions = container => ({
                 width: container.clientWidth,
                 height: container === priceContainer ? 430 : 190,
-                layout: { background: { color: '#ffffff' }, textColor: '#475569' },
+                layout: { background: { color: '#fbfaf5' }, textColor: '#5e6459' },
                 grid: {
-                    vertLines: { color: '#eef2f7' },
-                    horzLines: { color: '#eef2f7' }
+                    vertLines: { color: '#ecece4' },
+                    horzLines: { color: '#e5e5dc' }
                 },
-                rightPriceScale: { borderColor: '#dbe3ec' },
-                timeScale: { borderColor: '#dbe3ec', timeVisible: false },
+                rightPriceScale: { borderColor: '#c7c9be' },
+                timeScale: { borderColor: '#c7c9be', timeVisible: false },
                 crosshair: { mode: LightweightCharts.CrosshairMode.Normal }
             });
 
             const priceChart = LightweightCharts.createChart(priceContainer, chartOptions(priceContainer));
             const candleSeries = priceChart.addCandlestickSeries({
-                upColor: '#16a34a', downColor: '#dc2626', borderVisible: false,
-                wickUpColor: '#16a34a', wickDownColor: '#dc2626'
+                upColor: '#087a55', downColor: '#cc493b', borderVisible: false,
+                wickUpColor: '#087a55', wickDownColor: '#cc493b'
             });
             const volumeSeries = priceChart.addHistogramSeries({
                 priceFormat: { type: 'volume' }, priceScaleId: 'volume'
@@ -472,29 +472,29 @@
 
             const overlaySeries = {
                 sma: [
-                    priceChart.addLineSeries({ color: '#2563eb', lineWidth: 2, title: 'SMA 20' }),
-                    priceChart.addLineSeries({ color: '#7c3aed', lineWidth: 2, title: 'SMA 50' }),
-                    priceChart.addLineSeries({ color: '#475569', lineWidth: 2, title: 'SMA 200' })
+                    priceChart.addLineSeries({ color: '#739b18', lineWidth: 2, title: 'SMA 20' }),
+                    priceChart.addLineSeries({ color: '#8066d6', lineWidth: 2, title: 'SMA 50' }),
+                    priceChart.addLineSeries({ color: '#42473f', lineWidth: 2, title: 'SMA 200' })
                 ],
                 ema: [
-                    priceChart.addLineSeries({ color: '#f59e0b', lineWidth: 1, title: 'EMA 12' }),
-                    priceChart.addLineSeries({ color: '#ea580c', lineWidth: 1, title: 'EMA 26' })
+                    priceChart.addLineSeries({ color: '#d8a62a', lineWidth: 1, title: 'EMA 12' }),
+                    priceChart.addLineSeries({ color: '#ff705a', lineWidth: 1, title: 'EMA 26' })
                 ],
                 bollinger: [
-                    priceChart.addLineSeries({ color: '#0891b2', lineWidth: 1, lineStyle: 2, title: 'Boll. Üst' }),
-                    priceChart.addLineSeries({ color: '#0e7490', lineWidth: 1, title: 'Boll. Orta' }),
-                    priceChart.addLineSeries({ color: '#0891b2', lineWidth: 1, lineStyle: 2, title: 'Boll. Alt' })
+                    priceChart.addLineSeries({ color: '#4d8edd', lineWidth: 1, lineStyle: 2, title: 'Boll. Üst' }),
+                    priceChart.addLineSeries({ color: '#087a55', lineWidth: 1, title: 'Boll. Orta' }),
+                    priceChart.addLineSeries({ color: '#4d8edd', lineWidth: 1, lineStyle: 2, title: 'Boll. Alt' })
                 ]
             };
 
             const rsiChart = LightweightCharts.createChart(rsiContainer, chartOptions(rsiContainer));
-            const rsiSeries = rsiChart.addLineSeries({ color: '#7c3aed', lineWidth: 2, title: 'RSI 14' });
-            rsiSeries.createPriceLine({ price: 70, color: '#dc2626', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '70' });
-            rsiSeries.createPriceLine({ price: 30, color: '#16a34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '30' });
+            const rsiSeries = rsiChart.addLineSeries({ color: '#8066d6', lineWidth: 2, title: 'RSI 14' });
+            rsiSeries.createPriceLine({ price: 70, color: '#cc493b', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '70' });
+            rsiSeries.createPriceLine({ price: 30, color: '#087a55', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '30' });
 
             const macdChart = LightweightCharts.createChart(macdContainer, chartOptions(macdContainer));
-            const macdSeries = macdChart.addLineSeries({ color: '#2563eb', lineWidth: 2, title: 'MACD' });
-            const macdSignalSeries = macdChart.addLineSeries({ color: '#f59e0b', lineWidth: 2, title: 'Sinyal' });
+            const macdSeries = macdChart.addLineSeries({ color: '#739b18', lineWidth: 2, title: 'MACD' });
+            const macdSignalSeries = macdChart.addLineSeries({ color: '#ff705a', lineWidth: 2, title: 'Sinyal' });
             const macdHistogramSeries = macdChart.addHistogramSeries({ priceFormat: { type: 'price' } });
 
             const toLineData = points => points.map(point => ({ time: point.time, value: point.value }));
@@ -545,7 +545,7 @@
                     volumeSeries.setData(candles.map(candle => ({
                         time: candle.time,
                         value: candle.volume,
-                        color: candle.close >= candle.open ? 'rgba(22, 163, 74, 0.35)' : 'rgba(220, 38, 38, 0.35)'
+                        color: candle.close >= candle.open ? 'rgba(8, 122, 85, 0.35)' : 'rgba(204, 73, 59, 0.35)'
                     })));
 
                     overlaySeries.sma[0].setData(toLineData(indicators.series.sma20));
@@ -566,7 +566,7 @@
                         .map(point => ({
                             time: point.time,
                             value: point.histogram,
-                            color: point.histogram >= 0 ? 'rgba(22, 163, 74, 0.55)' : 'rgba(220, 38, 38, 0.55)'
+                            color: point.histogram >= 0 ? 'rgba(8, 122, 85, 0.55)' : 'rgba(204, 73, 59, 0.55)'
                         })));
 
                     setSummary(indicators.latest);

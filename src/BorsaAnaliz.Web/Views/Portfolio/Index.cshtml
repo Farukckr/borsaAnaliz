@@ -5,14 +5,14 @@
     var displayCulture = CultureInfo.GetCultureInfo("tr-TR");
 }
 
-<div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+<header class="page-heading page-heading-split mb-4">
     <div>
-        <span class="section-kicker">Varlık yönetimi</span>
+        <div class="section-kicker"><span>01</span> Varlık yönetimi</div>
         <h1 class="mb-1">Portföylerim</h1>
         <p class="text-muted mb-0">Sanal portföylerinizin değerini, günlük hareketini ve dağılımını izleyin.</p>
     </div>
     <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i> Yeni portföy</a>
-</div>
+</header>
 
 @if (TempData["SuccessMessage"] is string successMessage)
 {
